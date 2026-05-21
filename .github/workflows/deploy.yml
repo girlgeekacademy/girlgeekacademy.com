@@ -46,7 +46,6 @@ jobs:
           if_key_exists: fail
 
       - name: rsync deploy
-        env:
         run: |
           rsync -avz --dry-run \
             -e "ssh -i ~/.ssh/gga_website_deploy -o StrictHostKeyChecking=yes" \
