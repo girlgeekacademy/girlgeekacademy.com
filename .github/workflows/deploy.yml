@@ -1,7 +1,11 @@
 name: Deploy to production
 
 on:
+  workflow_dispatch:
   push:
+    branches:
+      - main
+  pull_request_target:
     branches:
       - main
 
@@ -33,17 +37,18 @@ jobs:
           name: dist
           path: dist/
 
-      - name: Configure SSH and deploy
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@87a8f06
+        with:
+          key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+          name: gga_website_deploy
+          known_hosts: ${{ env.DEPLOY_SSH_HOST }}
+          if_key_exists: fail
+
+      - name: rsync deploy
         env:
-          DEPLOY_SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
-          DEPLOY_SSH_HOST: ${{ env.DEPLOY_SSH_HOST }}
-          DEPLOY_SSH_USER: ${{ env.DEPLOY_SSH_USER }}
         run: |
-          mkdir -p ~/.ssh
-          echo "$DEPLOY_SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H "$DEPLOY_SSH_HOST" >> ~/.ssh/known_hosts
           rsync -avz --dry-run \
-            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes" \
+            -e "ssh -i ~/.ssh/gga_website_deploy -o StrictHostKeyChecking=yes" \
             ./dist/ \
-            "${DEPLOY_SSH_USER}@${DEPLOY_SSH_HOST}:~/public_html_new/"
+            "${{ env.DEPLOY_SSH_USER }}@${{ env.DEPLOY_SSH_HOST }}:~/public_html_new/"
