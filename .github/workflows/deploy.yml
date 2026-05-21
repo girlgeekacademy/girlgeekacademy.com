@@ -38,7 +38,7 @@ jobs:
           path: dist/
 
       - name: Install SSH key
-        uses: shimataro/ssh-key-action@87a8f06
+        uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
           name: gga_website_deploy
