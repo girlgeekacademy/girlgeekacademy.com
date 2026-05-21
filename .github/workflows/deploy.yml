@@ -43,7 +43,7 @@ jobs:
           echo "$DEPLOY_SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "$DEPLOY_SSH_HOST" >> ~/.ssh/known_hosts
-          rsync -avz --delete \
+          rsync -avz --dry-run \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes" \
             ./dist/ \
             "${DEPLOY_SSH_USER}@${DEPLOY_SSH_HOST}:~/public_html_new/"
