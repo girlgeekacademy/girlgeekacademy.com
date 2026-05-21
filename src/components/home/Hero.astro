@@ -1,0 +1,140 @@
+---
+import { urls } from '../../data/urls';
+---
+
+<section class="hero section">
+	<div class="hero__shape" aria-hidden="true">
+		<svg width="100%" height="96" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+			<path fill="#ffffff" d="M0,-2.13162821e-14 C16.6666667,66.6666667 33.3333333,100 50,100 C66.6666667,100 83.3333333,66.6666667 100,-2.13162821e-14 L100,100 L0,100 L0,-2.13162821e-14 Z"></path>
+		</svg>
+	</div>
+	<div class="container grid-2">
+		<div class="hero__mobile hide-desktop">
+			<p class="hero__eyebrow">WELCOME TO OUR WORLD</p>
+			<h1 class="hero__headline">
+				Sooo… what can we do about the tech industry? Is the internet broken forever?
+			</h1>
+			<a href={urls.about} class="btn btn-primary">WHAT WE DO</a>
+			<div class="hero__video">
+				<div class="hero__video-wrap">
+					<iframe
+						src="https://www.youtube-nocookie.com/embed/9R4a_NL9prY"
+						title="Girl Geek Academy video"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+						loading="lazy"></iframe>
+				</div>
+			</div>
+		</div>
+
+		<div class="hero__left hide-mobile">
+			<p class="hero__eyebrow">WELCOME TO OUR WORLD</p>
+			<h1 class="hero__headline">
+				Sooo… what can we do about the tech industry? Is the internet broken forever? the tech
+				industry lacks a certain something. enough women in tech.
+			</h1>
+			<p>
+				<strong>Only 12% of tech engineers are women, 19% of game developers are women,</strong>
+				and a tiny 3% of the world's venture capital goes to women-led companies. Our mission is to
+				teach one million women* technology skills by 2025. Our programs aim to support and increase
+				the number of women in tech. We learn coding, game development, 3D printing, AI, machine
+				learning, drones and new emerging technologies alongside our friends.
+			</p>
+			<a href={urls.about} class="btn btn-primary">WHAT WE DO</a>
+		</div>
+
+		<div class="hero__right">
+			<h1>Girl Geek Academy aims to bring one million women and girls into technology careers by 2030</h1>
+			<p>
+				<strong
+					>Girl Geek Academy is a social enterprise dedicated to achieving gender equality in the
+					technology industry.</strong
+				>
+				We aim to bring one million women and girls into technology careers by 2030 through a range of
+				programs in industries such as games, startups, 3D printing, design, and aviation. Our community
+				is built on the foundation of friendship, learning from one another and sharing career skills
+				and tech tricks. We work to tackle structural issues facing women and girls in technology by
+				influencing families, corporations, government, schools, and the tech community.
+			</p>
+
+			<div class="hero__ctas hide-mobile">
+				<div class="hero__cta">
+					<a href="#home-classes" class="btn btn-primary">Join a CLASS</a>
+					<p><strong>Holiday tech classes for women and girls.</strong></p>
+				</div>
+				<div class="hero__cta">
+					<a href="#lets-collaborate" class="btn btn-primary">Collab with us</a>
+					<p><strong>Let's work together to boost equality.</strong></p>
+				</div>
+			</div>
+
+			<div class="hero__video hide-mobile">
+				<div class="hero__video-wrap">
+					<iframe
+						src="https://www.youtube-nocookie.com/embed/9R4a_NL9prY"
+						title="Girl Geek Academy video"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+						loading="lazy"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		padding-bottom: 6rem;
+		background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+	}
+
+	.hero__shape {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		line-height: 0;
+	}
+
+	.hero__eyebrow {
+		color: var(--color-primary);
+		font-weight: 600;
+		letter-spacing: 0.05em;
+	}
+
+	.hero__headline {
+		font-size: clamp(1.5rem, 3vw, 2.25rem);
+		margin-bottom: 1rem;
+	}
+
+	.hero__ctas {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.5rem;
+		margin: 2rem 0;
+		text-align: center;
+	}
+
+	.hero__cta p {
+		margin-top: 0.5rem;
+		font-size: 0.9rem;
+	}
+
+	.hero__video-wrap {
+		position: relative;
+		padding-bottom: 56.25%;
+		border-radius: 0.5rem;
+		overflow: hidden;
+		background: #000;
+	}
+
+	.hero__video-wrap iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+</style>

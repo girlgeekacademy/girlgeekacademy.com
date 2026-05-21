@@ -1,0 +1,65 @@
+---
+const items = [
+	{
+		number: 1,
+		title: 'Classes',
+		description: "Let's run Educational Workshops, Classes, Hackathons, Game Jams and more!",
+	},
+	{
+		number: 2,
+		title: 'Campaigns',
+		description:
+			"You're doing something great, we can help you spread the word and get people engaged!",
+	},
+	{
+		number: 3,
+		title: 'Collabs',
+		description: "Not sure how to make an impact? Let's work together and change the world!",
+	},
+];
+---
+
+<section class="what-we-do section">
+	<div class="container">
+		<h2 class="text-center">What we do</h2>
+		<div class="what-we-do__grid grid-3">
+			{
+				items.map((item) => (
+					<div class="what-we-do__card text-center">
+						<div class="what-we-do__circle">{item.number}</div>
+						<h4>{item.title}</h4>
+						<p>{item.description}</p>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.what-we-do {
+		background: linear-gradient(180deg, #f0f3ff 0%, #ffffff 100%);
+	}
+
+	.what-we-do h2 {
+		margin-bottom: 2.5rem;
+	}
+
+	.what-we-do__circle {
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		background: var(--color-primary);
+		color: var(--color-white);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin-bottom: 1rem;
+	}
+
+	.what-we-do__card h4 {
+		margin-bottom: 0.75rem;
+	}
+</style>

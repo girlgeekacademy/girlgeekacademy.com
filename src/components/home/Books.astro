@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import booksImage from '../../assets/home/books.png';
+import welcomePack from '../../assets/home/welcome-pack.jpg';
+import { urls } from '../../data/urls';
+---
+
+<section class="books section">
+	<div class="container grid-2">
+		<div class="text-center">
+			<h2>Girl geeks books</h2>
+			<p>Get ya geek on with this girl gang as they design, make, game, hack, code & more!</p>
+			<p>
+				Written for girls aged 7-10, the Girl Geeks series encourages young people into coding,
+				gaming, and STEM (science, technology, engineering, and mathematics).
+			</p>
+			<a href={urls.shop} class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+				SHOP Books and Beanies
+			</a>
+		</div>
+		<div>
+			<Image src={booksImage} alt="Girl Geeks book series" width={800} height={718} />
+			<Image
+				src={welcomePack}
+				alt="Girl Geek Academy workshop"
+				width={1024}
+				height={683}
+				class="books__photo"
+			/>
+		</div>
+	</div>
+</section>
+
+<style>
+	.books__photo {
+		margin-top: 1.5rem;
+		border-radius: 0.5rem;
+	}
+</style>

@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import missMakesCode from '../../assets/home/miss-makes-code.png';
+import { urls } from '../../data/urls';
+
+const quotes = [
+	{
+		text: "After seeking venture capital I was advised by Girl Geek Academy to go back to my community. Where I'd started. We have just raised $3 million, breaking the Australian record for a Crowd Equity Raise",
+		author: 'George McEncroe',
+		role: 'Shebah Founder',
+	},
+	{
+		text: 'What a wonderful day you planned for yesterday. The Little Misses were so engaged, happy and learning without fear and really enjoying the experience. It was a delight to be there and so inspiring to see.',
+		author: 'Karin Morrison',
+		role: 'Keynote Speaker, Harvard — #missmakescode',
+	},
+];
+---
+
+<section class="testimonials section">
+	<div class="container">
+		<div class="testimonials__grid grid-2">
+			{
+				quotes.map((quote) => (
+					<blockquote class="testimonials__quote">
+						<p>&ldquo;{quote.text}&rdquo;</p>
+						<footer>
+							<cite>{quote.author}</cite>
+							<span>{quote.role}</span>
+						</footer>
+					</blockquote>
+				))
+			}
+		</div>
+		<div class="testimonials__footer text-center">
+			<Image src={missMakesCode} alt="Miss Makes Code robots" width={400} height={300} />
+			<p><a href={urls.email} class="btn btn-primary">Sound good? Get in touch!</a></p>
+		</div>
+	</div>
+</section>
+
+<style>
+	.testimonials__quote {
+		margin: 0;
+		padding: 1.5rem;
+		background: #f8f9ff;
+		border-radius: 0.5rem;
+		border-left: 4px solid var(--color-primary);
+	}
+
+	.testimonials__quote footer {
+		margin-top: 1rem;
+		font-size: 0.9rem;
+	}
+
+	.testimonials__quote cite {
+		font-style: normal;
+		font-weight: 600;
+		display: block;
+	}
+
+	.testimonials__footer {
+		margin-top: 3rem;
+	}
+
+	.testimonials__footer img {
+		margin: 0 auto 1.5rem;
+		max-width: 280px;
+	}
+</style>

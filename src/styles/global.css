@@ -1,0 +1,192 @@
+@font-face {
+	font-family: 'Pinata Limes';
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/pinata-limes.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'Jen Wagner Script';
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/jen-wagner-script.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'Jen Wagner Print';
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/jen-wagner-print.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'Franklin Gothic Extra Condensed';
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/franklin-gothic-extra-cond.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'Better Times';
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/better-times.ttf') format('truetype');
+}
+
+:root {
+	--color-primary: #5f7dd7;
+	--color-primary-hover: #2e48a0;
+	--color-accent: #ff9996;
+	--color-accent-alt: #ee9197;
+	--color-text: #5f7dd7;
+	--color-white: #ffffff;
+	--color-dark: #212529;
+	--font-body: 'Libre Franklin', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		'Helvetica Neue', Arial, sans-serif;
+	--font-display: 'Jen Wagner Print', sans-serif;
+	--font-script: 'Jen Wagner Script', cursive;
+	--container-max: 1140px;
+	--section-padding: 4rem 1.5rem;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-body);
+	color: var(--color-text);
+	line-height: 1.6;
+	background: var(--color-white);
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+a {
+	color: var(--color-primary);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--color-primary-hover);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-body);
+	font-weight: 400;
+	line-height: 1.2;
+	margin-top: 0;
+}
+
+h1.display {
+	font-family: var(--font-display);
+	font-size: clamp(2rem, 5vw, 4.5rem);
+	line-height: 1.1;
+}
+
+.container {
+	width: 100%;
+	max-width: var(--container-max);
+	margin: 0 auto;
+	padding: 0 1.5rem;
+}
+
+.section {
+	padding: var(--section-padding);
+}
+
+.section--dark {
+	background: var(--color-primary);
+	color: var(--color-white);
+}
+
+.section--dark a {
+	color: var(--color-white);
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.5rem 1.25rem;
+	font-family: var(--font-body);
+	font-size: 0.875rem;
+	font-weight: 500;
+	text-align: center;
+	border-radius: 0.25rem;
+	border: 1px solid transparent;
+	cursor: pointer;
+	transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-primary {
+	color: var(--color-white);
+	background-color: var(--color-primary);
+	border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+	color: var(--color-white);
+	background-color: var(--color-primary-hover);
+	border-color: var(--color-primary-hover);
+}
+
+.grid-2 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2rem;
+	align-items: center;
+}
+
+.grid-3 {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2rem;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@media (max-width: 991px) {
+	.grid-2,
+	.grid-3 {
+		grid-template-columns: 1fr;
+	}
+
+	.hide-mobile {
+		display: none !important;
+	}
+}
+
+@media (min-width: 992px) {
+	.hide-desktop {
+		display: none !important;
+	}
+}

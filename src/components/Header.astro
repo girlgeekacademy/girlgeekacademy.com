@@ -1,0 +1,156 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/home/logo.png';
+import { urls } from '../data/urls';
+
+const navItems = [
+	{ label: 'Welcome', href: urls.home },
+	{ label: 'About Us', href: urls.about },
+	{ label: 'AI High', href: urls.aiHigh },
+	{ label: 'SheHacksSwift', href: urls.sheHacksSwift },
+	{ label: 'READ OUR LATEST REPORT', href: urls.report, bold: true },
+];
+---
+
+<header class="header">
+	<nav class="header__nav container" aria-label="Main navigation">
+		<a href={urls.home} class="header__brand" rel="home">
+			<Image src={logo} alt="Girl Geek Academy" width={411} height={55} />
+		</a>
+
+		<button
+			class="header__toggle hide-desktop"
+			type="button"
+			aria-expanded="false"
+			aria-controls="main-menu"
+			aria-label="Toggle navigation"
+		>
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+				<path
+					d="M3 17C3 17.5523 3.44772 18 4 18H20C20.5523 18 21 17.5523 21 17V17C21 16.4477 20.5523 16 20 16H4C3.44772 16 3 16.4477 3 17V17ZM3 12C3 12.5523 3.44772 13 4 13H20C20.5523 13 21 12.5523 21 12V12C21 11.4477 20.5523 11 20 11H4C3.44772 11 3 11.4477 3 12V12ZM4 6C3.44772 6 3 6.44772 3 7V7C3 7.55228 3.44772 8 4 8H20C20.5523 8 21 7.55228 21 7V7C21 6.44772 20.5523 6 20 6H4Z"
+					fill="#212529"></path>
+			</svg>
+		</button>
+
+		<div class="header__menu" id="main-menu">
+			<ul class="header__links">
+				{
+					navItems.map((item) => (
+						<li>
+							<a href={item.href} class:list={['header__link', { 'header__link--bold': item.bold }]}>
+								{item.bold ? <strong>{item.label}</strong> : item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+			<a href={urls.shop} class="btn btn-primary header__shop">Shop</a>
+		</div>
+	</nav>
+</header>
+
+<script>
+	const toggle = document.querySelector('.header__toggle');
+	const menu = document.querySelector('.header__menu');
+
+	toggle?.addEventListener('click', () => {
+		const expanded = toggle.getAttribute('aria-expanded') === 'true';
+		toggle.setAttribute('aria-expanded', String(!expanded));
+		menu?.classList.toggle('header__menu--open');
+	});
+</script>
+
+<style>
+	.header {
+		background: var(--color-white);
+		border-bottom: 1px solid rgba(95, 125, 215, 0.15);
+		position: sticky;
+		top: 0;
+		z-index: 100;
+	}
+
+	.header__nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-top: 0.75rem;
+		padding-bottom: 0.75rem;
+		gap: 1rem;
+	}
+
+	.header__brand img {
+		max-height: 26px;
+		width: auto;
+	}
+
+	.header__toggle {
+		background: none;
+		border: none;
+		padding: 0.5rem;
+		cursor: pointer;
+	}
+
+	.header__menu {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.header__links {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.header__link {
+		font-size: 0.9rem;
+		color: var(--color-primary);
+		white-space: nowrap;
+	}
+
+	.header__link:hover {
+		color: var(--color-primary-hover);
+	}
+
+	.header__shop {
+		flex-shrink: 0;
+	}
+
+	@media (max-width: 991px) {
+		.header__menu {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			flex-direction: column;
+			align-items: stretch;
+			background: var(--color-white);
+			padding: 1rem 1.5rem 1.5rem;
+			border-bottom: 1px solid rgba(95, 125, 215, 0.15);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		}
+
+		.header__menu--open {
+			display: flex;
+		}
+
+		.header__links {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.75rem;
+		}
+
+		.header__shop {
+			align-self: flex-start;
+		}
+
+		.header__nav {
+			flex-wrap: wrap;
+			position: relative;
+		}
+	}
+</style>

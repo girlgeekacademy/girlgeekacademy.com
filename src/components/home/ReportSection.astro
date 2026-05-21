@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import reportCover from '../../assets/home/report-cover.jpg';
+import { urls } from '../../data/urls';
+---
+
+<section class="report section">
+	<div class="container grid-2">
+		<div class="report__content">
+			<div class="report__typed">
+				<h2 class="report__fix">
+					<span class="report__fix-prefix">FIX THE </span>
+					<span id="typed-words" class="report__fix-words" aria-live="polite"></span>
+				</h2>
+			</div>
+			<h2 class="report__title">
+				FIX THE SYSTEM,<span class="report__title-accent">NOT THE GIRLS</span>
+			</h2>
+			<p>
+				The reason gender equity is going backwards in tech is <strong>not</strong> because of a
+				lack of evaluation of equity programs, it is a <strong>lack of investment</strong> in the
+				<strong>solutions that we already know work.</strong>
+			</p>
+			<p>
+				Girl Geek Academy surveyed over 300 women, men and NB folk in tech for our submission to
+				Minister Husic's "Diversity in STEM" review.
+			</p>
+			<p>
+				Girl Geeks say – <strong>Enough Talk.</strong> Time for action <strong
+					>backed by investment.</strong
+				>
+			</p>
+			<a href={urls.report} class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+				READ THE REPORT!
+			</a>
+		</div>
+		<div class="report__image hide-mobile">
+			<a href={urls.report}>
+				<Image
+					src={reportCover}
+					alt="Girl Geek Academy STEM report"
+					width={724}
+					height={1024}
+					class="report__cover"
+				/>
+			</a>
+		</div>
+	</div>
+</section>
+
+<script>
+	const words = ['VIOLENCE', 'CAREER PATHS', 'ROLE-MODELLING', 'FUNDING', 'BACKLASH'];
+	const el = document.getElementById('typed-words');
+	if (el) {
+		let wordIndex = 0;
+		let charIndex = 0;
+		let deleting = false;
+
+		const tick = () => {
+			const word = words[wordIndex];
+			if (!deleting) {
+				el.textContent = word.substring(0, charIndex + 1);
+				charIndex++;
+				if (charIndex === word.length) {
+					deleting = true;
+					setTimeout(tick, 2000);
+					return;
+				}
+			} else {
+				el.textContent = word.substring(0, charIndex - 1);
+				charIndex--;
+				if (charIndex === 0) {
+					deleting = false;
+					wordIndex = (wordIndex + 1) % words.length;
+				}
+			}
+			setTimeout(tick, deleting ? 40 : 65);
+		};
+
+		tick();
+	}
+</script>
+
+<style>
+	.report__fix {
+		font-size: clamp(2rem, 6vw, 5rem);
+		line-height: 1.1;
+		margin-bottom: 0.5rem;
+	}
+
+	.report__fix-prefix {
+		color: var(--color-accent);
+	}
+
+	.report__fix-words {
+		color: var(--color-accent);
+		border-right: 3px solid var(--color-accent);
+		padding-right: 4px;
+	}
+
+	.report__title {
+		font-size: clamp(2rem, 5vw, 5rem);
+		line-height: 1.2;
+		color: var(--color-primary);
+		margin-bottom: 1.5rem;
+	}
+
+	.report__title-accent {
+		color: var(--color-accent-alt);
+	}
+
+	.report__cover {
+		border-radius: 0.5rem;
+		box-shadow: 0 12px 40px rgba(95, 125, 215, 0.25);
+	}
+</style>

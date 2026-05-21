@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import ggaBlock from '../../assets/home/gga-block.png';
+import collabImage from '../../assets/home/collab.png';
+import { urls } from '../../data/urls';
+---
+
+<section class="collab section" id="lets-collaborate">
+	<div class="container">
+		<h2 class="text-center collab__title">Let's collaborate to achieve gender equality</h2>
+	</div>
+	<div class="container grid-2">
+		<div class="text-center">
+			<a href={urls.welcomePack} target="_blank" rel="noopener noreferrer">
+				<Image src={ggaBlock} alt="Girl Geek Academy" width={1024} height={831} />
+			</a>
+			<a href={urls.welcomePack} class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+				Download our welcome pack!
+			</a>
+		</div>
+		<div class="hide-mobile">
+			<p>
+				We <strong>LOVE</strong> working in technology and understand the perfect tension between art,
+				creativity and tech. There's a growing audience that's hungry for content, looking to feel a part
+				of something bigger than themselves- but the fields of <strong>science</strong>, <strong
+					>technology</strong
+				>, <strong>engineering</strong> and <strong>maths</strong> is notorious for being terrible at
+				marketing themselves.
+			</p>
+			<p>
+				At <strong>Girl Geek Academy</strong> we have had great success building a mainstream media profile
+				as "Girl Geeks" – attracting women and young girls into <strong>STEM</strong> fields. We are able
+				to provide expert opinions on technical issues through <strong>op-eds</strong>, <strong
+					>interviews</strong
+				> and regular <strong>TV</strong>, <strong>radio</strong>, <strong>podcasts</strong> and <strong
+					>newspapers</strong
+				> AND develop and deliver <strong>REMOTE</strong> <strong>LEARNING</strong> programs and workshops.
+			</p>
+			<div class="grid-2 collab__subs">
+				<div>
+					<h4>Consulting?</h4>
+					<p>
+						Not sure how to tackle a challenge in front of your organisation? We also offer expert
+						"<strong>Girl Geek</strong>" consultancy, and can help you plan your next move to meet your
+						equality goals!
+					</p>
+				</div>
+				<div>
+					<h4>Let's Connect!</h4>
+					<p>
+						Whether you're looking to deliver educational content to a class, developing a campaign or
+						looking to collaborate with us, we'd <strong>love</strong> to hear from you!
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container collab__image-wrap">
+		<Image src={collabImage} alt="Collaboration" width={800} height={745} />
+	</div>
+</section>
+
+<style>
+	.collab__title {
+		margin-bottom: 2rem;
+	}
+
+	.collab__subs {
+		margin-top: 1.5rem;
+		gap: 1.5rem;
+	}
+
+	.collab__image-wrap {
+		margin-top: 2rem;
+		text-align: center;
+	}
+</style>
