@@ -34,6 +34,7 @@ Configure these repository secrets under **Settings â†’ Secrets and variables â†
 | Secret | Purpose |
 |--------|---------|
 | `DEPLOY_SSH_PRIVATE_KEY` | Full PEM private key for SSH auth (including `-----BEGIN ... KEY-----` lines) |
+| `DEPLOY_SSH_KNOWN_HOSTS` | The output of `ssh-keyscan -H ${DEPLOY_SSH_HOST}` |
 
 | Variable | Purpose |
 |----------|---------|
