@@ -47,7 +47,7 @@ jobs:
 
       - name: rsync deploy
         run: |
-          rsync -avz --dry-run \
+          rsync -avz \
             -e "ssh -i ~/.ssh/gga_website_deploy -o StrictHostKeyChecking=yes" \
             ./dist/ \
             "${{ vars.DEPLOY_SSH_USER }}@${{ vars.DEPLOY_SSH_HOST }}:~/public_html_new/"
