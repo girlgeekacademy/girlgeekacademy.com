@@ -1,12 +1,12 @@
 ---
 import { Image } from 'astro:assets';
-import booksImage from '../../assets/home/books.png';
-import welcomePack from '../../assets/home/welcome-pack.jpg';
+import workshopPhoto from '../../assets/home/welcome-pack.jpg';
 import { urls } from '../../data/urls';
 ---
 
 <section class="books section">
-	<div class="container grid-2">
+	<div class="books__overlay" aria-hidden="true"></div>
+	<div class="container grid-2 books__content">
 		<div class="text-center">
 			<h2>Girl geeks books</h2>
 			<p>Get ya geek on with this girl gang as they design, make, game, hack, code & more!</p>
@@ -14,15 +14,14 @@ import { urls } from '../../data/urls';
 				Written for girls aged 7-10, the Girl Geeks series encourages young people into coding,
 				gaming, and STEM (science, technology, engineering, and mathematics).
 			</p>
-			<a href={urls.shop} class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+			<a href={urls.shop} class="btn btn-mint" target="_blank" rel="noopener noreferrer">
 				SHOP Books and Beanies
 			</a>
 		</div>
-		<div>
-			<Image src={booksImage} alt="Girl Geeks book series" width={800} height={718} />
+		<div class="books__photo-wrap">
 			<Image
-				src={welcomePack}
-				alt="Girl Geek Academy workshop"
+				src={workshopPhoto}
+				alt="Girl holding a Girl Geeks book"
 				width={1024}
 				height={683}
 				class="books__photo"
@@ -32,8 +31,49 @@ import { urls } from '../../data/urls';
 </section>
 
 <style>
+	.books {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.books__overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(255, 255, 255, 0.56);
+		pointer-events: none;
+	}
+
+	.books__content {
+		position: relative;
+		z-index: 1;
+	}
+
+	.books__photo-wrap {
+		position: relative;
+		min-height: 280px;
+	}
+
 	.books__photo {
-		margin-top: 1.5rem;
 		border-radius: 0.5rem;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+	}
+
+	.books h2 {
+		color: var(--color-coral);
+		text-transform: capitalize;
+	}
+
+	.books p {
+		color: var(--color-coral);
+	}
+
+	.btn-mint {
+		background-color: var(--color-mint);
+		border-color: var(--color-mint);
+	}
+
+	.btn-mint:hover {
+		background-color: var(--color-primary);
+		border-color: var(--color-primary);
 	}
 </style>

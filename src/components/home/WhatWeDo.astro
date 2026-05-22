@@ -4,29 +4,33 @@ const items = [
 		number: 1,
 		title: 'Classes',
 		description: "Let's run Educational Workshops, Classes, Hackathons, Game Jams and more!",
+		circleClass: 'what-we-do__circle--blue',
 	},
 	{
 		number: 2,
 		title: 'Campaigns',
 		description:
 			"You're doing something great, we can help you spread the word and get people engaged!",
+		circleClass: 'what-we-do__circle--coral',
 	},
 	{
 		number: 3,
 		title: 'Collabs',
 		description: "Not sure how to make an impact? Let's work together and change the world!",
+		circleClass: 'what-we-do__circle--blue',
 	},
 ];
 ---
 
 <section class="what-we-do section">
+	<div class="what-we-do__pattern" aria-hidden="true"></div>
 	<div class="container">
 		<h2 class="text-center">What we do</h2>
 		<div class="what-we-do__grid grid-3">
 			{
 				items.map((item) => (
 					<div class="what-we-do__card text-center">
-						<div class="what-we-do__circle">{item.number}</div>
+						<div class:list={['what-we-do__circle', item.circleClass]}>{item.number}</div>
 						<h4>{item.title}</h4>
 						<p>{item.description}</p>
 					</div>
@@ -38,7 +42,19 @@ const items = [
 
 <style>
 	.what-we-do {
-		background: linear-gradient(180deg, #f0f3ff 0%, #ffffff 100%);
+		position: relative;
+	}
+
+	.what-we-do__pattern {
+		position: absolute;
+		inset: 0;
+		opacity: 0.3;
+		pointer-events: none;
+	}
+
+	.what-we-do .container {
+		position: relative;
+		z-index: 1;
 	}
 
 	.what-we-do h2 {
@@ -46,17 +62,25 @@ const items = [
 	}
 
 	.what-we-do__circle {
-		width: 3rem;
-		height: 3rem;
+		width: 3.5rem;
+		height: 3.5rem;
 		border-radius: 50%;
-		background: var(--color-primary);
 		color: var(--color-white);
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		font-family: var(--font-body);
 		font-size: 1.25rem;
 		font-weight: 600;
 		margin-bottom: 1rem;
+	}
+
+	.what-we-do__circle--blue {
+		background: var(--color-primary);
+	}
+
+	.what-we-do__circle--coral {
+		background: var(--color-coral);
 	}
 
 	.what-we-do__card h4 {

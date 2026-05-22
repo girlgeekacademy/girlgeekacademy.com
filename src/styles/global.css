@@ -1,5 +1,5 @@
 @font-face {
-	font-family: 'Pinata Limes';
+	font-family: 'Piñata LimesSans-Black';
 	font-weight: 400;
 	font-display: swap;
 	src: url('/fonts/pinata-limes.otf') format('opentype');
@@ -38,6 +38,12 @@
 	--color-primary-hover: #2e48a0;
 	--color-accent: #ff9996;
 	--color-accent-alt: #ee9197;
+	--color-yellow: #ffe193;
+	--color-yellow-light: #fff0c9;
+	--color-mint: #8fd3d7;
+	--color-pink: #e9abd0;
+	--color-coral: #ee9197;
+	--color-salmon: #fe9896;
 	--color-text: #5f7dd7;
 	--color-white: #ffffff;
 	--color-dark: #212529;
@@ -45,6 +51,9 @@
 		'Helvetica Neue', Arial, sans-serif;
 	--font-display: 'Jen Wagner Print', sans-serif;
 	--font-script: 'Jen Wagner Script', cursive;
+	--font-accent: 'Better Times', serif;
+	--font-pinata: 'Piñata LimesSans-Black', sans-serif;
+	--font-condensed: 'Franklin Gothic Extra Condensed', sans-serif;
 	--container-max: 1140px;
 	--section-padding: 4rem 1.5rem;
 }
@@ -83,21 +92,66 @@ a:hover {
 }
 
 h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-family: var(--font-body);
+h2 {
+	font-family: var(--font-display);
+	font-size: clamp(2.5rem, 6vw, 4.5rem);
 	font-weight: 400;
-	line-height: 1.2;
+	line-height: 0.85;
+	letter-spacing: 0;
+	color: var(--color-primary);
 	margin-top: 0;
 }
 
-h1.display {
+h3 {
+	font-family: var(--font-accent);
+	font-size: clamp(2rem, 4vw, 3.5rem);
+	font-weight: 300;
+	line-height: 1em;
+	letter-spacing: 0.6px;
+	color: var(--color-primary);
+	margin-top: 0;
+}
+
+h4 {
 	font-family: var(--font-display);
-	font-size: clamp(2rem, 5vw, 4.5rem);
-	line-height: 1.1;
+	font-size: clamp(1.75rem, 4vw, 3.25rem);
+	font-weight: 400;
+	text-transform: uppercase;
+	line-height: 0.9;
+	letter-spacing: 0;
+	margin-top: 0;
+}
+
+h5 {
+	font-family: var(--font-pinata);
+	font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+	font-weight: 400;
+	text-transform: uppercase;
+	line-height: 1.2;
+	color: var(--color-primary);
+	margin-top: 0;
+}
+
+h6 {
+	font-family: var(--font-display);
+	font-size: clamp(1.5rem, 3vw, 2.25rem);
+	font-weight: 400;
+	line-height: 0.5em;
+	letter-spacing: 0;
+	color: var(--color-primary);
+	margin-top: 0;
+}
+
+.section--dark h1,
+.section--dark h2,
+.section--dark h3,
+.section--dark h5,
+.section--dark h6 {
+	color: var(--color-white);
+}
+
+.section--dark h4 {
+	color: var(--color-white);
 }
 
 .container {
@@ -123,14 +177,15 @@ h1.display {
 .btn {
 	display: inline-block;
 	padding: 0.5rem 1.25rem;
-	font-family: var(--font-body);
-	font-size: 0.875rem;
-	font-weight: 500;
+	font-family: var(--font-display);
+	font-size: clamp(1.25rem, 3vw, 2rem);
+	font-weight: 400;
 	text-align: center;
 	border-radius: 0.25rem;
 	border: 1px solid transparent;
 	cursor: pointer;
 	transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+	box-shadow: 4px 3px 0 0 #fff0c9;
 }
 
 .btn-primary {

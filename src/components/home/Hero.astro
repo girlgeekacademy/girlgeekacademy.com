@@ -10,11 +10,15 @@ import { urls } from '../../data/urls';
 	</div>
 	<div class="container grid-2">
 		<div class="hero__mobile hide-desktop">
-			<p class="hero__eyebrow">WELCOME TO OUR WORLD</p>
+			<div class="hero__welcome-wrap">
+				<p class="hero__eyebrow" id="mainheading">
+					WELCOME<br />TO OUR<br />WORLD
+				</p>
+			</div>
 			<h1 class="hero__headline">
 				Sooo… what can we do about the tech industry? Is the internet broken forever?
 			</h1>
-			<a href={urls.about} class="btn btn-primary">WHAT WE DO</a>
+			<a href={urls.about} class="btn btn-mint">WHAT WE DO</a>
 			<div class="hero__video">
 				<div class="hero__video-wrap">
 					<iframe
@@ -28,7 +32,11 @@ import { urls } from '../../data/urls';
 		</div>
 
 		<div class="hero__left hide-mobile">
-			<p class="hero__eyebrow">WELCOME TO OUR WORLD</p>
+			<div class="hero__welcome-wrap">
+				<p class="hero__eyebrow" id="mainheading">
+					WELCOME<br />TO OUR<br />WORLD
+				</p>
+			</div>
 			<h1 class="hero__headline">
 				Sooo… what can we do about the tech industry? Is the internet broken forever? the tech
 				industry lacks a certain something. enough women in tech.
@@ -40,11 +48,13 @@ import { urls } from '../../data/urls';
 				the number of women in tech. We learn coding, game development, 3D printing, AI, machine
 				learning, drones and new emerging technologies alongside our friends.
 			</p>
-			<a href={urls.about} class="btn btn-primary">WHAT WE DO</a>
+			<a href={urls.about} class="btn btn-mint">WHAT WE DO</a>
 		</div>
 
 		<div class="hero__right">
-			<h1>Girl Geek Academy aims to bring one million women and girls into technology careers by 2030</h1>
+			<h1 class="hero__mission-title">
+				Girl Geek Academy aims to bring one million women and girls into technology careers by 2030
+			</h1>
 			<p>
 				<strong
 					>Girl Geek Academy is a social enterprise dedicated to achieving gender equality in the
@@ -59,11 +69,11 @@ import { urls } from '../../data/urls';
 
 			<div class="hero__ctas hide-mobile">
 				<div class="hero__cta">
-					<a href="#home-classes" class="btn btn-primary">Join a CLASS</a>
+					<a href="#home-classes" class="btn btn-pink">Join a CLASS</a>
 					<p><strong>Holiday tech classes for women and girls.</strong></p>
 				</div>
 				<div class="hero__cta">
-					<a href="#lets-collaborate" class="btn btn-primary">Collab with us</a>
+					<a href="#lets-collaborate" class="btn btn-coral">Collab with us</a>
 					<p><strong>Let's work together to boost equality.</strong></p>
 				</div>
 			</div>
@@ -86,7 +96,13 @@ import { urls } from '../../data/urls';
 	.hero {
 		position: relative;
 		padding-bottom: 6rem;
-		background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+		overflow: hidden;
+	}
+
+	@media (min-width: 992px) {
+		.hero .grid-2 {
+			grid-template-columns: 47.5% 52.5%;
+		}
 	}
 
 	.hero__shape {
@@ -97,14 +113,42 @@ import { urls } from '../../data/urls';
 		line-height: 0;
 	}
 
+	.hero__welcome-wrap {
+		background-image: url('/images/backgrounds/lightning-bolt.png');
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		margin: 0 0 -3.75rem;
+		padding: 6.25rem 0 13.75rem 6.25rem;
+	}
+
 	.hero__eyebrow {
 		color: var(--color-primary);
-		font-weight: 600;
-		letter-spacing: 0.05em;
+		font-family: var(--font-pinata);
+		font-weight: 400;
+		font-size: clamp(3.5rem, 10vw, 8.2rem);
+		line-height: 0.85;
+		letter-spacing: 0;
+		text-align: left;
+		margin: 0;
+		max-width: 100%;
+	}
+
+	@media (max-width: 991px) {
+		.hero__welcome-wrap {
+			margin-bottom: 0;
+			padding: 4rem 1.5rem 12rem;
+		}
+
+		.hero__eyebrow {
+			font-size: clamp(2.75rem, 14vw, 5rem);
+		}
 	}
 
 	.hero__headline {
-		font-size: clamp(1.5rem, 3vw, 2.25rem);
+		font-family: var(--font-display);
+		font-size: clamp(2.5rem, 5vw, 4.5rem);
+		line-height: 0.85;
 		margin-bottom: 1rem;
 	}
 
@@ -119,6 +163,11 @@ import { urls } from '../../data/urls';
 	.hero__cta p {
 		margin-top: 0.5rem;
 		font-size: 0.9rem;
+		color: var(--color-coral);
+	}
+
+	.hero__cta:first-child p {
+		color: var(--color-pink);
 	}
 
 	.hero__video-wrap {
@@ -129,6 +178,16 @@ import { urls } from '../../data/urls';
 		background: #000;
 	}
 
+	.hero__mission-title {
+		padding-top: 9.375rem;
+	}
+
+	@media (max-width: 991px) {
+		.hero__mission-title {
+			padding-top: 2rem;
+		}
+	}
+
 	.hero__video-wrap iframe {
 		position: absolute;
 		top: 0;
@@ -136,5 +195,35 @@ import { urls } from '../../data/urls';
 		width: 100%;
 		height: 100%;
 		border: 0;
+	}
+
+	.btn-mint {
+		background-color: var(--color-mint);
+		border-color: var(--color-mint);
+	}
+
+	.btn-mint:hover {
+		background-color: var(--color-primary);
+		border-color: var(--color-primary);
+	}
+
+	.btn-pink {
+		background-color: var(--color-pink);
+		border-color: var(--color-pink);
+	}
+
+	.btn-pink:hover {
+		background-color: var(--color-mint);
+		border-color: var(--color-mint);
+	}
+
+	.btn-coral {
+		background-color: var(--color-coral);
+		border-color: var(--color-coral);
+	}
+
+	.btn-coral:hover {
+		background-color: var(--color-mint);
+		border-color: var(--color-mint);
 	}
 </style>

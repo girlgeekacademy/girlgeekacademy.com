@@ -1,0 +1,52 @@
+/* Section backgrounds — global (unscoped) so url() paths resolve reliably */
+
+.hero.section {
+	background-color: var(--color-yellow);
+	background-image: url('/images/backgrounds/hero-pattern.png');
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	background-size: 44% auto;
+}
+
+.hhh.section {
+	background-color: #fff;
+	background-image: url('/images/backgrounds/grid-background.png');
+	background-position: center center;
+	background-repeat: repeat;
+}
+
+.ai-high.section {
+	background-color: var(--color-primary);
+	margin-top: -6px;
+	padding-top: 2.5rem;
+}
+
+.books.section {
+	background-image: url('/images/backgrounds/sunsilk-grid.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.community.section {
+	background-color: var(--color-pink);
+}
+
+.collab.section {
+	background-color: var(--color-yellow-light);
+}
+
+.what-we-do.section,
+.testimonials.section {
+	background-color: var(--color-yellow-light);
+}
+
+.what-we-do__pattern,
+.testimonials__pattern {
+	background-image: url('/images/backgrounds/dots-tiled.png');
+	background-repeat: repeat;
+}
+
+.report--white {
+	background: #fff;
+}
