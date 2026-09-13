@@ -3,13 +3,13 @@
   "configurations": [
     {
       "name": "Astro Dev",
-      "runtimeExecutable": "/opt/homebrew/bin/node",
+      "runtimeExecutable": "/Users/sarahmoran/.nvm/versions/node/v22.21.0/bin/node",
       "runtimeArgs": ["./node_modules/.bin/astro", "dev"],
       "port": 4321
     },
     {
       "name": "Astro Preview",
-      "runtimeExecutable": "/opt/homebrew/bin/node",
+      "runtimeExecutable": "/Users/sarahmoran/.nvm/versions/node/v22.21.0/bin/node",
       "runtimeArgs": ["./node_modules/.bin/astro", "preview"],
       "port": 4321
     }
