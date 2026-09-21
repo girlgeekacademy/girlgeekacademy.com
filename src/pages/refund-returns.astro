@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { urls } from '../data/urls';
+---
+
+<Layout
+	title="Refund and Returns Policy — Girl Geek Academy"
+	description="30-day returns for unused Girl Geek Academy shop items. Contact hello@girlgeekacademy.com for help."
+>
+	<Header />
+	<main>
+		<section class="policy-hero section">
+			<div class="container">
+				<p class="policy-hero__eyebrow">Shop</p>
+				<h1>Refund and returns</h1>
+				<p class="policy-hero__lead">
+					A short policy for beanies, books, and anything else you buy from the Girl Geek Academy
+					shop.
+				</p>
+			</div>
+		</section>
+
+		<section class="section policy-body">
+			<div class="container policy-body__content">
+				<h2>Overview</h2>
+				<p>
+					You have <strong>30 days</strong> from the purchase date to request a refund or return. After
+					30 days we can’t offer a full refund or exchange.
+				</p>
+				<p>
+					To be eligible, items must be unused, in the same condition you received them, and in the
+					original packaging where applicable. We’ll ask for a receipt or other proof of purchase.
+				</p>
+
+				<h2>Refunds</h2>
+				<p>
+					Once we receive and inspect your return, we’ll email you to confirm we’ve got it and whether
+					the refund is approved. Approved refunds go back to your original payment method via Stripe.
+				</p>
+				<p>
+					If a refund seems late, check your bank or card statement first — posting can take a few
+					business days. Still stuck? Email us at{' '}
+					<a href={urls.email}>hello@girlgeekacademy.com</a>.
+				</p>
+
+				<h2>Exchanges and damaged items</h2>
+				<p>
+					We replace items that arrive defective or damaged. Email{' '}
+					<a href={urls.email}>hello@girlgeekacademy.com</a> with your order details and photos if
+					helpful, and we’ll sort a replacement or refund.
+				</p>
+
+				<h2>Return shipping</h2>
+				<p>
+					Mail returns to:
+				</p>
+				<p>
+					Girl Geek Academy<br />
+					P.O. Box 24416<br />
+					Melbourne VIC<br />
+					Australia
+				</p>
+				<p>
+					You’re responsible for return postage. Outbound shipping you paid at checkout is
+					non-refundable, and return shipping isn’t refunded either.
+				</p>
+
+				<h2>Need help?</h2>
+				<p>
+					Questions about an order, refund, or return? Contact{' '}
+					<a href={urls.email}>hello@girlgeekacademy.com</a>
+					{' '}or head back to the <a href={urls.shop}>shop</a>.
+				</p>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.policy-hero {
+		background:
+			radial-gradient(ellipse at 10% 10%, rgba(255, 225, 147, 0.5), transparent 50%),
+			linear-gradient(180deg, #fff8e8 0%, var(--color-white) 100%);
+	}
+
+	.policy-hero__eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		color: var(--color-coral);
+		margin: 0 0 0.75rem;
+	}
+
+	.policy-hero__lead {
+		max-width: 36rem;
+		font-size: 1.125rem;
+		margin: 0;
+	}
+
+	.policy-body__content {
+		max-width: 42rem;
+	}
+
+	.policy-body h2 {
+		font-size: clamp(2rem, 4vw, 2.75rem);
+		margin-top: 2rem;
+	}
+
+	.policy-body a {
+		text-decoration: underline;
+	}
+</style>

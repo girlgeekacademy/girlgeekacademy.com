@@ -1,0 +1,287 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+import vennDiagram from '../assets/home/venn-diagram.png';
+import { urls } from '../data/urls';
+
+const roles = [
+	{
+		name: 'Hackers',
+		emoji: '💻',
+		description:
+			'Provide coding and technical skills to build the minimum viable product. Developers, engineers, and makers.',
+		colour: 'role--blue',
+	},
+	{
+		name: 'Hipsters',
+		emoji: '🎨',
+		description:
+			'Handle design, visual experience, and user research. Designers, UX specialists, and creative thinkers.',
+		colour: 'role--coral',
+	},
+	{
+		name: 'Hustlers',
+		emoji: '🚀',
+		description:
+			'Manage project coordination, business model, and pitch. Organisers, marketers, and strategists.',
+		colour: 'role--mint',
+	},
+];
+
+const accessibility = [
+	'CART captioning',
+	'Childcare services',
+	'Dietary accommodations',
+	'Gender-neutral bathrooms',
+	'Lactation rooms',
+	'Travel bursaries',
+];
+---
+
+<Layout
+	title="#SheHacks — Girl Geek Academy"
+	description="The world's longest-running hackathon series for women and non-binary folk. Build a startup in a weekend. Free, funded by LaunchVic and the Victorian Government."
+>
+	<Header />
+	<main>
+
+		<!-- Hero -->
+		<section class="shehacks-hero section">
+			<div class="container">
+				<p class="page-eyebrow">The World's Longest-Running Women's Hackathon</p>
+				<h1>#SheHacks</h1>
+				<p class="lead">
+					Build a startup in a weekend alongside brilliant women and non-binary folk. The
+					longest-running hackathon series of its kind in the world — and it's completely free.
+				</p>
+				<div class="hero-ctas">
+					<a href="https://forms.gle/sheHacksApply" class="btn btn-primary">Apply now</a>
+					<a href={urls.email} class="btn btn-coral">Questions? Email us</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Origin story -->
+		<section class="section origin-section">
+			<div class="container grid-2">
+				<div>
+					<h2>How it started</h2>
+					<p>
+						In 2014, five women set out to make International Women's Day different. They organised a
+						hackathon with tea, cupcakes, yoga and sunlight instead of the usual dark basement and
+						energy drinks. It was "the first all-women hackathon in the world" — and Girl Geek
+						Academy was born from it.
+					</p>
+					<p>
+						SheHacks has been running ever since, helping hundreds of women and non-binary people
+						find their team, build their idea and launch their startup.
+					</p>
+					<p>
+						The event is <strong>free</strong>, funded by <strong>LaunchVic</strong> and the <strong
+							>Victorian Government</strong
+						>.
+					</p>
+				</div>
+				<div class="text-center">
+					<Image
+						src={vennDiagram}
+						alt="Hacker, Hustler, Hipster Venn diagram"
+						width={460}
+						height={430}
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- Roles -->
+		<section class="section section--dark roles-section">
+			<div class="container">
+				<h2 class="text-center">Find your role</h2>
+				<p class="text-center roles-intro">
+					Every team needs three skill sets. Which one is you?
+				</p>
+				<div class="grid-3 roles-grid">
+					{
+						roles.map((r) => (
+							<div class:list={['role-card', r.colour]}>
+								<p class="role-emoji" aria-hidden="true">{r.emoji}</p>
+								<h4>{r.name}</h4>
+								<p>{r.description}</p>
+							</div>
+						))
+					}
+				</div>
+				<p class="text-center roles-note">
+					Not sure which one you are? Most people are a mix — and that's exactly what makes great
+					teams.
+				</p>
+			</div>
+		</section>
+
+		<!-- Accessibility -->
+		<section class="section access-section">
+			<div class="container grid-2">
+				<div>
+					<h2>An event built for everyone</h2>
+					<p>
+						We're committed to making SheHacks accessible and welcoming for all. The following
+						services are available — just let us know what you need when you apply.
+					</p>
+					<ul class="access-list">
+						{accessibility.map((a) => <li>{a}</li>)}
+					</ul>
+					<p>
+						Need something else? Email us at <a href={urls.email}>hello@girlgeekacademy.com</a> and we'll
+						do our best to accommodate you.
+					</p>
+				</div>
+				<div class="eligibility-card">
+					<h3>Who can apply?</h3>
+					<ul>
+						<li>Women and non-binary people</li>
+						<li>Victorian residents</li>
+						<li>Aged 18+</li>
+						<li>Any skill level welcome</li>
+					</ul>
+					<a href="https://forms.gle/sheHacksApply" class="btn btn-primary">Apply now</a>
+				</div>
+			</div>
+		</section>
+
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.shehacks-hero {
+		background-color: var(--color-pink);
+		padding-bottom: 4rem;
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		font-size: 1rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--color-primary);
+		margin: 0 0 0.5rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		max-width: 60ch;
+		margin-bottom: 1.5rem;
+		color: var(--color-primary);
+	}
+
+	.hero-ctas {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	/* Origin */
+	.origin-section {
+		background: var(--color-yellow-light);
+	}
+
+	/* Roles */
+	.roles-section {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	.roles-intro {
+		max-width: 48ch;
+		margin: 0 auto 2.5rem;
+		color: var(--color-white);
+		opacity: 0.9;
+	}
+
+	.role-card {
+		border-radius: 0.5rem;
+		padding: 1.75rem 1.5rem;
+		text-align: center;
+	}
+
+	.role-emoji {
+		font-size: 2.5rem;
+		margin: 0 0 0.75rem;
+		line-height: 1;
+	}
+
+	.role--blue {
+		background: rgba(255, 255, 255, 0.15);
+	}
+	.role--blue h4, .role--blue p { color: var(--color-white); }
+
+	.role--coral {
+		background: var(--color-coral);
+	}
+	.role--coral h4, .role--coral p { color: var(--color-white); }
+
+	.role--mint {
+		background: var(--color-mint);
+	}
+	.role--mint h4, .role--mint p { color: var(--color-primary); }
+
+	.roles-note {
+		color: var(--color-white);
+		opacity: 0.85;
+		margin-top: 2rem;
+		max-width: 52ch;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	/* Accessibility */
+	.access-section {
+		background: var(--color-white);
+	}
+
+	.access-list {
+		padding-left: 1.25rem;
+		margin-bottom: 1.5rem;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.4rem 1rem;
+	}
+
+	.access-list li {
+		margin: 0;
+	}
+
+	.eligibility-card {
+		background: var(--color-yellow-light);
+		border-radius: 0.5rem;
+		padding: 2rem;
+		align-self: start;
+	}
+
+	.eligibility-card h3 {
+		font-size: clamp(1.5rem, 3vw, 2.25rem);
+		margin-bottom: 1rem;
+	}
+
+	.eligibility-card ul {
+		padding-left: 1.25rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.eligibility-card li {
+		margin-bottom: 0.5rem;
+	}
+
+	.btn-coral {
+		background-color: var(--color-coral);
+		border-color: var(--color-coral);
+		color: var(--color-white);
+	}
+	.btn-coral:hover {
+		background-color: var(--color-primary-hover);
+		border-color: var(--color-primary-hover);
+		color: var(--color-white);
+	}
+</style>

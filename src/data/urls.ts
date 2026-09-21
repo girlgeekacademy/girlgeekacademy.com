@@ -2,11 +2,13 @@ export const SITE = 'https://girlgeekacademy.com';
 
 export const urls = {
 	home: `${SITE}/`,
-	about: `${SITE}/about/`,
-	aiHigh: `${SITE}/ai-high/`,
-	sheHacksSwift: `${SITE}/shehacksswift/`,
+	about: '/about/',
+	aiHigh: '/ai-high/',
+	sheHacksSwift: '/shehacksswift/',
 	report: `${SITE}/submission-to-the-national-diversity-in-stem-review/`,
-	shop: `${SITE}/shop`,
+	shop: '/shop/',
+	shopThankYou: '/shop/thank-you/',
+	refundReturns: '/refund-returns/',
 	welcomePack:
 		'https://drive.google.com/file/d/1K2kcxV6-anX0ZM0RHhSLXOcZ3wtHc-JW/view?usp=sharing',
 	twitter: 'https://twitter.com/girlgeekacademy',

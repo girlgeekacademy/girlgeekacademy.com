@@ -1,0 +1,267 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { urls } from '../data/urls';
+
+const offerings = [
+	{
+		title: 'Work Experience Bootcamp',
+		description:
+			'Immersive bootcamps for Year 10 students connecting you with industry professionals in tech and startups. Real projects, real mentors, real skills.',
+		cta: 'Apply for work experience',
+		href: 'https://forms.gle/highSchoolWorkExp',
+		colour: 'offering--blue',
+	},
+	{
+		title: 'Email Course',
+		description:
+			'A self-paced email course covering game development, robotics, and web design. Join the waitlist to be notified when the next cohort opens.',
+		cta: 'Join the waitlist',
+		href: urls.email,
+		colour: 'offering--mint',
+	},
+	{
+		title: 'Career Guide',
+		description:
+			'Download our free career poster covering job salaries, career pathways, and available STEM roles across Australia.',
+		cta: 'Download career guide',
+		href: urls.welcomePack,
+		colour: 'offering--yellow',
+	},
+];
+---
+
+<Layout
+	title="High School — Girl Geek Academy"
+	description="Making your ambition a reality. Work experience bootcamps, email courses and career guides for high school students interested in tech careers."
+>
+	<Header />
+	<main>
+
+		<!-- Hero -->
+		<section class="hs-hero section">
+			<div class="container">
+				<p class="page-eyebrow">For high school students</p>
+				<h1>Making your ambition a reality</h1>
+				<p class="lead">
+					Thinking about a career in tech? We've got work experience, resources and career guides to
+					help you take the next step — whether you're in Year 10 or finishing Year 12.
+				</p>
+				<a href={urls.email} class="btn btn-primary">Get in touch</a>
+			</div>
+		</section>
+
+		<!-- Offerings -->
+		<section class="section offerings-section">
+			<div class="container">
+				<h2 class="text-center">What we offer</h2>
+				<div class="grid-3 offerings-grid">
+					{
+						offerings.map((o) => (
+							<div class:list={['offering-card', o.colour]}>
+								<h4>{o.title}</h4>
+								<p>{o.description}</p>
+								<a href={o.href} class="btn btn-primary offering-btn">
+									{o.cta}
+								</a>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Work experience detail -->
+		<section class="section section--dark we-section">
+			<div class="container grid-2">
+				<div>
+					<h2>Work experience that actually means something</h2>
+					<p>
+						Our bootcamp-style work experience program connects Year 10 students directly with
+						startups and tech companies in Melbourne. You'll work on real problems, meet industry
+						mentors and leave with something to put on your resume.
+					</p>
+					<p>
+						Past partners have included <strong>Deloitte Digital</strong>, <strong>99designs</strong
+						> and other leading tech firms.
+					</p>
+					<a href="https://forms.gle/highSchoolWorkExp" class="btn btn-yellow">Apply now</a>
+				</div>
+				<div>
+					<h2>For schools</h2>
+					<p>
+						Become an affiliated school and bring Girl Geek Academy programs to your students. We'll
+						help you run events, source mentors and connect your cohort with the broader Girl Geek
+						Academy network.
+					</p>
+					<a href={urls.email} class="btn btn-mint">Become an affiliated school</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Programs to explore -->
+		<section class="section explore-section">
+			<div class="container text-center">
+				<h2>Also check out</h2>
+				<p>
+					These programs are free, online and built especially for high school students.
+				</p>
+				<div class="explore-links">
+					<a href="/ai-high/" class="explore-card">
+						<h4>AI High</h4>
+						<p>Free weekly Wednesday workshops. No experience needed.</p>
+					</a>
+					<a href="/shehacksswift/" class="explore-card">
+						<h4>SheHacksSwift</h4>
+						<p>Build an Apple app in 3 days during January school holidays.</p>
+					</a>
+				</div>
+			</div>
+		</section>
+
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.hs-hero {
+		background-color: var(--color-yellow);
+		background-image: url('/images/backgrounds/hero-pattern.png');
+		background-position: bottom right;
+		background-repeat: no-repeat;
+		background-size: 44% auto;
+		padding-bottom: 4rem;
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		font-size: 1rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--color-primary);
+		margin: 0 0 0.5rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		max-width: 60ch;
+		margin-bottom: 1.5rem;
+	}
+
+	/* Offerings */
+	.offerings-section {
+		background: var(--color-white);
+	}
+
+	.offerings-section h2 {
+		margin-bottom: 2.5rem;
+	}
+
+	.offering-card {
+		border-radius: 0.5rem;
+		padding: 1.75rem;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.offering--blue {
+		background: var(--color-primary);
+	}
+	.offering--blue h4, .offering--blue p { color: var(--color-white); }
+	.offering--blue .offering-btn {
+		background: var(--color-yellow);
+		border-color: var(--color-yellow);
+		color: var(--color-primary);
+		margin-top: auto;
+	}
+
+	.offering--mint {
+		background: var(--color-mint);
+	}
+	.offering--mint h4, .offering--mint p { color: var(--color-primary); }
+	.offering--mint .offering-btn { margin-top: auto; }
+
+	.offering--yellow {
+		background: var(--color-yellow);
+	}
+	.offering--yellow h4, .offering--yellow p { color: var(--color-primary); }
+	.offering--yellow .offering-btn { margin-top: auto; }
+
+	.offering-btn {
+		align-self: flex-start;
+		font-size: clamp(1rem, 2vw, 1.25rem);
+	}
+
+	/* Work experience */
+	.we-section {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	/* Explore */
+	.explore-section {
+		background: var(--color-yellow-light);
+	}
+
+	.explore-links {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+		flex-wrap: wrap;
+		margin-top: 2rem;
+	}
+
+	.explore-card {
+		background: var(--color-white);
+		border-radius: 0.5rem;
+		padding: 1.5rem 2rem;
+		max-width: 280px;
+		text-align: center;
+		border: 2px solid var(--color-primary);
+		transition: background 0.2s;
+		text-decoration: none;
+	}
+
+	.explore-card:hover {
+		background: var(--color-primary);
+	}
+
+	.explore-card:hover h4,
+	.explore-card:hover p {
+		color: var(--color-white);
+	}
+
+	.explore-card h4 {
+		color: var(--color-primary);
+		font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+		margin-bottom: 0.5rem;
+	}
+
+	.explore-card p {
+		color: var(--color-primary);
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.btn-yellow {
+		background-color: var(--color-yellow);
+		border-color: var(--color-yellow);
+		color: var(--color-primary);
+	}
+	.btn-yellow:hover {
+		background-color: var(--color-white);
+		border-color: var(--color-white);
+		color: var(--color-primary);
+	}
+	.btn-mint {
+		background-color: var(--color-mint);
+		border-color: var(--color-mint);
+		color: var(--color-primary);
+	}
+	.btn-mint:hover {
+		background-color: var(--color-white);
+		border-color: var(--color-white);
+		color: var(--color-primary);
+	}
+</style>

@@ -1,0 +1,321 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { urls } from '../data/urls';
+
+const topics = [
+	'Isometric art creation in Blender',
+	'Professional LinkedIn profile building',
+	'Sound recorder programming with GPBlocks',
+	'Python fundamentals',
+	'JavaScript for beginners',
+	'HTML & CSS3 web design',
+	'Tinkercad 3D modelling',
+];
+
+const features = [
+	{
+		title: 'Free & beginner-friendly',
+		description:
+			'No experience needed. Self-paced and supportive — learn at your own speed alongside friends.',
+		colour: 'feature--blue',
+	},
+	{
+		title: '40+ Microsoft mentors',
+		description:
+			'AMA sessions with Microsoft professionals who answer your questions and share their career stories.',
+		colour: 'feature--mint',
+	},
+	{
+		title: '150+ schools globally',
+		description:
+			'Participants from schools across Australia, New Zealand, India and North America join together.',
+		colour: 'feature--yellow',
+	},
+	{
+		title: 'Anonymous peer network',
+		description:
+			'Connect with other students across Australia in a safe, moderated community space.',
+		colour: 'feature--coral',
+	},
+];
+---
+
+<Layout
+	title="Microsoft Mondays — Girl Geek Academy"
+	description="Free weekly workshops every Monday 5–6:30pm AEDT for high school girls and non-binary students. Learn AI, coding, and 3D modelling with Microsoft mentors."
+>
+	<Header />
+	<main>
+
+		<!-- Hero -->
+		<section class="ms-hero section">
+			<div class="container grid-2">
+				<div>
+					<p class="page-eyebrow">Microsoft Mondays</p>
+					<h1>Turning Tech Dreams Into Reality, Together</h1>
+					<p class="lead">
+						Free weekly workshops for high school girls and non-binary students. Learn AI, Python,
+						JavaScript, HTML/CSS and 3D modelling — every Monday, 5:00–6:30pm AEDT.
+					</p>
+					<div class="ms-hero__ctas">
+						<a href="https://forms.gle/microsoftMondays" class="btn btn-primary">Sign up here!</a>
+						<a href={urls.email} class="btn btn-mint">Questions? Email us</a>
+					</div>
+				</div>
+				<div class="ms-hero__details">
+					<div class="ms-badge">
+						<p class="ms-badge__label">When</p>
+						<p class="ms-badge__value">Every Monday</p>
+						<p class="ms-badge__sub">5:00–6:30pm AEDT</p>
+					</div>
+					<div class="ms-badge">
+						<p class="ms-badge__label">Cost</p>
+						<p class="ms-badge__value">Free</p>
+					</div>
+					<div class="ms-badge">
+						<p class="ms-badge__label">Who</p>
+						<p class="ms-badge__value">High school girls & non-binary students</p>
+					</div>
+					<div class="ms-badge">
+						<p class="ms-badge__label">Format</p>
+						<p class="ms-badge__value">Online, self-paced</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Features -->
+		<section class="section features-section">
+			<div class="container">
+				<h2 class="text-center">Why join Microsoft Mondays?</h2>
+				<div class="grid-2 features-grid">
+					{
+						features.map((f) => (
+							<div class:list={['feature-card', f.colour]}>
+								<h4>{f.title}</h4>
+								<p>{f.description}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Topics -->
+		<section class="section section--dark topics-section">
+			<div class="container">
+				<h2 class="text-center">What you'll learn</h2>
+				<p class="text-center topics-intro">
+					Topics rotate weekly — there's always something new. No experience needed.
+				</p>
+				<ul class="topics-list">
+					{topics.map((t) => <li class="topics-item">{t}</li>)}
+				</ul>
+				<div class="text-center" style="margin-top: 2.5rem;">
+					<a href="https://forms.gle/microsoftMondays" class="btn btn-yellow">Sign up — it's free!</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Poster download & contact -->
+		<section class="section poster-section">
+			<div class="container grid-2">
+				<div>
+					<h2>For teachers & educators</h2>
+					<p>
+						Download our promotional poster to share with students, or get in touch to bring
+						Microsoft Mondays to your school. The program is self-contained — students join online
+						each week independently.
+					</p>
+					<a href={urls.email} class="btn btn-primary">Get in touch</a>
+				</div>
+				<div class="poster-stat text-center">
+					<p class="poster-stat__number">150+</p>
+					<p class="poster-stat__label">Schools participating globally</p>
+				</div>
+			</div>
+		</section>
+
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.ms-hero {
+		background-color: var(--color-yellow);
+		background-image: url('/images/backgrounds/hero-pattern.png');
+		background-position: bottom right;
+		background-repeat: no-repeat;
+		background-size: 44% auto;
+		padding-bottom: 4rem;
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		font-size: 1rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--color-primary);
+		margin: 0 0 0.5rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		max-width: 58ch;
+		margin-bottom: 1.5rem;
+	}
+
+	.ms-hero__ctas {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.ms-hero__details {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		align-content: start;
+	}
+
+	.ms-badge {
+		background: var(--color-white);
+		border-radius: 0.5rem;
+		padding: 1rem 1.25rem;
+	}
+
+	.ms-badge__label {
+		font-family: var(--font-pinata);
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--color-primary);
+		margin: 0 0 0.2rem;
+	}
+
+	.ms-badge__value {
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--color-primary);
+		margin: 0;
+		line-height: 1.3;
+	}
+
+	.ms-badge__sub {
+		font-size: 0.875rem;
+		color: var(--color-primary);
+		margin: 0;
+		opacity: 0.8;
+	}
+
+	/* Features */
+	.features-section {
+		background: var(--color-yellow-light);
+	}
+
+	.features-section h2 {
+		margin-bottom: 2rem;
+	}
+
+	.feature-card {
+		border-radius: 0.5rem;
+		padding: 1.5rem;
+	}
+
+	.feature--blue {
+		background: var(--color-primary);
+		color: var(--color-white);
+	}
+	.feature--blue h4 { color: var(--color-yellow); }
+	.feature--blue p { color: var(--color-white); }
+
+	.feature--mint {
+		background: var(--color-mint);
+	}
+	.feature--mint h4 { color: var(--color-primary); }
+
+	.feature--yellow {
+		background: var(--color-yellow);
+	}
+	.feature--yellow h4 { color: var(--color-primary); }
+
+	.feature--coral {
+		background: var(--color-coral);
+		color: var(--color-white);
+	}
+	.feature--coral h4 { color: var(--color-white); }
+	.feature--coral p { color: var(--color-white); }
+
+	/* Topics */
+	.topics-section {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	.topics-intro {
+		max-width: 48ch;
+		margin: 0 auto 2rem;
+		color: var(--color-white);
+		opacity: 0.9;
+	}
+
+	.topics-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		justify-content: center;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.topics-item {
+		background: rgba(255, 255, 255, 0.15);
+		color: var(--color-white);
+		border-radius: 2rem;
+		padding: 0.5rem 1.25rem;
+		font-size: 0.95rem;
+	}
+
+	/* Poster section */
+	.poster-section {
+		background: var(--color-white);
+	}
+
+	.poster-stat__number {
+		font-family: var(--font-display);
+		font-size: clamp(4rem, 10vw, 7rem);
+		color: var(--color-primary);
+		line-height: 1;
+		margin: 0;
+	}
+
+	.poster-stat__label {
+		font-size: 1.125rem;
+		color: var(--color-primary);
+		margin: 0.5rem 0 0;
+	}
+
+	.btn-mint {
+		background-color: var(--color-mint);
+		border-color: var(--color-mint);
+		color: var(--color-primary);
+	}
+	.btn-mint:hover {
+		background-color: var(--color-primary);
+		border-color: var(--color-primary);
+		color: var(--color-white);
+	}
+	.btn-yellow {
+		background-color: var(--color-yellow);
+		border-color: var(--color-yellow);
+		color: var(--color-primary);
+	}
+	.btn-yellow:hover {
+		background-color: var(--color-white);
+		border-color: var(--color-white);
+		color: var(--color-primary);
+	}
+</style>

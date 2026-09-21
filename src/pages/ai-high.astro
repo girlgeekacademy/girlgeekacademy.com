@@ -1,0 +1,373 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+import telstraBanner from '../assets/home/telstra-banner.png';
+import aiHighImage from '../assets/home/ai-high.jpg';
+import { urls } from '../data/urls';
+
+const schedule = [
+	{ date: 'May 5', topic: 'Getting started with 3D Modelling' },
+	{ date: 'May 14', topic: 'Fireside Chat with industry professionals' },
+	{ date: 'May 21', topic: 'Coding A Password Generator' },
+	{ date: 'May 28', topic: 'Making Games with Powerpoint' },
+	{ date: 'June 4', topic: 'Coding a Chatbot' },
+];
+
+const team = [
+	{ name: 'Sarah Moran', role: 'Founder & Developer' },
+	{ name: 'Lisy Kane', role: 'Founder & Developer' },
+	{ name: 'Leura Smith', role: 'Host & Developer' },
+	{ name: 'Cherie Tan', role: 'Learning Designer' },
+];
+---
+
+<Layout
+	title="AI High — Girl Geek Academy"
+	description="Free weekly online workshops for Australian high school girls and gender-diverse students. Covering games, digital art, programming and tech skills every Wednesday at 5PM AEST."
+>
+	<Header />
+	<main>
+
+		<!-- Hero -->
+		<section class="ai-high-hero section section--dark">
+			<div class="container grid-2">
+				<div>
+					<p class="page-eyebrow">Free Program</p>
+					<h1>AI High</h1>
+					<p class="lead">
+						Free weekly online workshops for Australian high school girls and gender-diverse
+						students. Games, digital art, programming and tech skills — every Wednesday at 5PM AEST.
+					</p>
+					<Image
+						src={telstraBanner}
+						alt="Telstra Foundation x Girl Geek Academy"
+						width={800}
+						height={123}
+						class="telstra-banner"
+					/>
+					<div class="hero-ctas">
+						<a href="https://forms.gle/aiHighSignup" class="btn btn-yellow">Sign up now!</a>
+						<a href={urls.email} class="btn btn-mint">Teachers — Get In Touch</a>
+					</div>
+				</div>
+				<div class="ai-high-hero__media">
+					<Image
+						src={aiHighImage}
+						alt="AI High program — students learning technology"
+						width={700}
+						height={394}
+						class="ai-high-hero__img"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- What is AI High -->
+		<section class="section">
+			<div class="container grid-2">
+				<div>
+					<h2>What is AI High?</h2>
+					<p>
+						AI High is Girl Geek Academy's free program empowering Australian high school girls and
+						gender-diverse students through weekly online workshops exploring technology topics.
+					</p>
+					<p>
+						We cover games, digital art, programming and emerging tech. Each session is run in a
+						secure forum space where members connect, ask questions, and build friendships alongside
+						their skills.
+					</p>
+					<p>
+						The program is proudly sponsored by the <strong>Telstra Foundation</strong> and is completely
+						free for students.
+					</p>
+				</div>
+				<div class="ai-high-details">
+					<div class="detail-card">
+						<p class="detail-card__label">When</p>
+						<p class="detail-card__value">Every Wednesday, 5PM AEST</p>
+					</div>
+					<div class="detail-card">
+						<p class="detail-card__label">Who</p>
+						<p class="detail-card__value">High school girls & gender-diverse students</p>
+					</div>
+					<div class="detail-card">
+						<p class="detail-card__label">Cost</p>
+						<p class="detail-card__value">Free</p>
+					</div>
+					<div class="detail-card">
+						<p class="detail-card__label">Format</p>
+						<p class="detail-card__value">Online with a secure community forum</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Schedule -->
+		<section class="section schedule-section">
+			<div class="container">
+				<h2 class="text-center">Upcoming sessions</h2>
+				<p class="text-center schedule-intro">
+					New topics every week — join anytime, no experience needed.
+				</p>
+				<ul class="schedule-list">
+					{
+						schedule.map((s) => (
+							<li class="schedule-item">
+								<span class="schedule-date">{s.date}</span>
+								<span class="schedule-topic">{s.topic}</span>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+
+		<!-- Three CTAs -->
+		<section class="section section--dark cta-section">
+			<div class="container grid-3">
+				<div class="cta-card text-center">
+					<h3>Students</h3>
+					<p>High school aged girls and gender-diverse students anywhere in Australia.</p>
+					<a href="https://forms.gle/aiHighSignup" class="btn btn-yellow">Sign up now!</a>
+				</div>
+				<div class="cta-card text-center">
+					<h3>Teachers</h3>
+					<p>Bring your class or recommend AI High to your students. We'll handle the rest.</p>
+					<a href={urls.email} class="btn btn-mint">Get In Touch</a>
+				</div>
+				<div class="cta-card text-center">
+					<h3>Mentors & Sponsors</h3>
+					<p>Run a fireside chat, sponsor a session, or support the program.</p>
+					<a href={urls.email} class="btn btn-coral">Register Interest</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Team -->
+		<section class="section team-section">
+			<div class="container text-center">
+				<h2>The AI High team</h2>
+				<ul class="team-list">
+					{
+						team.map((t) => (
+							<li class="team-card">
+								<p class="team-name">{t.name}</p>
+								<p class="team-role">{t.role}</p>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		font-size: 1rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--color-yellow);
+		margin: 0 0 0.5rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.telstra-banner {
+		width: 100%;
+		max-width: 420px;
+		margin-bottom: 1.5rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.ai-high-hero {
+		padding-bottom: 4rem;
+	}
+
+	.ai-high-hero__media {
+		display: flex;
+		align-items: center;
+	}
+
+	.ai-high-hero__img {
+		width: 100%;
+		border-radius: 0.5rem;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+	}
+
+	/* Details cards */
+	.ai-high-details {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		align-content: start;
+	}
+
+	.detail-card {
+		background: var(--color-yellow-light);
+		border-radius: 0.5rem;
+		padding: 1rem 1.25rem;
+	}
+
+	.detail-card__label {
+		font-family: var(--font-pinata);
+		font-size: 0.875rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--color-primary);
+		margin: 0 0 0.25rem;
+	}
+
+	.detail-card__value {
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--color-primary);
+		margin: 0;
+	}
+
+	/* Schedule */
+	.schedule-section {
+		background: var(--color-yellow-light);
+	}
+
+	.schedule-intro {
+		max-width: 48ch;
+		margin: 0 auto 2rem;
+	}
+
+	.schedule-list {
+		list-style: none;
+		margin: 0 auto;
+		padding: 0;
+		max-width: 640px;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.schedule-item {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		background: var(--color-white);
+		border-radius: 0.5rem;
+		padding: 1rem 1.5rem;
+		border-left: 4px solid var(--color-primary);
+	}
+
+	.schedule-date {
+		font-family: var(--font-pinata);
+		font-size: 1rem;
+		color: var(--color-primary);
+		white-space: nowrap;
+		min-width: 4.5rem;
+	}
+
+	.schedule-topic {
+		font-size: 1rem;
+		color: var(--color-dark);
+	}
+
+	/* CTA section */
+	.cta-section {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	.cta-card {
+		padding: 1.5rem;
+	}
+
+	.cta-card h3 {
+		color: var(--color-yellow);
+		margin-bottom: 1rem;
+	}
+
+	.cta-card p {
+		color: var(--color-white);
+		margin-bottom: 1.5rem;
+	}
+
+	/* Team */
+	.team-section {
+		background: var(--color-white);
+	}
+
+	.team-list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1.5rem;
+		list-style: none;
+		margin: 2rem 0 0;
+		padding: 0;
+	}
+
+	.team-card {
+		background: var(--color-yellow-light);
+		border-radius: 0.5rem;
+		padding: 1.25rem 2rem;
+		text-align: center;
+		min-width: 180px;
+	}
+
+	.team-name {
+		font-family: var(--font-display);
+		font-size: clamp(1.5rem, 3vw, 2rem);
+		color: var(--color-primary);
+		line-height: 1;
+		margin: 0 0 0.25rem;
+	}
+
+	.team-role {
+		font-size: 0.875rem;
+		color: var(--color-primary);
+		margin: 0;
+		opacity: 0.8;
+	}
+
+	/* Colour variants */
+	.btn-yellow {
+		background-color: var(--color-yellow);
+		border-color: var(--color-yellow);
+		color: var(--color-primary);
+	}
+	.btn-yellow:hover {
+		background-color: var(--color-white);
+		border-color: var(--color-white);
+		color: var(--color-primary);
+	}
+	.btn-mint {
+		background-color: var(--color-mint);
+		border-color: var(--color-mint);
+		color: var(--color-primary);
+	}
+	.btn-mint:hover {
+		background-color: var(--color-white);
+		border-color: var(--color-white);
+		color: var(--color-primary);
+	}
+	.btn-coral {
+		background-color: var(--color-coral);
+		border-color: var(--color-coral);
+		color: var(--color-white);
+	}
+	.btn-coral:hover {
+		background-color: var(--color-primary-hover);
+		border-color: var(--color-primary-hover);
+		color: var(--color-white);
+	}
+</style>

@@ -1,0 +1,330 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { urls } from '../data/urls';
+
+const days = [
+	{
+		day: 'Day 1',
+		title: 'Introductions & Kickoff',
+		description: 'Meet your team, Swift refresher, and project kickoff.',
+	},
+	{
+		day: 'Day 2',
+		title: 'Build & Collaborate',
+		description: 'Collaborative coding, skill-building workshops and mentorship.',
+	},
+	{
+		day: 'Day 3',
+		title: 'App Prep & Celebration',
+		description: 'Polish your app, present to the group and celebrate your work.',
+	},
+];
+
+const cities = [
+	{ city: 'Sydney', dates: '7–9 January', venue: 'Sydney' },
+	{ city: 'Melbourne', dates: '13–15 January', venue: 'Melbourne' },
+];
+
+const faqs = [
+	{
+		q: 'Do I need experience with Swift or coding?',
+		a: 'No prior experience is required. Pre-work online workshops will get you ready before Day 1.',
+	},
+	{
+		q: 'What do I need to bring?',
+		a: 'One device per participant (Mac, iPad or iPhone), your lunch, and a willingness to learn!',
+	},
+	{
+		q: 'What are the hours?',
+		a: 'Sessions run 9:30am–4:00pm each day.',
+	},
+	{
+		q: 'Who can apply?',
+		a: 'High school aged girls and non-binary students in Australia.',
+	},
+];
+---
+
+<Layout
+	title="SheHacksSwift — Girl Geek Academy"
+	description="Free 3-day work experience program where high school girls and non-binary students learn Swift and build apps for Apple devices. Held in Sydney and Melbourne during January school holidays."
+>
+	<Header />
+	<main>
+
+		<!-- Hero -->
+		<section class="swift-hero section">
+			<div class="container">
+				<p class="page-eyebrow">Free Work Experience</p>
+				<h1>SheHacksSwift</h1>
+				<p class="lead">
+					A free 3-day program where high school girls and non-binary students learn Swift and build
+					their own apps for Apple devices — during January school holidays.
+				</p>
+				<div class="swift-hero__locations">
+					{
+						cities.map((c) => (
+							<div class="location-chip">
+								<strong>{c.city}</strong> — {c.dates}
+							</div>
+						))
+					}
+				</div>
+				<a href="https://forms.gle/sheHacksSwiftApply" class="btn btn-primary">Apply now!</a>
+			</div>
+		</section>
+
+		<!-- Program structure -->
+		<section class="section section--dark">
+			<div class="container">
+				<h2 class="text-center">How it works</h2>
+				<div class="grid-3 days-grid">
+					{
+						days.map((d) => (
+							<div class="day-card">
+								<p class="day-label">{d.day}</p>
+								<h4>{d.title}</h4>
+								<p>{d.description}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Details -->
+		<section class="section details-section">
+			<div class="container grid-2">
+				<div>
+					<h2>What you need to know</h2>
+					<ul class="details-list">
+						<li><strong>Cost:</strong> Free</li>
+						<li><strong>Who:</strong> High school girls and non-binary students</li>
+						<li><strong>Hours:</strong> 9:30am–4:00pm each day</li>
+						<li><strong>Bring:</strong> One device (Mac, iPad or iPhone) and your lunch</li>
+						<li>
+							<strong>Pre-work:</strong> Online workshops before the event to get you ready
+						</li>
+					</ul>
+					<p>
+						No prior coding experience needed — just enthusiasm for technology and a willingness to
+						build something new.
+					</p>
+				</div>
+				<div class="cities-grid">
+					{
+						cities.map((c) => (
+							<div class="city-card">
+								<h4>{c.city}</h4>
+								<p>{c.dates}</p>
+								<a href="https://forms.gle/sheHacksSwiftApply" class="btn btn-primary">
+									Apply now!
+								</a>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="section faq-section">
+			<div class="container">
+				<h2 class="text-center">Frequently asked questions</h2>
+				<div class="faq-list">
+					{
+						faqs.map((faq) => (
+							<div class="faq-item">
+								<p class="faq-q">{faq.q}</p>
+								<p class="faq-a">{faq.a}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Educators CTA -->
+		<section class="section section--dark text-center">
+			<div class="container">
+				<h2>Are you a teacher or parent?</h2>
+				<p>
+					Download our promotional poster to share with students, or get in touch with any questions.
+				</p>
+				<div class="edu-ctas">
+					<a href={urls.email} class="btn btn-yellow">Get in touch</a>
+					<a href="https://forms.gle/sheHacksSwiftApply" class="btn btn-coral">Apply now!</a>
+				</div>
+			</div>
+		</section>
+
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.swift-hero {
+		background-color: var(--color-mint);
+		padding-bottom: 4rem;
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		font-size: 1rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--color-primary);
+		margin: 0 0 0.5rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		max-width: 60ch;
+		margin-bottom: 1.5rem;
+	}
+
+	.swift-hero__locations {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+		margin-bottom: 1.5rem;
+	}
+
+	.location-chip {
+		background: var(--color-white);
+		color: var(--color-primary);
+		border-radius: 2rem;
+		padding: 0.4rem 1rem;
+		font-size: 0.95rem;
+	}
+
+	/* Days */
+	.days-grid {
+		margin-top: 2rem;
+	}
+
+	.day-card {
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 0.5rem;
+		padding: 1.5rem;
+	}
+
+	.day-label {
+		font-family: var(--font-pinata);
+		font-size: 1rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--color-yellow);
+		margin: 0 0 0.5rem;
+	}
+
+	.day-card h4 {
+		color: var(--color-white);
+		font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+		margin-bottom: 0.75rem;
+	}
+
+	.day-card p {
+		color: var(--color-white);
+		opacity: 0.9;
+		margin: 0;
+	}
+
+	/* Details */
+	.details-section {
+		background: var(--color-yellow-light);
+	}
+
+	.details-list {
+		padding-left: 1.25rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.details-list li {
+		margin-bottom: 0.6rem;
+	}
+
+	.cities-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.city-card {
+		background: var(--color-white);
+		border-radius: 0.5rem;
+		padding: 1.5rem;
+		border-left: 4px solid var(--color-primary);
+	}
+
+	.city-card h4 {
+		font-size: clamp(1.5rem, 3vw, 2.25rem);
+		margin-bottom: 0.25rem;
+	}
+
+	.city-card p {
+		margin-bottom: 1rem;
+	}
+
+	/* FAQ */
+	.faq-section {
+		background: var(--color-white);
+	}
+
+	.faq-list {
+		max-width: 720px;
+		margin: 2rem auto 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.faq-item {
+		background: var(--color-yellow-light);
+		border-radius: 0.5rem;
+		padding: 1.25rem 1.5rem;
+	}
+
+	.faq-q {
+		font-weight: 600;
+		color: var(--color-primary);
+		margin: 0 0 0.5rem;
+	}
+
+	.faq-a {
+		margin: 0;
+		color: var(--color-dark);
+	}
+
+	/* Educator CTA */
+	.edu-ctas {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+		margin-top: 1.5rem;
+	}
+
+	.btn-yellow {
+		background-color: var(--color-yellow);
+		border-color: var(--color-yellow);
+		color: var(--color-primary);
+	}
+	.btn-yellow:hover {
+		background-color: var(--color-white);
+		border-color: var(--color-white);
+		color: var(--color-primary);
+	}
+	.btn-coral {
+		background-color: var(--color-coral);
+		border-color: var(--color-coral);
+		color: var(--color-white);
+	}
+	.btn-coral:hover {
+		background-color: var(--color-primary-hover);
+		border-color: var(--color-primary-hover);
+		color: var(--color-white);
+	}
+</style>

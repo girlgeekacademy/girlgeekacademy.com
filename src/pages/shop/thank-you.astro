@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { urls } from '../../data/urls';
+---
+
+<Layout
+	title="Thank you — Girl Geek Academy Shop"
+	description="Thanks for your Girl Geek Academy order. Check your email for your Stripe receipt."
+>
+	<Header />
+	<main>
+		<section class="thank-you section">
+			<div class="container text-center">
+				<p class="thank-you__eyebrow">Order received</p>
+				<h1>Thank you!</h1>
+				<p class="thank-you__lead">
+					Your payment went through. Stripe will email you a receipt shortly — keep an eye on your
+					inbox (and spam, just in case).
+				</p>
+				<p>
+					We’ll pack and post your order as soon as we can. Shipping is flat-rate Australia or
+					international, matching what you chose at checkout.
+				</p>
+				<div class="thank-you__ctas">
+					<a href={urls.shop} class="btn btn-primary">Back to shop</a>
+					<a href={urls.home} class="btn btn-coral">Home</a>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.thank-you {
+		min-height: 60vh;
+		display: flex;
+		align-items: center;
+		background:
+			radial-gradient(ellipse at 50% 0%, rgba(143, 211, 215, 0.4), transparent 55%),
+			linear-gradient(180deg, #fff8e8 0%, var(--color-white) 100%);
+	}
+
+	.thank-you__eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		color: var(--color-coral);
+		margin: 0 0 0.75rem;
+	}
+
+	.thank-you__lead {
+		max-width: 32rem;
+		margin: 0 auto 1rem;
+		font-size: 1.125rem;
+	}
+
+	.thank-you p {
+		max-width: 32rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.thank-you__ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		justify-content: center;
+		margin-top: 2rem;
+	}
+
+	.btn-coral {
+		background-color: var(--color-coral);
+		border-color: var(--color-coral);
+		color: var(--color-white);
+	}
+
+	.btn-coral:hover {
+		background-color: var(--color-primary);
+		border-color: var(--color-primary);
+		color: var(--color-white);
+	}
+</style>
