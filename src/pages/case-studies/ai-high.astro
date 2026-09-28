@@ -1,0 +1,260 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EmailCta from '../../components/EmailCta.astro';
+import VideoGallery from '../../components/VideoGallery.astro';
+import { Image } from 'astro:assets';
+import telstraBanner from '../../assets/home/telstra-banner.png';
+import aiHighImage from '../../assets/home/ai-high.jpg';
+import { aiHighVideos } from '../../data/videos';
+
+const highlights = [
+	{
+		label: 'Who',
+		value: 'Australian high school girls & gender-diverse students',
+	},
+	{
+		label: 'Format',
+		value: 'Weekly online workshops + secure community forum',
+	},
+	{
+		label: 'Focus',
+		value: 'Games, digital art, programming, AI and emerging tech',
+	},
+	{
+		label: 'Partner',
+		value: 'Sponsored by the Telstra Foundation',
+	},
+];
+
+const sampleSessions = [
+	'Getting started with 3D modelling',
+	'Fireside chats with industry professionals',
+	'Coding a password generator',
+	'Making games with PowerPoint',
+	'Coding a chatbot',
+];
+
+const team = [
+	{ name: 'Sarah Moran', role: 'Founder & Developer' },
+	{ name: 'Lisy Kane', role: 'Founder & Developer' },
+	{ name: 'Leura Smith', role: 'Host & Developer' },
+	{ name: 'Cherie Tan', role: 'Learning Designer' },
+];
+---
+
+<Layout
+	title="Case study: AI High — Girl Geek Academy"
+	description="AI High — empowering high school girls with AI, coding and digital creativity, sponsored by the Telstra Foundation."
+>
+	<Header />
+	<main>
+		<section class="case-hero section section--dark">
+			<div class="container grid-2">
+				<div>
+					<p class="page-eyebrow">Case study · Program delivery</p>
+					<h1>AI High</h1>
+					<p class="lead">
+						Free weekly online workshops empowering Australian high school girls and gender-diverse
+						students through games, digital art, programming and tech skills.
+					</p>
+					<Image
+						src={telstraBanner}
+						alt="Telstra Foundation x Girl Geek Academy"
+						width={800}
+						height={123}
+						class="telstra-banner"
+					/>
+					<p>
+						Our strategic plan prioritises sustained funding for AI High. This case study shows what
+						we’ve delivered — talk to us about funding the next chapter.
+					</p>
+					<div class="hero-ctas">
+						<EmailCta label="Partner with us for 2027" variant="yellow" />
+						<EmailCta label="Bring this to your school/workplace" variant="mint" />
+					</div>
+				</div>
+				<div>
+					<Image
+						src={aiHighImage}
+						alt="AI High — students learning technology"
+						width={700}
+						height={394}
+						class="hero-img"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">What we delivered</h2>
+				<div class="grid-2 highlights">
+					{
+						highlights.map((h) => (
+							<div class="highlight">
+								<p class="highlight__label">{h.label}</p>
+								<p class="highlight__value">{h.value}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container grid-2">
+				<div>
+					<h2>Teach AI to build and question — not just use</h2>
+					<p>
+						Each session ran in a secure forum space where members connected, asked questions, and
+						built friendships alongside their skills. No experience needed — join anytime.
+					</p>
+					<p>
+						Women and girls shape the technology that shapes their lives. AI High gives young women
+						tech power at the school-to-industry pipeline.
+					</p>
+				</div>
+				<div>
+					<h3 class="side-heading">Example session topics</h3>
+					<ul class="session-list">
+						{sampleSessions.map((s) => <li>{s}</li>)}
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<VideoGallery
+			heading="Watch AI High & Microsoft Mondays"
+			intro="Workshop sessions and the Microsoft Mondays partnership that seeded this community."
+			videos={aiHighVideos}
+		/>
+
+		<section class="section section--dark">
+			<div class="container text-center">
+				<h2>The AI High team</h2>
+				<ul class="team-list">
+					{
+						team.map((t) => (
+							<li class="team-card">
+								<p class="team-name">{t.name}</p>
+								<p class="team-role">{t.role}</p>
+							</li>
+						))
+					}
+				</ul>
+				<div class="bottom-cta">
+					<EmailCta label="Partner with us for 2027" variant="primary" />
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-yellow);
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+	}
+
+	.telstra-banner {
+		margin: 1rem 0;
+		max-width: 100%;
+	}
+
+	.hero-img {
+		border-radius: 0.25rem;
+		box-shadow: 4px 3px 0 0 var(--color-yellow-light);
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+	}
+
+	.highlights {
+		margin-top: 2rem;
+		gap: 1rem;
+	}
+
+	.highlight {
+		padding: 1.25rem;
+		border: 1px solid rgba(95, 125, 215, 0.2);
+		border-radius: 0.25rem;
+	}
+
+	.highlight__label {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		font-size: 0.85rem;
+		margin: 0 0 0.35rem;
+	}
+
+	.highlight__value {
+		margin: 0;
+		font-size: 1.05rem;
+	}
+
+	.side-heading {
+		color: var(--color-white);
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		margin-bottom: 1rem;
+	}
+
+	.session-list {
+		margin: 0;
+		padding-left: 1.25rem;
+	}
+
+	.session-list li {
+		margin-bottom: 0.5rem;
+	}
+
+	.team-list {
+		list-style: none;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+		margin: 2rem 0;
+		padding: 0;
+	}
+
+	.team-card {
+		padding: 1rem;
+		border: 1px solid rgba(95, 125, 215, 0.2);
+		border-radius: 0.25rem;
+	}
+
+	.team-name {
+		font-family: var(--font-display);
+		font-size: 1.5rem;
+		margin: 0 0 0.25rem;
+		line-height: 1;
+	}
+
+	.team-role {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.bottom-cta {
+		margin-top: 1.5rem;
+	}
+
+	@media (max-width: 991px) {
+		.team-list {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>

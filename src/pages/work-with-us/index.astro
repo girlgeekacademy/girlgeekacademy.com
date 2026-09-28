@@ -1,0 +1,412 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EmailCta from '../../components/EmailCta.astro';
+import VideoGallery from '../../components/VideoGallery.astro';
+import { urls } from '../../data/urls';
+import { programsNav } from '../../data/nav';
+import { workWithUsVideos } from '../../data/videos';
+
+const formats = [
+	{
+		name: 'Short workshop',
+		detail: '~2–2.5 hours — e.g. MissMakesCode for mums and daughters.',
+	},
+	{
+		name: 'Day workshop',
+		detail: 'One full day — deeper workshops at school or in the workplace.',
+	},
+	{
+		name: 'Multi-day',
+		detail:
+			'E.g. Wed–Friday or a weekend — a hackathon (#SheHacks) or a game jam (Play Party).',
+	},
+	{
+		name: 'Week program',
+		detail: 'Work Experience — sold to corporates and schools as a week-long product.',
+	},
+	{
+		name: 'Multi-month series',
+		detail: 'Career Incubator — mentoring, networking and hands-on training over ~6 months.',
+	},
+	{
+		name: 'Build a community',
+		detail: 'Ongoing / weekly cohorts — e.g. AI High for high-school girl geeks.',
+	},
+	{
+		name: 'Speaking · consulting · mentoring',
+		detail: 'By arrangement — keynotes, advice, and expert swaps with your team.',
+	},
+];
+
+const audiences = [
+	{
+		id: 'schools',
+		title: 'Schools',
+		cta: 'Bring this to your school/workplace' as const,
+		lead: 'We help schools keep girls in digital tech — and show that building is not scrolling.',
+		body: [
+			'From subject choice to the jump into further study, girls get pushed out of tech pathways early. We partner with teachers, careers advisers and school leaders on programs that keep girl geeks in.',
+			'Ask us about MissMakesCode workshops, SheHacks, SheMakesGames, and the formats we can run with your school community.',
+		],
+		links: [
+			{ label: 'MissMakesCode', href: urls.missMakesCode },
+			{ label: 'SheHacks', href: urls.sheHacks },
+			{ label: 'SheHacksSwift', href: urls.sheHacksSwift },
+		],
+	},
+	{
+		id: 'libraries',
+		title: 'Libraries',
+		cta: 'Available for your school/workplace' as const,
+		lead: 'Libraries are where curious girl geeks already gather.',
+		body: [
+			'We partner with libraries on workshops, book programs and community events that build tech power — coding clubs, maker sessions, and the Girl Geeks book series.',
+			'If you run programs for families, teens or schools in your catchment, we can bring a ready format or design something with you.',
+		],
+		links: [
+			{ label: 'Girl Geeks books', href: urls.books },
+			{ label: 'SheMakes', href: urls.sheMakes },
+			{ label: 'MissMakesCode', href: urls.missMakesCode },
+		],
+	},
+	{
+		id: 'corporates',
+		title: 'Corporates',
+		cta: 'Partner with us for 2027' as const,
+		lead: 'Fund programs. Shape safer workplaces. Open pathways for alumni.',
+		body: [
+			'We partner with organisations to create safer, gender-equal tech workplaces — and to fund the programs that keep girl geeks in from school to industry.',
+			'That can mean sponsoring SheHacks, commissioning Work Experience (like AGL Girls in Energy), Girl Geek in Residence (NAB), workshops, mentoring, or a campaign like Microsoft Mondays or Sunsilk.',
+		],
+		links: [
+			{ label: 'Case studies', href: urls.caseStudies },
+			{ label: 'SheHacks', href: urls.sheHacks },
+			{ label: 'Welcome pack', href: urls.welcomePack },
+		],
+	},
+	{
+		id: 'women-in-tech',
+		title: 'Women in tech',
+		cta: 'Partner with us for 2027' as const,
+		lead: 'So no one is the only girl geek in the room.',
+		body: [
+			'We keep girl geeks in tech and connect women through programs, community and industry pathways — from early career to leadership.',
+			'Join as a participant, mentor, speaker or partner. Help us build an alumni community that links school participants with women in industry.',
+		],
+		links: [
+			{ label: 'SheHacks', href: urls.sheHacks },
+			{ label: 'SheMakesGames', href: urls.sheMakesGames },
+			{ label: 'SheFlies', href: urls.sheFlies },
+		],
+	},
+	{
+		id: 'conferences',
+		title: 'Conferences',
+		cta: 'Partner with us for 2027' as const,
+		lead: 'Keynotes, panels and conference collaborations.',
+		body: [
+			'We make the case that building is not scrolling — and that women and girls should shape the technology that shapes their lives.',
+			'Book us for keynotes, panels, MC roles, or a conference program strand. Public speaking lives here, not in the programs catalogue.',
+		],
+		links: [{ label: 'Diversity in STEM review', href: urls.report }],
+	},
+	{
+		id: 'government',
+		title: 'Government',
+		cta: 'Partner with us for 2027' as const,
+		lead: 'Local, state and federal partners on programs, research and policy.',
+		body: [
+			'We deliver funded education programs, share research (including on Ada Lovelace Day), and bring evidence to the debate on who controls the technology women and girls use.',
+			'From budget bids to school and skills initiatives — we bring delivery and a clear theory of change.',
+		],
+		links: [
+			{ label: 'Diversity in STEM review', href: urls.report },
+			{ label: 'Case studies', href: urls.caseStudies },
+		],
+	},
+	{
+		id: 'media',
+		title: 'Media',
+		cta: 'Partner with us for 2027' as const,
+		lead: 'Expert voices on keeping girl geeks in — and who controls tech.',
+		body: [
+			'For interviews, op-eds and commentary on women and girls in STEM, AI, education and gender equity in technology — including regular spots on ABC’s Download This Show.',
+			'Copy our email from the button (we won’t force open your mail app). We’ll connect you with the right spokesperson.',
+		],
+		links: [
+			{ label: 'As seen on… (About)', href: `${urls.about}#as-seen` },
+			{ label: 'Diversity in STEM review', href: urls.report },
+		],
+	},
+];
+---
+
+<Layout
+	title="Work with Us — Girl Geek Academy"
+	description="Partner with Girl Geek Academy — schools, libraries, corporates, women in tech, conferences, government and media."
+>
+	<Header />
+	<main>
+		<section class="wwu-hero section">
+			<div class="container">
+				<p class="page-eyebrow">Work with Us</p>
+				<h1>Let's build tech power together</h1>
+				<p class="lead">
+					Women and girls shape the technology that shapes their lives. We work with the people and
+					institutions who can keep girl geeks in — from school to industry.
+				</p>
+				<nav class="wwu-jump" aria-label="Jump to section">
+					<a href="#formats">Formats</a>
+					{
+						audiences.map((a) => (
+							<a href={`#${a.id}`}>{a.title}</a>
+						))
+					}
+				</nav>
+				<div class="hero-ctas">
+					<EmailCta label="Partner with us for 2027" variant="primary" />
+					<a href={urls.welcomePack} class="btn btn-coral" target="_blank" rel="noopener noreferrer">
+						Download welcome pack
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section id="formats" class="section wwu-section wwu-formats">
+			<div class="container">
+				<h2>How we deliver</h2>
+				<p class="wwu-formats__intro">
+					Pick a <strong>format</strong> that fits your calendar and budget. Then browse{' '}
+					<a href="#programs-flavour">our programs</a> to choose the flavour — girls coding, games,
+					hackathons, making, aviation and more.
+				</p>
+				<ul class="wwu-formats__list">
+					{
+						formats.map((f) => (
+							<li class="wwu-formats__item">
+								<p class="wwu-formats__name">{f.name}</p>
+								<p class="wwu-formats__detail">{f.detail}</p>
+							</li>
+						))
+					}
+				</ul>
+				<div id="programs-flavour" class="wwu-formats__programs">
+					<p class="wwu-formats__programs-label">Our programs</p>
+					<p class="wwu-formats__programs-hint">
+						Same formats, different flavours — explore the catalogue, then email us to commission
+						one.
+					</p>
+					<ul class="wwu-formats__program-links">
+						{
+							programsNav.map((p) => (
+								<li>
+									<a href={p.href}>{p.label}</a>
+								</li>
+							))
+						}
+					</ul>
+					<div class="hero-ctas">
+						<EmailCta label="Partner with us for 2027" variant="primary" />
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<VideoGallery
+			heading="Partners in action"
+			intro="Corporate delivery — AGL Girls in Energy and NAB Girl Geek in Residence."
+			videos={workWithUsVideos}
+			dark
+		/>
+
+		{
+			audiences.map((a, i) => (
+				<section
+					id={a.id}
+					class:list={['section', 'wwu-section', { 'section--dark': i % 2 === 1 }]}
+				>
+					<div class="container grid-2 wwu-section__grid">
+						<div>
+							<h2>{a.title}</h2>
+							<p class="wwu-section__lead">{a.lead}</p>
+							{a.body.map((p) => (
+								<p>{p}</p>
+							))}
+							<div class="hero-ctas">
+								<EmailCta label={a.cta} variant={i % 2 === 1 ? 'yellow' : 'primary'} />
+							</div>
+						</div>
+						<aside class:list={['wwu-aside', { 'wwu-aside--on-dark': i % 2 === 1 }]}>
+							<p class="wwu-aside__label">Explore</p>
+							<ul>
+								{a.links.map((l) => (
+									<li>
+										<a href={l.href} target={l.href.startsWith('http') ? '_blank' : undefined} rel={l.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+											{l.label}
+										</a>
+									</li>
+								))}
+							</ul>
+						</aside>
+					</div>
+				</section>
+			))
+		}
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.wwu-hero {
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
+		padding-bottom: 2.5rem;
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		max-width: 40rem;
+	}
+
+	.wwu-jump {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1rem;
+		margin: 1.5rem 0;
+	}
+
+	.wwu-jump a {
+		font-size: 0.95rem;
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 0.5rem;
+	}
+
+	.wwu-section {
+		scroll-margin-top: 5rem;
+	}
+
+	.wwu-section__lead {
+		font-size: 1.125rem;
+	}
+
+	.wwu-formats__intro {
+		max-width: 40rem;
+		font-size: 1.125rem;
+	}
+
+	.wwu-formats__list {
+		list-style: none;
+		margin: 2rem 0 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem 1.5rem;
+	}
+
+	.wwu-formats__item {
+		padding: 1.25rem;
+		border: 1px solid rgba(95, 125, 215, 0.25);
+		border-radius: 0.25rem;
+	}
+
+	.wwu-formats__name {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		margin: 0 0 0.4rem;
+		color: var(--color-coral);
+	}
+
+	.wwu-formats__detail {
+		margin: 0;
+	}
+
+	.wwu-formats__programs {
+		margin-top: 2.5rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(95, 125, 215, 0.2);
+		scroll-margin-top: 5rem;
+	}
+
+	.wwu-formats__programs-label {
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 3vw, 2.25rem);
+		line-height: 1;
+		margin: 0 0 0.5rem;
+	}
+
+	.wwu-formats__programs-hint {
+		max-width: 36rem;
+		margin: 0 0 1rem;
+	}
+
+	.wwu-formats__program-links {
+		list-style: none;
+		margin: 0 0 1.25rem;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1.25rem;
+	}
+
+	.wwu-formats__program-links a {
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	@media (max-width: 767px) {
+		.wwu-formats__list {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.wwu-aside {
+		padding: 1.5rem;
+		border: 1px solid rgba(95, 125, 215, 0.25);
+		border-radius: 0.25rem;
+		align-self: start;
+	}
+
+	.wwu-aside--on-dark {
+		border-color: rgba(255, 255, 255, 0.35);
+		background: rgba(255, 255, 255, 0.08);
+	}
+
+	.wwu-aside__label {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		font-size: 0.85rem;
+		margin: 0 0 0.75rem;
+	}
+
+	.wwu-aside ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.wwu-aside li {
+		margin-bottom: 0.5rem;
+	}
+
+	.wwu-aside--on-dark a {
+		color: var(--color-white);
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+</style>

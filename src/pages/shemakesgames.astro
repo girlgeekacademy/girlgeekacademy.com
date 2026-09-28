@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import EmailCta from '../components/EmailCta.astro';
+
+const offers = [
+	{
+		title: 'Early career development',
+		body: 'Hard technical skills and the soft skills needed to negotiate career success in the formative years of a games career.',
+	},
+	{
+		title: 'Industry networking',
+		body: 'Meet women working in indie and AAA studios — and build a community so no one is the only girl geek in the room.',
+	},
+	{
+		title: 'Pathways in',
+		body: 'Whether you love characters, community, code or production — your skills are wanted in games. We open the door.',
+	},
+];
+---
+
+<Layout
+	title="SheMakesGames — Girl Geek Academy"
+	description="SheMakesGames — learn the world of video game development with Girl Geek Academy. Early career development and networking for women in games."
+>
+	<Header />
+	<main>
+		<section class="prog-hero section">
+			<div class="container">
+				<p class="page-eyebrow">Program · Games</p>
+				<h1>SheMakesGames</h1>
+				<p class="lead">
+					You've played games — now hear from the Girl Geeks who make them. An opportunity to learn
+					and understand the world of video game development.
+				</p>
+				<p>
+					There is a lack of opportunities for women to develop their skills in games.
+					SheMakesGames provides networking, support, and confidence to be in charge of your own
+					career.
+				</p>
+				<div class="hero-ctas">
+					<EmailCta label="Available for your school/workplace" variant="primary" />
+					<EmailCta label="Partner with us for 2027" variant="coral" />
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">What you get</h2>
+				<div class="grid-3 offers">
+					{
+						offers.map((o) => (
+							<div class="offer-card">
+								<h3>{o.title}</h3>
+								<p>{o.body}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container grid-2">
+				<div>
+					<h2>From making games to so much more</h2>
+					<p>
+						In 2015, co-founder Lisy Kane curated the first Australian all-female game-making day.
+						Our flagship event at ACMI-X in October 2016 — part of Melbourne International Games Week
+						— featured keynote Brie Code on what video games can be.
+					</p>
+					<p>
+						In 2017 we returned with hands-on workshops and a keynote by Anna Tito on working in AAA
+						studios around the world. The format is proven — and available for your organisation,
+						campus or community to commission.
+					</p>
+				</div>
+				<div class="cta-panel">
+					<h3>Bring SheMakesGames to you</h3>
+					<p>
+						Women and girls shape the technology that shapes their lives — including the games they
+						play and make.
+					</p>
+					<EmailCta label="Bring this to your school/workplace" variant="yellow" />
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.prog-hero {
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		max-width: 40rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+	}
+
+	.offers {
+		margin-top: 2rem;
+	}
+
+	.offer-card {
+		padding: 1.25rem;
+		border: 1px solid rgba(95, 125, 215, 0.2);
+		border-radius: 0.25rem;
+	}
+
+	.offer-card h3 {
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		margin-bottom: 0.5rem;
+	}
+
+	.offer-card p {
+		margin: 0;
+	}
+
+	.cta-panel {
+		background: rgba(255, 255, 255, 0.1);
+		padding: 1.5rem;
+		border-radius: 0.25rem;
+	}
+
+	.cta-panel h3 {
+		color: var(--color-white);
+		font-size: clamp(1.75rem, 3vw, 2.25rem);
+	}
+</style>

@@ -1,0 +1,143 @@
+---
+import { Image } from 'astro:assets';
+import rainbow from '../../assets/home/community-rainbow.png';
+import EmailCta from '../EmailCta.astro';
+import Zigzag from '../Zigzag.astro';
+import { urls } from '../../data/urls';
+
+const proof = [
+	{ label: 'Sunsilk', href: urls.caseSunsilk },
+	{ label: 'Microsoft Mondays', href: urls.caseMicrosoft },
+	{ label: 'AI High', href: urls.caseAiHigh },
+	{ label: 'MissMakesCode impact', href: urls.caseMissMakesCode },
+];
+---
+
+<section class="partner-home section">
+	<div class="container partner-home__grid">
+		<div class="partner-home__copy">
+			<p class="partner-home__kicker">Partner with us</p>
+			<h2>Let’s work together</h2>
+			<p class="partner-home__lead">
+				Over the past decade we’ve created programs adopted by governments, universities, banks and
+				tech companies who share our commitment — keep girl geeks in, and give them tech power.
+			</p>
+			<p>
+				Schools, libraries, corporates, government, media — if you’re here to increase the number of
+				women and girls building the internet, you’ve come to the right place.
+			</p>
+			<div class="partner-home__ctas">
+				<EmailCta label="Partner with us for 2027" variant="yellow" />
+				<a href={urls.welcomePack} class="btn btn-coral" target="_blank" rel="noopener noreferrer">
+					Download welcome pack
+				</a>
+				<a href={urls.workWithUs} class="btn btn-mint">Work with Us</a>
+			</div>
+			<ul class="partner-home__proof">
+				{
+					proof.map((p) => (
+						<li>
+							<a href={p.href}>{p.label}</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+		<div class="partner-home__art hide-mobile">
+			<Image
+				src={rainbow}
+				alt="Girl Geek Academy community rainbow"
+				width={751}
+				height={696}
+				class="partner-home__rainbow"
+			/>
+		</div>
+	</div>
+	<Zigzag fill="#5f7dd7" position="bottom" />
+</section>
+
+<style>
+	.partner-home {
+		position: relative;
+		overflow: hidden;
+		padding-bottom: 5rem;
+		color: var(--color-yellow-light);
+		/* pink bg from sections.css */
+	}
+
+	.partner-home a {
+		color: var(--color-yellow-light);
+	}
+
+	.partner-home__grid {
+		display: grid;
+		grid-template-columns: 1.1fr 0.9fr;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	.partner-home__kicker {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.5rem;
+		color: var(--color-yellow);
+	}
+
+	.partner-home h2,
+	.partner-home p {
+		color: var(--color-yellow-light);
+	}
+
+	.partner-home__lead {
+		font-size: 1.15rem;
+	}
+
+	.partner-home__ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin: 1.75rem 0 1.5rem;
+	}
+
+	.partner-home__proof {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1.25rem;
+	}
+
+	.partner-home__proof a {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		font-size: 0.95rem;
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	.partner-home__rainbow {
+		width: 100%;
+		height: auto;
+		filter: drop-shadow(0 12px 0 rgba(95, 125, 215, 0.25));
+		animation: partner-spin-soft 8s ease-in-out infinite;
+	}
+
+	@keyframes partner-spin-soft {
+		0%,
+		100% {
+			transform: rotate(-3deg) scale(1);
+		}
+		50% {
+			transform: rotate(2deg) scale(1.03);
+		}
+	}
+
+	@media (max-width: 991px) {
+		.partner-home__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

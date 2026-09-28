@@ -3,28 +3,27 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/home/Hero.astro';
+import Pipeline from '../components/home/Pipeline.astro';
+import KeepIn from '../components/home/KeepIn.astro';
+import ProgramsHome from '../components/home/ProgramsHome.astro';
 import ReportSection from '../components/home/ReportSection.astro';
-import HackerHustlerHipster from '../components/home/HackerHustlerHipster.astro';
-import AIHigh from '../components/home/AIHigh.astro';
 import Books from '../components/home/Books.astro';
-import Community from '../components/home/Community.astro';
-import Collaborate from '../components/home/Collaborate.astro';
-import WhatWeDo from '../components/home/WhatWeDo.astro';
-import Testimonials from '../components/home/Testimonials.astro';
+import PartnerHome from '../components/home/PartnerHome.astro';
 ---
 
-<Layout>
+<Layout
+	title="Girl Geek Academy — Keep girl geeks in tech"
+	description="Women and girls shape the technology that shapes their lives. We keep girl geeks in and give them the power to build, question and govern tech — one million with tech power by 2030."
+>
 	<Header />
 	<main>
 		<Hero />
+		<Pipeline />
+		<KeepIn />
+		<ProgramsHome />
 		<ReportSection />
-		<HackerHustlerHipster />
-		<AIHigh />
 		<Books />
-		<Community />
-		<Collaborate />
-		<WhatWeDo />
-		<Testimonials />
+		<PartnerHome />
 	</main>
 	<Footer />
 </Layout>

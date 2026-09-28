@@ -1,0 +1,181 @@
+---
+import Zigzag from '../Zigzag.astro';
+
+const stages = [
+	{
+		age: 'By age 6',
+		n: '01',
+		fact: 'Children classify jobs as male and female.',
+		tone: 'yellow',
+	},
+	{
+		age: 'By age 8',
+		n: '02',
+		fact: 'They are limiting aspirations.',
+		tone: 'mint',
+	},
+	{
+		age: 'By 13',
+		n: '03',
+		fact: 'They rule out careers that don’t fit with gender stereotypes.',
+		tone: 'pink',
+	},
+	{
+		age: 'By 16–17',
+		n: '04',
+		fact: 'Around 60% of girls aspire to stereotypically “female” jobs.',
+		tone: 'coral',
+	},
+];
+---
+
+<section class="pipeline section section--dark">
+	<Zigzag fill="#ffe193" position="top" />
+
+	<div class="container">
+		<p class="pipeline__kicker text-center">The holes in the pipe</p>
+		<h2 class="text-center pipeline__title">Tech has a pipeline problem</h2>
+		<p class="text-center pipeline__lead">
+			Tech must stop pushing people out — and keep those we already have. We don’t fix the girls. We
+			fix the system.
+		</p>
+		<ul class="pipeline__grid">
+			{
+				stages.map((s, i) => (
+					<li
+						class={`pipeline__card pipeline__card--${s.tone}`}
+						style={`--tilt: ${i % 2 === 0 ? '-1.5deg' : '1.5deg'}`}
+					>
+						<span class="pipeline__n" aria-hidden="true">
+							{s.n}
+						</span>
+						<p class="pipeline__age">{s.age}</p>
+						<p>{s.fact}</p>
+					</li>
+				))
+			}
+		</ul>
+		<p class="text-center pipeline__ask">
+			What would the internet look like if there were more women and girls building it?
+		</p>
+	</div>
+
+	<Zigzag fill="#fff0c9" position="bottom" />
+</section>
+
+<style>
+	.pipeline {
+		position: relative;
+		padding-top: 5rem;
+		padding-bottom: 5.5rem;
+		overflow: hidden;
+	}
+
+	.pipeline__kicker {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-yellow);
+		margin: 0 0 0.5rem;
+		font-size: clamp(1rem, 2vw, 1.35rem);
+	}
+
+	.pipeline__title {
+		margin-bottom: 0.75rem;
+	}
+
+	.pipeline__lead {
+		max-width: 40rem;
+		margin: 0 auto 2.5rem;
+		font-size: 1.15rem;
+	}
+
+	.pipeline__grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1.25rem;
+	}
+
+	.pipeline__card {
+		position: relative;
+		padding: 1.5rem 1.25rem 1.35rem;
+		border-radius: 0.35rem;
+		color: var(--color-primary);
+		transform: rotate(var(--tilt, 0deg));
+		box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.18);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		overflow: hidden;
+	}
+
+	.pipeline__card:hover {
+		transform: rotate(0deg) translateY(-6px);
+		box-shadow: 8px 10px 0 0 rgba(0, 0, 0, 0.22);
+	}
+
+	.pipeline__card--yellow {
+		background: var(--color-yellow);
+	}
+	.pipeline__card--mint {
+		background: var(--color-mint);
+	}
+	.pipeline__card--pink {
+		background: var(--color-pink);
+	}
+	.pipeline__card--coral {
+		background: var(--color-coral);
+		color: var(--color-white);
+	}
+
+	.pipeline__n {
+		position: absolute;
+		top: 0.35rem;
+		right: 0.6rem;
+		font-family: var(--font-display);
+		font-size: 2.75rem;
+		line-height: 1;
+		opacity: 0.35;
+	}
+
+	.pipeline__age {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		margin: 0 0 0.5rem;
+		font-size: 1.05rem;
+		position: relative;
+	}
+
+	.pipeline__card p:last-child {
+		margin: 0;
+		position: relative;
+		font-weight: 600;
+	}
+
+	.pipeline__ask {
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 4vw, 3rem);
+		line-height: 0.95;
+		max-width: 22ch;
+		margin: 3rem auto 0;
+		color: var(--color-yellow);
+	}
+
+	@media (max-width: 991px) {
+		.pipeline__grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (max-width: 575px) {
+		.pipeline__grid {
+			grid-template-columns: 1fr;
+		}
+
+		.pipeline__card {
+			transform: none;
+		}
+	}
+</style>

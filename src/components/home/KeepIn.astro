@@ -1,0 +1,197 @@
+---
+import { Image } from 'astro:assets';
+import rainbow from '../../assets/home/helping-rainbow.png';
+import Zigzag from '../Zigzag.astro';
+import { urls } from '../../data/urls';
+
+const points = [
+	{
+		title: 'From ages 5 and up',
+		body: 'We support young girls in primary schools, libraries and workplaces — MissMakesCode and family workshops when curiosity is still wide open.',
+		href: urls.missMakesCode,
+		label: 'MissMakesCode',
+		tone: 'mint',
+	},
+	{
+		title: 'High school & work experience',
+		body: 'What does a technologist at work look like? Week programs, SheHacksSwift and AI High — so girls choose tech electives and stay.',
+		href: urls.sheHacksSwift,
+		label: 'Work experience',
+		tone: 'pink',
+	},
+	{
+		title: 'Industry — not just survive, thrive',
+		body: '#SheHacks, SheMakesGames, career incubators and safer workplaces — keep women and non-binary folk in, and into leadership.',
+		href: urls.sheHacks,
+		label: 'SheHacks',
+		tone: 'coral',
+	},
+];
+---
+
+<section class="keep-in section">
+	<div class="keep-in__pattern" aria-hidden="true"></div>
+	<div class="container keep-in__inner">
+		<div class="keep-in__header">
+			<p class="keep-in__kicker">Keep girl geeks in</p>
+			<h2>So how do we solve this?</h2>
+			<p class="keep-in__intro">
+				We deliver programs at the push-out points — subject choice, school to study, study to first
+				job — and partner with teachers, parents, corporates and governments to keep girl geeks in.
+			</p>
+		</div>
+
+		<div class="keep-in__layout">
+			<ul class="keep-in__grid">
+				{
+					points.map((p) => (
+						<li class={`keep-in__card keep-in__card--${p.tone}`}>
+							<h3>{p.title}</h3>
+							<p>{p.body}</p>
+							<a href={p.href} class="btn btn-primary">
+								{p.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+			<div class="keep-in__art hide-mobile">
+				<Image
+					src={rainbow}
+					alt="Girl Geek Academy — helping hands rainbow"
+					width={520}
+					height={480}
+					class="keep-in__rainbow"
+				/>
+			</div>
+		</div>
+	</div>
+	<Zigzag fill="#ffffff" position="bottom" />
+</section>
+
+<style>
+	.keep-in {
+		position: relative;
+		overflow: hidden;
+		padding-bottom: 5rem;
+		/* yellow-light + dots from sections.css */
+	}
+
+	.keep-in__pattern {
+		position: absolute;
+		inset: 0;
+		background-image: url('/images/backgrounds/dots-tiled.png');
+		background-repeat: repeat;
+		opacity: 0.55;
+		pointer-events: none;
+	}
+
+	.keep-in__inner {
+		position: relative;
+		z-index: 1;
+	}
+
+	.keep-in__header {
+		text-align: center;
+		max-width: 40rem;
+		margin: 0 auto 2.5rem;
+	}
+
+	.keep-in__kicker {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-coral);
+		margin: 0 0 0.5rem;
+	}
+
+	.keep-in__intro {
+		font-size: 1.1rem;
+		margin: 0;
+	}
+
+	.keep-in__layout {
+		display: grid;
+		grid-template-columns: 1.4fr 0.8fr;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	.keep-in__grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.keep-in__card {
+		padding: 1.5rem 1.5rem 1.35rem;
+		border-radius: 0.35rem;
+		box-shadow: 6px 6px 0 0 var(--color-primary);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.keep-in__card:hover {
+		transform: translateY(-4px) rotate(-0.5deg);
+		box-shadow: 8px 10px 0 0 var(--color-primary);
+	}
+
+	.keep-in__card--mint {
+		background: var(--color-mint);
+	}
+	.keep-in__card--pink {
+		background: var(--color-pink);
+	}
+	.keep-in__card--coral {
+		background: var(--color-coral);
+		color: var(--color-white);
+	}
+
+	.keep-in__card--coral h3,
+	.keep-in__card--coral a {
+		color: var(--color-white);
+	}
+
+	.keep-in__card h3 {
+		font-family: var(--font-pinata);
+		font-size: clamp(1.1rem, 2vw, 1.45rem);
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		line-height: 1.15;
+		margin: 0 0 0.65rem;
+		color: var(--color-primary);
+	}
+
+	.keep-in__card p {
+		margin: 0 0 1rem;
+	}
+
+	.keep-in__card .btn {
+		font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+		padding: 0.35rem 1rem;
+	}
+
+	.keep-in__rainbow {
+		width: 100%;
+		height: auto;
+		filter: drop-shadow(8px 10px 0 rgba(95, 125, 215, 0.35));
+		animation: keep-float 5s ease-in-out infinite;
+	}
+
+	@keyframes keep-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(-2deg);
+		}
+		50% {
+			transform: translateY(-10px) rotate(1deg);
+		}
+	}
+
+	@media (max-width: 991px) {
+		.keep-in__layout {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

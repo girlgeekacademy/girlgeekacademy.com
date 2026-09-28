@@ -2,120 +2,126 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import EmailCta from '../components/EmailCta.astro';
+import VideoGallery from '../components/VideoGallery.astro';
 import { urls } from '../data/urls';
+import { aboutVideos } from '../data/videos';
 
 const founders = [
 	{
-		name: 'Amanda Watts',
-		role: 'Game Developer',
+		name: 'Sarah Moran',
+		role: 'Co-founder & CEO',
+		bio: 'Sarah learned to code when she was five and got pushed out of tech in Year 10 (her teacher didn’t understand the code behind her website — despite it being very excellent). She gets angry when women and girls who are good at tech get pushed out, so she fights to stop it happening to others. Winner of The Australian Women’s Weekly Women of the Future (2018) — then a judge — a UN Women Australia speaker, and a regular technology commentator on The Today Show. Telling the Girl Geek Academy story, finding great people to work with, and making sure there’s always money in the bank is her job as CEO.',
 	},
 	{
 		name: 'Lisy Kane',
-		role: 'Game Developer',
+		role: 'Co-founder & games producer',
+		bio: 'Lisy is a videogames producer with a global footprint — the only Australian on Forbes 30 Under 30: Games (2017). At Melbourne studio League of Geeks her work includes award-winning title Armello; she oversees international releases across Steam, PlayStation, Xbox, Switch and mobile. She’s in high demand on the speaker circuit for gaming, tech and STEM education — including for NASA — and can often be found streaming DOTA 2 on Twitch.',
 	},
 	{
-		name: 'Tammy',
-		role: 'Creative Technologist',
+		name: 'Tammy Butow',
+		role: 'Co-founder & Empress of Chaos',
+		bio: 'Tammy has the coolest job of anyone you’ll ever meet — breaking things on purpose by running chaos experiments, which earned her the nickname Empress of Chaos. Based in Florida after San Francisco, she’s VP of Reliability at Gremlin. She started at 10, building and fixing computers and ridding family friends’ machines of viruses. As a Site Reliability Engineer she’s kept the lights on at places like Dropbox, DigitalOcean and NAB. Tammy sat the five of us down in 2014 and said: you’re awesome, you’re awesome, you’re awesome and you’re awesome — we’re starting a company.',
 	},
 	{
-		name: 'Sarah Moran',
-		role: 'CEO',
+		name: 'Amanda Watts',
+		role: 'Co-founder & chief hipster',
+		bio: 'Using the keyboard as her paintbrush, Amanda is the artist behind Girl Geek Academy’s vibrant branding — from pixels to paint. She owns marketing and branding agency Design Junkies (10+ years) and co-founded a startup with a fellow founder she met at the first #SheHacks in 2014.',
 	},
 	{
 		name: 'April Staines',
-		role: '3D Printing & Design',
+		role: 'Co-founder & chief maker',
+		bio: 'April was a geek before geek was even a word. She runs April Storm Props — digitally fabricated and 3D-printed costume props for fans and cosplay — and even built her own working droid, R2-QT. When she outgrew her home with printers, she moved to a farm: unlike most farmers, she gets up to turn on her 16 3D printers before her day job as a distinguished engineer at NAB. She co-authored Girl Geeks: Making Magic to inspire girls into space and making.',
 	},
 ];
 
-const stats = [
-	{
-		age: 'Age 6',
-		fact: 'Children start categorising jobs by gender.',
-	},
-	{
-		age: 'Age 13',
-		fact: 'Girls begin excluding careers that don\'t match gender stereotypes.',
-	},
-	{
-		age: 'Age 16–17',
-		fact: '60% of girls are pursuing traditionally female occupations.',
-	},
+const impact = [
+	{ value: '1000+', label: 'teachers taught to code' },
+	{ value: '12,000+', label: 'kids introduced to STEM education' },
+	{ value: '32,000+', label: 'books sold in Australia alone' },
+	{ value: '46', label: 'official company teapots' },
 ];
 
-const numbers = [
-	{ value: '12%', label: 'of tech engineers are women' },
-	{ value: '19%', label: 'of game developers are women' },
-	{ value: '3%', label: 'of venture capital goes to women-led companies' },
-	{ value: '8%', label: 'of STEM CEOs are women' },
+const pipeline = [
+	{ age: 'By age 6', fact: 'Children classify jobs as male and female.' },
+	{ age: 'By age 8', fact: 'They are limiting aspirations.' },
+	{ age: 'By 13', fact: 'They rule out careers that don’t fit gender stereotypes.' },
+	{ age: 'By 16–17', fact: 'Around 60% of girls aspire to stereotypically “female” jobs.' },
 ];
 ---
 
 <Layout
 	title="About Us — Girl Geek Academy"
-	description="Founded in 2014, Girl Geek Academy is a social enterprise dedicated to achieving gender equality in the technology industry. Learn about our founders, mission, and programs."
+	description="Get ya geek on. Tech has a pipeline problem — so we’re fixing the holes in the pipe. Meet the founders of Girl Geek Academy and how we accidentally ran the world’s first all-women hackathon."
 >
 	<Header />
 	<main>
-
-		<!-- Hero -->
 		<section class="about-hero section">
 			<div class="container">
 				<p class="about-hero__eyebrow">About us</p>
-				<h1>We accidentally created the first all-women hackathon in the world.</h1>
+				<h1>Get ya geek on!</h1>
 				<p class="about-hero__lead">
-					Founded in 2014 for International Women's Day, Girl Geek Academy was born when five women
-					designed an inclusive hackathon — complete with tea, cupcakes, yoga and sunlight — to
-					contrast the male-dominated tech events held in dark basements. It worked. Then it grew.
+					<strong>Tech has a pipeline problem — so we’re fixing the holes in the pipe.</strong>
+				</p>
+				<p>
+					Women and girls shape the technology that shapes their lives. We ran the world’s first
+					all-women hackathon in 2014. Then we realised: if we’d started teaching children 10 years
+					ago, we could be hiring them today.
+				</p>
+				<p>
+					So now our programs teach women, girls and families across games, startups, 3D printing,
+					design, software, hardware, AI, space, aviation and robotics — and we partner with teachers,
+					parents, corporates and governments to keep girl geeks in.
 				</p>
 				<div class="about-hero__ctas">
-					<a href={urls.aiHigh} class="btn btn-primary">Explore AI High</a>
-					<a href={urls.sheHacksSwift} class="btn btn-coral">SheHacksSwift</a>
+					<a href={urls.workWithUs} class="btn btn-primary">Work with Us</a>
+					<a href={urls.report} class="btn btn-coral">Research & Impact</a>
 				</div>
 			</div>
 		</section>
 
-		<!-- Mission -->
-		<section class="about-mission section section--dark">
-			<div class="container grid-2">
-				<div>
-					<h2>Our mission</h2>
-					<p>
-						Girl Geek Academy is a social enterprise dedicated to achieving gender equality in the
-						technology industry. We aim to bring one million women and girls into technology careers
-						by 2030 through programs spanning games, startups, 3D printing, design, drones and
-						aviation.
-					</p>
-					<p>
-						Our community is built on friendship, learning from one another, and sharing career
-						skills and tech tricks. We work to tackle structural issues by influencing families,
-						corporations, government, schools and the tech community.
-					</p>
-					<a href={urls.report} class="btn btn-yellow">Read our latest report</a>
-				</div>
-				<div class="about-mission__numbers">
-					{
-						numbers.map((n) => (
-							<div class="about-mission__stat">
-								<span class="about-mission__value">{n.value}</span>
-								<span class="about-mission__label">{n.label}</span>
-							</div>
-						))
-					}
+		<section class="about-origin section section--dark">
+			<div class="container">
+				<p class="about-origin__eyebrow">Our girl gang · 2014</p>
+				<h2>We accidentally ran the first all-women hackathon in the world</h2>
+				<div class="grid-2 about-origin__grid">
+					<div>
+						<p>
+							We were going to tech events, but they were usually held in dark basements where they
+							fed us beer, pizza and energy drinks. (We like those things — but we have our limits.)
+							Our mates were happy we came, but they’d ask: “Why don’t more girls come to our
+							events?”
+						</p>
+						<p>
+							So we designed a hackathon <em>we</em> wanted to go to — as an example of how great
+							tech events can be. We had tea and cupcakes. And yoga. And sunlight! We ran the first
+							#SheHacks for International Women’s Day 2014.
+						</p>
+					</div>
+					<div>
+						<p>
+							We tried to find other women and non-binary folk running similar hackathons so we
+							could be their friends. We looked and looked — and realised no one had run one before.
+							We’d accidentally run the first all-women hackathon in the world.
+						</p>
+						<p>
+							We thought: if no one has done this very basic thing to support us, who’s working on
+							the hard stuff? That’s when we knew we had a responsibility to do so. In July 2014 we
+							founded Girl Geek Academy as a company and a global movement — and we’ve been building
+							a world where tech isn’t just a boy’s club ever since.
+						</p>
+					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- Pipeline Problem -->
 		<section class="about-pipeline section">
 			<div class="container">
-				<h2 class="text-center">The pipeline problem starts early</h2>
-				<p class="text-center about-pipeline__intro">
-					By the time girls reach adulthood, decades of gender messaging have already shaped their
-					career choices. We intervene at every stage.
-				</p>
-				<div class="grid-3 about-pipeline__grid">
+				<h2 class="text-center">Tech has a pipeline problem</h2>
+				<p class="text-center about-pipeline__intro">Let’s talk about the holes in the pipe.</p>
+				<div class="about-pipeline__grid">
 					{
-						stats.map((s) => (
+						pipeline.map((s) => (
 							<div class="about-pipeline__card">
 								<p class="about-pipeline__age">{s.age}</p>
 								<p>{s.fact}</p>
@@ -126,20 +132,41 @@ const numbers = [
 			</div>
 		</section>
 
-		<!-- Founders -->
-		<section class="about-founders section">
+		<section class="about-impact section section--dark">
 			<div class="container">
-				<h2 class="text-center">Meet the founders</h2>
-				<p class="text-center about-founders__intro">
-					Five women from Melbourne who set out to fix the gender gap in tech — one hackathon,
-					workshop, and program at a time.
+				<h2 class="text-center">Gender inequality ain’t gonna fix itself</h2>
+				<p class="text-center about-impact__intro">
+					Since we launched, we’ve achieved more than we could have imagined — including:
 				</p>
+				<div class="about-impact__stats">
+					{
+						impact.map((n) => (
+							<div class="about-impact__stat">
+								<span class="about-impact__value">{n.value}</span>
+								<span class="about-impact__label">{n.label}</span>
+							</div>
+						))
+					}
+				</div>
+				<p class="text-center about-impact__more">
+					Through grants, tenders, corporate clients and fundraising, we’ve prototyped what works —
+					and campaigned in media for change. Today we’re on our way to one million friends: a true
+					community with global reach.
+				</p>
+			</div>
+		</section>
+
+		<section id="team" class="about-founders section">
+			<div class="container">
+				<h2 class="text-center">Meet Amanda, Lisy, Tammy, Sarah & April</h2>
+				<p class="text-center about-founders__intro">Say g’day to our girl gang founders.</p>
 				<ul class="about-founders__list">
 					{
 						founders.map((f) => (
 							<li class="about-founders__card">
 								<p class="about-founders__name">{f.name}</p>
 								<p class="about-founders__role">{f.role}</p>
+								<p class="about-founders__bio">{f.bio}</p>
 							</li>
 						))
 					}
@@ -147,206 +174,165 @@ const numbers = [
 			</div>
 		</section>
 
-		<!-- Programs CTA -->
-		<section class="about-programs section section--dark">
+		<VideoGallery
+			id="as-seen"
+			heading="As seen on…"
+			intro="TV and radio — including ABC Breakfast, ABC News, ABC Pacific (Beyond Awesome), Download This Show, The Project, Scope and The Today Show."
+			videos={aboutVideos}
+			dark
+		/>
+
+		<section class="about-programs section">
 			<div class="container text-center">
-				<h2>Our programs</h2>
+				<h2>Get ya geek on with us</h2>
 				<p>
-					From school holiday coding workshops to the world's longest-running hackathon for women,
-					our programs meet girls and women wherever they are.
+					From MissMakesCode workshops to #SheHacks and beyond — explore our programs, or partner with
+					us to bring them to your school, workplace or community.
 				</p>
 				<div class="about-programs__links">
-					<a href={urls.aiHigh} class="btn btn-yellow">AI High</a>
-					<a href={urls.sheHacksSwift} class="btn btn-coral">SheHacksSwift</a>
-					<a href={urls.email} class="btn btn-mint">Get in touch</a>
+					<a href={urls.missMakesCode} class="btn btn-yellow">MissMakesCode</a>
+					<a href={urls.sheHacks} class="btn btn-coral">SheHacks</a>
+					<a href={urls.workWithUs} class="btn btn-mint">Work with Us</a>
+					<EmailCta label="Partner with us for 2027" variant="primary" />
 				</div>
 			</div>
 		</section>
-
 	</main>
 	<Footer />
 </Layout>
 
 <style>
-	/* Hero */
 	.about-hero {
-		background-color: var(--color-yellow);
-		background-image: url('/images/backgrounds/hero-pattern.png');
-		background-position: bottom right;
-		background-repeat: no-repeat;
-		background-size: 44% auto;
-		padding-bottom: 5rem;
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
 	}
 
-	.about-hero__eyebrow {
+	.about-hero__eyebrow,
+	.about-origin__eyebrow {
 		font-family: var(--font-pinata);
-		font-size: clamp(1rem, 2vw, 1.25rem);
 		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		color: var(--color-primary);
-		margin: 0 0 0.5rem;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
 	}
 
-	.about-hero h1 {
-		max-width: 38ch;
-	}
-
-	.about-hero__lead {
-		max-width: 60ch;
-		font-size: 1.125rem;
-		margin-bottom: 2rem;
-	}
-
-	.about-hero__ctas {
-		display: flex;
-		gap: 1rem;
-		flex-wrap: wrap;
-	}
-
-	/* Mission */
-	.about-mission__numbers {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1.5rem;
-	}
-
-	.about-mission__stat {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		background: rgba(255, 255, 255, 0.1);
-		border-radius: 0.5rem;
-		padding: 1.25rem;
-	}
-
-	.about-mission__value {
-		font-family: var(--font-display);
-		font-size: clamp(2.5rem, 6vw, 4rem);
-		line-height: 1;
+	.about-origin__eyebrow {
 		color: var(--color-yellow);
 	}
 
-	.about-mission__label {
-		font-size: 0.9rem;
-		color: var(--color-white);
-		opacity: 0.9;
+	.about-hero__lead {
+		font-size: 1.25rem;
+		max-width: 40rem;
 	}
 
-	/* Pipeline */
-	.about-pipeline {
-		background-color: var(--color-yellow-light);
+	.about-hero__ctas,
+	.about-programs__links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
 	}
 
-	.about-pipeline__intro {
-		max-width: 52ch;
-		margin: 0 auto 2.5rem;
+	.about-programs__links {
+		justify-content: center;
+	}
+
+	.about-origin__grid {
+		align-items: start;
+		margin-top: 1.5rem;
+	}
+
+	.about-pipeline__intro,
+	.about-impact__intro,
+	.about-founders__intro {
+		max-width: 36rem;
+		margin: 0 auto 2rem;
 	}
 
 	.about-pipeline__grid {
-		align-items: start;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
 	}
 
 	.about-pipeline__card {
-		background: var(--color-white);
-		border-radius: 0.5rem;
-		padding: 1.5rem;
-		border-left: 4px solid var(--color-primary);
+		padding: 1.25rem;
+		border: 1px solid rgba(95, 125, 215, 0.25);
+		border-radius: 0.25rem;
 	}
 
 	.about-pipeline__age {
 		font-family: var(--font-pinata);
-		font-size: 1.25rem;
-		color: var(--color-primary);
-		margin: 0 0 0.5rem;
 		text-transform: uppercase;
+		margin: 0 0 0.5rem;
+		color: var(--color-coral);
 	}
 
-	/* Founders */
-	.about-founders {
-		background: var(--color-white);
+	.about-pipeline__card p:last-child {
+		margin: 0;
 	}
 
-	.about-founders__intro {
-		max-width: 52ch;
-		margin: 0 auto 2.5rem;
+	.about-impact__stats {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+
+	.about-impact__value {
+		display: block;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 5vw, 3rem);
+		line-height: 1;
+		color: var(--color-yellow);
+		margin-bottom: 0.35rem;
+	}
+
+	.about-impact__label {
+		font-size: 0.95rem;
+	}
+
+	.about-impact__more {
+		max-width: 40rem;
+		margin: 0 auto;
 	}
 
 	.about-founders__list {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 1.5rem;
 		list-style: none;
 		margin: 0;
 		padding: 0;
+		display: grid;
+		gap: 1.5rem;
 	}
 
 	.about-founders__card {
-		background: var(--color-yellow-light);
-		border-radius: 0.5rem;
-		padding: 1.5rem 2rem;
-		text-align: center;
-		min-width: 180px;
+		padding: 1.5rem;
+		border: 1px solid rgba(95, 125, 215, 0.2);
+		border-radius: 0.25rem;
 	}
 
 	.about-founders__name {
 		font-family: var(--font-display);
-		font-size: clamp(1.5rem, 3vw, 2rem);
-		color: var(--color-primary);
-		margin: 0 0 0.25rem;
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
 		line-height: 1;
+		margin: 0 0 0.35rem;
 	}
 
 	.about-founders__role {
-		font-size: 0.875rem;
-		color: var(--color-primary);
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		font-size: 0.85rem;
+		margin: 0 0 0.75rem;
+		color: var(--color-coral);
+	}
+
+	.about-founders__bio {
 		margin: 0;
-		opacity: 0.8;
 	}
 
-	/* Programs CTA */
-	.about-programs__links {
-		display: flex;
-		gap: 1rem;
-		justify-content: center;
-		flex-wrap: wrap;
-		margin-top: 2rem;
-	}
-
-	/* Colour variants */
-	.btn-coral {
-		background-color: var(--color-coral);
-		border-color: var(--color-coral);
-		color: var(--color-white);
-	}
-
-	.btn-coral:hover {
-		background-color: var(--color-primary);
-		border-color: var(--color-primary);
-		color: var(--color-white);
-	}
-
-	.btn-yellow {
-		background-color: var(--color-yellow);
-		border-color: var(--color-yellow);
-		color: var(--color-primary);
-	}
-
-	.btn-yellow:hover {
-		background-color: var(--color-primary);
-		border-color: var(--color-primary);
-		color: var(--color-white);
-	}
-
-	.btn-mint {
-		background-color: var(--color-mint);
-		border-color: var(--color-mint);
-		color: var(--color-primary);
-	}
-
-	.btn-mint:hover {
-		background-color: var(--color-primary);
-		border-color: var(--color-primary);
-		color: var(--color-white);
+	@media (max-width: 991px) {
+		.about-pipeline__grid,
+		.about-impact__stats {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 </style>

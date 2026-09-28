@@ -1,0 +1,68 @@
+---
+/**
+ * Responsive YouTube embed (privacy-enhanced nocookie domain).
+ */
+interface Props {
+	id: string;
+	title: string;
+	note?: string;
+	class?: string;
+}
+
+const { id, title, note, class: className } = Astro.props;
+---
+
+<figure class:list={['video-embed', className]}>
+	<div class="video-embed__frame">
+		<iframe
+			src={`https://www.youtube-nocookie.com/embed/${id}`}
+			title={title}
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+			allowfullscreen
+			loading="lazy"
+			referrerpolicy="strict-origin-when-cross-origin"></iframe>
+	</div>
+	<figcaption class="video-embed__caption">
+		<span class="video-embed__title">{title}</span>
+		{note && <span class="video-embed__note">{note}</span>}
+	</figcaption>
+</figure>
+
+<style>
+	.video-embed {
+		margin: 0;
+	}
+
+	.video-embed__frame {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		border-radius: 0.25rem;
+		overflow: hidden;
+		background: #0a0a0a;
+	}
+
+	.video-embed__frame iframe {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+
+	.video-embed__caption {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		margin-top: 0.5rem;
+	}
+
+	.video-embed__title {
+		font-size: 0.95rem;
+		font-weight: 600;
+	}
+
+	.video-embed__note {
+		font-size: 0.85rem;
+		opacity: 0.8;
+	}
+</style>

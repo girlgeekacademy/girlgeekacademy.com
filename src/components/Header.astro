@@ -2,14 +2,11 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/home/logo.png';
 import { urls } from '../data/urls';
+import { mainNav, type NavGroup, type NavLink } from '../data/nav';
 
-const navItems = [
-	{ label: 'Welcome', href: urls.home },
-	{ label: 'About Us', href: urls.about },
-	{ label: 'AI High', href: urls.aiHigh },
-	{ label: 'SheHacksSwift', href: urls.sheHacksSwift },
-	{ label: 'READ OUR LATEST REPORT', href: urls.report, bold: true },
-];
+function isGroup(item: NavLink | NavGroup): item is NavGroup {
+	return 'children' in item;
+}
 ---
 
 <header class="header">
@@ -35,13 +32,36 @@ const navItems = [
 		<div class="header__menu" id="main-menu">
 			<ul class="header__links">
 				{
-					navItems.map((item) => (
-						<li>
-							<a href={item.href} class:list={['header__link', { 'header__link--bold': item.bold }]}>
-								{item.bold ? <strong>{item.label}</strong> : item.label}
-							</a>
-						</li>
-					))
+					mainNav.map((item) =>
+						isGroup(item) ? (
+							<li class="header__item header__item--dropdown">
+								<button
+									type="button"
+									class="header__link header__dropdown-toggle"
+									aria-expanded="false"
+									aria-haspopup="true"
+								>
+									{item.label}
+									<span class="header__caret" aria-hidden="true">▾</span>
+								</button>
+								<ul class="header__dropdown" hidden>
+									{item.children.map((child) => (
+										<li>
+											<a href={child.href} class="header__dropdown-link">
+												{child.label}
+											</a>
+										</li>
+									))}
+								</ul>
+							</li>
+						) : (
+							<li class="header__item">
+								<a href={item.href} class="header__link">
+									{item.label}
+								</a>
+							</li>
+						)
+					)
 				}
 			</ul>
 			<a href={urls.shop} class="btn btn-primary header__shop">Shop</a>
@@ -50,14 +70,52 @@ const navItems = [
 </header>
 
 <script>
-	const toggle = document.querySelector('.header__toggle');
-	const menu = document.querySelector('.header__menu');
+	function initHeader() {
+		const toggle = document.querySelector('.header__toggle');
+		const menu = document.querySelector('.header__menu');
 
-	toggle?.addEventListener('click', () => {
-		const expanded = toggle.getAttribute('aria-expanded') === 'true';
-		toggle.setAttribute('aria-expanded', String(!expanded));
-		menu?.classList.toggle('header__menu--open');
-	});
+		toggle?.addEventListener('click', () => {
+			const expanded = toggle.getAttribute('aria-expanded') === 'true';
+			toggle.setAttribute('aria-expanded', String(!expanded));
+			menu?.classList.toggle('header__menu--open');
+		});
+
+		document.querySelectorAll<HTMLButtonElement>('.header__dropdown-toggle').forEach((btn) => {
+			btn.addEventListener('click', (event) => {
+				event.stopPropagation();
+				const item = btn.closest('.header__item--dropdown');
+				const panel = item?.querySelector<HTMLUListElement>('.header__dropdown');
+				const open = btn.getAttribute('aria-expanded') === 'true';
+
+				document.querySelectorAll<HTMLButtonElement>('.header__dropdown-toggle').forEach((other) => {
+					if (other === btn) return;
+					other.setAttribute('aria-expanded', 'false');
+					other
+						.closest('.header__item--dropdown')
+						?.querySelector('.header__dropdown')
+						?.setAttribute('hidden', '');
+				});
+
+				btn.setAttribute('aria-expanded', String(!open));
+				if (panel) {
+					if (open) panel.setAttribute('hidden', '');
+					else panel.removeAttribute('hidden');
+				}
+			});
+		});
+
+		document.addEventListener('click', () => {
+			document.querySelectorAll<HTMLButtonElement>('.header__dropdown-toggle').forEach((btn) => {
+				btn.setAttribute('aria-expanded', 'false');
+				btn
+					.closest('.header__item--dropdown')
+					?.querySelector('.header__dropdown')
+					?.setAttribute('hidden', '');
+			});
+		});
+	}
+
+	initHeader();
 </script>
 
 <style>
@@ -93,25 +151,70 @@ const navItems = [
 	.header__menu {
 		display: flex;
 		align-items: center;
-		gap: 1.5rem;
+		gap: 1.25rem;
 	}
 
 	.header__links {
 		display: flex;
 		align-items: center;
-		gap: 1.25rem;
+		gap: 0.35rem 1rem;
 		list-style: none;
 		margin: 0;
 		padding: 0;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+	}
+
+	.header__item {
+		position: relative;
 	}
 
 	.header__link {
 		font-size: 0.9rem;
 		color: var(--color-primary);
 		white-space: nowrap;
+		background: none;
+		border: none;
+		padding: 0.25rem 0;
+		cursor: pointer;
+		font-family: inherit;
 	}
 
-	.header__link:hover {
+	.header__link:hover,
+	.header__dropdown-toggle[aria-expanded='true'] {
+		color: var(--color-primary-hover);
+	}
+
+	.header__caret {
+		font-size: 0.7em;
+		margin-left: 0.15rem;
+	}
+
+	.header__dropdown {
+		position: absolute;
+		top: calc(100% + 0.5rem);
+		left: 0;
+		min-width: 14rem;
+		margin: 0;
+		padding: 0.5rem 0;
+		list-style: none;
+		background: var(--color-white);
+		border: 1px solid rgba(95, 125, 215, 0.2);
+		border-radius: 0.25rem;
+		box-shadow: 0 8px 24px rgba(47, 72, 160, 0.12);
+		z-index: 120;
+	}
+
+	.header__dropdown-link {
+		display: block;
+		padding: 0.45rem 1rem;
+		font-size: 0.875rem;
+		color: var(--color-primary);
+		white-space: nowrap;
+	}
+
+	.header__dropdown-link:hover {
+		background: var(--color-yellow-light);
 		color: var(--color-primary-hover);
 	}
 
@@ -140,12 +243,21 @@ const navItems = [
 
 		.header__links {
 			flex-direction: column;
-			align-items: flex-start;
-			gap: 0.75rem;
+			align-items: stretch;
+			gap: 0.25rem;
+		}
+
+		.header__dropdown {
+			position: static;
+			box-shadow: none;
+			border: none;
+			padding: 0.25rem 0 0.5rem 0.75rem;
+			min-width: 0;
 		}
 
 		.header__shop {
 			align-self: flex-start;
+			margin-top: 0.75rem;
 		}
 
 		.header__nav {

@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import EmailCta from '../components/EmailCta.astro';
+
+const stats = [
+	{ value: '<1%', label: 'of drone pilots in Australia are women' },
+	{ value: '~3%', label: 'in the UK' },
+	{ value: '~4%', label: 'in the USA' },
+];
+
+const stories = [
+	{
+		title: 'Getting girls into space',
+		body: 'Co-founder April Staines — April Storm Props — co-authored Girl Geeks: Making Magic, inspiring young girls to explore what’s possible in space through making and props for “SPACETACULAR”.',
+	},
+	{
+		title: 'Virtual reality drone racing',
+		body: 'We work with creators like Casey Thomas (Drone Legion) — a VR drone racing simulator based on the real sport of racing tiny quadcopters at speeds up to 150km/h.',
+	},
+	{
+		title: 'World of Drones',
+		body: 'Partners like Dr Catherine Ball bring ethics, education and Remotely Piloted Aircraft Systems into schools, remote communities and citizen science.',
+	},
+];
+---
+
+<Layout
+	title="SheFlies — Girl Geek Academy"
+	description="SheFlies increases the number of women in drones, aviation and space — established 2019 by Girl Geek Academy."
+>
+	<Header />
+	<main>
+		<section class="prog-hero section">
+			<div class="container">
+				<p class="page-eyebrow">Program · Drones, aviation & space · Est. 2019</p>
+				<h1>SheFlies</h1>
+				<p class="lead">
+					Increasing the number of women in drones, aviation and space — representation, capacity and
+					cooperation in fields that still shut girls out.
+				</p>
+				<p>
+					This suite of programs was created to inspire and provide a platform for change. Women and
+					girls should shape the technology that shapes their lives — including the skies and orbit
+					above us.
+				</p>
+				<div class="hero-ctas">
+					<EmailCta label="Partner with us for 2027" variant="primary" />
+					<EmailCta label="Bring this to your school/workplace" variant="coral" />
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">The gap is real</h2>
+				<div class="grid-3 stats">
+					{
+						stats.map((s) => (
+							<div class="stat-card text-center">
+								<p class="stat-value">{s.value}</p>
+								<p class="stat-label">{s.label}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container">
+				<h2 class="text-center">How we fly</h2>
+				<div class="grid-3 stories">
+					{
+						stories.map((s) => (
+							<div class="story-card">
+								<h3>{s.title}</h3>
+								<p>{s.body}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section text-center">
+			<div class="container">
+				<h2>Fly with us</h2>
+				<p class="cta-lead">
+					Want to commission SheFlies workshops, events or partnerships for your school, workplace or
+					community?
+				</p>
+				<EmailCta label="Available for your school/workplace" variant="primary" />
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.prog-hero {
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		max-width: 40rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+	}
+
+	.stats {
+		margin-top: 2rem;
+	}
+
+	.stat-card {
+		padding: 1.5rem 1rem;
+		border: 1px solid rgba(95, 125, 215, 0.2);
+		border-radius: 0.25rem;
+	}
+
+	.stat-value {
+		font-family: var(--font-display);
+		font-size: clamp(2.5rem, 5vw, 3.5rem);
+		line-height: 1;
+		margin: 0 0 0.5rem;
+		color: var(--color-primary);
+	}
+
+	.stat-label {
+		margin: 0;
+	}
+
+	.stories {
+		margin-top: 2rem;
+	}
+
+	.story-card h3 {
+		color: var(--color-white);
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		margin-bottom: 0.75rem;
+	}
+
+	.cta-lead {
+		max-width: 36rem;
+		margin: 0 auto 1.5rem;
+	}
+</style>

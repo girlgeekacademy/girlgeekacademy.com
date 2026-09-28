@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import EmailCta from '../components/EmailCta.astro';
+
+const topics = [
+	'3D printing and modelling',
+	'Wearables and soft circuits',
+	'Virtual reality and making',
+	'Design software and coding for makers',
+	'Soldering and hands-on builds',
+];
+---
+
+<Layout
+	title="SheMakes — Girl Geek Academy"
+	description="SheMakes introduces women to 3D printing, wearables, VR and making — Australia's first all-women makerfest format from Girl Geek Academy."
+>
+	<Header />
+	<main>
+		<section class="prog-hero section">
+			<div class="container">
+				<p class="page-eyebrow">Program · Making</p>
+				<h1>SheMakes</h1>
+				<p class="lead">
+					Wondering what all this maker business is about? If you're curious about 3D printing,
+					wearables and building real things, SheMakes introduces making in a friendly way.
+				</p>
+				<p>
+					More advanced makers dig into design software, coding, soldering wearables and messing
+					around with printers. Like all our events, it's a way to learn new skills, test ideas and
+					meet people to build with.
+				</p>
+				<div class="hero-ctas">
+					<EmailCta label="Bring this to your school/workplace" variant="primary" />
+					<EmailCta label="Partner with us for 2027" variant="coral" />
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container grid-2">
+				<div>
+					<h2>Australia's first all-women makerfest</h2>
+					<p>
+						On 11 October 2014 we launched the first SheMakes event — with a keynote from Ann Marie
+						Shillito (Anarkik3D), panels, maker talks, and workshops including Girl Geek Makers 101,
+						hands-on 3D printing, and wearables.
+					</p>
+					<p>
+						The format still works: introduce more women to 3D printing, wearables, VR and making —
+						and encourage communities to run their own SheMakes with our support.
+					</p>
+				</div>
+				<div>
+					<h3 class="topics-heading">What we cover</h3>
+					<ul class="topics-list">
+						{topics.map((t) => <li>{t}</li>)}
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--dark text-center">
+			<div class="container">
+				<h2>Make, create</h2>
+				<p class="cta-lead">
+					Want to run SheMakes with your school, library, makerspace or workplace? Let's make it
+					happen.
+				</p>
+				<div class="hero-ctas hero-ctas--center">
+					<EmailCta label="Available for your school/workplace" variant="yellow" />
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.prog-hero {
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		max-width: 40rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+	}
+
+	.hero-ctas--center {
+		justify-content: center;
+	}
+
+	.topics-heading {
+		font-size: clamp(1.75rem, 3vw, 2.25rem);
+		margin-bottom: 1rem;
+	}
+
+	.topics-list {
+		margin: 0;
+		padding-left: 1.25rem;
+	}
+
+	.topics-list li {
+		margin-bottom: 0.5rem;
+	}
+
+	.cta-lead {
+		max-width: 36rem;
+		margin: 0 auto 1.5rem;
+	}
+</style>

@@ -1,0 +1,281 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import EmailCta from '../components/EmailCta.astro';
+import { Image } from 'astro:assets';
+import missMakesCode from '../assets/home/miss-makes-code.png';
+import { urls } from '../data/urls';
+
+const workshopBeats = [
+	'Algorithmic thinking and creative problem-solving',
+	'Introductory coding — build and customise a game or animation',
+	'Friendship, fun and support from other girls and expert facilitators',
+	'Aligned to Digital Technologies / STEAM thinking for primary years',
+];
+
+const iterations = [
+	{
+		when: '2016',
+		title: 'Pilot hackathon',
+		body: 'World-first #MissMakesCode for girls aged 5–8 at Templestowe College — created with principal Teresa Deshon. Around 70 young girls, school holidays, algorithmic thinking and hands-on coding.',
+	},
+	{
+		when: '2016',
+		title: 'WISE grant — $250,000',
+		body: 'Inaugural federal Women in STEM and Entrepreneurship funding to scale MissMakesCode nationally: one-day events, online training and ongoing support, aligned to the Digital Technologies Curriculum.',
+	},
+	{
+		when: '2017',
+		title: 'Teacher training (past)',
+		body: 'We trained teachers and librarians to deliver MissMakesCode in classrooms — bootcamps, online PD and champion schools. Around 1,000 teachers upskilled. We no longer deliver teacher training; workshops are how we run MissMakesCode today.',
+	},
+	{
+		when: '2017–2018',
+		title: 'Workshops at scale',
+		body: 'Holiday and school workshops for thousands of primary girls across Australia — capturing interest before gender bias hardens around age six.',
+	},
+	{
+		when: '2019',
+		title: 'Drop-in formats',
+		body: 'At PAX and community events we used the MissMakesCode format as a beginner coding drop-in — same brand, flexible delivery.',
+	},
+	{
+		when: '2020–',
+		title: 'Samoa & the Pacific',
+		body: 'First Samoan edition in Apia (Jan 2020): nearly 50 girls with mums, aunties and grandmothers — coding plus cyber safety and gender equality. Led with Tagiilima Neemia; GGA Samoa work continues.',
+	},
+];
+---
+
+<Layout
+	title="MissMakesCode — Girl Geek Academy"
+	description="MissMakesCode workshops for primary school girls — coding confidence early. Bring a workshop to your school, library or community."
+>
+	<Header />
+	<main>
+		<section class="prog-hero section">
+			<div class="container grid-2">
+				<div>
+					<p class="page-eyebrow">Program · Primary workshops</p>
+					<h1>MissMakesCode</h1>
+					<p class="lead">
+						Our brand for teaching primary school girls technology — building confidence and
+						self-efficacy in algorithmic thinking, programming and coding before the world tells them
+						STEM isn’t for them.
+					</p>
+					<p>
+						<strong>Today we deliver MissMakesCode as workshops</strong> — for schools, libraries,
+						holidays and communities. How we’ve delivered it has evolved; the brand stays the same.
+					</p>
+					<div class="hero-ctas">
+						<EmailCta label="Bring this to your school/workplace" variant="primary" />
+						<EmailCta label="Partner with us for 2027" variant="coral" />
+					</div>
+				</div>
+				<div class="text-center">
+					<Image
+						src={missMakesCode}
+						alt="MissMakesCode — young girls learning technology"
+						width={560}
+						height={400}
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container grid-2">
+				<div>
+					<h2>What a workshop looks like</h2>
+					<p>
+						MissMakesCode workshops immerse primary girls in a fun, creative world of technology —
+						friendship and support included — so coding can feel as native as reading and writing.
+					</p>
+					<p>
+						Women and girls shape the technology that shapes their lives. That starts in the early
+						years, with experiences they love.
+					</p>
+				</div>
+				<div>
+					<ul class="skills-list">
+						{workshopBeats.map((s) => <li>{s}</li>)}
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section id="impact" class="section section--dark">
+			<div class="container">
+				<h2 class="text-center">How we’ve delivered MissMakesCode</h2>
+				<p class="impact-intro text-center">
+					One brand. Many iterations. Here’s some of the impact so far — then talk to us about the
+					next workshop.
+				</p>
+				<ol class="timeline">
+					{
+						iterations.map((item) => (
+							<li class="timeline__item">
+								<span class="timeline__when">{item.when}</span>
+								<div>
+									<h3>{item.title}</h3>
+									<p>{item.body}</p>
+								</div>
+							</li>
+						))
+					}
+				</ol>
+				<div class="impact-stats">
+					<div class="impact-stat">
+						<p class="impact-stat__value">$250k</p>
+						<p class="impact-stat__label">WISE grant (2016)</p>
+					</div>
+					<div class="impact-stat">
+						<p class="impact-stat__value">~1,000</p>
+						<p class="impact-stat__label">teachers trained (past)</p>
+					</div>
+					<div class="impact-stat">
+						<p class="impact-stat__value">1000s</p>
+						<p class="impact-stat__label">girls in workshops</p>
+					</div>
+					<div class="impact-stat">
+						<p class="impact-stat__value">~50</p>
+						<p class="impact-stat__label">Samoa pilot (2020)</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section text-center">
+			<div class="container">
+				<h2>Bring MissMakesCode to you</h2>
+				<p class="cta-lead">
+					Schools, libraries and partners — we run the workshops. See also{' '}
+					<a href={urls.caseStudies}>other case studies</a> and{' '}
+					<a href={urls.schools}>Work with Us · Schools</a>.
+				</p>
+				<div class="hero-ctas hero-ctas--center">
+					<EmailCta label="Bring this to your school/workplace" variant="primary" />
+					<EmailCta label="Available for your school/workplace" variant="mint" />
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.prog-hero {
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		max-width: 36rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+	}
+
+	.hero-ctas--center {
+		justify-content: center;
+	}
+
+	.skills-list {
+		margin: 0;
+		padding-left: 1.25rem;
+	}
+
+	.skills-list li {
+		margin-bottom: 0.65rem;
+	}
+
+	#impact {
+		scroll-margin-top: 5rem;
+	}
+
+	.impact-intro {
+		max-width: 36rem;
+		margin: 0 auto 2rem;
+	}
+
+	.timeline {
+		list-style: none;
+		margin: 0 auto;
+		padding: 0;
+		max-width: 44rem;
+	}
+
+	.timeline__item {
+		display: grid;
+		grid-template-columns: 5.5rem 1fr;
+		gap: 1rem;
+		padding: 1.25rem 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+	}
+
+	.timeline__when {
+		font-family: var(--font-pinata);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		color: var(--color-yellow);
+	}
+
+	.timeline__item h3 {
+		color: var(--color-white);
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		margin: 0 0 0.5rem;
+	}
+
+	.timeline__item p {
+		margin: 0;
+	}
+
+	.impact-stats {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+		margin-top: 2.5rem;
+		text-align: center;
+	}
+
+	.impact-stat__value {
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 4vw, 2.5rem);
+		line-height: 1;
+		margin: 0 0 0.35rem;
+		color: var(--color-yellow);
+	}
+
+	.impact-stat__label {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.cta-lead {
+		max-width: 36rem;
+		margin: 0 auto 1.5rem;
+	}
+
+	@media (max-width: 991px) {
+		.timeline__item {
+			grid-template-columns: 1fr;
+			gap: 0.35rem;
+		}
+
+		.impact-stats {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>

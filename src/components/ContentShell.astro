@@ -1,0 +1,75 @@
+---
+/**
+ * Lightweight shell for pages still being filled in.
+ * Hero + short intro + optional EmailCta + placeholder note.
+ */
+import EmailCta from './EmailCta.astro';
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	lead: string;
+	ctaLabel?: string;
+	ctaVariant?: 'primary' | 'coral' | 'mint' | 'yellow' | 'pink';
+}
+
+const {
+	eyebrow,
+	title,
+	lead,
+	ctaLabel = 'Bring this to your school/workplace',
+	ctaVariant = 'primary',
+} = Astro.props;
+---
+
+<section class="shell-hero section">
+	<div class="container">
+		{eyebrow && <p class="shell-hero__eyebrow">{eyebrow}</p>}
+		<h1>{title}</h1>
+		<p class="shell-hero__lead">{lead}</p>
+		<div class="shell-hero__cta">
+			<EmailCta label={ctaLabel} variant={ctaVariant} />
+		</div>
+	</div>
+</section>
+
+<section class="section shell-body">
+	<div class="container shell-body__content">
+		<slot />
+	</div>
+</section>
+
+<style>
+	.shell-hero {
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
+		padding-bottom: 2rem;
+	}
+
+	.shell-hero__eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		margin: 0 0 0.75rem;
+		color: var(--color-primary);
+	}
+
+	.shell-hero__lead {
+		font-size: 1.125rem;
+		max-width: 40rem;
+		margin: 0 0 1.5rem;
+	}
+
+	.shell-hero__cta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.shell-body__content {
+		max-width: 42rem;
+	}
+
+	.shell-body__content :global(p) {
+		margin-top: 0;
+	}
+</style>

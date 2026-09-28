@@ -1,0 +1,174 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EmailCta from '../../components/EmailCta.astro';
+import VideoGallery from '../../components/VideoGallery.astro';
+import { sunsilkVideos } from '../../data/videos';
+
+const discoveries = [
+	'Misconceptions around careers and futures in STEM still hold families back',
+	'Mums and daughters want practical ways to learn together',
+	'Free, friendly workshops lower the barrier to trying STEM for the first time',
+];
+
+const workshops = [
+	{
+		title: 'What is STEM?',
+		body: 'Science, Technology, Engineering and Mathematics — brought together to understand the world and prepare for future careers.',
+	},
+	{
+		title: 'Hands-on making',
+		body: 'Including 3D modelling a “Rethink Pink” shampoo bottle — from design concept through to product thinking.',
+	},
+	{
+		title: 'Family learning',
+		body: 'Online workshops for families across Australia and New Zealand — practical STEM skills, together.',
+	},
+];
+---
+
+<Layout
+	title="Case study: Sunsilk — Girl Geek Academy"
+	description="With Sunsilk, Girl Geek Academy ran free school holiday STEM workshops for mums and girls — Rethink Pink."
+>
+	<Header />
+	<main>
+		<section class="case-hero section">
+			<div class="container">
+				<p class="page-eyebrow">Case study · Partnership</p>
+				<h1>Sunsilk</h1>
+				<p class="lead">
+					We teamed up with Sunsilk to help “Rethink Pink” with free school holiday workshops —
+					equipping mums and girls to support each other into STEM careers.
+				</p>
+				<p>
+					This is proof of a partnership delivered — not an open public calendar. Want something like
+					this for your brand or community?
+				</p>
+				<div class="hero-ctas">
+					<EmailCta label="Partner with us for 2027" variant="primary" />
+					<EmailCta label="Bring this to your school/workplace" variant="coral" />
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container grid-2">
+				<div>
+					<h2>Why STEM careers matter</h2>
+					<p>
+						“Gender inequality in STEM industries limits progress and innovation. The experiences of
+						diverse women and girls is crucial in solving the problems that shape our lives.”
+					</p>
+					<p>
+						Whether a daughter wants to be a games designer, climate scientist, CEO or geologist —
+						STEM skills matter. Girl Geek Academy is committed to helping wherever we can.
+					</p>
+				</div>
+				<div>
+					<h3 class="side-heading">What Sunsilk’s research found</h3>
+					<p>
+						In 2021 Sunsilk surveyed over <strong>1,400 women</strong> across Australia and New
+						Zealand. Together we used those insights to design workshops families would actually join.
+					</p>
+					<ul>
+						{discoveries.map((d) => <li>{d}</li>)}
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">What we delivered</h2>
+				<div class="grid-3 workshops">
+					{
+						workshops.map((w) => (
+							<div class="workshop-card">
+								<h3>{w.title}</h3>
+								<p>{w.body}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<VideoGallery
+			heading="Rethink Pink workshops"
+			intro="Sunsilk × Girl Geek Academy STEM sessions for mums and girls."
+			videos={sunsilkVideos}
+			dark
+		/>
+
+		<section class="section text-center">
+			<div class="container">
+				<h2>Run a campaign like this</h2>
+				<p class="cta-lead">
+					Brand partnerships, school holiday series, and family STEM — we design and deliver formats
+					that keep girl geeks in.
+				</p>
+				<EmailCta label="Partner with us for 2027" variant="primary" />
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.case-hero {
+		background-image: url('/images/backgrounds/sunsilk-grid.png');
+		background-size: cover;
+		background-position: center;
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		max-width: 40rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+	}
+
+	.side-heading {
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		color: var(--color-white);
+		margin-bottom: 0.75rem;
+	}
+
+	.workshops {
+		margin-top: 2rem;
+	}
+
+	.workshop-card {
+		padding: 1.25rem;
+		border: 1px solid rgba(95, 125, 215, 0.2);
+		border-radius: 0.25rem;
+	}
+
+	.workshop-card h3 {
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		margin-bottom: 0.5rem;
+	}
+
+	.workshop-card p {
+		margin: 0;
+	}
+
+	.cta-lead {
+		max-width: 36rem;
+		margin: 0 auto 1.5rem;
+	}
+</style>

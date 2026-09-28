@@ -1,0 +1,117 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { urls } from '../../data/urls';
+
+const cases = [
+	{
+		title: 'Sunsilk',
+		href: urls.caseSunsilk,
+		blurb: 'School holiday STEM workshops with Sunsilk — mums and girls learning together.',
+	},
+	{
+		title: 'Microsoft Mondays',
+		href: urls.caseMicrosoft,
+		blurb: 'Beginner-friendly AI and coding series with Microsoft mentors in schools worldwide.',
+	},
+	{
+		title: 'AI High',
+		href: urls.caseAiHigh,
+		blurb: 'Empowering girls with AI, coding, 3D modelling and digital creativity — Telstra Foundation.',
+	},
+	{
+		title: 'MissMakesCode',
+		href: urls.caseMissMakesCode,
+		blurb:
+			'Primary girls coding brand — workshops today; impact from the 2016 pilot, WISE scale-up, holidays and Samoa.',
+	},
+];
+---
+
+<Layout
+	title="Case studies — Girl Geek Academy"
+	description="Proof of Girl Geek Academy programs delivered with partners — so we can do more of what works."
+>
+	<Header />
+	<main>
+		<section class="section cases-hero">
+			<div class="container">
+				<p class="cases-hero__eyebrow">Research & Impact</p>
+				<h1>Case studies</h1>
+				<p class="cases-hero__lead">
+					Work we've delivered with partners. Use these as proof — then talk to us about running the
+					next one with you.
+				</p>
+			</div>
+		</section>
+		<section class="section">
+			<div class="container cases-grid">
+				{
+					cases.map((c) => (
+						<a class="case-card" href={c.href}>
+							<h2>{c.title}</h2>
+							<p>{c.blurb}</p>
+						</a>
+					))
+				}
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.cases-hero {
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
+		padding-bottom: 1rem;
+	}
+
+	.cases-hero__eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		margin: 0 0 0.75rem;
+	}
+
+	.cases-hero__lead {
+		max-width: 40rem;
+		font-size: 1.125rem;
+	}
+
+	.cases-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+	}
+
+	.case-card {
+		display: block;
+		padding: 1.5rem;
+		border: 1px solid rgba(95, 125, 215, 0.25);
+		border-radius: 0.25rem;
+		color: inherit;
+		background: var(--color-white);
+		transition: border-color 0.2s, box-shadow 0.2s;
+	}
+
+	.case-card:hover {
+		border-color: var(--color-primary);
+		box-shadow: 4px 3px 0 0 var(--color-yellow-light);
+		color: inherit;
+	}
+
+	.case-card h2 {
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		margin-bottom: 0.5rem;
+	}
+
+	.case-card p {
+		margin: 0;
+	}
+
+	@media (max-width: 991px) {
+		.cases-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

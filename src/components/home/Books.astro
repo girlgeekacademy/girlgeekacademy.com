@@ -1,77 +1,93 @@
 ---
 import { Image } from 'astro:assets';
-import workshopPhoto from '../../assets/home/welcome-pack.jpg';
+import booksSet from '../../assets/shop/books-boxed-set.jpg';
+import Zigzag from '../Zigzag.astro';
 import { urls } from '../../data/urls';
 ---
 
 <section class="books section">
 	<div class="books__overlay" aria-hidden="true"></div>
 	<div class="container grid-2 books__content">
-		<div class="text-center">
-			<h2>Girl geeks books</h2>
-			<p>Get ya geek on with this girl gang as they design, make, game, hack, code & more!</p>
+		<div>
+			<p class="books__eyebrow">Fiction that puts girl geeks centre stage</p>
+			<h2>Girl Geeks books</h2>
 			<p>
-				Written for girls aged 7-10, the Girl Geeks series encourages young people into coding,
-				gaming, and STEM (science, technology, engineering, and mathematics).
+				Get ya geek on with this girl gang as they design, make, game, hack, code and more! Developed
+				by Penguin Random House in partnership with Girl Geek Academy.
 			</p>
-			<a href={urls.shop} class="btn btn-mint">SHOP Books and Beanies</a>
+			<p>
+				<strong>30,000+ copies sold</strong> in Australia. Belonging starts with stories they can see
+				themselves in.
+			</p>
+			<div class="books__ctas">
+				<a href={urls.books} class="btn btn-coral">About the series</a>
+				<a href={urls.shop} class="btn btn-mint">Shop the boxed set</a>
+			</div>
 		</div>
 		<div class="books__photo-wrap">
 			<Image
-				src={workshopPhoto}
-				alt="Girl holding a Girl Geeks book"
-				width={1024}
-				height={683}
+				src={booksSet}
+				alt="Girl Geeks book series boxed set"
+				width={600}
+				height={600}
 				class="books__photo"
 			/>
 		</div>
 	</div>
+	<Zigzag fill="#e9abd0" position="bottom" />
 </section>
 
 <style>
 	.books {
 		position: relative;
 		overflow: hidden;
+		padding-bottom: 5rem;
 	}
 
 	.books__overlay {
 		position: absolute;
 		inset: 0;
-		background: rgba(255, 255, 255, 0.56);
+		background: rgba(255, 255, 255, 0.58);
 		pointer-events: none;
 	}
 
 	.books__content {
 		position: relative;
 		z-index: 1;
+		align-items: center;
 	}
 
-	.books__photo-wrap {
-		position: relative;
-		min-height: 280px;
-	}
-
-	.books__photo {
-		border-radius: 0.5rem;
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-	}
-
-	.books h2 {
+	.books__eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		margin: 0 0 0.5rem;
 		color: var(--color-coral);
-		text-transform: capitalize;
 	}
 
+	.books h2,
 	.books p {
 		color: var(--color-coral);
 	}
 
-	.btn-mint {
-		background-color: var(--color-mint);
-		border-color: var(--color-mint);
+	.books__ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
 	}
 
-	.btn-mint:hover {
-		background-color: var(--color-primary);
-		border-color: var(--color-primary);
+	.books__photo-wrap {
+		transform: rotate(2deg);
+		transition: transform 0.25s ease;
+	}
+
+	.books__photo-wrap:hover {
+		transform: rotate(0deg) scale(1.03);
+	}
+
+	.books__photo {
+		border-radius: 0.5rem;
+		box-shadow: 10px 10px 0 0 var(--color-yellow);
 	}
 </style>

@@ -1,0 +1,239 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import EmailCta from '../components/EmailCta.astro';
+import { Image } from 'astro:assets';
+import reportCover from '../assets/home/report-cover.jpg';
+import { urls } from '../data/urls';
+
+const findings = [
+	{
+		n: '1',
+		fix: 'Fix the violence, not the girls',
+		body: 'Girls and women passionate and interested in STEM are squeezed out of learning and industry at all stages of their career.',
+	},
+	{
+		n: '2',
+		fix: 'Fix the career paths, not the girls',
+		body: 'The STEM career pipeline is designed for men, not women — with no gender lens on career advice and progression at school or in industry.',
+	},
+	{
+		n: '3',
+		fix: 'Fix the role-modelling, not the girls',
+		body: 'The STEM industry fails to provide effective role models for women, men or non-binary people.',
+	},
+	{
+		n: '4',
+		fix: 'Fix the funding, not the girls',
+		body: 'Investment in talented girls and women is inadequate and discriminatory — a loss of innovation and economic benefit to Australia.',
+	},
+	{
+		n: '5',
+		fix: 'Fix the backlash, not the girls',
+		body: 'Being a gender change agent in technology is exhausting and traumatising — and the backlash is real.',
+	},
+];
+
+const stats = [
+	{ value: '36%', label: 'of university STEM enrolments are women' },
+	{ value: '16%', label: 'of vocational STEM enrolments are women' },
+	{ value: '23%', label: 'of senior management in STEM-qualified industries are women' },
+	{ value: '8%', label: 'of STEM CEOs are women' },
+];
+---
+
+<Layout
+	title="Enough Talk: Diversity in STEM Review — Girl Geek Academy"
+	description="Fix the system, not the girls. Girl Geek Academy's submission to the National Diversity in STEM review — solutions for action and investment."
+>
+	<Header />
+	<main>
+		<section class="report-hero section section--dark">
+			<div class="container grid-2">
+				<div>
+					<p class="page-eyebrow">Research & Impact</p>
+					<h1>Enough Talk</h1>
+					<p class="lead">
+						<strong>Fix the system, not the girls.</strong> Our submission to Minister Husic’s
+						Diversity in STEM review — and a call for action backed by investment.
+					</p>
+					<p>
+						Girl Geek Academy surveyed over 300 women, men and non-binary folk in tech. Girl Geeks
+						say: enough talk. Time for action.
+					</p>
+					<div class="hero-ctas">
+						<a
+							href="/reports/GGA-Diversity-in-STEM-review-submission-FINAL.pdf"
+							class="btn btn-yellow"
+							download
+						>
+							Download the report
+						</a>
+						<EmailCta label="Partner with us for 2027" variant="coral" />
+					</div>
+				</div>
+				<div class="report-hero__cover">
+					<a href="/reports/GGA-Diversity-in-STEM-review-submission-FINAL.pdf">
+						<Image
+							src={reportCover}
+							alt="Cover of the Girl Geek Academy Diversity in STEM review submission"
+							width={420}
+							height={594}
+						/>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">Top 5 key findings</h2>
+				<ol class="findings">
+					{
+						findings.map((f) => (
+							<li class="finding">
+								<span class="finding__n">{f.n}</span>
+								<div>
+									<h3>{f.title}</h3>
+									<p>{f.body}</p>
+								</div>
+							</li>
+						))
+					}
+				</ol>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container">
+				<h2 class="text-center">The stats tell the story</h2>
+				<p class="text-center stats-intro">
+					Girl Geeks’ message to government: we’re sick of talking about it. We want investment to
+					turn things around.
+				</p>
+				<div class="grid-2 stats">
+					{
+						stats.map((s) => (
+							<div class="stat">
+								<p class="stat__value">{s.value}</p>
+								<p class="stat__label">{s.label}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section text-center">
+			<div class="container">
+				<h2>What next?</h2>
+				<p class="cta-lead">
+					Read the full submission, explore our{' '}
+					<a href={urls.caseStudies}>case studies</a>, or partner with us to fund the solutions that
+					already work.
+				</p>
+				<div class="hero-ctas hero-ctas--center">
+					<a
+						href="/reports/GGA-Diversity-in-STEM-review-submission-FINAL.pdf"
+						class="btn btn-primary"
+						download
+					>
+						Download the PDF
+					</a>
+					<EmailCta label="Partner with us for 2027" variant="coral" />
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-yellow);
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+	}
+
+	.hero-ctas--center {
+		justify-content: center;
+	}
+
+	.report-hero__cover img {
+		margin: 0 auto;
+		box-shadow: 4px 3px 0 0 var(--color-yellow-light);
+	}
+
+	.findings {
+		list-style: none;
+		margin: 2rem 0 0;
+		padding: 0;
+		max-width: 48rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.finding {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 1rem;
+		padding: 1.25rem 0;
+		border-bottom: 1px solid rgba(95, 125, 215, 0.2);
+	}
+
+	.finding__n {
+		font-family: var(--font-display);
+		font-size: 2.5rem;
+		line-height: 1;
+		color: var(--color-coral);
+	}
+
+	.finding h3 {
+		font-size: clamp(1.5rem, 3vw, 2rem);
+		margin: 0 0 0.35rem;
+	}
+
+	.finding p {
+		margin: 0;
+	}
+
+	.stats-intro {
+		max-width: 36rem;
+		margin: 0 auto 2rem;
+	}
+
+	.stat {
+		padding: 1rem 0;
+	}
+
+	.stat__value {
+		font-family: var(--font-display);
+		font-size: clamp(2.5rem, 5vw, 3.5rem);
+		line-height: 1;
+		margin: 0 0 0.35rem;
+		color: var(--color-yellow);
+	}
+
+	.stat__label {
+		margin: 0;
+	}
+
+	.cta-lead {
+		max-width: 36rem;
+		margin: 0 auto 1.5rem;
+	}
+</style>

@@ -1,0 +1,263 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EmailCta from '../../components/EmailCta.astro';
+import VideoGallery from '../../components/VideoGallery.astro';
+import { microsoftMondaysVideos } from '../../data/videos';
+
+const topics = [
+	'Isometric art creation in Blender',
+	'Professional LinkedIn profile building',
+	'Sound recorder programming with GPBlocks',
+	'Python fundamentals',
+	'JavaScript for beginners',
+	'HTML & CSS3 web design',
+	'Tinkercad 3D modelling',
+];
+
+const features = [
+	{
+		title: 'Free & beginner-friendly',
+		description:
+			'No experience needed. Self-paced and supportive — learn at your own speed alongside friends.',
+	},
+	{
+		title: '40+ Microsoft mentors',
+		description:
+			'AMA sessions with Microsoft professionals who answer questions and share career stories.',
+	},
+	{
+		title: '150+ schools globally',
+		description:
+			'Participants from schools across Australia, New Zealand, India and North America.',
+	},
+	{
+		title: 'Anonymous peer network',
+		description: 'A safe, moderated community space for students across Australia to connect.',
+	},
+];
+---
+
+<Layout
+	title="Case study: Microsoft Mondays — Girl Geek Academy"
+	description="Microsoft Mondays — free weekly AI and coding workshops with Microsoft mentors and Girl Geek Academy, reaching 150+ schools globally."
+>
+	<Header />
+	<main>
+		<section class="case-hero section">
+			<div class="container grid-2">
+				<div>
+					<p class="page-eyebrow">Case study · Partnership</p>
+					<h1>Microsoft Mondays</h1>
+					<p class="lead">
+						Turning tech dreams into reality, together. Free weekly workshops for high school girls
+						and non-binary students — AI, Python, JavaScript, HTML/CSS and 3D modelling with
+						Microsoft mentors.
+					</p>
+					<p>
+						Showcased here as partner-funded delivery at scale. To run something like this with your
+						organisation or school network, email us via the button.
+					</p>
+					<div class="hero-ctas">
+						<EmailCta label="Partner with us for 2027" variant="primary" />
+						<EmailCta label="Bring this to your school/workplace" variant="mint" />
+					</div>
+				</div>
+				<div class="hero-badges">
+					<div class="badge">
+						<p class="badge__label">Reach</p>
+						<p class="badge__value">150+ schools</p>
+						<p class="badge__sub">Globally</p>
+					</div>
+					<div class="badge">
+						<p class="badge__label">Mentors</p>
+						<p class="badge__value">40+</p>
+						<p class="badge__sub">Microsoft professionals</p>
+					</div>
+					<div class="badge">
+						<p class="badge__label">Format</p>
+						<p class="badge__value">Weekly online</p>
+						<p class="badge__sub">Self-paced & beginner-friendly</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">Why it worked</h2>
+				<div class="grid-2 features">
+					{
+						features.map((f) => (
+							<div class="feature-card">
+								<h3>{f.title}</h3>
+								<p>{f.description}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container">
+				<h2 class="text-center">What students learned</h2>
+				<p class="text-center topics-intro">
+					Topics rotated weekly — always something new. No experience needed.
+				</p>
+				<ul class="topics-list">
+					{topics.map((t) => <li>{t}</li>)}
+				</ul>
+			</div>
+		</section>
+
+		<VideoGallery
+			heading="Watch Microsoft Mondays"
+			intro="How the free weekly AI series worked with Microsoft mentors."
+			videos={microsoftMondaysVideos}
+		/>
+
+		<section class="section section--dark">
+			<div class="container grid-2">
+				<div>
+					<h2>For teachers & educators</h2>
+					<p>
+						The program was self-contained — students joined online each week independently.
+						Educators could share it with classes without running the sessions themselves.
+					</p>
+					<p>
+						Want Microsoft Mondays–style delivery for your school network or corporate partner
+						program?
+					</p>
+					<EmailCta label="Available for your school/workplace" variant="primary" />
+				</div>
+				<div class="stat-panel text-center">
+					<p class="stat-panel__number">150+</p>
+					<p class="stat-panel__label">Schools participating globally</p>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.case-hero {
+		background-color: var(--color-yellow);
+		background-image: url('/images/backgrounds/hero-pattern.png');
+		background-position: bottom right;
+		background-repeat: no-repeat;
+		background-size: 44% auto;
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+	}
+
+	.hero-badges {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.badge {
+		background: var(--color-white);
+		padding: 1rem 1.25rem;
+		border-radius: 0.25rem;
+		box-shadow: 4px 3px 0 0 var(--color-yellow-light);
+	}
+
+	.badge__label {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		font-size: 0.8rem;
+		margin: 0 0 0.25rem;
+	}
+
+	.badge__value {
+		font-family: var(--font-display);
+		font-size: 2rem;
+		line-height: 1;
+		margin: 0;
+	}
+
+	.badge__sub {
+		margin: 0.25rem 0 0;
+		font-size: 0.95rem;
+	}
+
+	.features {
+		margin-top: 2rem;
+	}
+
+	.feature-card {
+		padding: 1.25rem;
+		border: 1px solid rgba(95, 125, 215, 0.2);
+		border-radius: 0.25rem;
+	}
+
+	.feature-card h3 {
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		margin-bottom: 0.5rem;
+	}
+
+	.feature-card p {
+		margin: 0;
+	}
+
+	.topics-intro {
+		max-width: 36rem;
+		margin: 0 auto 1.5rem;
+	}
+
+	.topics-list {
+		list-style: none;
+		margin: 0 auto;
+		padding: 0;
+		max-width: 36rem;
+		display: grid;
+		gap: 0.5rem;
+	}
+
+	.topics-list li {
+		padding: 0.75rem 1rem;
+		background: rgba(255, 255, 255, 0.12);
+		border-radius: 0.25rem;
+	}
+
+	.stat-panel {
+		background: var(--color-yellow-light);
+		padding: 2.5rem 1.5rem;
+		border-radius: 0.25rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.stat-panel__number {
+		font-family: var(--font-display);
+		font-size: clamp(3.5rem, 8vw, 5rem);
+		line-height: 1;
+		margin: 0;
+		color: var(--color-primary);
+	}
+
+	.stat-panel__label {
+		margin: 0.5rem 0 0;
+		font-size: 1.125rem;
+	}
+</style>

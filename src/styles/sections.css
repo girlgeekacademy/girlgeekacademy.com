@@ -8,6 +8,10 @@
 	background-size: 44% auto;
 }
 
+.keep-in.section {
+	background-color: var(--color-yellow-light);
+}
+
 .hhh.section {
 	background-color: #fff;
 	background-image: url('/images/backgrounds/grid-background.png');
@@ -28,7 +32,8 @@
 	background-size: cover;
 }
 
-.community.section {
+.community.section,
+.partner-home.section {
 	background-color: var(--color-pink);
 }
 

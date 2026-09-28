@@ -1,0 +1,297 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import EmailCta from '../components/EmailCta.astro';
+import VideoGallery from '../components/VideoGallery.astro';
+import { Image } from 'astro:assets';
+import booksSet from '../assets/shop/books-boxed-set.jpg';
+import booksPhoto from '../assets/home/books.png';
+import { urls } from '../data/urls';
+import { booksVideos } from '../data/videos';
+
+const books = [
+	{
+		n: '1',
+		title: 'The Hackathon',
+		focus: 'Hamsa',
+		isbn: '9780143795056',
+		published: 'July 2019',
+		blurb: [
+			'Hamsa’s teacher has announced that their class will be doing their very own hackathon.',
+			'A hack-a-what? thinks Hamsa. She doesn’t know anything about tech or coding!',
+			'Can Hamsa and her team come up with the goods or will things fall apart as she plays it too cool for school?',
+		],
+	},
+	{
+		n: '2',
+		title: 'Game On',
+		focus: 'Niki',
+		isbn: '9780143795063',
+		published: 'July 2019',
+		blurb: [
+			'Skateboarding and video games are the best things in the world according to Niki.',
+			'So when the biggest esports tournament announces they will hold a junior comp in her town, Niki is the first to enter.',
+			'It’s not an easy road and Niki is thrown a challenge, but with her girl gang by her side – it’s game on!',
+		],
+	},
+	{
+		n: '3',
+		title: 'Perfect Holidays',
+		focus: 'Eve',
+		isbn: '9780143795070',
+		published: 'October 2019',
+		blurb: [
+			'Eve loves to draw and design so she can’t wait to plan her birthday party and create the invitations.',
+			'The only problem is – everything has to be perfect. How will she decide what to do? Meanwhile her holiday to-do list is growing bigger and bigger.',
+			'Will some quality time with her girl gang show Eve that there’s more to life than being perfect?',
+		],
+	},
+	{
+		n: '4',
+		title: 'Making Magic',
+		focus: 'Maggie',
+		isbn: '9780143795087',
+		published: 'October 2019',
+		blurb: [
+			'The school play is coming up and Maggie the Maker can’t wait to work behind the scenes to design the best set ever!',
+			'But Hamsa has other ideas and Maggie is soon drawn into the spotlight. This is not Maggie’s idea of fun and, for once, she’s not afraid to say it.',
+			'Will the girl gang learn to embrace their differences and pull off a show-stopping performance?',
+		],
+	},
+];
+---
+
+<Layout
+	title="Girl Geeks Books — Girl Geek Academy"
+	description="The Girl Geeks series by Alex Miles with Girl Geek Academy — four Puffin novels for ages 7–12. Over 30,000 copies sold. Buy the set or bring books to your school."
+>
+	<Header />
+	<main>
+		<section class="books-hero section">
+			<div class="container grid-2">
+				<div>
+					<p class="page-eyebrow">Books · Puffin / Penguin</p>
+					<h1>Girl Geeks books</h1>
+					<p class="lead">
+						Get ya geek on with this girl gang as they design, make, game, hack, code and more —
+						fiction that puts girls in STEM at the centre of the story.
+					</p>
+					<p>
+						Written by <strong>Alex Miles</strong>, developed in partnership with Girl Geek Academy,
+						and published by Penguin’s <strong>Puffin</strong> imprint. Think The Baby-Sitters Club —
+						for coding, games and making.
+					</p>
+					<p>
+						<strong>30,000+ copies sold.</strong> Women and girls shape the technology that shapes
+						their lives — and belonging starts with stories they can see themselves in.
+					</p>
+					<div class="hero-ctas">
+						<a href={urls.shop} class="btn btn-primary">Shop the 4-book set</a>
+						<EmailCta label="Bring this to your school/workplace" variant="coral" />
+					</div>
+				</div>
+				<div class="hero-media">
+					<Image
+						src={booksSet}
+						alt="Girl Geeks book series boxed set"
+						width={600}
+						height={600}
+						class="hero-media__img"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container grid-2">
+				<div>
+					<h2>Why the series exists</h2>
+					<p>
+						Between ages 9 and 12 is a critical window — win or lose girls’ interest in science,
+						tech, engineering and maths. Fiction is a fun way to fire up imagination: if you can see
+						it, you can be it.
+					</p>
+					<p>
+						The series follows ten-year-old Hamsa, Eve, Niki and Maggie as they navigate friendships,
+						take risks and embrace their inner geek — mirroring the hacker, hustler and hipster
+						energy of Girl Geek Academy.
+					</p>
+				</div>
+				<div class="impact-panel">
+					<p class="impact-panel__number">30,000+</p>
+					<p class="impact-panel__label">copies sold</p>
+					<p class="impact-panel__meta">Ages ~7–12 · 4 paperbacks · RRP $14.99 each</p>
+					<p class="impact-panel__meta">Box set via our shop: $49.95</p>
+				</div>
+			</div>
+		</section>
+
+		<VideoGallery
+			heading="Meet the series"
+			intro="Author Alex Miles on TODAY Extra talking Girl Geeks books."
+			videos={booksVideos}
+		/>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">The four books</h2>
+				<ol class="book-list">
+					{
+						books.map((b) => (
+							<li class="book-card">
+								<span class="book-card__n">{b.n}</span>
+								<div>
+									<h3>{b.title}</h3>
+									<p class="book-card__meta">
+										Focus: {b.focus} · ISBN {b.isbn} · {b.published}
+									</p>
+									{b.blurb.map((p) => (
+										<p>{p}</p>
+									))}
+								</div>
+							</li>
+						))
+					}
+				</ol>
+			</div>
+		</section>
+
+		<section class="section books-cta">
+			<div class="container grid-2">
+				<div>
+					<h2>For families, schools & libraries</h2>
+					<p>
+						Perfect for classrooms, library collections and holiday reading — and a natural companion
+						to MissMakesCode, workshops and maker programs.
+					</p>
+					<div class="hero-ctas">
+						<a href={urls.shop} class="btn btn-primary">Buy from our shop</a>
+						<a href={urls.schools} class="btn btn-mint">Schools — Work with Us</a>
+						<a href={urls.libraries} class="btn btn-coral">Libraries — Work with Us</a>
+					</div>
+				</div>
+				<div>
+					<Image
+						src={booksPhoto}
+						alt="Young reader with a Girl Geeks book"
+						width={560}
+						height={400}
+						class="cta-photo"
+					/>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.books-hero {
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+	}
+
+	.hero-media__img {
+		margin: 0 auto;
+		border-radius: 0.25rem;
+		box-shadow: 4px 3px 0 0 var(--color-yellow-light);
+	}
+
+	.impact-panel {
+		background: rgba(255, 255, 255, 0.1);
+		padding: 1.75rem;
+		border-radius: 0.25rem;
+		text-align: center;
+	}
+
+	.impact-panel__number {
+		font-family: var(--font-display);
+		font-size: clamp(3rem, 7vw, 4.5rem);
+		line-height: 1;
+		margin: 0;
+		color: var(--color-yellow);
+	}
+
+	.impact-panel__label {
+		margin: 0.35rem 0 1rem;
+		font-size: 1.125rem;
+	}
+
+	.impact-panel__meta {
+		margin: 0.25rem 0;
+		font-size: 0.95rem;
+		opacity: 0.95;
+	}
+
+	.book-list {
+		list-style: none;
+		margin: 2rem 0 0;
+		padding: 0;
+		max-width: 48rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.book-card {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 1rem;
+		padding: 1.5rem 0;
+		border-bottom: 1px solid rgba(95, 125, 215, 0.2);
+	}
+
+	.book-card__n {
+		font-family: var(--font-display);
+		font-size: 2.75rem;
+		line-height: 1;
+		color: var(--color-coral);
+	}
+
+	.book-card h3 {
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		margin: 0 0 0.35rem;
+	}
+
+	.book-card__meta {
+		font-size: 0.9rem;
+		margin: 0 0 0.75rem;
+		opacity: 0.85;
+	}
+
+	.book-card p {
+		margin: 0 0 0.65rem;
+	}
+
+	.book-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.books-cta {
+		background-image: url('/images/backgrounds/sunsilk-grid.png');
+		background-size: cover;
+		background-position: center;
+	}
+
+	.cta-photo {
+		border-radius: 0.25rem;
+		box-shadow: 4px 3px 0 0 #fff0c9;
+	}
+</style>

@@ -2,9 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import EmailCta from '../components/EmailCta.astro';
+import VideoGallery from '../components/VideoGallery.astro';
 import { Image } from 'astro:assets';
 import vennDiagram from '../assets/home/venn-diagram.png';
-import { urls } from '../data/urls';
+import { sheHacksVideos } from '../data/videos';
 
 const roles = [
 	{
@@ -57,8 +59,8 @@ const accessibility = [
 					longest-running hackathon series of its kind in the world — and it's completely free.
 				</p>
 				<div class="hero-ctas">
-					<a href="https://forms.gle/sheHacksApply" class="btn btn-primary">Apply now</a>
-					<a href={urls.email} class="btn btn-coral">Questions? Email us</a>
+					<EmailCta label="Bring this to your school/workplace" variant="primary" />
+					<EmailCta label="Partner with us for 2027" variant="coral" />
 				</div>
 			</div>
 		</section>
@@ -120,8 +122,14 @@ const accessibility = [
 			</div>
 		</section>
 
+		<VideoGallery
+			heading="Watch #SheHacks"
+			intro="Event films and the hacker / hipster / hustler roles — from weekends that launched startups."
+			videos={sheHacksVideos}
+		/>
+
 		<!-- Accessibility -->
-		<section class="section access-section">
+		<section class="section access-section section--dark">
 			<div class="container grid-2">
 				<div>
 					<h2>An event built for everyone</h2>
@@ -133,19 +141,20 @@ const accessibility = [
 						{accessibility.map((a) => <li>{a}</li>)}
 					</ul>
 					<p>
-						Need something else? Email us at <a href={urls.email}>hello@girlgeekacademy.com</a> and we'll
-						do our best to accommodate you.
+						Need something else? Use the button below to copy hello@girlgeekacademy.com — we'll do our
+						best to accommodate you.
 					</p>
+					<EmailCta label="Available for your school/workplace" variant="mint" />
 				</div>
 				<div class="eligibility-card">
-					<h3>Who can apply?</h3>
+					<h3>Who is it for?</h3>
 					<ul>
 						<li>Women and non-binary people</li>
 						<li>Victorian residents</li>
 						<li>Aged 18+</li>
 						<li>Any skill level welcome</li>
 					</ul>
-					<a href="https://forms.gle/sheHacksApply" class="btn btn-primary">Apply now</a>
+					<EmailCta label="Bring this to your school/workplace" variant="primary" />
 				</div>
 			</div>
 		</section>

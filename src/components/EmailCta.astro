@@ -1,0 +1,97 @@
+---
+import { CONTACT_EMAIL } from '../data/urls';
+
+interface Props {
+	/** Visible button label before hover */
+	label: string;
+	variant?: 'primary' | 'coral' | 'mint' | 'yellow' | 'pink';
+	class?: string;
+}
+
+const { label, variant = 'primary', class: className } = Astro.props;
+const btnClass = `btn btn-${variant} email-cta`;
+---
+
+<button
+	type="button"
+	class:list={[btnClass, className]}
+	data-email={CONTACT_EMAIL}
+	data-label={label}
+	aria-label={`${label}. Copies ${CONTACT_EMAIL} to clipboard.`}
+>
+	<span class="email-cta__default">{label}</span>
+	<span class="email-cta__hover" aria-hidden="true">Email {CONTACT_EMAIL}</span>
+	<span class="email-cta__copied" hidden>Copied!</span>
+</button>
+
+<script>
+	function initEmailCtas() {
+		document.querySelectorAll<HTMLButtonElement>('.email-cta').forEach((btn) => {
+			if (btn.dataset.ready) return;
+			btn.dataset.ready = '1';
+
+			const email = btn.dataset.email ?? 'hello@girlgeekacademy.com';
+			const defaultEl = btn.querySelector<HTMLElement>('.email-cta__default');
+			const hoverEl = btn.querySelector<HTMLElement>('.email-cta__hover');
+			const copiedEl = btn.querySelector<HTMLElement>('.email-cta__copied');
+
+			btn.addEventListener('click', async () => {
+				try {
+					await navigator.clipboard.writeText(email);
+				} catch {
+					window.prompt('Copy this email address:', email);
+					return;
+				}
+				if (defaultEl) defaultEl.hidden = true;
+				if (hoverEl) hoverEl.hidden = true;
+				if (copiedEl) copiedEl.hidden = false;
+				window.setTimeout(() => {
+					if (defaultEl) defaultEl.hidden = false;
+					if (hoverEl) hoverEl.hidden = false;
+					if (copiedEl) copiedEl.hidden = true;
+					btn.classList.remove('email-cta--copied');
+				}, 1800);
+				btn.classList.add('email-cta--copied');
+			});
+		});
+	}
+
+	initEmailCtas();
+	document.addEventListener('astro:page-load', initEmailCtas);
+</script>
+
+<style>
+	.email-cta {
+		position: relative;
+		border: none;
+		font: inherit;
+		line-height: inherit;
+	}
+
+	.email-cta__hover {
+		display: none;
+	}
+
+	.email-cta--copied .email-cta__default,
+	.email-cta--copied .email-cta__hover {
+		display: none !important;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.email-cta:hover:not(.email-cta--copied) .email-cta__default {
+			display: none;
+		}
+
+		.email-cta:hover:not(.email-cta--copied) .email-cta__hover {
+			display: inline;
+		}
+
+		.email-cta:focus-visible:not(.email-cta--copied) .email-cta__default {
+			display: none;
+		}
+
+		.email-cta:focus-visible:not(.email-cta--copied) .email-cta__hover {
+			display: inline;
+		}
+	}
+</style>

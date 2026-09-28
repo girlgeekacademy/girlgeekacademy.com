@@ -200,6 +200,47 @@ h6 {
 	border-color: var(--color-primary-hover);
 }
 
+.btn-coral {
+	color: var(--color-white);
+	background-color: var(--color-coral);
+	border-color: var(--color-coral);
+}
+
+.btn-coral:hover {
+	color: var(--color-white);
+	filter: brightness(0.95);
+}
+
+.btn-mint {
+	color: var(--color-dark);
+	background-color: var(--color-mint);
+	border-color: var(--color-mint);
+}
+
+.btn-mint:hover {
+	filter: brightness(0.95);
+}
+
+.btn-yellow {
+	color: var(--color-dark);
+	background-color: var(--color-yellow);
+	border-color: var(--color-yellow);
+}
+
+.btn-yellow:hover {
+	filter: brightness(0.97);
+}
+
+.btn-pink {
+	color: var(--color-dark);
+	background-color: var(--color-pink);
+	border-color: var(--color-pink);
+}
+
+.btn-pink:hover {
+	filter: brightness(0.97);
+}
+
 .grid-2 {
 	display: grid;
 	grid-template-columns: 1fr 1fr;

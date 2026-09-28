@@ -1,0 +1,72 @@
+---
+import VideoEmbed from './VideoEmbed.astro';
+import type { Video } from '../data/videos';
+
+interface Props {
+	heading?: string;
+	intro?: string;
+	videos: Video[];
+	/** Alternate section background */
+	dark?: boolean;
+	class?: string;
+	id?: string;
+}
+
+const {
+	heading = 'Watch',
+	intro,
+	videos,
+	dark = false,
+	class: className,
+	id,
+} = Astro.props;
+---
+
+{
+	videos.length > 0 && (
+		<section id={id} class:list={['section', 'video-gallery', className, { 'section--dark': dark }]}>
+			<div class="container">
+				<h2 class="text-center">{heading}</h2>
+				{intro && <p class="video-gallery__intro text-center">{intro}</p>}
+				<ul class:list={['video-gallery__grid', { 'video-gallery__grid--solo': videos.length === 1 }]}>
+					{videos.map((v) => (
+						<li>
+							<VideoEmbed id={v.id} title={v.title} note={v.note} />
+						</li>
+					))}
+				</ul>
+			</div>
+		</section>
+	)
+}
+
+<style>
+	.video-gallery {
+		scroll-margin-top: 5rem;
+	}
+
+	.video-gallery__intro {
+		max-width: 36rem;
+		margin: 0 auto 1.75rem;
+	}
+
+	.video-gallery__grid {
+		list-style: none;
+		margin: 1.5rem 0 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem;
+	}
+
+	.video-gallery__grid--solo {
+		grid-template-columns: minmax(0, 40rem);
+		justify-content: center;
+	}
+
+	@media (max-width: 767px) {
+		.video-gallery__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

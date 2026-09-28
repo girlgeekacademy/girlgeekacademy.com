@@ -23,14 +23,15 @@ import { urls } from '../../data/urls';
 			</p>
 			<p>
 				Girl Geek Academy surveyed over 300 women, men and NB folk in tech for our submission to
-				Minister Husic's "Diversity in STEM" review.
+				Minister Husic’s Diversity in STEM review — and we’ve kept saying it: keep girl geeks in.
+				Building is not scrolling.
 			</p>
 			<p>
 				Girl Geeks say – <strong>Enough Talk.</strong> Time for action <strong
 					>backed by investment.</strong
 				>
 			</p>
-			<a href={urls.report} class="btn btn-accent" target="_blank" rel="noopener noreferrer">
+			<a href={urls.report} class="btn btn-accent">
 				READ THE REPORT!
 			</a>
 		</div>
@@ -120,7 +121,14 @@ import { urls } from '../../data/urls';
 
 	.report__cover {
 		border-radius: 0.5rem;
-		box-shadow: 0 12px 40px rgba(95, 125, 215, 0.25);
+		box-shadow: 10px 10px 0 0 var(--color-coral);
+		transform: rotate(2deg);
+		transition: transform 0.25s ease, box-shadow 0.25s ease;
+	}
+
+	.report__image a:hover .report__cover {
+		transform: rotate(0deg) translateY(-6px);
+		box-shadow: 12px 14px 0 0 var(--color-yellow);
 	}
 
 	.btn-accent {

@@ -2,7 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { urls } from '../data/urls';
+import EmailCta from '../components/EmailCta.astro';
+import VideoGallery from '../components/VideoGallery.astro';
+import { workExperienceVideos } from '../data/videos';
 
 const days = [
 	{
@@ -72,7 +74,7 @@ const faqs = [
 						))
 					}
 				</div>
-				<a href="https://forms.gle/sheHacksSwiftApply" class="btn btn-primary">Apply now!</a>
+				<EmailCta label="Bring this to your school/workplace" variant="primary" />
 			</div>
 		</section>
 
@@ -94,8 +96,14 @@ const faqs = [
 			</div>
 		</section>
 
+		<VideoGallery
+			heading="Holiday programs"
+			intro="School-holiday delivery for high school girl geeks."
+			videos={workExperienceVideos}
+		/>
+
 		<!-- Details -->
-		<section class="section details-section">
+		<section class="section details-section section--dark">
 			<div class="container grid-2">
 				<div>
 					<h2>What you need to know</h2>
@@ -119,9 +127,7 @@ const faqs = [
 							<div class="city-card">
 								<h4>{c.city}</h4>
 								<p>{c.dates}</p>
-								<a href="https://forms.gle/sheHacksSwiftApply" class="btn btn-primary">
-									Apply now!
-								</a>
+								<EmailCta label="Available for your school/workplace" variant="primary" />
 							</div>
 						))
 					}
@@ -154,8 +160,8 @@ const faqs = [
 					Download our promotional poster to share with students, or get in touch with any questions.
 				</p>
 				<div class="edu-ctas">
-					<a href={urls.email} class="btn btn-yellow">Get in touch</a>
-					<a href="https://forms.gle/sheHacksSwiftApply" class="btn btn-coral">Apply now!</a>
+					<EmailCta label="Bring this to your school/workplace" variant="yellow" />
+					<EmailCta label="Partner with us for 2027" variant="coral" />
 				</div>
 			</div>
 		</section>

@@ -1,93 +1,69 @@
 ---
+import EmailCta from '../EmailCta.astro';
 import { urls } from '../../data/urls';
 ---
 
 <section class="hero section">
 	<div class="hero__shape" aria-hidden="true">
 		<svg width="100%" height="96" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-			<path fill="#ffffff" d="M0,-2.13162821e-14 C16.6666667,66.6666667 33.3333333,100 50,100 C66.6666667,100 83.3333333,66.6666667 100,-2.13162821e-14 L100,100 L0,100 L0,-2.13162821e-14 Z"></path>
+			<path
+				fill="#5f7dd7"
+				d="M0,-2.13162821e-14 C16.6666667,66.6666667 33.3333333,100 50,100 C66.6666667,100 83.3333333,66.6666667 100,-2.13162821e-14 L100,100 L0,100 L0,-2.13162821e-14 Z"
+			></path>
 		</svg>
 	</div>
-	<div class="container grid-2">
-		<div class="hero__mobile hide-desktop">
+
+	<div class="container hero__grid">
+		<div class="hero__welcome">
 			<div class="hero__welcome-wrap">
-				<p class="hero__eyebrow" id="mainheading">
+				<p class="hero__eyebrow">
 					WELCOME<br />TO OUR<br />WORLD
 				</p>
 			</div>
+		</div>
+
+		<div class="hero__copy">
 			<h1 class="hero__headline">
-				Sooo… what can we do about the tech industry? Is the internet broken forever?
+				Women and girls shape the technology that shapes their lives
 			</h1>
-			<a href={urls.about} class="btn btn-mint">WHAT WE DO</a>
-			<div class="hero__video">
-				<div class="hero__video-wrap">
-					<iframe
-						src="https://www.youtube-nocookie.com/embed/9R4a_NL9prY"
-						title="Girl Geek Academy video"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen
-						loading="lazy"></iframe>
+			<p class="hero__lead">
+				We <strong>keep girl geeks in</strong> tech and give women and girls the power to
+				<strong> build, question and govern</strong> it — by driving cultural change.
+			</p>
+			<p>
+				Tech has a pipeline problem — so we’re fixing the holes in the pipe. One million women and
+				girls with tech power by 2030.
+			</p>
+			<p class="hero__punch">
+				Building is not scrolling. Enough talk — action backed by investment in what already works.
+			</p>
+
+			<div class="hero__ctas">
+				<div class="hero__cta">
+					<a href={urls.formats} class="btn btn-primary">Work with Us</a>
+					<p>Schools, corporates, government &amp; more</p>
+				</div>
+				<div class="hero__cta">
+					<a href="#programs" class="btn btn-coral">Our programs</a>
+					<p>From MissMakesCode to SheFlies</p>
+				</div>
+				<div class="hero__cta hero__cta--wide">
+					<EmailCta label="Partner with us for 2027" variant="mint" />
+					<p>Let’s keep girl geeks in — together</p>
 				</div>
 			</div>
 		</div>
 
-		<div class="hero__left hide-mobile">
-			<div class="hero__welcome-wrap">
-				<p class="hero__eyebrow" id="mainheading">
-					WELCOME<br />TO OUR<br />WORLD
-				</p>
+		<div class="hero__media">
+			<div class="hero__video-wrap">
+				<iframe
+					src="https://www.youtube-nocookie.com/embed/9R4a_NL9prY"
+					title="Girl Geek Academy on The Project"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					allowfullscreen
+					loading="lazy"></iframe>
 			</div>
-			<h1 class="hero__headline">
-				Sooo… what can we do about the tech industry? Is the internet broken forever? the tech
-				industry lacks a certain something. enough women in tech.
-			</h1>
-			<p>
-				<strong>Only 12% of tech engineers are women, 19% of game developers are women,</strong>
-				and a tiny 3% of the world's venture capital goes to women-led companies. Our mission is to
-				teach one million women* technology skills by 2025. Our programs aim to support and increase
-				the number of women in tech. We learn coding, game development, 3D printing, AI, machine
-				learning, drones and new emerging technologies alongside our friends.
-			</p>
-			<a href={urls.about} class="btn btn-mint">WHAT WE DO</a>
-		</div>
-
-		<div class="hero__right">
-			<h1 class="hero__mission-title">
-				Girl Geek Academy aims to bring one million women and girls into technology careers by 2030
-			</h1>
-			<p>
-				<strong
-					>Girl Geek Academy is a social enterprise dedicated to achieving gender equality in the
-					technology industry.</strong
-				>
-				We aim to bring one million women and girls into technology careers by 2030 through a range of
-				programs in industries such as games, startups, 3D printing, design, and aviation. Our community
-				is built on the foundation of friendship, learning from one another and sharing career skills
-				and tech tricks. We work to tackle structural issues facing women and girls in technology by
-				influencing families, corporations, government, schools, and the tech community.
-			</p>
-
-			<div class="hero__ctas hide-mobile">
-				<div class="hero__cta">
-					<a href="#home-classes" class="btn btn-pink">Join a CLASS</a>
-					<p><strong>Holiday tech classes for women and girls.</strong></p>
-				</div>
-				<div class="hero__cta">
-					<a href="#lets-collaborate" class="btn btn-coral">Collab with us</a>
-					<p><strong>Let's work together to boost equality.</strong></p>
-				</div>
-			</div>
-
-			<div class="hero__video hide-mobile">
-				<div class="hero__video-wrap">
-					<iframe
-						src="https://www.youtube-nocookie.com/embed/9R4a_NL9prY"
-						title="Girl Geek Academy video"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen
-						loading="lazy"></iframe>
-				</div>
-			</div>
+			<p class="hero__video-caption">As seen on The Project — Network Ten</p>
 		</div>
 	</div>
 </section>
@@ -95,14 +71,9 @@ import { urls } from '../../data/urls';
 <style>
 	.hero {
 		position: relative;
-		padding-bottom: 6rem;
 		overflow: hidden;
-	}
-
-	@media (min-width: 992px) {
-		.hero .grid-2 {
-			grid-template-columns: 47.5% 52.5%;
-		}
+		padding-bottom: 7rem;
+		/* Yellow + hero-pattern come from sections.css — don’t override */
 	}
 
 	.hero__shape {
@@ -111,6 +82,33 @@ import { urls } from '../../data/urls';
 		left: 0;
 		right: 0;
 		line-height: 0;
+		z-index: 2;
+		pointer-events: none;
+	}
+
+	.hero__grid {
+		display: grid;
+		grid-template-columns: 1fr 1.1fr;
+		gap: 1.5rem 2.5rem;
+		align-items: start;
+		position: relative;
+		z-index: 1;
+	}
+
+	.hero__welcome {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.hero__copy {
+		grid-column: 2;
+		grid-row: 1 / span 2;
+	}
+
+	.hero__media {
+		grid-column: 1;
+		grid-row: 2;
+		align-self: end;
 	}
 
 	.hero__welcome-wrap {
@@ -118,112 +116,156 @@ import { urls } from '../../data/urls';
 		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;
-		margin: 0 0 -3.75rem;
-		padding: 6.25rem 0 13.75rem 6.25rem;
+		margin: 0 0 -2rem;
+		padding: 5rem 0 11rem 4rem;
+		animation: hero-bolt 6s ease-in-out infinite;
+	}
+
+	@keyframes hero-bolt {
+		0%,
+		100% {
+			filter: brightness(1);
+			transform: translateY(0);
+		}
+		50% {
+			filter: brightness(1.08);
+			transform: translateY(-4px);
+		}
 	}
 
 	.hero__eyebrow {
 		color: var(--color-primary);
 		font-family: var(--font-pinata);
 		font-weight: 400;
-		font-size: clamp(3.5rem, 10vw, 8.2rem);
+		font-size: clamp(3rem, 8vw, 7rem);
 		line-height: 0.85;
 		letter-spacing: 0;
 		text-align: left;
 		margin: 0;
-		max-width: 100%;
-	}
-
-	@media (max-width: 991px) {
-		.hero__welcome-wrap {
-			margin-bottom: 0;
-			padding: 4rem 1.5rem 12rem;
-		}
-
-		.hero__eyebrow {
-			font-size: clamp(2.75rem, 14vw, 5rem);
-		}
+		text-transform: uppercase;
 	}
 
 	.hero__headline {
 		font-family: var(--font-display);
-		font-size: clamp(2.5rem, 5vw, 4.5rem);
-		line-height: 0.85;
-		margin-bottom: 1rem;
+		font-size: clamp(2.4rem, 5vw, 4.25rem);
+		line-height: 0.88;
+		margin: 0 0 1rem;
+		max-width: 18ch;
+	}
+
+	.hero__lead {
+		font-size: 1.15rem;
+		max-width: 36rem;
+	}
+
+	.hero__punch {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+		font-size: clamp(1rem, 2vw, 1.25rem);
+		line-height: 1.2;
+		color: var(--color-coral);
+		max-width: 32rem;
 	}
 
 	.hero__ctas {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 1.5rem;
-		margin: 2rem 0;
+		gap: 1.25rem 1.5rem;
+		margin: 2rem 0 0;
 		text-align: center;
 	}
 
+	.hero__cta--wide {
+		grid-column: 1 / -1;
+	}
+
 	.hero__cta p {
-		margin-top: 0.5rem;
+		margin: 0.5rem 0 0;
 		font-size: 0.9rem;
 		color: var(--color-coral);
 	}
 
-	.hero__cta:first-child p {
+	.hero__cta:nth-child(2) p {
 		color: var(--color-pink);
+	}
+
+	.hero__cta:nth-child(3) p {
+		color: var(--color-primary);
 	}
 
 	.hero__video-wrap {
 		position: relative;
-		padding-bottom: 56.25%;
+		aspect-ratio: 16 / 9;
 		border-radius: 0.5rem;
 		overflow: hidden;
 		background: #000;
+		box-shadow: 8px 8px 0 0 var(--color-coral);
+		transform: rotate(-1.5deg);
+		transition: transform 0.25s ease, box-shadow 0.25s ease;
 	}
 
-	.hero__mission-title {
-		padding-top: 9.375rem;
-	}
-
-	@media (max-width: 991px) {
-		.hero__mission-title {
-			padding-top: 2rem;
-		}
+	.hero__video-wrap:hover {
+		transform: rotate(0deg) translateY(-4px);
+		box-shadow: 10px 12px 0 0 var(--color-mint);
 	}
 
 	.hero__video-wrap iframe {
 		position: absolute;
-		top: 0;
-		left: 0;
+		inset: 0;
 		width: 100%;
 		height: 100%;
 		border: 0;
 	}
 
-	.btn-mint {
-		background-color: var(--color-mint);
-		border-color: var(--color-mint);
+	.hero__video-caption {
+		font-size: 0.9rem;
+		margin: 0.85rem 0 0;
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: var(--color-primary);
 	}
 
-	.btn-mint:hover {
-		background-color: var(--color-primary);
-		border-color: var(--color-primary);
-	}
+	@media (max-width: 991px) {
+		.hero {
+			padding-bottom: 6rem;
+		}
 
-	.btn-pink {
-		background-color: var(--color-pink);
-		border-color: var(--color-pink);
-	}
+		.hero__grid {
+			grid-template-columns: 1fr;
+		}
 
-	.btn-pink:hover {
-		background-color: var(--color-mint);
-		border-color: var(--color-mint);
-	}
+		.hero__welcome,
+		.hero__copy,
+		.hero__media {
+			grid-column: 1;
+			grid-row: auto;
+		}
 
-	.btn-coral {
-		background-color: var(--color-coral);
-		border-color: var(--color-coral);
-	}
+		.hero__welcome-wrap {
+			margin-bottom: 0;
+			padding: 3rem 0.5rem 9rem;
+		}
 
-	.btn-coral:hover {
-		background-color: var(--color-mint);
-		border-color: var(--color-mint);
+		.hero__eyebrow {
+			font-size: clamp(2.75rem, 14vw, 5rem);
+		}
+
+		.hero__headline {
+			max-width: none;
+		}
+
+		.hero__ctas {
+			grid-template-columns: 1fr;
+		}
+
+		.hero__cta--wide {
+			grid-column: auto;
+		}
+
+		.hero__video-wrap {
+			transform: none;
+		}
 	}
 </style>

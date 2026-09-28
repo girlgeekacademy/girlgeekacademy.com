@@ -1,13 +1,7 @@
 ---
 import { urls } from '../data/urls';
-
-const footerLinks = [
-	{ label: 'Welcome', href: urls.home },
-	{ label: 'About Us', href: urls.about },
-	{ label: 'AI High', href: urls.aiHigh },
-	{ label: 'SheHacksSwift', href: urls.sheHacksSwift },
-	{ label: 'READ OUR LATEST REPORT', href: urls.report, bold: true },
-];
+import { programsNav, workWithUsNav, researchNav } from '../data/nav';
+import { CONTACT_EMAIL } from '../data/urls';
 
 const socialLinks = [
 	{
@@ -48,26 +42,45 @@ const socialLinks = [
 	</div>
 	<div class="container footer__grid">
 		<div class="footer__col">
-			<h3 class="footer__heading">LINKS</h3>
+			<h3 class="footer__heading">Programs</h3>
 			<ul class="footer__links">
-				{
-					footerLinks.map((item) => (
-						<li>
-							<a href={item.href}>{item.bold ? <strong>{item.label}</strong> : item.label}</a>
-						</li>
-					))
-				}
+				{programsNav.map((item) => (
+					<li>
+						<a href={item.href}>{item.label}</a>
+					</li>
+				))}
 			</ul>
 		</div>
 
 		<div class="footer__col">
-			<h3 class="footer__heading">Contact</h3>
-			<ul class="footer__contact">
-				<li>P.O. Box 24416<br />Melbourne, Victoria, Australia</li>
+			<h3 class="footer__heading">Work with Us</h3>
+			<ul class="footer__links">
+				{workWithUsNav.map((item) => (
+					<li>
+						<a href={item.href}>{item.label}</a>
+					</li>
+				))}
 				<li>
-					<a href={urls.email}>hello@girlgeekacademy.com</a>
+					<a href={urls.books}>Books</a>
+				</li>
+				<li>
+					<a href={urls.shop}>Shop</a>
 				</li>
 			</ul>
+		</div>
+
+		<div class="footer__col">
+			<h3 class="footer__heading">Research & Impact</h3>
+			<ul class="footer__links">
+				{researchNav.map((item) => (
+					<li>
+						<a href={item.href}>{item.label}</a>
+					</li>
+				))}
+			</ul>
+			<p class="footer__contact-line">
+				{CONTACT_EMAIL}
+			</p>
 		</div>
 
 		<div class="footer__col footer__subscribe">
@@ -117,7 +130,7 @@ const socialLinks = [
 
 	.footer__grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(4, 1fr);
 		gap: 2rem;
 		margin-bottom: 2rem;
 	}
@@ -130,16 +143,19 @@ const socialLinks = [
 		color: var(--color-white);
 	}
 
-	.footer__links,
-	.footer__contact {
+	.footer__links {
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
 
-	.footer__links li,
-	.footer__contact li {
+	.footer__links li {
 		margin-bottom: 0.5rem;
+	}
+
+	.footer__contact-line {
+		margin-top: 1rem;
+		font-size: 0.9rem;
 	}
 
 	.footer a {
