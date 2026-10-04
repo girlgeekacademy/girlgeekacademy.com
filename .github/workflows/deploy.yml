@@ -27,6 +27,8 @@ jobs:
         with:
           name: dist
           path: dist/
+          # Keep dist/.htaccess (redirects + 404 page). upload-artifact skips dotfiles by default.
+          include-hidden-files: true
 
   deploy:
     needs: build
@@ -50,4 +52,4 @@ jobs:
           rsync -avz --delete \
             -e "ssh -i ~/.ssh/gga_website_deploy -o StrictHostKeyChecking=yes" \
             ./dist/ \
-            "${{ vars.DEPLOY_SSH_USER }}@${{ vars.DEPLOY_SSH_HOST }}:~/public_html_new/"
+            "${{ vars.DEPLOY_SSH_USER }}@${{ vars.DEPLOY_SSH_HOST }}:~/public_html/"
