@@ -4,9 +4,10 @@ import { programsNav } from '../../data/nav';
 import { urls } from '../../data/urls';
 
 const blurbs: Record<string, string> = {
-	MissMakesCode: 'Primary workshops — coding confidence early, often with mums and aunties.',
+	MissMakesCode: 'Coding confidence for girls 5–8, learning alongside mums and aunties.',
+	'AI High': 'Weekly online classes and a community for high school girls who love tech.',
 	SheHacks: 'The world’s longest-running hackathon series for women and non-binary folk.',
-	SheHacksSwift: 'Work experience / Swift — high school girl geeks building real apps.',
+	SheHacksSwift: 'High school girl geeks build real apps in Swift.',
 	SheMakesGames: 'Games careers, game jams and Play Party energy.',
 	SheMakes: 'Making, 3D printing, wearables — Australia’s first all-women makerfest format.',
 	SheFlies: 'Drones, space and aviation — more women in the sky.',
@@ -21,8 +22,8 @@ const tones = ['yellow', 'mint', 'pink', 'coral', 'yellow', 'mint'] as const;
 		<p class="programs-home__kicker text-center">Get ya geek on</p>
 		<h2 class="text-center">Our programs</h2>
 		<p class="text-center programs-home__intro">
-			We started with programs for women like us — then realised if we’d been teaching children 10
-			years ago, we could be hiring them today. Games, startups, making, design, AI, space and more.
+			Every program ends with something she made: an app, a game, a startup, and a crew of friends who
+			get it.
 		</p>
 		<ul class="programs-home__grid">
 			{
@@ -38,9 +39,9 @@ const tones = ['yellow', 'mint', 'pink', 'coral', 'yellow', 'mint'] as const;
 			}
 		</ul>
 		<p class="text-center programs-home__formats">
-			Commission a format — short workshop, multi-day, week program, community — then pick the
-			flavour.
-			<a href={urls.formats}>See formats on Work with Us →</a>
+			Bring any program to your school or workplace, as a workshop, a weekend, a week or an ongoing
+			community.
+			<a href={urls.formats}>See formats →</a>
 		</p>
 	</div>
 	<Zigzag fill="#ffffff" position="bottom" />

@@ -1,0 +1,29 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import NewsList from '../../../components/NewsList.astro';
+import { categorySlug, getNewsPosts, newsCategories } from '../../../data/news';
+
+export const getStaticPaths = (async () => {
+	const posts = await getNewsPosts();
+	return newsCategories.map((category) => ({
+		params: { category: categorySlug(category) },
+		props: { category, posts: posts.filter((p) => p.data.category === category) },
+	}));
+}) satisfies GetStaticPaths;
+
+const { category, posts } = Astro.props;
+---
+
+<Layout
+	title={`${category} — Girl Geek Academy`}
+	description={`${category} from Girl Geek Academy.`}
+>
+	<Header />
+	<main>
+		<NewsList posts={posts} active={category} />
+	</main>
+	<Footer />
+</Layout>

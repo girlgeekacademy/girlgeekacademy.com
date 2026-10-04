@@ -8,6 +8,8 @@ import { Image } from 'astro:assets';
 import telstraBanner from '../../assets/home/telstra-banner.png';
 import aiHighImage from '../../assets/home/ai-high.jpg';
 import { aiHighVideos } from '../../data/videos';
+import { lib } from '../../data/library';
+import { urls } from '../../data/urls';
 
 const highlights = [
 	{
@@ -54,7 +56,13 @@ const team = [
 			<div class="container grid-2">
 				<div>
 					<p class="page-eyebrow">Case study · Program delivery</p>
-					<h1>AI High</h1>
+					<h1 class="sr-only">AI High</h1>
+					<Image
+						src={lib('logos/A.I.-high-logo-Girl-Geek-Academy.png')}
+						alt="A.I. High"
+						width={420}
+						class="ai-logo"
+					/>
 					<p class="lead">
 						Free weekly online workshops empowering Australian high school girls and gender-diverse
 						students through games, digital art, programming and tech skills.
@@ -67,12 +75,12 @@ const team = [
 						class="telstra-banner"
 					/>
 					<p>
-						Our strategic plan prioritises sustained funding for AI High. This case study shows what
-						we’ve delivered — talk to us about funding the next chapter.
+						We’re looking for partners to fund AI High’s next chapter. Here’s what we’ve delivered so
+						far.
 					</p>
 					<div class="hero-ctas">
-						<EmailCta label="Partner with us for 2027" variant="yellow" />
-						<EmailCta label="Bring this to your school/workplace" variant="mint" />
+						<EmailCta label="Fund AI High for 2027" variant="yellow" />
+						<a href={urls.aiHigh} class="btn btn-mint">About the program</a>
 					</div>
 				</div>
 				<div>
@@ -121,6 +129,12 @@ const team = [
 					<ul class="session-list">
 						{sampleSessions.map((s) => <li>{s}</li>)}
 					</ul>
+					<Image
+						src={lib('photos/Social-tile-Girl-geek-academy-2.jpg')}
+						alt="We love Girl Geek Academy — Telstra Foundation is proud to partner with Girl Geek Academy on the Empowering girls with AI project"
+						width={640}
+						class="social-tile"
+					/>
 				</div>
 			</div>
 		</section>
@@ -154,6 +168,19 @@ const team = [
 </Layout>
 
 <style>
+	.ai-logo {
+		height: auto;
+		max-width: 100%;
+		margin-bottom: 1rem;
+	}
+
+	.social-tile {
+		width: 100%;
+		height: auto;
+		margin-top: 1.5rem;
+		border-radius: 0.25rem;
+	}
+
 	.page-eyebrow {
 		font-family: var(--font-pinata);
 		text-transform: uppercase;

@@ -3,6 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import EmailCta from '../components/EmailCta.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+import { Image } from 'astro:assets';
+import { lib, photo } from '../data/library';
 
 const stats = [
 	{ value: '<1%', label: 'of drone pilots in Australia are women' },
@@ -12,14 +15,17 @@ const stats = [
 
 const stories = [
 	{
+		image: photo('photos/April-staines-April-Storm-Props-She-Flies.jpeg', 'April Staines with droids and helmets from April Storm Props'),
 		title: 'Getting girls into space',
 		body: 'Co-founder April Staines — April Storm Props — co-authored Girl Geeks: Making Magic, inspiring young girls to explore what’s possible in space through making and props for “SPACETACULAR”.',
 	},
 	{
+		image: photo('photos/Casey-Thomas-Drone-Legion.jpeg', 'Casey Thomas holding a small racing drone at a Drone Legion event'),
 		title: 'Virtual reality drone racing',
 		body: 'We work with creators like Casey Thomas (Drone Legion) — a VR drone racing simulator based on the real sport of racing tiny quadcopters at speeds up to 150km/h.',
 	},
 	{
+		image: photo('photos/dr-catherine-ball-1024x650-1.jpg', 'Dr Catherine Ball'),
 		title: 'World of Drones',
 		body: 'Partners like Dr Catherine Ball bring ethics, education and Remotely Piloted Aircraft Systems into schools, remote communities and citizen science.',
 	},
@@ -33,7 +39,8 @@ const stories = [
 	<Header />
 	<main>
 		<section class="prog-hero section">
-			<div class="container">
+			<div class="container grid-2">
+				<div>
 				<p class="page-eyebrow">Program · Drones, aviation & space · Est. 2019</p>
 				<h1>SheFlies</h1>
 				<p class="lead">
@@ -48,6 +55,10 @@ const stories = [
 				<div class="hero-ctas">
 					<EmailCta label="Partner with us for 2027" variant="primary" />
 					<EmailCta label="Bring this to your school/workplace" variant="coral" />
+				</div>
+				</div>
+				<div class="hero-media">
+					<Image src={lib('logos/4286-SheFlies-v2-2048x2048-1.png')} alt="SheFlies — because she can" width={420} />
 				</div>
 			</div>
 		</section>
@@ -75,6 +86,7 @@ const stories = [
 					{
 						stories.map((s) => (
 							<div class="story-card">
+								<Image src={s.image.src} alt={s.image.alt} width={600} class="story-card__img" />
 								<h3>{s.title}</h3>
 								<p>{s.body}</p>
 							</div>
@@ -84,8 +96,22 @@ const stories = [
 			</div>
 		</section>
 
+		<PhotoGallery
+			heading="SheFlies in the field"
+			photos={[
+				photo('photos/gga-sheflies1.jpeg', 'Guests in front of the SheFlies banner'),
+				photo('photos/catherine-drone.jpeg', 'A woman flying a drone outdoors'),
+			]}
+		/>
+
 		<section class="section text-center">
 			<div class="container">
+				<Image
+					src={lib('graphics/Artboard-56she-Flies-1.png')}
+					alt="SheFlies because she can — a globe illustration"
+					width={520}
+					class="cta-graphic"
+				/>
 				<h2>Fly with us</h2>
 				<p class="cta-lead">
 					Want to commission SheFlies workshops, events or partnerships for your school, workplace or
@@ -146,6 +172,20 @@ const stories = [
 
 	.stories {
 		margin-top: 2rem;
+	}
+
+	.story-card__img {
+		width: 100%;
+		aspect-ratio: 16 / 10;
+		object-fit: cover;
+		border-radius: 0.25rem;
+		margin-bottom: 1rem;
+	}
+
+	.cta-graphic {
+		margin: 0 auto 1.5rem;
+		max-width: 100%;
+		height: auto;
 	}
 
 	.story-card h3 {

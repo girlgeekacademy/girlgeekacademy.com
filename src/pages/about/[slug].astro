@@ -1,0 +1,269 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import VideoGallery from '../../components/VideoGallery.astro';
+import PhotoGallery from '../../components/PhotoGallery.astro';
+import { foundersWithPages, founderUrl, type Founder } from '../../data/founders';
+import { formatNewsDate, getNewsPosts, newsPostUrl } from '../../data/news';
+import { urls } from '../../data/urls';
+
+export const getStaticPaths = (() =>
+		foundersWithPages.map((founder) => ({ params: { slug: founder.slug }, props: { founder } }))) satisfies GetStaticPaths;
+
+const { founder } = Astro.props as { founder: Founder };
+const firstName = founder.name.split(' ')[0];
+
+const allPosts = await getNewsPosts();
+const posts = founder.posts
+	.map((slug) => allPosts.find((p) => p.id === slug))
+	.filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const others = foundersWithPages.filter((f) => f.slug !== founder.slug);
+---
+
+<Layout
+	title={`${founder.name}, ${founder.role} — Girl Geek Academy`}
+	description={`${founder.name}, ${founder.role} of Girl Geek Academy. ${founder.summary}`}
+>
+	<Header />
+	<main>
+		<section class="founder-hero section">
+			<div class="container founder-hero__grid">
+				<div>
+					<p class="founder-hero__eyebrow">
+						<a href={`${urls.about}#team`}>Our founders</a>
+					</p>
+					<h1>{founder.name}</h1>
+					<p class="founder-hero__role">{founder.role}</p>
+					<p class="founder-hero__summary">{founder.summary}</p>
+				</div>
+				{
+					founder.portrait && (
+						<div class="founder-hero__media">
+							<Image src={founder.portrait.src} alt={founder.portrait.alt} width={560} class="founder-hero__img" />
+						</div>
+					)
+				}
+			</div>
+		</section>
+
+		<section class="section founder-body">
+			<div class="container founder-body__grid">
+				<div>
+					<h2>{firstName}’s story</h2>
+					{founder.bio.map((para) => <p>{para}</p>)}
+				</div>
+				<div class="founder-card">
+					<h3>What {firstName} has built at Girl Geek Academy</h3>
+					<ul>
+						{founder.contributions.map((c) => <li>{c}</li>)}
+					</ul>
+					{
+						founder.related && founder.related.length > 0 && (
+							<>
+								<p class="founder-card__label">Explore</p>
+								<ul class="founder-card__links">
+									{founder.related.map((r) => (
+										<li>
+											<a href={r.href}>{r.label}</a>
+										</li>
+									))}
+								</ul>
+							</>
+						)
+					}
+				</div>
+			</div>
+		</section>
+
+		{
+			(founder.lens?.length || founder.quote) && (
+				<section class="section section--dark founder-words">
+					<div class="container founder-words__inner">
+						<h2>In {firstName}’s words</h2>
+						{founder.lens?.map((para) => <p>{para}</p>)}
+						{founder.quote && (
+							<blockquote class="founder-quote">
+								<p>“{founder.quote.text}”</p>
+								<footer>— {founder.quote.source}</footer>
+							</blockquote>
+						)}
+					</div>
+				</section>
+			)
+		}
+
+		{founder.videos.length > 0 && <VideoGallery heading={`Watch ${firstName}`} videos={founder.videos} />}
+
+		{founder.photos.length > 0 && <PhotoGallery heading="Photos" photos={founder.photos} />}
+
+		{
+			posts.length > 0 && (
+				<section class="section founder-posts">
+					<div class="container">
+						<h2>From the news</h2>
+						<ul class="founder-posts__list">
+							{posts.map((post) => (
+								<li>
+									<a href={newsPostUrl(post)}>{post.data.title}</a>
+									<time datetime={post.data.date.toISOString()}>{formatNewsDate(post.data.date)}</time>
+								</li>
+							))}
+						</ul>
+					</div>
+				</section>
+			)
+		}
+
+		<section class="section founder-others">
+			<div class="container text-center">
+				<h2>Meet the other founders</h2>
+				<ul class="founder-others__list">
+					{
+						others.map((f) => (
+							<li>
+								<a href={founderUrl(f)} class="btn btn-yellow">
+									{f.name}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+				<p><a href={urls.about}>Back to About us</a></p>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.founder-hero {
+		background: var(--color-yellow-light);
+	}
+
+	.founder-hero__grid {
+		display: grid;
+		grid-template-columns: 1.2fr 0.8fr;
+		gap: 2.5rem;
+		align-items: center;
+	}
+
+	.founder-hero__eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
+	}
+
+	.founder-hero__role {
+		font-family: var(--font-accent);
+		font-size: 1.4rem;
+		color: var(--color-coral);
+		margin: 0 0 1rem;
+	}
+
+	.founder-hero__summary {
+		font-size: 1.2rem;
+		max-width: 38rem;
+	}
+
+	.founder-hero__img {
+		width: 100%;
+		height: auto;
+		border-radius: 0.5rem;
+		box-shadow: 8px 8px 0 0 var(--color-pink);
+	}
+
+	.founder-body__grid {
+		display: grid;
+		grid-template-columns: 1.2fr 0.8fr;
+		gap: 2.5rem;
+		align-items: start;
+	}
+
+	.founder-card {
+		background: var(--color-yellow-light);
+		border-radius: 2px;
+		box-shadow: 5px 5px 0 0 var(--color-mint);
+		padding: 1.5rem;
+	}
+
+	.founder-card h3 {
+		margin-top: 0;
+	}
+
+	.founder-card ul {
+		padding-left: 1.2rem;
+	}
+
+	.founder-card li + li {
+		margin-top: 0.5rem;
+	}
+
+	.founder-card__label {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 1.25rem 0 0.25rem;
+	}
+
+	.founder-words__inner {
+		max-width: 46rem;
+	}
+
+	.founder-quote {
+		margin: 1.5rem 0 0;
+		padding: 0 0 0 1.25rem;
+		border-left: 4px solid var(--color-yellow);
+		font-size: 1.2rem;
+	}
+
+	.founder-quote footer {
+		font-size: 1rem;
+		margin-top: 0.5rem;
+	}
+
+	.founder-posts__list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.founder-posts__list li {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 1rem;
+		align-items: baseline;
+	}
+
+	.founder-posts__list time {
+		font-size: 0.9rem;
+		opacity: 0.8;
+	}
+
+	.founder-others {
+		background: var(--color-yellow-light);
+	}
+
+	.founder-others__list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.5rem;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.75rem;
+	}
+
+	@media (max-width: 991px) {
+		.founder-hero__grid,
+		.founder-body__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

@@ -5,6 +5,9 @@ import Footer from '../../components/Footer.astro';
 import EmailCta from '../../components/EmailCta.astro';
 import VideoGallery from '../../components/VideoGallery.astro';
 import { microsoftMondaysVideos } from '../../data/videos';
+import PhotoGallery from '../../components/PhotoGallery.astro';
+import { Image } from 'astro:assets';
+import { lib, photo } from '../../data/library';
 
 const topics = [
 	'Isometric art creation in Blender',
@@ -56,8 +59,8 @@ const features = [
 						Microsoft mentors.
 					</p>
 					<p>
-						Showcased here as partner-funded delivery at scale. To run something like this with your
-						organisation or school network, email us via the button.
+						Partner-funded delivery at scale. Want a weekly series like this for your organisation or
+						school network? Email hello@girlgeekacademy.com.
 					</p>
 					<div class="hero-ctas">
 						<EmailCta label="Partner with us for 2027" variant="primary" />
@@ -65,6 +68,12 @@ const features = [
 					</div>
 				</div>
 				<div class="hero-badges">
+					<Image
+						src={lib('graphics/1200x675-Twitter-post.png')}
+						alt="Microsoft Mondays — inspiring the next generation of girls to solve problems with AI. A collaboration between Microsoft and Girl Geek Academy"
+						width={640}
+						class="hero-graphic"
+					/>
 					<div class="badge">
 						<p class="badge__label">Reach</p>
 						<p class="badge__value">150+ schools</p>
@@ -102,6 +111,12 @@ const features = [
 
 		<section class="section section--dark">
 			<div class="container">
+				<Image
+					src={lib('logos/Artboard-1Lockup-1.png')}
+					alt="Microsoft × Girl Geek Academy"
+					width={420}
+					class="lockup"
+				/>
 				<h2 class="text-center">What students learned</h2>
 				<p class="text-center topics-intro">
 					Topics rotated weekly — always something new. No experience needed.
@@ -111,6 +126,19 @@ const features = [
 				</ul>
 			</div>
 		</section>
+
+		<PhotoGallery
+			heading="Workshop series"
+			contain
+			photos={[
+				photo('photos/Microsoft-Workshop-Make-your-own-website-with-HTML-pdf.jpg', 'Workshop: make your own website with HTML'),
+				photo('photos/Microsoft-Workshop-Making-a-website-with-CSS-pdf.jpg', 'Workshop: making a website with CSS'),
+				photo('graphics/Girl-Geek-Academy-Microsoft-Mondays-Free-Code-Classes-High-School.png', 'Microsoft Mondays'),
+				photo('graphics/Girl-Geek-Academy-Microsoft-Mondays-Code-Classes-for-Kids.png', 'Weekend workshops'),
+				photo('graphics/Artboard-59instagram.png', 'Inspiring the next generation of girls to solve problems with tech and AI — Microsoft Mondays'),
+				photo('photos/High-school.jpeg', 'High school girls at computers during a workshop'),
+			]}
+		/>
 
 		<VideoGallery
 			heading="Watch Microsoft Mondays"
@@ -133,6 +161,12 @@ const features = [
 					<EmailCta label="Available for your school/workplace" variant="primary" />
 				</div>
 				<div class="stat-panel text-center">
+					<Image
+						src={lib('photos/5077-GGA-Microsoft-Poster-v2-pdf.jpg')}
+						alt="Microsoft Mondays poster for schools"
+						width={360}
+						class="poster"
+					/>
 					<p class="stat-panel__number">150+</p>
 					<p class="stat-panel__label">Schools participating globally</p>
 				</div>
@@ -143,6 +177,27 @@ const features = [
 </Layout>
 
 <style>
+	.hero-graphic {
+		width: 100%;
+		height: auto;
+		border-radius: 0.25rem;
+		margin-bottom: 1rem;
+	}
+
+	.lockup {
+		display: block;
+		height: auto;
+		max-width: 100%;
+		margin: 0 auto 1.5rem;
+	}
+
+	.poster {
+		height: auto;
+		max-width: 100%;
+		margin: 0 auto 1.5rem;
+		border-radius: 0.25rem;
+	}
+
 	.case-hero {
 		background-color: var(--color-yellow);
 		background-image: url('/images/backgrounds/hero-pattern.png');

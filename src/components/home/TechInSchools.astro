@@ -1,0 +1,120 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { urls } from '../../data/urls';
+import { brisbaneTimesArticle } from '../../data/techSchools';
+
+/**
+ * Brisbane Times photo slot.
+ * Once Nine gives permission: save the photo as src/assets/home/brisbane-times-tech.jpg,
+ * then replace `null` below with:  import photo from '../../assets/home/brisbane-times-tech.jpg';
+ * Until then the section renders as a text-only card.
+ */
+const photo: ImageMetadata | null = null;
+const photoAlt = 'Olivia and Frankie, two Brisbane students who have tried coding at school';
+const photoCredit = 'Photo: Catherine Strohfeldt / Brisbane Times';
+---
+
+<section class="tech-schools section">
+	<div class:list={['container', 'tech-schools__inner', { 'tech-schools__inner--photo': photo }]}>
+		<div class="tech-schools__copy">
+			<p class="tech-schools__kicker">In the news</p>
+			<h2>Tech is compulsory. But some schools are neglecting it. Is yours?</h2>
+			<p>
+				Under the Australian Curriculum, tech is compulsory until the end of Year 8. But a new study of
+				22 Queensland schools found nearly half let students skip Digital Technologies entirely.
+			</p>
+			<blockquote class="tech-schools__quote">
+				<p>“{brisbaneTimesArticle.quote}”</p>
+				<footer>Sarah Moran, in Brisbane Times</footer>
+			</blockquote>
+			<div class="tech-schools__ctas">
+				<a href={`${urls.techInSchools}#check`} class="btn btn-primary">Check your school</a>
+				<a href={urls.techInSchools} class="btn btn-coral">Read the research</a>
+			</div>
+		</div>
+		{
+			photo && (
+				<figure class="tech-schools__media">
+					<Image src={photo} alt={photoAlt} width={640} class="tech-schools__photo" />
+					<figcaption>{photoCredit}</figcaption>
+				</figure>
+			)
+		}
+	</div>
+</section>
+
+<style>
+	.tech-schools.section {
+		background-color: var(--color-yellow-light);
+	}
+
+	.tech-schools__inner {
+		max-width: 48rem;
+	}
+
+	.tech-schools__inner--photo {
+		max-width: var(--container-max);
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2.5rem;
+		align-items: center;
+	}
+
+	.tech-schools__kicker {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-coral);
+		margin: 0 0 0.75rem;
+	}
+
+	.tech-schools__quote {
+		margin: 1.5rem 0;
+		padding: 1rem 1.25rem;
+		border-left: 6px solid var(--color-coral);
+		background: var(--color-white);
+	}
+
+	.tech-schools__quote p {
+		font-family: var(--font-display);
+		font-size: clamp(1.4rem, 2.6vw, 2rem);
+		line-height: 1;
+		margin: 0 0 0.5rem;
+	}
+
+	.tech-schools__quote footer {
+		font-size: 0.9rem;
+	}
+
+	.tech-schools__ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.tech-schools__media {
+		margin: 0;
+	}
+
+	.tech-schools__photo {
+		border-radius: 0.5rem;
+		box-shadow: 8px 8px 0 0 var(--color-coral);
+		transform: rotate(-1.5deg);
+	}
+
+	.tech-schools__media figcaption {
+		font-size: 0.85rem;
+		margin-top: 0.85rem;
+	}
+
+	@media (max-width: 991px) {
+		.tech-schools__inner--photo {
+			grid-template-columns: 1fr;
+		}
+
+		.tech-schools__photo {
+			transform: none;
+		}
+	}
+</style>

@@ -3,6 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import EmailCta from '../components/EmailCta.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+import LogoWall from '../components/LogoWall.astro';
+import { Image } from 'astro:assets';
+import { lib, photo } from '../data/library';
+import { urls } from '../data/urls';
 
 const offers = [
 	{
@@ -27,7 +32,8 @@ const offers = [
 	<Header />
 	<main>
 		<section class="prog-hero section">
-			<div class="container">
+			<div class="container grid-2">
+				<div>
 				<p class="page-eyebrow">Program · Games</p>
 				<h1>SheMakesGames</h1>
 				<p class="lead">
@@ -42,6 +48,10 @@ const offers = [
 				<div class="hero-ctas">
 					<EmailCta label="Available for your school/workplace" variant="primary" />
 					<EmailCta label="Partner with us for 2027" variant="coral" />
+				</div>
+				</div>
+				<div class="hero-media">
+					<Image src={lib('graphics/shemakesgames-sticker.png')} alt="SheMakesGames pixel heart sticker" width={420} />
 				</div>
 			</div>
 		</section>
@@ -87,11 +97,161 @@ const offers = [
 				</div>
 			</div>
 		</section>
+		<PhotoGallery
+			heading="Game on"
+			photos={[
+				photo('photos/48863207116_3fbf3eeae6_k.jpg', 'A speaker on stage at ACMI, Melbourne — one day only, 29 October 2016', 'SheMakesGames 2019'),
+				photo('graphics/Artboard-3nissan.png', 'Lisy Kane, video game producer, speaking on camera', 'Co-founder Lisy Kane'),
+				photo('photos/48862711848_3451aa8448_k.jpg', 'Participants at laptops in front of the Hacker banner', 'SheMakesGames 2019 — Hacker track'),
+				photo('photos/48863433147_1a00b4f4a8_k.jpg', 'Participants beside the Hustler banner', 'SheMakesGames 2019 — Hustler track'),
+				photo('photos/48863404052_bfa1021429_k.jpg', 'Participants listening to a talk', 'SheMakesGames 2019'),
+				photo('photos/48863407077_f5fffe1ac8_c.jpg', 'A panel of speakers on stage', 'SheMakesGames 2019'),
+				photo('photos/48863234026_b2e6282d4c_k.jpg', 'The audience applauding', 'SheMakesGames 2019'),
+				photo('photos/26989952147_7c4b90cf97_c.jpg', 'A relaxed session on beanbags'),
+				photo('photos/PAX.jpeg', 'PAX Australia, 11–13 October', 'Gender Equality Game Jam at PAX Australia'),
+			]}
+		/>
+
+		<section class="section section--dark shehacksgames">
+			<div class="container grid-2">
+				<div>
+					<Image
+						src={lib('logos/3858-SheHacksGames-Logo-Hearts.png')}
+						alt="#SheHacksGames"
+						width={420}
+						class="shehacksgames__logo"
+					/>
+					<h2 class="sr-only">#SheHacksGames</h2>
+					<p class="shehacksgames__lead">Zero-to-game in two days — game on!</p>
+					<p>
+						#SheHacksGames was the first all-woman game jam in Australia, and our first hackathon made
+						specifically for the games industry. Teams of Girl Geeks had two days to make a game of any
+						genre, on any platform — with mentors from the industry, great food and a party at the end.
+					</p>
+					<p>
+						It grew out of #SheMakesGames: our community wanted more hands-on experience, more exposure
+						to the industry and more chances to show what they could do.
+					</p>
+				</div>
+				<div>
+					<Image
+						src={lib('photos/41858282831_c61d6528a6_k.jpg')}
+						alt="A huge group of #SheHacksGames participants cheering at The Arcade Melbourne"
+						width={800}
+						class="shehacksgames__photo"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<PhotoGallery
+			heading="#SheHacksGames at The Arcade"
+			intro="Held at The Arcade Melbourne — Australia’s first not-for-profit coworking space for game developers."
+			photos={[
+				photo('photos/41858279681_5a8da32628_k.jpg', 'Cupcakes decorated with pixel hearts'),
+				photo('photos/41858243521_be848b6e54_k.jpg', 'The Arcade Melbourne sign', 'The Arcade Melbourne'),
+				photo('photos/40959492285_a0e219d0b2_c.jpg', 'Participants on beanbags in front of a shelf of games and toys'),
+				photo('photos/41141227124_b1a9725cf7_c.jpg', 'Participants chatting on beanbags'),
+				photo('photos/41141224454_78eedf839b_k.jpg', 'A speaker presenting to a room of participants'),
+				photo('photos/41141236514_2d5a22bceb_c.jpg', 'Participants watching a screen from beanbags'),
+				photo('photos/40959493575_8cf51e1a91_c.jpg', 'Participants on beanbags'),
+			]}
+		/>
+
+		<section class="section more-games">
+			<div class="container">
+				<h2 class="text-center">More from our games programs</h2>
+				<div class="grid-2 more-games__grid">
+					<a class="more-games__card" href={urls.caseGamesIncubator}>
+						<p class="more-games__eyebrow">Case study · 2019</p>
+						<h3>Games Career Incubator</h3>
+						<p>
+							Four months of mentoring, networking and training for 62 women and non-binary games
+							practitioners in Victoria — funded by Film Victoria.
+						</p>
+					</a>
+					<a class="more-games__card" href={urls.caseGameJam}>
+						<p class="more-games__eyebrow">Case study · 2019</p>
+						<h3>Gender Equality Game Jam</h3>
+						<p>
+							Australia’s first gender equality game jam — 11 games about stereotypes and the gendered
+							drivers of violence, made at The Arcade.
+						</p>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<LogoWall
+			heading="Games industry friends"
+			logos={[
+				{ src: lib('graphics/unity-master-white.png'), alt: 'Unity', tile: 'primary' },
+				{ src: lib('graphics/eeffa5a9-54e7-4792-a579-c86300452177.png'), alt: 'Game Developers’ Association of Australia', tile: 'primary' },
+				{ src: lib('partner-logos/Film_Victoria_State_Gov_logo.jpeg'), alt: 'Victoria State Government and Film Victoria' },
+				{ src: lib('photos/L21udC9zaXRlX2RhdGEvc3BhY2VzLzE3MjQ2LWwuanBnLDE0OTc4NDY2ODQsaW1hZ2UvanBn.jpeg'), alt: 'The Arcade Melbourne' },
+			]}
+		/>
 	</main>
 	<Footer />
 </Layout>
 
 <style>
+	.more-games__grid {
+		align-items: stretch;
+		margin-top: 2rem;
+	}
+
+	.more-games__card {
+		display: block;
+		padding: 1.5rem;
+		border: 1px solid rgba(95, 125, 215, 0.25);
+		border-radius: 0.25rem;
+		color: inherit;
+		transition: border-color 0.2s, box-shadow 0.2s;
+	}
+
+	.more-games__card:hover {
+		border-color: var(--color-primary);
+		box-shadow: 4px 3px 0 0 var(--color-yellow-light);
+		color: inherit;
+	}
+
+	.more-games__eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		font-size: 0.85rem;
+		margin: 0 0 0.5rem;
+	}
+
+	.more-games__card h3 {
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		margin-bottom: 0.5rem;
+	}
+
+	.more-games__card p:last-child {
+		margin: 0;
+	}
+
+	.shehacksgames__logo {
+		height: auto;
+		max-width: 100%;
+		margin-bottom: 1rem;
+		background: var(--color-white);
+		border-radius: 0.5rem;
+		padding: 0.75rem;
+	}
+
+	.shehacksgames__lead {
+		font-size: 1.25rem;
+		font-weight: 700;
+	}
+
+	.shehacksgames__photo {
+		width: 100%;
+		height: auto;
+		border-radius: 0.25rem;
+	}
+
 	.prog-hero {
 		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
 	}

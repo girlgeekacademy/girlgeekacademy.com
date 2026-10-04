@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import logo from '../assets/home/logo.png';
+import logo from '../assets/library/logos/Girl-Geek-Academy-Logo.svg';
 import { urls } from '../data/urls';
 import { mainNav, type NavGroup, type NavLink } from '../data/nav';
 
@@ -12,7 +12,7 @@ function isGroup(item: NavLink | NavGroup): item is NavGroup {
 <header class="header">
 	<nav class="header__nav container" aria-label="Main navigation">
 		<a href={urls.home} class="header__brand" rel="home">
-			<Image src={logo} alt="Girl Geek Academy" width={411} height={55} />
+			<Image src={logo} alt="Girl Geek Academy" width={411} height={54} />
 		</a>
 
 		<button

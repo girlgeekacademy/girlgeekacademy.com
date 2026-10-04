@@ -6,39 +6,18 @@ import EmailCta from '../components/EmailCta.astro';
 import VideoGallery from '../components/VideoGallery.astro';
 import { urls } from '../data/urls';
 import { aboutVideos } from '../data/videos';
+import PhotoGallery from '../components/PhotoGallery.astro';
+import { Image } from 'astro:assets';
+import { lib, photo } from '../data/library';
+import { founders, founderUrl } from '../data/founders';
 
-const founders = [
-	{
-		name: 'Sarah Moran',
-		role: 'Co-founder & CEO',
-		bio: 'Sarah learned to code when she was five and got pushed out of tech in Year 10 (her teacher didn’t understand the code behind her website — despite it being very excellent). She gets angry when women and girls who are good at tech get pushed out, so she fights to stop it happening to others. Winner of The Australian Women’s Weekly Women of the Future (2018) — then a judge — a UN Women Australia speaker, and a regular technology commentator on The Today Show. Telling the Girl Geek Academy story, finding great people to work with, and making sure there’s always money in the bank is her job as CEO.',
-	},
-	{
-		name: 'Lisy Kane',
-		role: 'Co-founder & games producer',
-		bio: 'Lisy is a videogames producer with a global footprint — the only Australian on Forbes 30 Under 30: Games (2017). At Melbourne studio League of Geeks her work includes award-winning title Armello; she oversees international releases across Steam, PlayStation, Xbox, Switch and mobile. She’s in high demand on the speaker circuit for gaming, tech and STEM education — including for NASA — and can often be found streaming DOTA 2 on Twitch.',
-	},
-	{
-		name: 'Tammy Butow',
-		role: 'Co-founder & Empress of Chaos',
-		bio: 'Tammy has the coolest job of anyone you’ll ever meet — breaking things on purpose by running chaos experiments, which earned her the nickname Empress of Chaos. Based in Florida after San Francisco, she’s VP of Reliability at Gremlin. She started at 10, building and fixing computers and ridding family friends’ machines of viruses. As a Site Reliability Engineer she’s kept the lights on at places like Dropbox, DigitalOcean and NAB. Tammy sat the five of us down in 2014 and said: you’re awesome, you’re awesome, you’re awesome and you’re awesome — we’re starting a company.',
-	},
-	{
-		name: 'Amanda Watts',
-		role: 'Co-founder & chief hipster',
-		bio: 'Using the keyboard as her paintbrush, Amanda is the artist behind Girl Geek Academy’s vibrant branding — from pixels to paint. She owns marketing and branding agency Design Junkies (10+ years) and co-founded a startup with a fellow founder she met at the first #SheHacks in 2014.',
-	},
-	{
-		name: 'April Staines',
-		role: 'Co-founder & chief maker',
-		bio: 'April was a geek before geek was even a word. She runs April Storm Props — digitally fabricated and 3D-printed costume props for fans and cosplay — and even built her own working droid, R2-QT. When she outgrew her home with printers, she moved to a farm: unlike most farmers, she gets up to turn on her 16 3D printers before her day job as a distinguished engineer at NAB. She co-authored Girl Geeks: Making Magic to inspire girls into space and making.',
-	},
-];
+const currentTeam = founders.filter((f) => f.active);
+const otherFounders = founders.filter((f) => !f.active);
 
 const impact = [
 	{ value: '1000+', label: 'teachers taught to code' },
 	{ value: '12,000+', label: 'kids introduced to STEM education' },
-	{ value: '32,000+', label: 'books sold in Australia alone' },
+	{ value: '30,000+', label: 'books sold in Australia' },
 	{ value: '46', label: 'official company teapots' },
 ];
 
@@ -52,16 +31,21 @@ const pipeline = [
 
 <Layout
 	title="About Us — Girl Geek Academy"
-	description="Get ya geek on. Tech has a pipeline problem — so we’re fixing the holes in the pipe. Meet the founders of Girl Geek Academy and how we accidentally ran the world’s first all-women hackathon."
+	description="Girls who love tech still get pushed out of it. Meet the founders of Girl Geek Academy, and find out how we accidentally ran the world’s first all-women hackathon."
 >
 	<Header />
 	<main>
 		<section class="about-hero section">
-			<div class="container">
+			<div class="container grid-2">
+				<div>
 				<p class="about-hero__eyebrow">About us</p>
 				<h1>Get ya geek on!</h1>
 				<p class="about-hero__lead">
-					<strong>Tech has a pipeline problem — so we’re fixing the holes in the pipe.</strong>
+					<strong>Girls who love tech still get pushed out of it. We keep them in.</strong>
+				</p>
+				<p>
+					Our CEO Sarah Moran learned to code at five and was pushed out of tech in Year 10. Girl Geek
+					Academy exists so the next generation of girl geeks stay.
 				</p>
 				<p>
 					Women and girls shape the technology that shapes their lives. We ran the world’s first
@@ -75,7 +59,11 @@ const pipeline = [
 				</p>
 				<div class="about-hero__ctas">
 					<a href={urls.workWithUs} class="btn btn-primary">Work with Us</a>
-					<a href={urls.report} class="btn btn-coral">Research & Impact</a>
+					<a href={urls.techInSchools} class="btn btn-coral">Policy &amp; Impact</a>
+				</div>
+				</div>
+				<div class="hero-media hero-media--wide">
+					<Image src={lib('photos/49481000838_554803bda8_c.jpg')} alt="The Girl Geek Academy crew holding a big pink Girl Geek Academy banner" width={800} />
 				</div>
 			</div>
 		</section>
@@ -119,6 +107,12 @@ const pipeline = [
 			<div class="container">
 				<h2 class="text-center">Tech has a pipeline problem</h2>
 				<p class="text-center about-pipeline__intro">Let’s talk about the holes in the pipe.</p>
+				<Image
+					src={lib('graphics/Artboard-1rainbow.png')}
+					alt="A rainbow showing the pipeline: kids, teens, college, mid career, leadership"
+					width={360}
+					class="about-graphic"
+				/>
 				<div class="about-pipeline__grid">
 					{
 						pipeline.map((s) => (
@@ -148,25 +142,61 @@ const pipeline = [
 						))
 					}
 				</div>
+				<div class="about-impact__graphics">
+					<Image src={lib('graphics/Artboard-3teapot.png')} alt="A teapot with a pixel heart — one of our 46 official company teapots" width={260} />
+					<Image src={lib('graphics/Artboard-3world.png')} alt="Map of milestones: Girl Geek Academy founded in Australia 2014, SheHacks NYC 2017, Ukraine book launch 2020, Girl Geek Samoa launched January 2020" width={520} />
+				</div>
 				<p class="text-center about-impact__more">
 					Through grants, tenders, corporate clients and fundraising, we’ve prototyped what works —
-					and campaigned in media for change. Today we’re on our way to one million friends: a true
-					community with global reach.
+					and campaigned in media for change.
 				</p>
 			</div>
 		</section>
 
 		<section id="team" class="about-founders section">
 			<div class="container">
-				<h2 class="text-center">Meet Amanda, Lisy, Tammy, Sarah & April</h2>
-				<p class="text-center about-founders__intro">Say g’day to our girl gang founders.</p>
+				<Image
+					src={lib('graphics/Artboard-4girl-gang.png')}
+					alt="Illustration of three girl geeks gathered around a laptop"
+					width={300}
+					class="about-graphic"
+				/>
+				<h2 class="text-center">Meet our founders</h2>
+				<p class="text-center about-founders__intro">
+					Five of us started Girl Geek Academy in 2014. Four of us run it today.
+				</p>
+				<Image
+					src={lib('photos/GGA_group_1.jpg')}
+					alt="A selfie of the five Girl Geek Academy founders"
+					width={900}
+					class="about-founders__photo"
+				/>
+				<h3 class="text-center about-founders__group">Running Girl Geek Academy today</h3>
 				<ul class="about-founders__list">
 					{
-						founders.map((f) => (
+						currentTeam.map((f) => (
 							<li class="about-founders__card">
 								<p class="about-founders__name">{f.name}</p>
 								<p class="about-founders__role">{f.role}</p>
-								<p class="about-founders__bio">{f.bio}</p>
+																<p class="about-founders__bio">{f.summary}</p>
+								{f.hasPage !== false && (
+									<a href={founderUrl(f)} class="about-founders__more">Read {f.name.split(' ')[0]}’s story →</a>
+								)}
+							</li>
+						))
+					}
+				</ul>
+				<h3 class="text-center about-founders__group">Also a co-founder</h3>
+				<ul class="about-founders__list">
+					{
+						otherFounders.map((f) => (
+							<li class="about-founders__card">
+								<p class="about-founders__name">{f.name}</p>
+								<p class="about-founders__role">{f.role}</p>
+																<p class="about-founders__bio">{f.summary}</p>
+								{f.hasPage !== false && (
+									<a href={founderUrl(f)} class="about-founders__more">Read {f.name.split(' ')[0]}’s story →</a>
+								)}
 							</li>
 						))
 					}
@@ -182,8 +212,49 @@ const pipeline = [
 			dark
 		/>
 
+		<PhotoGallery
+			heading="Our community"
+			photos={[
+				photo('photos/Girl-Geek-Academy-2017.jpg', 'The Girl Geek Academy team in 2017'),
+				photo('photos/28977304673_f8bb9cafaa_b.jpeg', 'A big group of girl geeks with their hands in the air'),
+				photo('photos/48862709223_31c22e90a4_k.jpg', 'A huge crowd cheering under colourful banners'),
+				photo('photos/33212012648_79d284a124_k.jpg', 'A group photo in front of a Girl Geek Academy backdrop'),
+				photo('photos/47087032121_4b8e8ace19_k.jpg', 'Three women laughing together at a laptop'),
+				photo('photos/46173470245_45d92b28f7_k.jpg', 'Participants working at laptops in front of a mural'),
+				photo('photos/48862705028_32cc3392ea_k.jpg', 'Two girl geeks smiling in front of a patterned wall'),
+				photo('photos/40959447385_3182f15d57_c.jpg', 'Two girls smiling in front of a Girl Geek Academy backdrop'),
+				photo('photos/47087031901_df9fa54346_k.jpg', 'Participants working together at a table'),
+				photo('photos/48862896413_b014c41c4d_c.jpg', 'A facilitator helping participants at laptops'),
+				photo('photos/28653703406_e9a4b5bb1d_c.jpg', 'Two women working at a laptop by a window'),
+				photo('photos/033-1.jpg', 'Two women chatting at a laptop in front of a mural'),
+				photo('photos/33212010908_2325093649_k.jpg', 'Three girls holding a #GirlGeekAcademy sign'),
+				photo('photos/48863207446_3e485b2fc9_k.jpg', 'Participants chatting around a table'),
+				photo('photos/48863440482_239545beaf_k.jpg', 'A panel in front of a tinsel backdrop'),
+				photo('graphics/Artboard-1tall.png', 'Three young women laughing at a laptop'),
+				photo('photos/LetterBoard.jpg', 'A #GirlGeekAcademy letter board with coffee cups'),
+				photo('photos/GGA-Thumb-WhatIsGGA.jpg', 'A huge group of girl geeks sitting together on the floor'),
+				photo('photos/26989912417_8cd1920558_c.jpg', 'Girls gathered around a laptop'),
+				photo('photos/33212013388_4063420c2d_k-1.jpg', 'Women at laptops in a bright room'),
+				photo('photos/043-1.jpg', 'Girls playing games at a row of computers'),
+				photo('photos/050.jpg', 'Girls in headphones at a row of computers'),
+				photo('graphics/Artboard-2PLE.png', 'Girls gaming together at computers'),
+				photo('photos/48862726863_c140244ddf_k.jpg', 'Lanyards, badges and stickers laid out on a table'),
+				photo('photos/26641465358_c782ea4d12_w.jpg', 'Two women chatting beside a table of gift bags'),
+				photo('photos/40512120271_3bdcae56ff_w.jpg', 'Three women chatting at an event'),
+				photo('photos/25795454347_6cd6caaf6c_w.jpg', 'A group of women at a formal event'),
+				photo('photos/48863026926_9ec8422396_w.jpg', 'A participant raising her hand to ask a question'),
+				photo('photos/28977327113_cec9d4d568_w.jpg', 'Four women laughing together at a laptop'),
+			]}
+		/>
+
 		<section class="about-programs section">
 			<div class="container text-center">
+				<Image
+					src={lib('graphics/Artboard-54Rainbow-light.png')}
+					alt="Helping women build the internet — a rainbow and globe illustration"
+					width={320}
+					class="about-graphic"
+				/>
 				<h2>Get ya geek on with us</h2>
 				<p>
 					From MissMakesCode workshops to #SheHacks and beyond — explore our programs, or partner with
@@ -202,6 +273,33 @@ const pipeline = [
 </Layout>
 
 <style>
+	.about-graphic {
+		margin: 0 auto 2rem;
+		height: auto;
+	}
+
+	.about-impact__graphics {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 2rem;
+		margin: 2.5rem 0 1rem;
+	}
+
+	.about-impact__graphics img {
+		height: auto;
+		max-width: 100%;
+	}
+
+	.about-founders__photo {
+		width: 100%;
+		max-width: 720px;
+		height: auto;
+		margin: 0 auto 2.5rem;
+		border-radius: 0.25rem;
+	}
+
 	.about-hero {
 		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
 	}
@@ -296,12 +394,29 @@ const pipeline = [
 		margin: 0 auto;
 	}
 
-	.about-founders__list {
+		.about-founders__list {
 		list-style: none;
-		margin: 0;
+		margin: 0 0 2.5rem;
 		padding: 0;
-		display: grid;
+				display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 		gap: 1.5rem;
+	}
+
+	.about-founders__list > li {
+		flex: 1 1 240px;
+		max-width: 340px;
+	}
+
+	.about-founders__group {
+		margin: 0 0 1.25rem;
+	}
+
+	.about-founders__more {
+		display: inline-block;
+		margin-top: 0.75rem;
+		font-weight: 600;
 	}
 
 	.about-founders__card {

@@ -1,0 +1,353 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EmailCta from '../../components/EmailCta.astro';
+import { Image } from 'astro:assets';
+import { lib } from '../../data/library';
+import { urls } from '../../data/urls';
+
+const itchUrl = 'https://itch.io/jam/gender-equality-jam-2019';
+
+const steps = [
+	{
+		when: '4 September',
+		title: 'Pre-jam workshop',
+		body: 'Selected participants learned from experts in gender equality and games before a single line of code was written.',
+	},
+	{
+		when: '14–15 September',
+		title: 'The jam',
+		body: 'Over two days, curated teams of 3–5 made a game of any genre or platform, with a purpose of social change and challenging gendered constructs.',
+	},
+	{
+		when: '15 September, afternoon',
+		title: 'Play Party',
+		body: 'The public was invited in to play the games made over the weekend — people of all ages, backgrounds and genders.',
+	},
+	{
+		when: 'October',
+		title: 'PAX Australia',
+		body: 'Teams were invited to show their games in our community space at PAX Australia.',
+	},
+];
+
+const games = [
+	'EmojiOhm',
+	'You Look Good Today',
+	'Your Interview is at 10…',
+	'Life of Ryan',
+	"Baby's First Gender",
+	'Genderally Speaking',
+	'The Art of Communication',
+	'Hirely.io',
+	'The Lesser of Two Equals',
+	'Plan of Autonomy',
+	'Refraction',
+];
+
+const press = [
+	{
+		label: 'Impulse Gamer: Australia’s first Gender Equality Game Jam',
+		href: 'https://www.impulsegamer.com/australias-first-gender-equality-game-jam/',
+	},
+	{
+		label: 'Stevivor: Gender Equality Game Jam planned for September in Melbourne',
+		href: 'https://stevivor.com/news/gender-equality-game-jam-planned-september-melbourne/',
+	},
+	{
+		label: 'Sarah Moran on LinkedIn: Announcing the Gender Equality Game Jam',
+		href: 'https://www.linkedin.com/pulse/announcing-gender-equality-game-jam-sarah-moran',
+	},
+];
+---
+
+<Layout
+	title="Case study: Gender Equality Game Jam — Girl Geek Academy"
+	description="Australia’s first Gender Equality Game Jam — games about gender stereotypes and the drivers of violence, made at The Arcade Melbourne in September 2019."
+>
+	<Header />
+	<main>
+		<section class="case-hero section">
+			<div class="container grid-2">
+				<div>
+					<p class="page-eyebrow">Case study · Games · 2019</p>
+					<h1>Gender Equality Game Jam</h1>
+					<p class="lead">
+						Australia’s first gender equality game jam: two days making games that tackle gender
+						stereotypes and the gendered drivers of violence against women and all marginalised
+						genders.
+					</p>
+					<p>
+						Run by Girl Geek Academy with the City of Port Phillip, Star Health and The Arcade, and
+						funded by VicHealth’s Gender Equality in the Arts program.
+					</p>
+					<div class="hero-ctas">
+						<a href={itchUrl} class="btn btn-mint" target="_blank" rel="noopener noreferrer">Play the games</a>
+						<EmailCta label="Partner with us for 2027" variant="primary" />
+					</div>
+				</div>
+				<div class="hero-badges">
+					<div class="badge">
+						<p class="badge__label">Games made</p>
+						<p class="badge__value">11</p>
+						<p class="badge__sub">Still playable on itch.io</p>
+					</div>
+					<div class="badge">
+						<p class="badge__label">When & where</p>
+						<p class="badge__value">14–15 Sept 2019</p>
+						<p class="badge__sub">The Arcade Melbourne, Port Phillip</p>
+					</div>
+					<div class="badge">
+						<p class="badge__label">Who</p>
+						<p class="badge__value">Open-gendered, 18+</p>
+						<p class="badge__sub">Curated teams of 3–5</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container grid-2">
+				<div>
+					<h2>Why a game jam?</h2>
+					<blockquote class="quote">
+						<p>“Gender imbalance is a familiar concept in the gaming industry.”</p>
+						<footer>— Sarah Moran, Girl Geek Academy CEO</footer>
+					</blockquote>
+					<p>
+						Only 22.9% of games industry employees identified as something other than men, while
+						52.1% of players were women or non-binary. Games shape how people see the world — so we
+						asked the people making them to take on gender equality directly.
+					</p>
+				</div>
+				<div>
+					<Image
+						src={lib('photos/41858243521_be848b6e54_k.jpg')}
+						alt="The Arcade Melbourne sign"
+						width={640}
+						class="case-photo"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">How it ran</h2>
+				<ol class="timeline">
+					{
+						steps.map((s) => (
+							<li class="timeline__item">
+								<span class="timeline__when">{s.when}</span>
+								<div>
+									<h3>{s.title}</h3>
+									<p>{s.body}</p>
+								</div>
+							</li>
+						))
+					}
+				</ol>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container grid-2">
+				<div>
+					<h2>The games</h2>
+					<p>Eleven games came out of the weekend. You can still play them.</p>
+					<ul class="games-list">
+						{games.map((g) => <li>{g}</li>)}
+					</ul>
+					<a href={itchUrl} class="btn btn-yellow" target="_blank" rel="noopener noreferrer">Play on itch.io</a>
+				</div>
+				<div>
+					<Image
+						src={lib('photos/PAX.jpeg')}
+						alt="PAX Australia, 11–13 October"
+						width={640}
+						class="case-photo"
+					/>
+					<p class="caption">
+						The games went on show at PAX Australia —
+						<a href="/news/gender-equality-game-jam-showcase-girl-geek-academy-pax/">read the news post</a>.
+					</p>
+					<h3 class="side-heading">In the press</h3>
+					<ul class="press-list">
+						{
+							press.map((p) => (
+								<li>
+									<a href={p.href} target="_blank" rel="noopener noreferrer">
+										{p.label}
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="section text-center">
+			<div class="container">
+				<h2>Run a game jam for change</h2>
+				<p class="cta-lead">
+					Game jams, Play Parties and games career programs — see
+					<a href={urls.sheMakesGames}>SheMakesGames</a>, our
+					<a href={urls.caseSheMakesChange}>#SheMakesChange</a> hack day and our
+					<a href={urls.caseStudies}>other case studies</a>.
+				</p>
+				<EmailCta label="Partner with us for 2027" variant="primary" />
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.case-hero {
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+	}
+
+	.hero-badges {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.badge {
+		background: var(--color-white);
+		padding: 1rem 1.25rem;
+		border-radius: 0.25rem;
+		border: 1px solid rgba(95, 125, 215, 0.2);
+		box-shadow: 4px 3px 0 0 var(--color-yellow-light);
+	}
+
+	.badge__label {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		font-size: 0.8rem;
+		margin: 0 0 0.25rem;
+	}
+
+	.badge__value {
+		font-family: var(--font-display);
+		font-size: 2rem;
+		line-height: 1;
+		margin: 0;
+	}
+
+	.badge__sub {
+		margin: 0.25rem 0 0;
+		font-size: 0.95rem;
+	}
+
+	.quote {
+		margin: 0 0 1.25rem;
+		padding-left: 1rem;
+		border-left: 4px solid var(--color-yellow);
+	}
+
+	.quote p {
+		font-size: 1.25rem;
+		margin: 0 0 0.5rem;
+	}
+
+	.case-photo {
+		width: 100%;
+		height: auto;
+		border-radius: 0.25rem;
+	}
+
+	.timeline {
+		list-style: none;
+		max-width: 44rem;
+		margin: 2rem auto 0;
+		padding: 0;
+	}
+
+	.timeline__item {
+		display: grid;
+		grid-template-columns: 9rem 1fr;
+		gap: 1rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid rgba(95, 125, 215, 0.2);
+	}
+
+	.timeline__when {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+	}
+
+	.timeline__item h3 {
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		margin-bottom: 0.25rem;
+	}
+
+	.timeline__item p {
+		margin: 0;
+	}
+
+	.games-list {
+		columns: 2;
+		padding-left: 1.25rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.caption {
+		font-size: 0.875rem;
+		margin-top: 0.5rem;
+	}
+
+	.side-heading {
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		color: var(--color-white);
+		margin: 1.5rem 0 0.75rem;
+	}
+
+	.press-list {
+		padding-left: 1.25rem;
+	}
+
+	.press-list li {
+		margin-bottom: 0.5rem;
+	}
+
+	.press-list a,
+	.caption a {
+		text-decoration: underline;
+	}
+
+	.cta-lead {
+		max-width: 36rem;
+		margin: 0 auto 1.5rem;
+	}
+
+	@media (max-width: 600px) {
+		.timeline__item {
+			grid-template-columns: 1fr;
+			gap: 0.25rem;
+		}
+
+		.games-list {
+			columns: 1;
+		}
+	}
+</style>

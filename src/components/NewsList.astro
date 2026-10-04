@@ -1,0 +1,180 @@
+---
+/**
+ * News listing: hero, category filter links and a card grid.
+ * Used by /news/ and /news/category/[category]/.
+ */
+import { Image } from 'astro:assets';
+import {
+	formatNewsDate,
+	newsCategories,
+	newsCategoryUrl,
+	newsPostUrl,
+	type NewsCategory,
+	type NewsPost,
+} from '../data/news';
+import { urls } from '../data/urls';
+
+interface Props {
+	posts: NewsPost[];
+	active?: NewsCategory;
+}
+
+const { posts, active } = Astro.props;
+---
+
+<section class="section news-hero">
+	<div class="container">
+		<p class="news-hero__eyebrow">News</p>
+		<h1>{active ?? 'News & stories'}</h1>
+		<p class="news-hero__lead">
+			Announcements, media appearances and stories from the Girl Geek Academy community.
+		</p>
+		<nav class="news-filters" aria-label="Filter news by category">
+			<a href={urls.news} class="news-filter" aria-current={!active ? 'page' : undefined}>All</a>
+			{
+				newsCategories.map((c) => (
+					<a href={newsCategoryUrl(c)} class="news-filter" aria-current={c === active ? 'page' : undefined}>
+						{c}
+					</a>
+				))
+			}
+		</nav>
+	</div>
+</section>
+
+<section class="section news-list">
+	<div class="container news-grid">
+		{
+			posts.map((post) => (
+				<a class="news-card" href={newsPostUrl(post)}>
+					{post.data.heroImage && (
+						<Image
+							class="news-card__image"
+							src={post.data.heroImage}
+							alt={post.data.heroAlt}
+							width={640}
+							height={360}
+						/>
+					)}
+					<div class="news-card__body">
+						<p class="news-card__meta">
+							<span>{post.data.category}</span>
+							<time datetime={post.data.date.toISOString()}>{formatNewsDate(post.data.date)}</time>
+						</p>
+						<h2 class="news-card__title">{post.data.title}</h2>
+						<p class="news-card__excerpt">{post.data.excerpt}</p>
+					</div>
+				</a>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.news-hero {
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
+		padding-bottom: 1rem;
+	}
+
+	.news-hero__eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		margin: 0 0 0.75rem;
+	}
+
+	.news-hero__lead {
+		max-width: 40rem;
+		font-size: 1.125rem;
+	}
+
+	.news-filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: 1.5rem;
+	}
+
+	.news-filter {
+		padding: 0.35rem 0.9rem;
+		border: 1px solid var(--color-primary);
+		border-radius: 999px;
+		font-weight: 600;
+		font-size: 0.9375rem;
+		background: var(--color-white);
+	}
+
+	.news-filter[aria-current='page'] {
+		background: var(--color-primary);
+		color: var(--color-white);
+	}
+
+	.news-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.25rem;
+	}
+
+	.news-card {
+		display: flex;
+		flex-direction: column;
+		border: 1px solid rgba(95, 125, 215, 0.25);
+		border-radius: 0.25rem;
+		overflow: hidden;
+		color: inherit;
+		background: var(--color-white);
+		transition: border-color 0.2s, box-shadow 0.2s;
+	}
+
+	.news-card:hover {
+		border-color: var(--color-primary);
+		box-shadow: 4px 3px 0 0 var(--color-yellow-light);
+		color: inherit;
+	}
+
+	.news-card__image {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+	}
+
+	.news-card__body {
+		padding: 1.25rem 1.5rem 1.5rem;
+	}
+
+	.news-card__meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 0.75rem;
+		margin: 0 0 0.5rem;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	.news-card__title {
+		font-family: var(--font-body);
+		font-size: 1.25rem;
+		font-weight: 700;
+		line-height: 1.25;
+		margin-bottom: 0.5rem;
+	}
+
+	.news-card__excerpt {
+		margin: 0;
+		color: var(--color-dark);
+		font-size: 0.9375rem;
+	}
+
+	@media (max-width: 991px) {
+		.news-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 600px) {
+		.news-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

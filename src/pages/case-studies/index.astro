@@ -3,25 +3,49 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { urls } from '../../data/urls';
+import { Image } from 'astro:assets';
+import { lib } from '../../data/library';
 
 const cases = [
 	{
 		title: 'Sunsilk',
+		image: lib('graphics/GGA-Sunsilk-hero-image.png'),
 		href: urls.caseSunsilk,
 		blurb: 'School holiday STEM workshops with Sunsilk — mums and girls learning together.',
 	},
 	{
 		title: 'Microsoft Mondays',
+		image: lib('graphics/1200x675-Twitter-post.png'),
 		href: urls.caseMicrosoft,
 		blurb: 'Beginner-friendly AI and coding series with Microsoft mentors in schools worldwide.',
 	},
 	{
 		title: 'AI High',
+		image: lib('photos/Social-tile-Girl-geek-academy-2.jpg'),
 		href: urls.caseAiHigh,
 		blurb: 'Empowering girls with AI, coding, 3D modelling and digital creativity — Telstra Foundation.',
 	},
 	{
+		title: 'Games Career Incubator',
+		image: lib('graphics/Artboard-3nissan.png'),
+		href: urls.caseGamesIncubator,
+		blurb: 'Four months of mentoring and training for 62 women and non-binary games practitioners — with Film Victoria.',
+	},
+	{
+		title: 'Gender Equality Game Jam',
+		image: lib('photos/PAX.jpeg'),
+		href: urls.caseGameJam,
+		blurb: 'Australia’s first gender equality game jam — 11 games about stereotypes and the drivers of violence.',
+	},
+	{
+		title: '#SheMakesChange',
+		image: lib('graphics/SheMakesChange-poster.png'),
+		href: urls.caseSheMakesChange,
+		blurb: 'A Victoria Against Violence hack day — women in STEM using technology to increase women’s safety and wellbeing.',
+	},
+	{
 		title: 'MissMakesCode',
+		image: lib('photos/48863129141_c41328f4fe_k.jpg'),
 		href: urls.caseMissMakesCode,
 		blurb:
 			'Primary girls coding brand — workshops today; impact from the 2016 pilot, WISE scale-up, holidays and Samoa.',
@@ -37,7 +61,7 @@ const cases = [
 	<main>
 		<section class="section cases-hero">
 			<div class="container">
-				<p class="cases-hero__eyebrow">Research & Impact</p>
+				<p class="cases-hero__eyebrow">Policy &amp; Impact</p>
 				<h1>Case studies</h1>
 				<p class="cases-hero__lead">
 					Work we've delivered with partners. Use these as proof — then talk to us about running the
@@ -50,6 +74,7 @@ const cases = [
 				{
 					cases.map((c) => (
 						<a class="case-card" href={c.href}>
+							<Image src={c.image} alt="" width={640} class="case-card__img" />
 							<h2>{c.title}</h2>
 							<p>{c.blurb}</p>
 						</a>
@@ -62,6 +87,15 @@ const cases = [
 </Layout>
 
 <style>
+	.case-card__img {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		border-radius: 0.25rem;
+		margin-bottom: 1rem;
+		background: var(--color-yellow-light);
+	}
+
 	.cases-hero {
 		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
 		padding-bottom: 1rem;

@@ -11,28 +11,92 @@ const proof = [
 	{ label: 'AI High', href: urls.caseAiHigh },
 	{ label: 'MissMakesCode impact', href: urls.caseMissMakesCode },
 ];
+
+const asks = [
+	{
+		audience: 'Governments',
+		title: 'Stop funding reviews. Fund what works.',
+		intro: 'Enough talk. Act on the Diversity in STEM Review, and back it with investment in what already works.',
+		points: [
+			'Multi-year funding for women-led programs',
+			'A national action plan with real targets',
+			'Diversity conditions on grants and procurement',
+		],
+		cta: 'Read our submission',
+		href: urls.report,
+	},
+	{
+		audience: 'Corporates',
+		title: 'Keep your women in tech. They’ll help keep the next generation in.',
+		intro: 'The push-out doesn’t stop at school. Women leave tech at every career stage, and the women who stay usually want to stop it happening to the girls coming after them. We build programs that do both.',
+		points: [
+			'Retain and grow your women, from early career through to executive leadership',
+			'Give your people a way to bring girls through, like mentoring at SheHacksSwift, hosting work experience or running MissMakesCode for their daughters',
+			'Sponsor programs at the moments girls get pushed out, such as AI High',
+		],
+		cta: 'Build a program with us',
+		href: urls.corporates,
+	},
+	{
+		audience: 'Schools',
+		title: 'Keep her in the class.',
+		points: [
+			'Run digital tech classes even when only a few girls enrol',
+						'Bring MissMakesCode or AI High to your students',
+			'Check your timetable teaches tech to every student until the end of Year 8, as the curriculum requires',
+		],
+		cta: 'Bring us to your school',
+		href: urls.schools,
+	},
+	{
+		audience: 'Parents and women in tech',
+		title: 'Be the reason she stays.',
+		points: [
+						'Sign her up for SheHacksSwift, in Sydney in January 2027',
+			'Mentor or speak at a program',
+			'Check her school teaches tech until the end of Year 8, as the curriculum requires',
+		],
+		cta: 'Get involved',
+		href: urls.womenInTech,
+	},
+];
 ---
 
 <section class="partner-home section">
 	<div class="container partner-home__grid">
 		<div class="partner-home__copy">
-			<p class="partner-home__kicker">Partner with us</p>
+			<p class="partner-home__kicker">Work with us</p>
 			<h2>Let’s work together</h2>
 			<p class="partner-home__lead">
-				Over the past decade we’ve created programs adopted by governments, universities, banks and
-				tech companies who share our commitment — keep girl geeks in, and give them tech power.
+				Girls and women don’t simply leave tech. They get pushed out. Here’s how you can help keep
+				them in.
 			</p>
-			<p>
-				Schools, libraries, corporates, government, media — if you’re here to increase the number of
-				women and girls building the internet, you’ve come to the right place.
-			</p>
+			<!-- Four audience asks: content only, unstyled. Layout still to design. -->
+			<ul class="partner-home__asks">
+				{
+					asks.map((a) => (
+						<li class="partner-home__ask">
+							<p class="partner-home__audience">{a.audience}</p>
+							<h3>{a.title}</h3>
+							{a.intro && <p>{a.intro}</p>}
+							<ul>
+								{a.points.map((pt) => (
+									<li>{pt}</li>
+								))}
+							</ul>
+							<a href={a.href} class="btn btn-primary">
+								{a.cta}
+							</a>
+						</li>
+					))
+				}
+			</ul>
 			<div class="partner-home__ctas">
 				<EmailCta label="Partner with us for 2027" variant="yellow" />
-				<a href={urls.welcomePack} class="btn btn-coral" target="_blank" rel="noopener noreferrer">
-					Download welcome pack
-				</a>
+				
 				<a href={urls.workWithUs} class="btn btn-mint">Work with Us</a>
 			</div>
+			<p class="partner-home__proof-label">See it working:</p>
 			<ul class="partner-home__proof">
 				{
 					proof.map((p) => (

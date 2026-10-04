@@ -1,0 +1,434 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EmailCta from '../../components/EmailCta.astro';
+import { Image } from 'astro:assets';
+import PhotoGallery from '../../components/PhotoGallery.astro';
+import { lib, photo } from '../../data/library';
+import { urls } from '../../data/urls';
+
+const program = [
+	{
+		title: 'Monthly cohort breakfasts',
+		body: 'The whole cohort together each month — building the peer network that keeps people in the industry.',
+	},
+	{
+		title: 'Tailored learning',
+		body: '1:1 and group sessions shaped around each person’s goals, mixing online modules with in-person events.',
+	},
+	{
+		title: 'Access to industry leaders',
+		body: 'Mentoring and networking, online and in person, with senior people from Victoria’s games industry.',
+	},
+	{
+		title: 'Graduation breakfast',
+		body: 'A final breakfast to celebrate the cohort and meet industry VIPs.',
+	},
+];
+
+const outcomes = [
+	'Started new jobs at AAA studios — including a dream role at a AAA studio in the UK',
+	'Progressed from junior engineer to mid-level technical artist at a major international studio',
+	'Shipped commercial games — including a first release as Lead Artist',
+	'Had game music performed by a live 13-piece orchestra at underSCORE, PAX 2019',
+	'Won a scholarship to the Grace Hopper Conference in the USA',
+	'Received a Freeplay Award, and a Highly Commended at the Premier’s Design Awards',
+	'Landed first paid game commissions and freelance contracts',
+	'Negotiated pay rises, moved into new roles — and got headhunted',
+];
+
+const quotes = [
+	'I feel empowered to talk about and negotiate pay. I feel really confident with job applications. I got head hunted by someone!',
+	'The program was invaluable to me. I was in my first year of games employment on a temporary contract, and was feeling extremely lost … My mentor was a genuine life saver.',
+	'My confidence and feelings of self-worth regarding my value and contributions to the industry have been boosted in such a positive way.',
+];
+
+const mentorStudios = [
+	'League of Geeks',
+	'EA Firemonkeys',
+	'Hipster Whale',
+	'Tin Man Games',
+	'Mountains',
+	'Kpow Audio',
+	'Valve',
+	'1MoreStoryGames',
+	'RMIT',
+	'Game Developers’ Association of Australia',
+];
+
+const press = [
+	{
+		label: 'Women’s Agenda: Girl Geek Academy launches Games Career Incubator with big investment from Film Victoria',
+		href: 'https://womensagenda.com.au/business/girl-geek-academy-launches-games-career-incubator-with-big-investment-from-film-victoria/',
+	},
+	{
+		label: 'Startup Daily: Girl Geek Academy launches Games Career Incubator for women and non-binary people in games industry',
+		href: 'https://www.startupdaily.net/topic/girl-geek-academy-launches-games-career-incubator-for-women-and-non-binary-people-in-games-industry/',
+	},
+	{
+		label: 'PowerUp!: Girl Geek Academy launches Games Career Incubator',
+		href: 'https://powerup-gaming.com/2019/03/29/girl-geek-academy-launches-games-career-incubator/',
+	},
+	{
+		label: 'Women Love Tech: Girl Geek Academy launches new Games Career Incubator',
+		href: 'https://womenlovetech.com/girl-geek-academy-launch-new-games-career-incubator/',
+	},
+];
+---
+
+<Layout
+	title="Case study: Games Career Incubator — Girl Geek Academy"
+	description="With Film Victoria, Girl Geek Academy ran a free four-month Games Career Incubator for 62 women and non-binary games practitioners in Victoria."
+>
+	<Header />
+	<main>
+		<section class="case-hero section">
+			<div class="container grid-2">
+				<div>
+					<p class="page-eyebrow">Case study · Games · 2019</p>
+					<h1>Games Career Incubator</h1>
+					<p class="lead">
+						A free four-month program helping women and non-binary games practitioners step up into
+						senior roles — and stay in the industry for the long haul.
+					</p>
+					<p>
+						Funded by Film Victoria and run by Girl Geek Academy, the Incubator built on Film
+						Victoria’s earlier Women in Games initiative and our work through
+						<a href={urls.sheMakesGames}>SheMakesGames</a>.
+					</p>
+					<div class="hero-ctas">
+						<EmailCta label="Partner with us for 2027" variant="primary" />
+						<EmailCta label="Bring this to your school/workplace" variant="coral" />
+					</div>
+				</div>
+				<div class="hero-badges">
+					<div class="badge">
+						<p class="badge__label">Cohort</p>
+						<p class="badge__value">62</p>
+						<p class="badge__sub">Women and non-binary games practitioners across Victoria — up from 25 places planned</p>
+					</div>
+					<div class="badge">
+						<p class="badge__label">Duration</p>
+						<p class="badge__value">4 months</p>
+						<p class="badge__sub">Online modules and in-person events</p>
+					</div>
+					<div class="badge">
+						<p class="badge__label">Funding</p>
+						<p class="badge__value">$50,000</p>
+						<p class="badge__sub">Film Victoria · free for participants</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container grid-2">
+				<div>
+					<h2>The problem</h2>
+					<p>
+						Women made up around 22% of the games industry workforce, despite being nearly half of all
+						players. And the women who do get in often don’t stay long enough to reach senior roles.
+					</p>
+					<blockquote class="quote">
+						<p>
+							“We need more women and non-binary talent in senior games roles, and to make sure they
+							have extended careers.”
+						</p>
+						<footer>— Lisy Kane, Girl Geek Academy co-founder</footer>
+					</blockquote>
+				</div>
+				<div>
+					<Image
+						src={lib('graphics/Artboard-3nissan.png')}
+						alt="Lisy Kane, video game producer, speaking on camera"
+						width={640}
+						class="case-photo"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">How it worked</h2>
+				<p class="text-center section-intro">
+					From late April to August 2019: mentoring, network building and practical training — topics
+					ranged from public speaking to career sustainability. Participants committed to every event,
+					workshop and piece of mentor “homework”.
+				</p>
+				<div class="grid-2 program">
+					{
+						program.map((p) => (
+							<div class="program-card">
+								<h3>{p.title}</h3>
+								<p>{p.body}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container">
+				<h2 class="text-center">A community, not just a course</h2>
+				<div class="grid-2">
+					<blockquote class="quote">
+						<p>
+							“We had no trouble finding those 55 women, but those 55 women would rarely be able to find
+							each other.”
+						</p>
+						<footer>— Sarah Moran, on the Incubator’s launch event</footer>
+					</blockquote>
+					<div>
+						<p>
+							Every participant was matched with a mentor. Mentors included senior people from:
+						</p>
+						<ul class="studio-list">
+							{mentorStudios.map((m) => <li>{m}</li>)}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">What participants achieved</h2>
+				<p class="text-center section-intro">From participant feedback after the program:</p>
+				<ul class="outcomes">
+					{outcomes.map((o) => <li>{o}</li>)}
+				</ul>
+				<div class="grid-3 feedback">
+					{
+						quotes.map((q) => (
+							<blockquote class="feedback-card">
+								<p>“{q}”</p>
+								<footer>— Incubator participant</footer>
+							</blockquote>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<PhotoGallery
+			heading="The final breakfast"
+			photos={[
+				photo('photos/49171107611_88813229cb_h.jpg', 'A speaker addressing the cohort in front of Girl Geek Academy banners'),
+				photo('photos/49170634068_41e4a473b6_b.jpg', 'The cohort gathered for the final breakfast'),
+			]}
+		/>
+
+		<section class="section section--dark">
+			<div class="container grid-2">
+				<div>
+					<h2>Funded by Film Victoria</h2>
+					<p>
+						Film Victoria invested $50,000 to support a Victorian games industry where women and
+						non-binary practitioners are equal.
+					</p>
+					<h3 class="side-heading">In the press</h3>
+					<ul class="press-list">
+						{
+							press.map((p) => (
+								<li>
+									<a href={p.href} target="_blank" rel="noopener noreferrer">
+										{p.label}
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+				<div class="text-center">
+					<Image
+						src={lib('partner-logos/Film_Victoria_State_Gov_logo.jpeg')}
+						alt="Victoria State Government and Film Victoria"
+						width={420}
+						class="funder-logo"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section class="section text-center">
+			<div class="container">
+				<h2>Run an incubator with us</h2>
+				<p class="cta-lead">
+					Games, tech or any industry losing women mid-career — we design and deliver career incubators
+					that keep them in. See more from <a href={urls.sheMakesGames}>SheMakesGames</a> and our
+					<a href={urls.caseStudies}>other case studies</a>.
+				</p>
+				<EmailCta label="Partner with us for 2027" variant="primary" />
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.case-hero {
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+	}
+
+	.hero-badges {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.badge {
+		background: var(--color-white);
+		padding: 1rem 1.25rem;
+		border-radius: 0.25rem;
+		border: 1px solid rgba(95, 125, 215, 0.2);
+		box-shadow: 4px 3px 0 0 var(--color-yellow-light);
+	}
+
+	.badge__label {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		font-size: 0.8rem;
+		margin: 0 0 0.25rem;
+	}
+
+	.badge__value {
+		font-family: var(--font-display);
+		font-size: 2rem;
+		line-height: 1;
+		margin: 0;
+	}
+
+	.badge__sub {
+		margin: 0.25rem 0 0;
+		font-size: 0.95rem;
+	}
+
+	.quote {
+		margin: 1.5rem 0 0;
+		padding-left: 1rem;
+		border-left: 4px solid var(--color-yellow);
+	}
+
+	.quote p {
+		font-size: 1.125rem;
+		margin: 0 0 0.5rem;
+	}
+
+	.case-photo {
+		width: 100%;
+		height: auto;
+		border-radius: 0.25rem;
+	}
+
+	.section-intro {
+		max-width: 40rem;
+		margin: 0 auto 2rem;
+	}
+
+	.program {
+		align-items: stretch;
+	}
+
+	.program-card {
+		padding: 1.25rem;
+		border: 1px solid rgba(95, 125, 215, 0.2);
+		border-radius: 0.25rem;
+	}
+
+	.program-card h3 {
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		margin-bottom: 0.5rem;
+	}
+
+	.program-card p {
+		margin: 0;
+	}
+
+	.side-heading {
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		color: var(--color-white);
+		margin: 1.5rem 0 0.75rem;
+	}
+
+	.press-list {
+		padding-left: 1.25rem;
+	}
+
+	.press-list li {
+		margin-bottom: 0.5rem;
+	}
+
+	.press-list a {
+		text-decoration: underline;
+	}
+
+	.studio-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		list-style: none;
+		padding: 0;
+	}
+
+	.studio-list li {
+		padding: 0.25rem 0.75rem;
+		border: 1px solid rgba(255, 255, 255, 0.5);
+		border-radius: 999px;
+		font-size: 0.9375rem;
+	}
+
+	.outcomes {
+		max-width: 44rem;
+		margin: 0 auto 2.5rem;
+		padding-left: 1.25rem;
+	}
+
+	.outcomes li {
+		margin-bottom: 0.5rem;
+	}
+
+	.feedback-card {
+		margin: 0;
+		padding: 1.25rem;
+		background: var(--color-yellow-light);
+		border-radius: 0.25rem;
+		color: var(--color-dark);
+	}
+
+	.feedback-card footer {
+		font-weight: 600;
+		color: var(--color-primary);
+	}
+
+	.funder-logo {
+		max-width: 100%;
+		height: auto;
+		margin: 0 auto;
+		border-radius: 0.25rem;
+	}
+
+	.cta-lead {
+		max-width: 36rem;
+		margin: 0 auto 1.5rem;
+	}
+</style>

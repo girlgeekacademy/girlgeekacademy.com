@@ -70,13 +70,16 @@ const socialLinks = [
 		</div>
 
 		<div class="footer__col">
-			<h3 class="footer__heading">Research & Impact</h3>
+			<h3 class="footer__heading">Policy &amp; Impact</h3>
 			<ul class="footer__links">
 				{researchNav.map((item) => (
 					<li>
 						<a href={item.href}>{item.label}</a>
 					</li>
 				))}
+				<li>
+					<a href={urls.news}>News</a>
+				</li>
 			</ul>
 			<p class="footer__contact-line">
 				{CONTACT_EMAIL}

@@ -6,6 +6,8 @@ import EmailCta from '../components/EmailCta.astro';
 import { Image } from 'astro:assets';
 import missMakesCode from '../assets/home/miss-makes-code.png';
 import { urls } from '../data/urls';
+import PhotoGallery from '../components/PhotoGallery.astro';
+import { lib, photo } from '../data/library';
 
 const workshopBeats = [
 	'Algorithmic thinking and creative problem-solving',
@@ -105,6 +107,18 @@ const iterations = [
 			</div>
 		</section>
 
+		<PhotoGallery
+			heading="Workshops in action"
+			photos={[
+				photo('photos/48863228672_85f262a356_h.jpg', '#MissMakesCode light box sign'),
+				photo('photos/48863129141_c41328f4fe_k.jpg', 'A young girl smiling while coding on an iPad'),
+				photo('photos/48862460413_3b91dcd9ab_k.jpg', 'Girls holding up their certificates'),
+				photo('photos/48752361128_ff8b87f45c_k.jpg', 'Girls putting their hands up during a workshop'),
+				photo('photos/46783603381_72525213d5_z.jpeg', 'Girls and their mums holding certificates'),
+				photo('photos/Mums-and-daughters-coding.jpeg', 'MissMakesCode holiday workshops: mum and daughter coding'),
+			]}
+		/>
+
 		<section id="impact" class="section section--dark">
 			<div class="container">
 				<h2 class="text-center">How we’ve delivered MissMakesCode</h2>
@@ -146,8 +160,30 @@ const iterations = [
 			</div>
 		</section>
 
+		<PhotoGallery
+			id="samoa"
+			heading="MissMakesCode Samoa"
+			intro="Apia, January 2020 — girls coding alongside their mums, aunties and grandmothers."
+			photos={[
+				photo('photos/49433815261_319d0adba6_k.jpg', 'Participants and families in a group photo on the lawn'),
+				photo('photos/49434046872_dc8467b00a_k-1.jpg', 'Women and girls coding together on a laptop'),
+				photo('photos/49433817406_3bec0c35f5_k.jpg', 'Girls and facilitators working on laptops'),
+				photo('photos/49433349028_cc733233d6_k.jpg', 'A girl coding on a tablet with a keyboard'),
+				photo('photos/49433817746_8c72365799_k-1.jpg', 'A facilitator presenting to the class'),
+				photo('photos/49434045002_b69f2b8cc6_k.jpg', 'A classroom of girls at computers'),
+				photo('photos/49433819816_3554347071_k.jpg', 'A presenter speaking beside a projected screen'),
+				photo('photos/49434042697_78f18255c0_k.jpg', 'Participants cheering on the lawn'),
+			]}
+		/>
+
 		<section class="section text-center">
 			<div class="container">
+				<Image
+					src={lib('graphics/Artboard-9SQUARE3.png')}
+					alt="MissMakesCode"
+					width={260}
+					class="cta-graphic"
+				/>
 				<h2>Bring MissMakesCode to you</h2>
 				<p class="cta-lead">
 					Schools, libraries and partners — we run the workshops. See also{' '}
@@ -165,6 +201,11 @@ const iterations = [
 </Layout>
 
 <style>
+	.cta-graphic {
+		margin: 0 auto 1.5rem;
+		height: auto;
+	}
+
 	.prog-hero {
 		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
 	}

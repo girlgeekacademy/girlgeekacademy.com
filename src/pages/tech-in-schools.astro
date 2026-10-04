@@ -1,0 +1,537 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { urls } from '../data/urls';
+import { techSchools, brisbaneTimesArticle, nominationMailto } from '../data/techSchools';
+
+const chain = [
+	{
+		n: '01',
+		title: 'The national curriculum',
+		body: 'The Australian Curriculum is written on the basis that every student studies both Technologies subjects, Digital Technologies and Design and Technologies, from Foundation to the end of Year 8. Science and Maths run to Year 10.',
+	},
+	{
+		n: '02',
+		title: 'Queensland’s framework',
+		body: 'Queensland classes Technologies as a “flexible” learning area, not a core one. It gets 140 hours across Years 7 and 8 combined, shared between both subjects. Maths gets 140 hours every year. The recommended minimum is one semester of each subject across the two years.',
+	},
+	{
+		n: '03',
+		title: 'The school timetable',
+		body: 'That leaves the call to schools, and many make tech an elective. It can end up in the same choice block as art, music, home economics or dance, and some schools only run it if enough students pick it.',
+	},
+];
+
+const stats = [
+	{ value: '22 of 22', label: 'schools made Science and Maths compulsory in Years 7 and 8' },
+	{ value: '8 of 22', label: 'made Digital Technologies compulsory in both years' },
+	{ value: '45%', label: 'offered Digital Technologies only as an elective, so a student could skip it entirely' },
+	{ value: '7 of 22', label: 'made Design and Technologies compulsory in both years' },
+];
+
+const actors = [
+	{
+		who: 'Queensland Department of Education',
+		ask: 'Make Technologies a core learning area in Years 7 and 8, like Maths and Science, with time set aside every year for both subjects.',
+	},
+	{
+		who: 'Schools',
+		ask: 'Timetable Digital Technologies and Design and Technologies as compulsory in both Year 7 and Year 8. Keep them out of elective blocks that compete with the arts, and run them however many students there are.',
+	},
+	{
+		who: 'Teacher education',
+		ask: 'Put STEM and digital technologies into teacher training and accreditation. In a 2023 review, neither the national nor the Queensland accreditation requirements mentioned STEM, and only 2 of Queensland’s 8 universities assessed it in their primary teaching degrees.',
+	},
+	{
+		who: 'Federal government',
+		ask: 'The National STEM School Education Strategy 2016–2026 ends this year. Its replacement should make access to Technologies in Years 7 and 8 something that is measured and reported.',
+	},
+	{
+		who: 'Parents and P&Cs',
+		ask: 'Check your school’s handbook, ask the questions below, and share what you find with your P&C.',
+	},
+];
+---
+
+<Layout
+	title="Tech is compulsory. But some schools are neglecting it. Is yours? — Girl Geek Academy"
+	description="Under the Australian Curriculum, tech is compulsory until the end of Year 8. In many Queensland schools it’s timetabled as an elective. Here’s how to check yours, and what needs to change."
+>
+	<Header />
+	<main>
+		<section class="tis-hero section section--dark">
+			<div class="container">
+				<p class="page-eyebrow">Policy &amp; Impact</p>
+				<h1>Tech is compulsory. But some schools are neglecting it. Is yours?</h1>
+				<p class="lead">
+					Under the Australian Curriculum, every student studies Digital Technologies and Design and
+					Technologies until the end of Year 8. It isn’t optional. But in many Queensland schools it’s
+					timetabled as an elective, so a student can finish Year 8 without ever studying it.
+				</p>
+				<div class="hero-ctas">
+					<a href="#check" class="btn btn-yellow">Check your school</a>
+					<a href="#schools" class="btn btn-coral">Nominate your school</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">The push-out is in the timetable</h2>
+				<p class="text-center section-intro">
+					It isn’t one decision. It’s three layers, and tech gets thinner at each one.
+				</p>
+				<ol class="chain">
+					{
+						chain.map((c) => (
+							<li class="chain__step">
+								<span class="chain__n" aria-hidden="true">
+									{c.n}
+								</span>
+								<h3 class="chain__title">{c.title}</h3>
+								<p>{c.body}</p>
+							</li>
+						))
+					}
+				</ol>
+				<p class="text-center note">
+					This research is about Queensland. Other states set their own rules for delivering the
+					Australian Curriculum, and we haven’t checked them yet.
+				</p>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container">
+				<h2 class="text-center">What the research found</h2>
+				<p class="text-center section-intro">
+					Researchers at the University of the Sunshine Coast read the Year 7 and 8 handbooks of 22
+					Queensland schools.
+				</p>
+				<div class="stats">
+					{
+						stats.map((s) => (
+							<div class="stat">
+								<p class="stat__value">{s.value}</p>
+								<p class="stat__label">{s.label}</p>
+							</div>
+						))
+					}
+				</div>
+				<ul class="findings-extra">
+					<li>Seven handbooks said electives depend on staffing, resources or student numbers.</li>
+					<li>
+						Government schools were less likely than Catholic or Independent schools to require
+						Digital Technologies, and the rural and remote government schools in the study offered it
+						only as an elective.
+					</li>
+					<li>Engineering principles and systems appeared in only 10 of the 22 handbooks.</li>
+				</ul>
+				<p class="text-center caveat">
+					Handbooks show what schools say they offer, not what every student ends up studying, and 22
+					schools is a small sample. Source: McMaster et al., 2026.
+				</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container narrow">
+				<h2>Why it matters for girls</h2>
+				<p>
+					Years 7 and 8 are when interest in STEM often drops, especially for girls, regional students
+					and students from low-income families.
+				</p>
+				<p>
+					When tech is an elective, 12-year-olds with little experience of it decide whether to take
+					it. Students who don’t already see themselves in tech may never pick it.
+				</p>
+				<p>
+					And when tech sits in the same choice block as art, music or dance, one of the researchers,
+					Dr Natalie McMaster, told Brisbane Times it becomes “an accidental pitting against each other
+					of subjects that perhaps female students are more likely to want to pick.”
+				</p>
+				<blockquote class="pull-quote">
+					<p>“{brisbaneTimesArticle.quote}”</p>
+					<footer>Sarah Moran, Girl Geek Academy co-founder, in Brisbane Times</footer>
+				</blockquote>
+			</div>
+		</section>
+
+		<section class="section check" id="check">
+			<div class="container narrow">
+				<h2>Check your school in two minutes</h2>
+				<ol class="steps">
+					<li>
+						<strong>Find the Year 7 and 8 handbook.</strong> Most schools post a subject handbook or
+						curriculum guide on their website, usually under Curriculum or Subject selection.
+					</li>
+					<li>
+						<strong>Look for Digital Technologies and Design and Technologies.</strong> Schools
+						sometimes use other names, like Digital Tech, ICT, Design Technology, Engineering or Food
+						Technology.
+					</li>
+					<li>
+						<strong>Check the words next to them.</strong> “Compulsory” or “core” for every student
+						in both Year 7 and Year 8 is what the Australian Curriculum requires. Watch for
+						“elective”, “choice”, “rotation” or “subject to numbers”.
+					</li>
+					<li>
+						<strong>If it’s unclear, ask the school.</strong>
+						<ul>
+							<li>
+								Will every Year 7 and 8 student study both Digital Technologies and Design and
+								Technologies, in both years?
+							</li>
+							<li>Do these subjects run even if only a few students choose them?</li>
+							<li>What will my child learn that goes beyond what they did in primary school?</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Share what you find.</strong> If your school gets it right,{' '}
+						<a href="#schools">nominate it</a>. If it doesn’t, ask why, and share this page with your
+						P&amp;C.
+					</li>
+				</ol>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">What needs to change</h2>
+				<p class="text-center section-intro">
+					No single program can fix a timetable. Here’s who can.
+				</p>
+				<ul class="actors">
+					{
+						actors.map((a) => (
+							<li class="actor">
+								<h3 class="actor__who">{a.who}</h3>
+								<p>{a.ask}</p>
+							</li>
+						))
+					}
+					<li class="actor actor--gga">
+						<h3 class="actor__who">Girl Geek Academy</h3>
+						<p>
+							We can help plug the gap, but a holiday program can’t replace two years of timetabled
+							classes. We run programs for girls who aren’t getting tech at school, like{' '}
+							<a href={urls.sheHacksSwift}>SheHacksSwift</a> and{' '}
+							<a href={urls.missMakesCode}>MissMakesCode</a>. We also keep this list and keep pushing
+							for the policy fix.
+						</p>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="section section--dark" id="schools">
+			<div class="container narrow">
+				<h2>Schools getting it right</h2>
+				<p>
+					We’re building a list of schools where every student studies both Digital Technologies and
+					Design and Technologies in both Year 7 and Year 8. We only list a school after we’ve checked
+					its published handbook.
+				</p>
+				{
+					techSchools.length > 0 ? (
+						<ul class="school-list">
+							{techSchools.map((s) => (
+								<li>
+									<a href={s.handbookUrl} target="_blank" rel="noopener noreferrer">
+										{s.name}
+									</a>
+									<span>
+										{s.suburb}, {s.state} · {s.sector} · checked {s.checked}
+									</span>
+								</li>
+							))}
+						</ul>
+					) : (
+						<p class="school-list__empty">
+							No schools listed yet. Know one that gets it right? Be the first to nominate it.
+						</p>
+					)
+				}
+				<div class="hero-ctas">
+					<a href={nominationMailto} class="btn btn-yellow">Nominate a school</a>
+				</div>
+				<p class="small">
+					The button opens an email with the questions we need answered. We check the school’s
+					handbook, then add it with a link and the date we checked. Schools can email us to update
+					their listing.
+				</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container narrow">
+				<h2>In the media</h2>
+				<article class="media-card">
+					<p class="media-card__outlet">Brisbane Times · {brisbaneTimesArticle.date}</p>
+					<h3 class="media-card__headline">
+						{
+							brisbaneTimesArticle.url ? (
+								<a href={brisbaneTimesArticle.url} target="_blank" rel="noopener noreferrer">
+									{brisbaneTimesArticle.headline}
+								</a>
+							) : (
+								brisbaneTimesArticle.headline
+							)
+						}
+					</h3>
+					<p>By {brisbaneTimesArticle.author}, featuring research from the University of the Sunshine Coast and comment from Sarah Moran.</p>
+				</article>
+
+				<h2 class="sources-title">Sources</h2>
+				<ul class="sources">
+					<li>
+						McMaster, N., Steindl, E., Marshman, M., Siostrom, E., Scott, J. J., &amp; Coffie, I. S.
+						(2026). Curriculum promises, classroom realities: Unpacking junior secondary STEM subjects
+						and pathways. <em>Research in Integrated STEM Education</em>, 4, 1–30.{' '}
+						<a href="https://doi.org/10.1163/27726673-bja00040" target="_blank" rel="noopener noreferrer">doi.org/10.1163/27726673-bja00040</a>
+					</li>
+					<li>
+						Marshman, M., McMaster, N., Scott, J. J., Siostrom, E., &amp; Strachan, A. (2025).
+						Examining STEM education policy: Gaps between rhetoric and reality in schools and initial
+						teacher education. <em>Research in Integrated STEM Education</em>, 3(1), 24–48.{' '}
+						<a href="https://doi.org/10.1163/27726673-bja00028" target="_blank" rel="noopener noreferrer">doi.org/10.1163/27726673-bja00028</a>
+					</li>
+					<li>
+						Strohfeldt, C. (2026, 3 July). {brisbaneTimesArticle.headline}. <em>Brisbane Times</em>.
+					</li>
+				</ul>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-yellow);
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+		max-width: 44rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+	}
+
+	.narrow {
+		max-width: 46rem;
+	}
+
+	.section-intro {
+		max-width: 38rem;
+		margin: 0 auto 2rem;
+	}
+
+	.note,
+	.caveat {
+		max-width: 44rem;
+		margin: 2rem auto 0;
+		font-size: 0.95rem;
+	}
+
+	/* Three-step chain */
+	.chain {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5rem;
+	}
+
+	.chain__step {
+		background: var(--color-yellow-light);
+		border-radius: 0.25rem;
+		padding: 1.5rem;
+		box-shadow: 4px 3px 0 0 var(--color-pink);
+	}
+
+	.chain__n {
+		font-family: var(--font-pinata);
+		font-size: 2.5rem;
+		line-height: 1;
+		color: var(--color-coral);
+	}
+
+	.chain__title {
+		font-family: var(--font-display);
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		margin: 0.5rem 0;
+	}
+
+	.chain__step p {
+		margin: 0;
+	}
+
+	/* Stats */
+	.stats {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1.5rem;
+	}
+
+	.stat__value {
+		font-family: var(--font-display);
+		font-size: clamp(2.25rem, 4vw, 3.25rem);
+		line-height: 1;
+		margin: 0 0 0.35rem;
+		color: var(--color-yellow);
+	}
+
+	.stat__label {
+		margin: 0;
+	}
+
+	.findings-extra {
+		max-width: 44rem;
+		margin: 2rem auto 0;
+	}
+
+	/* Quote */
+	.pull-quote {
+		margin: 2rem 0 0;
+		padding: 1.25rem 1.5rem;
+		border-left: 6px solid var(--color-coral);
+		background: var(--color-yellow-light);
+	}
+
+	.pull-quote p {
+		font-family: var(--font-display);
+		font-size: clamp(1.5rem, 3vw, 2.25rem);
+		line-height: 1;
+		margin: 0 0 0.75rem;
+	}
+
+	.pull-quote footer {
+		font-size: 0.95rem;
+	}
+
+	/* Parent check */
+	.check {
+		background: var(--color-yellow-light);
+	}
+
+	.steps {
+		padding-left: 1.25rem;
+	}
+
+	.steps > li {
+		margin-bottom: 1rem;
+	}
+
+	/* Who needs to act */
+	.actors {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5rem;
+	}
+
+	.actor {
+		border: 2px solid var(--color-primary);
+		border-radius: 0.25rem;
+		padding: 1.25rem;
+	}
+
+	.actor--gga {
+		background: var(--color-pink);
+		border-color: var(--color-pink);
+	}
+
+	.actor__who {
+		font-family: var(--font-display);
+		font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+		margin: 0 0 0.5rem;
+	}
+
+	.actor p {
+		margin: 0;
+	}
+
+	/* School list */
+	.school-list {
+		list-style: none;
+		padding: 0;
+	}
+
+	.school-list li {
+		padding: 0.75rem 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 1rem;
+		justify-content: space-between;
+	}
+
+	.school-list__empty {
+		font-weight: 600;
+	}
+
+	.small {
+		font-size: 0.95rem;
+		margin-top: 1.25rem;
+	}
+
+	/* Media + sources */
+	.media-card {
+		border: 2px solid var(--color-primary);
+		border-radius: 0.25rem;
+		padding: 1.25rem 1.5rem;
+		margin-bottom: 3rem;
+	}
+
+	.media-card__outlet {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		margin: 0 0 0.5rem;
+	}
+
+	.media-card__headline {
+		font-family: var(--font-display);
+		font-size: clamp(1.5rem, 3vw, 2.25rem);
+		margin: 0 0 0.5rem;
+	}
+
+	.sources-title {
+		font-size: clamp(2rem, 4vw, 3rem);
+	}
+
+	.sources {
+		font-size: 0.95rem;
+		padding-left: 1.25rem;
+	}
+
+	.sources li {
+		margin-bottom: 0.75rem;
+		overflow-wrap: anywhere;
+	}
+
+	@media (max-width: 991px) {
+		.chain,
+		.actors {
+			grid-template-columns: 1fr;
+		}
+
+		.stats {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>

@@ -5,14 +5,15 @@ import Footer from '../components/Footer.astro';
 import { Image } from 'astro:assets';
 import telstraBanner from '../assets/home/telstra-banner.png';
 import aiHighImage from '../assets/home/ai-high.jpg';
+import EmailCta from '../components/EmailCta.astro';
 import { urls } from '../data/urls';
 
 const schedule = [
-	{ date: 'May 5', topic: 'Getting started with 3D Modelling' },
-	{ date: 'May 14', topic: 'Fireside Chat with industry professionals' },
-	{ date: 'May 21', topic: 'Coding A Password Generator' },
-	{ date: 'May 28', topic: 'Making Games with Powerpoint' },
-	{ date: 'June 4', topic: 'Coding a Chatbot' },
+	{ date: 'Week 1', topic: 'Getting started with 3D modelling' },
+	{ date: 'Week 2', topic: 'Fireside chat with industry professionals' },
+	{ date: 'Week 3', topic: 'Coding a password generator' },
+	{ date: 'Week 4', topic: 'Making games with PowerPoint' },
+	{ date: 'Week 5', topic: 'Coding a chatbot' },
 ];
 
 const team = [
@@ -25,7 +26,7 @@ const team = [
 
 <Layout
 	title="AI High — Girl Geek Academy"
-	description="Free weekly online workshops for Australian high school girls and gender-diverse students. Covering games, digital art, programming and tech skills every Wednesday at 5PM AEST."
+	description="AI High: weekly online workshops where high school girls and gender-diverse students build with AI and tech. First delivered with the Telstra Foundation. Available to fund for 2027."
 >
 	<Header />
 	<main>
@@ -34,11 +35,12 @@ const team = [
 		<section class="ai-high-hero section section--dark">
 			<div class="container grid-2">
 				<div>
-					<p class="page-eyebrow">Free Program</p>
+					<p class="page-eyebrow">High school program · Available for 2027</p>
 					<h1>AI High</h1>
 					<p class="lead">
-						Free weekly online workshops for Australian high school girls and gender-diverse
-						students. Games, digital art, programming and tech skills — every Wednesday at 5PM AEST.
+						Weekly online workshops where high school girls and gender-diverse students learn to
+						build with AI and tech, not just scroll past it. Games, digital art, programming and
+						emerging tech, plus a safe community of girl geeks who get it.
 					</p>
 					<Image
 						src={telstraBanner}
@@ -48,8 +50,8 @@ const team = [
 						class="telstra-banner"
 					/>
 					<div class="hero-ctas">
-						<a href="https://forms.gle/aiHighSignup" class="btn btn-yellow">Sign up now!</a>
-						<a href={urls.email} class="btn btn-mint">Teachers — Get In Touch</a>
+						<EmailCta label="Fund AI High for 2027" variant="yellow" />
+						<a href={urls.caseAiHigh} class="btn btn-mint">See what we delivered</a>
 					</div>
 				</div>
 				<div class="ai-high-hero__media">
@@ -70,23 +72,20 @@ const team = [
 				<div>
 					<h2>What is AI High?</h2>
 					<p>
-						AI High is Girl Geek Academy's free program empowering Australian high school girls and
-						gender-diverse students through weekly online workshops exploring technology topics.
+						AI High is Girl Geek Academy's online community for high school girl geeks. Each week,
+						members join a live workshop on games, digital art, programming or emerging tech, then
+						keep building together in a secure forum where they can ask questions and make friends.
 					</p>
 					<p>
-						We cover games, digital art, programming and emerging tech. Each session is run in a
-						secure forum space where members connect, ask questions, and build friendships alongside
-						their skills.
-					</p>
-					<p>
-						The program is proudly sponsored by the <strong>Telstra Foundation</strong> and is completely
-						free for students.
+						We first delivered AI High with the <strong>Telstra Foundation</strong>, free for
+						students. Now we're looking for partners to fund the next round, for a school network, a
+						region or a whole state.
 					</p>
 				</div>
 				<div class="ai-high-details">
 					<div class="detail-card">
 						<p class="detail-card__label">When</p>
-						<p class="detail-card__value">Every Wednesday, 5PM AEST</p>
+						<p class="detail-card__value">Weekly, after school</p>
 					</div>
 					<div class="detail-card">
 						<p class="detail-card__label">Who</p>
@@ -94,7 +93,7 @@ const team = [
 					</div>
 					<div class="detail-card">
 						<p class="detail-card__label">Cost</p>
-						<p class="detail-card__value">Free</p>
+						<p class="detail-card__value">Free for students, funded by partners</p>
 					</div>
 					<div class="detail-card">
 						<p class="detail-card__label">Format</p>
@@ -107,9 +106,9 @@ const team = [
 		<!-- Schedule -->
 		<section class="section schedule-section">
 			<div class="container">
-				<h2 class="text-center">Upcoming sessions</h2>
+				<h2 class="text-center">What a term looks like</h2>
 				<p class="text-center schedule-intro">
-					New topics every week — join anytime, no experience needed.
+					A new topic every week, and no experience needed. Here's a sample from our last program.
 				</p>
 				<ul class="schedule-list">
 					{
@@ -128,19 +127,19 @@ const team = [
 		<section class="section section--dark cta-section">
 			<div class="container grid-3">
 				<div class="cta-card text-center">
-					<h3>Students</h3>
-					<p>High school aged girls and gender-diverse students anywhere in Australia.</p>
-					<a href="https://forms.gle/aiHighSignup" class="btn btn-yellow">Sign up now!</a>
+					<h3>Funders</h3>
+					<p>Fund a term of AI High for a school network, a region or a whole state.</p>
+					<EmailCta label="Fund AI High" variant="yellow" />
 				</div>
 				<div class="cta-card text-center">
-					<h3>Teachers</h3>
-					<p>Bring your class or recommend AI High to your students. We'll handle the rest.</p>
-					<a href={urls.email} class="btn btn-mint">Get In Touch</a>
+					<h3>Schools</h3>
+					<p>Bring AI High to your students. We run the sessions and the community.</p>
+					<EmailCta label="Bring AI High to your school" variant="mint" />
 				</div>
 				<div class="cta-card text-center">
-					<h3>Mentors & Sponsors</h3>
-					<p>Run a fireside chat, sponsor a session, or support the program.</p>
-					<a href={urls.email} class="btn btn-coral">Register Interest</a>
+					<h3>Mentors</h3>
+					<p>Run a fireside chat or share your career story with the next generation.</p>
+					<EmailCta label="Offer to mentor" variant="coral" />
 				</div>
 			</div>
 		</section>
@@ -148,7 +147,7 @@ const team = [
 		<!-- Team -->
 		<section class="section team-section">
 			<div class="container text-center">
-				<h2>The AI High team</h2>
+				<h2>The team who built AI High</h2>
 				<ul class="team-list">
 					{
 						team.map((t) => (

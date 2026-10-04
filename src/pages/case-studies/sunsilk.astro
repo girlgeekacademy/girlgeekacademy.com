@@ -5,6 +5,9 @@ import Footer from '../../components/Footer.astro';
 import EmailCta from '../../components/EmailCta.astro';
 import VideoGallery from '../../components/VideoGallery.astro';
 import { sunsilkVideos } from '../../data/videos';
+import PhotoGallery from '../../components/PhotoGallery.astro';
+import { Image } from 'astro:assets';
+import { lib, photo } from '../../data/library';
 
 const discoveries = [
 	'Misconceptions around careers and futures in STEM still hold families back',
@@ -14,18 +17,33 @@ const discoveries = [
 
 const workshops = [
 	{
-		title: 'What is STEM?',
-		body: 'Science, Technology, Engineering and Mathematics — brought together to understand the world and prepare for future careers.',
+		icon: lib('graphics/Science.png'),
+		title: 'The Science of Hair',
+		body: 'Why do we clean our hair, and how does it work? How strong is it? Exploring the surprises of science in something as simple as our hair.',
 	},
 	{
-		title: 'Hands-on making',
-		body: 'Including 3D modelling a “Rethink Pink” shampoo bottle — from design concept through to product thinking.',
+		icon: lib('graphics/Engineering.png'),
+		title: 'Engineering Empowered',
+		body: 'Designing a “Rethink Pink” shampoo bottle with 3D modelling — from the initial design concept through to the physical product.',
 	},
 	{
-		title: 'Family learning',
-		body: 'Online workshops for families across Australia and New Zealand — practical STEM skills, together.',
+		icon: lib('graphics/Technology.png'),
+		title: 'Tech for Two',
+		body: 'Mums and girls coding and drawing their own two-player videogame together, in a fantastic pink colour palette.',
+	},
+	{
+		icon: lib('graphics/Maths.png'),
+		title: 'Maths for the Real World',
+		body: 'How maths gets used outside the classroom — making a plan and using maths to bring ideas to life.',
 	},
 ];
+
+/* Patterns from the original Sunsilk campaign page */
+const bg = {
+	pixel: lib('graphics/pixel-background-GGA.png').src,
+	pixelMobile: lib('graphics/Artboard-76Sunsilk.png').src,
+	hearts: lib('graphics/GGA-Sunsilk-Heart-background.png').src,
+};
 ---
 
 <Layout
@@ -35,9 +53,16 @@ const workshops = [
 	<Header />
 	<main>
 		<section class="case-hero section">
-			<div class="container">
+			<div class="container grid-2">
+				<div>
 				<p class="page-eyebrow">Case study · Partnership</p>
-				<h1>Sunsilk</h1>
+					<Image
+						src={lib('graphics/GGA-Sunsilk-partnership.png')}
+						alt="Sunsilk × Girl Geek Academy"
+						width={320}
+						class="partner-lockup"
+					/>
+					<h1>Sunsilk</h1>
 				<p class="lead">
 					We teamed up with Sunsilk to help “Rethink Pink” with free school holiday workshops —
 					equipping mums and girls to support each other into STEM careers.
@@ -50,21 +75,59 @@ const workshops = [
 					<EmailCta label="Partner with us for 2027" variant="primary" />
 					<EmailCta label="Bring this to your school/workplace" variant="coral" />
 				</div>
+				</div>
+				<div class="hero-media hero-media--wide">
+					<Image src={lib('graphics/GGA-Sunsilk-hero-image.png')} alt="Illustrated mum and daughter at a laptop with a rainbow unicorn — Rethink Pink" width={700} />
+				</div>
 			</div>
 		</section>
 
-		<section class="section section--dark">
+		<section class="section section--pink">
 			<div class="container grid-2">
+				<div class="text-center">
+					<Image
+						src={lib('graphics/GGA-Sunsilk-STEM-Computer.png')}
+						alt="Science, Technology, Engineering, Maths — a pixel-art computer screen"
+						width={560}
+						class="section-graphic"
+					/>
+				</div>
 				<div>
-					<h2>Why STEM careers matter</h2>
+					<h2>Sooo, what is STEM?</h2>
 					<p>
-						“Gender inequality in STEM industries limits progress and innovation. The experiences of
-						diverse women and girls is crucial in solving the problems that shape our lives.”
+						STEM stands for Science, Technology, Engineering and Mathematics. STEM learning brings these
+						subjects together to help us understand the world, and prepare for future possibilities and
+						careers.
 					</p>
 					<p>
 						Whether a daughter wants to be a games designer, climate scientist, CEO or geologist —
 						STEM skills matter. Girl Geek Academy is committed to helping wherever we can.
 					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--pink">
+			<div class="container grid-2 why-grid">
+				<div>
+					<h2>Why STEM careers matter</h2>
+					<blockquote class="quote">
+						<p>
+							“Gender inequality in STEM industries limits progress and innovation. The experiences of
+							diverse women and girls is crucial in solving the problems that shape our lives. We need
+							more women and girls in STEM to play a vital role in solving the world’s future
+							challenges.”
+						</p>
+						<footer class="quote__by">
+							<Image
+								src={lib('graphics/Artboard-71Sunsilk.png')}
+								alt="Sarah Moran"
+								width={120}
+								class="quote__photo"
+							/>
+							<span><strong>Sarah Moran</strong><br />Girl Geek Academy CEO</span>
+						</footer>
+					</blockquote>
 				</div>
 				<div>
 					<h3 class="side-heading">What Sunsilk’s research found</h3>
@@ -75,25 +138,98 @@ const workshops = [
 					<ul>
 						{discoveries.map((d) => <li>{d}</li>)}
 					</ul>
+					<div class="research-stats">
+						<Image src={lib('graphics/Sunsilk-research-stat.png')} alt="Only 1 in 10 mums have a strong understanding and knowledge of STEM skills to impart to their daughters" width={420} />
+						<Image src={lib('graphics/Artboard-70Sunsilk.png')} alt="Almost 2 in 3 girls list their mums as their most influential role model" width={220} />
+					</div>
 				</div>
 			</div>
 		</section>
 
-		<section class="section">
+		<div class="pixel-divider" aria-hidden="true">
+			<Image src={lib('graphics/Artboard-74Sunsilk-3.png')} alt="" width={2048} />
+		</div>
+
+		<section class="section section--grid">
 			<div class="container">
+				<Image
+					src={lib('logos/GGA-Sunsilk-Product-logo-large.png')}
+					alt="Sunsilk × Girl Geek Academy STEM school holidays workshops"
+					width={560}
+					class="workshops-logo"
+				/>
 				<h2 class="text-center">What we delivered</h2>
-				<div class="grid-3 workshops">
+				<div class="grid-2 delivered-intro">
+					<Image
+						src={lib('graphics/Artboard-67Sunsilk.png')}
+						alt="A mum and two daughters learning on tablets at home"
+						width={640}
+						class="delivered-photo"
+					/>
+					<p>
+						Free online school holiday workshops for girls and their mums or role models, across
+						Australia and New Zealand — one for each letter of STEM.
+					</p>
+				</div>
+				<div class="workshops">
 					{
 						workshops.map((w) => (
 							<div class="workshop-card">
-								<h3>{w.title}</h3>
-								<p>{w.body}</p>
+								<Image src={w.icon} alt="" width={96} class="workshop-card__icon" />
+								<div>
+									<h3>{w.title}</h3>
+									<p>{w.body}</p>
+								</div>
 							</div>
 						))
 					}
 				</div>
 			</div>
 		</section>
+
+		<section class="section why-sunsilk" style={`--bg: url(${bg.pixel}); --bg-mobile: url(${bg.pixelMobile});`}>
+			<div class="container grid-2">
+				<div>
+					<h2>Why Sunsilk and Girl Geek Academy?</h2>
+					<p class="why-sunsilk__lead">Our shared goal: more women and girls in STEM.</p>
+					<p>
+						Sunsilk is on a mission to inspire women and girls alike. Its research showed young girls
+						feel a career in STEM is not achievable for them. Through Sunsilk’s Rethink Pink campaign,
+						we brought mums and daughters together to better understand the career pathways available
+						to them in STEM industries.
+					</p>
+					<p class="why-sunsilk__small">
+						The 2021 Sunsilk Rethink Pink Study surveyed 1,000 Australian and 400 New Zealand women aged
+						16–60+ in March 2021, with a nationally representative sample. Research by Pure Profile.
+					</p>
+				</div>
+				<div class="text-center">
+					<Image
+						src={lib('graphics/GGA-Sunsilk-bottles.png')}
+						alt="Pink is what you make it — Sunsilk bottles with a unicorn"
+						width={420}
+						class="section-graphic"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<PhotoGallery
+			heading="What you told us about STEM…"
+			intro="We need more women unlocking the potential of a career in STEM — so let’s make that change together."
+			contain
+			class="told-us"
+			style={`--bg: url(${bg.hearts});`}
+			photos={[
+				photo('photos/Sunsilk-Girl_Geek_Academy_STEM_Career_Facts-1.jpg', '64% of women rank their mother as the most influential woman in their life'),
+				photo('photos/Sunsilk-Girl_Geek_Academy_STEM_Career_Facts-2.jpg', '81% believe STEM related fields of work will be important in the future'),
+				photo('photos/Sunsilk-Girl_Geek_Academy_STEM_Career_Facts-3.jpg', 'Nearly 1 in 10 feel under pressure by society to choose a career considered more fitting for a girl or woman'),
+				photo('photos/Sunsilk-Girl_Geek_Academy_STEM_Career_Facts-4.jpg', '48% of Australian women believe a career in STEM is important to further Australia’s technology innovations'),
+				photo('photos/Sunsilk-Girl_Geek_Academy_STEM_Career_Facts-5.jpg', 'Only 1 in 5 girls aged 16–25 would choose STEM study without hesitation'),
+				photo('photos/Sunsilk-Girl_Geek_Academy_STEM_Career_Facts-6.jpg', '47% have a strong belief that the gender imbalance is limiting progress and innovation'),
+				photo('photos/Sunsilk-Girl_Geek_Academy_STEM_Career_Facts-7.jpg', '12% of Australian women would like to pursue a career in STEM but don’t know where to start'),
+			]}
+		/>
 
 		<VideoGallery
 			heading="Rethink Pink workshops"
@@ -102,8 +238,9 @@ const workshops = [
 			dark
 		/>
 
-		<section class="section text-center">
+		<section class="section section--grid text-center">
 			<div class="container">
+				<Image src={lib('graphics/rainbow.png')} alt="" width={320} class="section-graphic" />
 				<h2>Run a campaign like this</h2>
 				<p class="cta-lead">
 					Brand partnerships, school holiday series, and family STEM — we design and deliver formats
@@ -117,6 +254,34 @@ const workshops = [
 </Layout>
 
 <style>
+	.partner-lockup {
+		height: auto;
+		margin-bottom: 1rem;
+	}
+
+	.research-stats {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		align-items: center;
+		margin-top: 1.5rem;
+		padding: 1rem;
+		background: var(--color-white);
+		border-radius: 0.25rem;
+	}
+
+	.research-stats img {
+		height: auto;
+		max-width: 100%;
+	}
+
+	.workshops-logo {
+		display: block;
+		height: auto;
+		max-width: 100%;
+		margin: 0 auto 1.5rem;
+	}
+
 	.case-hero {
 		background-image: url('/images/backgrounds/sunsilk-grid.png');
 		background-size: cover;
@@ -144,18 +309,120 @@ const workshops = [
 
 	.side-heading {
 		font-size: clamp(1.5rem, 2.5vw, 2rem);
-		color: var(--color-white);
 		margin-bottom: 0.75rem;
 	}
 
+	.section--pink {
+		background: #fdedf5;
+	}
+
+	.section--grid {
+		background: var(--color-white) url('/images/backgrounds/grid-background.png') center / cover no-repeat;
+	}
+
+	.section-graphic {
+		max-width: 100%;
+		height: auto;
+		margin: 0 auto 1.5rem;
+	}
+
+	.quote {
+		margin: 0;
+	}
+
+	.quote p {
+		font-size: 1.125rem;
+	}
+
+	.quote__by {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.quote__photo {
+		width: 96px;
+		height: 96px;
+		border-radius: 50%;
+		object-fit: cover;
+	}
+
+	.pixel-divider img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.delivered-intro {
+		margin: 1.5rem 0 2rem;
+	}
+
+	.delivered-photo {
+		width: 100%;
+		height: auto;
+		border-radius: 0.25rem;
+	}
+
+	.delivered-intro p {
+		font-size: 1.125rem;
+	}
+
 	.workshops {
-		margin-top: 2rem;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
 	}
 
 	.workshop-card {
+		display: flex;
+		gap: 1rem;
+		align-items: flex-start;
 		padding: 1.25rem;
+		background: var(--color-white);
 		border: 1px solid rgba(95, 125, 215, 0.2);
 		border-radius: 0.25rem;
+	}
+
+	.workshop-card__icon {
+		flex: 0 0 72px;
+		width: 72px;
+		height: auto;
+	}
+
+	.why-sunsilk {
+		background: #eb5695 var(--bg) center / cover no-repeat;
+		color: var(--color-white);
+	}
+
+	.why-sunsilk h2 {
+		color: var(--color-white);
+	}
+
+	.why-sunsilk__lead {
+		font-size: 1.25rem;
+		font-weight: 700;
+	}
+
+	.why-sunsilk__small {
+		font-size: 0.875rem;
+		opacity: 0.9;
+	}
+
+	:global(.told-us) {
+		background: #fdedf5 var(--bg) center / cover no-repeat fixed;
+	}
+
+	@media (max-width: 991px) {
+		.workshops {
+			grid-template-columns: 1fr;
+		}
+
+		.why-sunsilk {
+			background-image: var(--bg-mobile);
+			background-size: 40% auto;
+			background-position: bottom right;
+		}
 	}
 
 	.workshop-card h3 {

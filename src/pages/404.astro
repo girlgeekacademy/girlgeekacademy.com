@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { urls } from '../data/urls';
+---
+
+<Layout
+	title="Page not found — Girl Geek Academy"
+	description="We couldn’t find that page. It may have moved when we rebuilt our website."
+>
+	<Header />
+	<main>
+		<section class="section notfound">
+			<div class="container">
+				<p class="notfound__eyebrow">404</p>
+				<h1>We can’t find that page</h1>
+				<p class="notfound__lead">
+					We’ve just rebuilt our website, so some old links have moved. Try one of these instead.
+				</p>
+				<ul class="notfound__links">
+					<li><a href={urls.home}>Home</a></li>
+					<li><a href={urls.sheHacksSwift}>SheHacksSwift, January 2027</a></li>
+					<li><a href={urls.workWithUs}>Work with us</a></li>
+					<li><a href={urls.techInSchools}>Tech is compulsory. Is it at your school?</a></li>
+					<li><a href={urls.news}>News</a></li>
+				</ul>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.notfound {
+		text-align: center;
+		padding-top: 5rem;
+		padding-bottom: 5rem;
+	}
+
+	.notfound__eyebrow {
+		font-family: var(--font-pinata);
+		font-size: clamp(4rem, 12vw, 8rem);
+		line-height: 1;
+		color: var(--color-coral);
+		margin: 0 0 1rem;
+	}
+
+	.notfound__lead {
+		max-width: 36rem;
+		margin: 0 auto 2rem;
+	}
+
+	.notfound__links {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 0.75rem;
+	}
+</style>

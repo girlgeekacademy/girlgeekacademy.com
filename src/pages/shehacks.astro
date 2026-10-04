@@ -7,25 +7,28 @@ import VideoGallery from '../components/VideoGallery.astro';
 import { Image } from 'astro:assets';
 import vennDiagram from '../assets/home/venn-diagram.png';
 import { sheHacksVideos } from '../data/videos';
+import PhotoGallery from '../components/PhotoGallery.astro';
+import LogoWall from '../components/LogoWall.astro';
+import { lib, photo } from '../data/library';
 
 const roles = [
 	{
 		name: 'Hackers',
-		emoji: '💻',
+		badge: lib('logos/GGA-Hacker-1.png'),
 		description:
 			'Provide coding and technical skills to build the minimum viable product. Developers, engineers, and makers.',
 		colour: 'role--blue',
 	},
 	{
 		name: 'Hipsters',
-		emoji: '🎨',
+		badge: lib('logos/GGA-Hipster.png'),
 		description:
 			'Handle design, visual experience, and user research. Designers, UX specialists, and creative thinkers.',
 		colour: 'role--coral',
 	},
 	{
 		name: 'Hustlers',
-		emoji: '🚀',
+		badge: lib('logos/GGA-Hustler.png'),
 		description:
 			'Manage project coordination, business model, and pitch. Organisers, marketers, and strategists.',
 		colour: 'role--mint',
@@ -44,23 +47,35 @@ const accessibility = [
 
 <Layout
 	title="#SheHacks — Girl Geek Academy"
-	description="The world's longest-running hackathon series for women and non-binary folk. Build a startup in a weekend. Free, funded by LaunchVic and the Victorian Government."
+	description="The world's longest-running hackathon series for women and non-binary folk. SheHacks 2026 is the AI-Ally Hackathon, with Google and eSafety, in November 2026."
 >
 	<Header />
 	<main>
 
 		<!-- Hero -->
 		<section class="shehacks-hero section">
-			<div class="container">
+			<div class="container grid-2">
+				<div>
 				<p class="page-eyebrow">The World's Longest-Running Women's Hackathon</p>
 				<h1>#SheHacks</h1>
 				<p class="lead">
-					Build a startup in a weekend alongside brilliant women and non-binary folk. The
-					longest-running hackathon series of its kind in the world — and it's completely free.
+					Find your team, build your idea and pitch a working prototype in a weekend, alongside
+					brilliant women and non-binary folk. The longest-running hackathon series of its kind in
+					the world.
 				</p>
+				<div class="next-event">
+					<p class="next-event__label">Next up</p>
+					<p class="next-event__title">SheHacks 2026: the AI-Ally Hackathon</p>
+					<p class="next-event__detail">With Google and eSafety. November 2026, date and venue to be announced.</p>
+				</div>
 				<div class="hero-ctas">
-					<EmailCta label="Bring this to your school/workplace" variant="primary" />
-					<EmailCta label="Partner with us for 2027" variant="coral" />
+					<EmailCta label="Register interest" variant="primary" />
+					<EmailCta label="Bring SheHacks to your organisation" variant="coral" />
+				</div>
+				<p class="hero-note">Email hello@girlgeekacademy.com with “SheHacks 2026” in the subject line.</p>
+				</div>
+				<div class="hero-media">
+					<Image src={lib('logos/SheHacksVIC-Icons-blue.png')} alt="Pixel-art girl geeks coding around a giant keyboard" width={420} />
 				</div>
 			</div>
 		</section>
@@ -77,13 +92,9 @@ const accessibility = [
 						Academy was born from it.
 					</p>
 					<p>
-						SheHacks has been running ever since, helping hundreds of women and non-binary people
-						find their team, build their idea and launch their startup.
-					</p>
-					<p>
-						The event is <strong>free</strong>, funded by <strong>LaunchVic</strong> and the <strong
-							>Victorian Government</strong
-						>.
+						SheHacks has been running ever since, in Melbourne, regional Victoria and Vanuatu,
+						helping hundreds of women and non-binary people find their team, build their idea and
+						launch their startup.
 					</p>
 				</div>
 				<div class="text-center">
@@ -108,7 +119,7 @@ const accessibility = [
 					{
 						roles.map((r) => (
 							<div class:list={['role-card', r.colour]}>
-								<p class="role-emoji" aria-hidden="true">{r.emoji}</p>
+								<Image src={r.badge} alt="" width={220} class="role-badge" />
 								<h4>{r.name}</h4>
 								<p>{r.description}</p>
 							</div>
@@ -128,33 +139,67 @@ const accessibility = [
 			videos={sheHacksVideos}
 		/>
 
+		<PhotoGallery
+			heading="#SheHacks in pictures"
+			photos={[
+				photo('photos/49481682582_a6b673326c_k.jpg', 'A team of five taking part in #SheHacks, in front of a patterned wall'),
+				photo('photos/brihammond-girl-geek-academy-she-hacks-sunday-0122-2000px.jpeg', 'Participants hard at work on the Sunday of #SheHacks'),
+				photo('photos/28977304673_f8bb9cafaa_b.jpeg', 'A big group of #SheHacks participants with their hands in the air', '#SheHacks 2014'),
+				photo('photos/28977327113_cec9d4d568_w.jpg', 'Four women laughing together at a laptop', '#SheHacks 2014'),
+				photo('photos/29477966254_1f7d069a48_w.jpg', 'Participants listening to a talk', '#SheHacks 2016'),
+				photo('photos/49480858726_93b855fec7_k.jpg', 'Four women at a table with laptops', '#SheHacks 2017'),
+				photo('photos/GGA-Thumb-SheHacks-Edit.jpg', 'Participants listening to a speaker'),
+				photo('photos/29811519540_0433a0f5f7_k.jpg', 'A #SheHacks group photo', '#SheHacks 2016'),
+			]}
+		/>
+
+		<PhotoGallery
+			heading="#SheHacks Vanuatu"
+			intro="Presented with SMARTsistas."
+			photos={[
+				photo('photos/SheHacks-Vanuatu.jpeg', 'Young women in purple t-shirts at #SheHacks Vanuatu'),
+				photo('graphics/Artboard-2.png', 'SMARTsistas present #SheHacks Vanuatu, 7–9 December'),
+			]}
+			dark
+		/>
+
+		<LogoWall
+			heading="Past partners"
+			logos={[
+				{ src: lib('partner-logos/LaunchVicLogo_Horizontal_RGB.png'), alt: 'LaunchVic' },
+				{ src: lib('partner-logos/Logo-Runway-Colour.png'), alt: 'Runway' },
+				{ src: lib('partner-logos/Logo-StartUpGippsland-Colour.png'), alt: 'Startup Gippsland' },
+				{ src: lib('partner-logos/Logo-StartUpOnRamp-Colour.png'), alt: 'Startup OnRamp' },
+				{ src: lib('partner-logos/Logo-DesignJunkies-Colour.png'), alt: 'Design Junkies' },
+			]}
+		/>
+
 		<!-- Accessibility -->
 		<section class="section access-section section--dark">
 			<div class="container grid-2">
 				<div>
 					<h2>An event built for everyone</h2>
 					<p>
-						We're committed to making SheHacks accessible and welcoming for all. The following
-						services are available — just let us know what you need when you apply.
+						We're committed to making SheHacks accessible and welcoming for all. We've offered these
+						at past events. Tell us what you need when you register and we'll do our best.
 					</p>
 					<ul class="access-list">
 						{accessibility.map((a) => <li>{a}</li>)}
 					</ul>
 					<p>
-						Need something else? Use the button below to copy hello@girlgeekacademy.com — we'll do our
-						best to accommodate you.
+						Need something else? Email hello@girlgeekacademy.com and we'll do our best to
+						accommodate you.
 					</p>
-					<EmailCta label="Available for your school/workplace" variant="mint" />
 				</div>
 				<div class="eligibility-card">
 					<h3>Who is it for?</h3>
 					<ul>
 						<li>Women and non-binary people</li>
-						<li>Victorian residents</li>
+						
 						<li>Aged 18+</li>
 						<li>Any skill level welcome</li>
 					</ul>
-					<EmailCta label="Bring this to your school/workplace" variant="primary" />
+					<EmailCta label="Register interest" variant="primary" />
 				</div>
 			</div>
 		</section>
@@ -183,6 +228,38 @@ const accessibility = [
 		max-width: 60ch;
 		margin-bottom: 1.5rem;
 		color: var(--color-primary);
+	}
+
+		.next-event {
+		background: var(--color-white, #fff);
+		border-radius: 2px;
+		box-shadow: 5px 5px 0 0 var(--color-primary);
+		padding: 1rem 1.25rem;
+		margin: 0 0 1.5rem;
+		max-width: 32rem;
+	}
+
+	.next-event p {
+		margin: 0;
+		color: var(--color-primary-hover);
+	}
+
+	.next-event__label {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		font-size: 0.85rem;
+	}
+
+	.next-event__title {
+		font-weight: 700;
+		font-size: 1.15rem;
+	}
+
+	.hero-note {
+		font-size: 0.9rem;
+		margin: 0.75rem 0 0;
+		color: var(--color-primary-hover);
 	}
 
 	.hero-ctas {
@@ -215,10 +292,18 @@ const accessibility = [
 		text-align: center;
 	}
 
-	.role-emoji {
-		font-size: 2.5rem;
-		margin: 0 0 0.75rem;
-		line-height: 1;
+	.role-badge {
+		width: 150px;
+		height: auto;
+		margin: 0 auto 0.75rem;
+		padding: 0.75rem;
+		background: var(--color-white);
+		border-radius: 1rem;
+	}
+
+	.funder-logo {
+		margin-top: 1rem;
+		height: auto;
 	}
 
 	.role--blue {

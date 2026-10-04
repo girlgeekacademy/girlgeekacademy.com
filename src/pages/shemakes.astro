@@ -3,6 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import EmailCta from '../components/EmailCta.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+import { Image } from 'astro:assets';
+import { lib, photo } from '../data/library';
 
 const topics = [
 	'3D printing and modelling',
@@ -20,7 +23,8 @@ const topics = [
 	<Header />
 	<main>
 		<section class="prog-hero section">
-			<div class="container">
+			<div class="container grid-2">
+				<div>
 				<p class="page-eyebrow">Program · Making</p>
 				<h1>SheMakes</h1>
 				<p class="lead">
@@ -35,6 +39,10 @@ const topics = [
 				<div class="hero-ctas">
 					<EmailCta label="Bring this to your school/workplace" variant="primary" />
 					<EmailCta label="Partner with us for 2027" variant="coral" />
+				</div>
+				</div>
+				<div class="hero-media">
+					<Image src={lib('graphics/Artboard-11SQUARE3.png')} alt="#SheMakes — making cool things" width={420} />
 				</div>
 			</div>
 		</section>
@@ -61,6 +69,15 @@ const topics = [
 				</div>
 			</div>
 		</section>
+
+		<PhotoGallery
+			heading="Making in action"
+			photos={[
+				photo('photos/48752707681_da43c13f21_k.jpg', 'A 3D printer printing a red model'),
+				photo('photos/48752380378_e49a5dbe11_k.jpg', 'Circuit boards and a Girl Geeks book on a spotty tablecloth'),
+				photo('photos/48752893407_ce2f9a170e_k.jpg', 'Two women chatting beside SheMakes banners and a 3D printer'),
+			]}
+		/>
 
 		<section class="section section--dark text-center">
 			<div class="container">

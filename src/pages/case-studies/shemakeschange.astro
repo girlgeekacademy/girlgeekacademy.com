@@ -1,0 +1,237 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EmailCta from '../../components/EmailCta.astro';
+import { Image } from 'astro:assets';
+import { lib } from '../../data/library';
+import { urls } from '../../data/urls';
+
+const schedule = [
+	{ when: 'Morning', title: 'Frame the problem', body: 'Speakers set out the problem we were solving, the assumptions behind it and the objectives for each group.' },
+	{ when: 'Midday', title: 'Hack the problem', body: 'Hackers, hipsters and hustlers broke out into groups to tackle it from technical, design and marketing angles.' },
+	{ when: 'Afternoon', title: 'Rapid prototyping', body: 'Ideas were prototyped, presented back and synthesised as a group — then developed into backbriefs.' },
+	{ when: 'Close', title: 'Hand over', body: 'Final presentations of the ideal technology, design and marketing approach, with a response from Crowdspot.' },
+];
+---
+
+<Layout
+	title="Case study: #SheMakesChange — Girl Geek Academy"
+	description="#SheMakesChange: a Victoria Against Violence hack day where hand-selected women used technology to increase women’s safety and wellbeing."
+>
+	<Header />
+	<main>
+		<section class="case-hero section">
+			<div class="container grid-2">
+				<div>
+					<p class="page-eyebrow">Case study · Hack day · 2017</p>
+					<h1>#SheMakesChange</h1>
+					<p class="lead">
+						A one-day power session using technology to increase women’s safety and wellbeing — part of
+						Victoria Against Violence and the 16 Days of Activism.
+					</p>
+					<p>
+						With the Department of Health and Human Services, Crowdspot and XYX Lab, Girl Geek Academy led a
+						group of hand-selected women to shape a technical, design and marketing brief in a single day.
+					</p>
+					<div class="hero-ctas">
+						<EmailCta label="Partner with us for 2027" variant="primary" />
+						<EmailCta label="Bring this to your school/workplace" variant="coral" />
+					</div>
+				</div>
+				<div class="hero-media">
+					<Image
+						src={lib('graphics/SheMakesChange-poster.png')}
+						alt="#PutYourHandUp — Victoria Against Violence #SheMakesChange Hack Day. Create a Victoria #FreeFromViolence"
+						width={420}
+						class="poster"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container grid-2">
+				<div>
+					<h2>Why a hack day?</h2>
+					<p>
+						Every community has a role to play in preventing family violence. Global evidence shows that
+						gender inequality is a key driver of family violence and other violence against women — and
+						that gender equality increases women’s safety and wellbeing.
+					</p>
+					<p>
+						We created #SheMakesChange so Victoria’s women in STEM could put their skills to work during
+						the 16 Days of Activism, from the International Day for the Elimination of Violence against
+						Women (25 November) to Human Rights Day (10 December).
+					</p>
+				</div>
+				<div class="facts">
+					<div class="badge">
+						<p class="badge__label">When</p>
+						<p class="badge__value">9 December 2017</p>
+						<p class="badge__sub">General Assembly, Melbourne</p>
+					</div>
+					<div class="badge">
+						<p class="badge__label">Partners</p>
+						<p class="badge__value">DHHS · Crowdspot · XYX Lab</p>
+						<p class="badge__sub">With the Victorian Government’s Victoria Against Violence campaign</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="text-center">How the day ran</h2>
+				<ol class="timeline">
+					{
+						schedule.map((s) => (
+							<li class="timeline__item">
+								<span class="timeline__when">{s.when}</span>
+								<div>
+									<h3>{s.title}</h3>
+									<p>{s.body}</p>
+								</div>
+							</li>
+						))
+					}
+				</ol>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container grid-2">
+				<div>
+					<h2>What partners get</h2>
+					<p>
+						Partners walk away with powerful knowledge and concept prototypes, shaped by a focus group of
+						women who each bring a unique perspective and expertise to the table.
+					</p>
+				</div>
+				<div>
+					<h2>What participants get</h2>
+					<p>
+						The experience of networking and problem solving with a diverse group — and knowing they
+						directly contributed to positive outcomes for women.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="section text-center">
+			<div class="container">
+				<h2>Run a hack day for change</h2>
+				<p class="cta-lead">
+					Got a problem that needs women’s expertise? We bring the hackers, hipsters and hustlers. See also
+					the <a href={urls.caseGameJam}>Gender Equality Game Jam</a> and our
+					<a href={urls.caseStudies}>other case studies</a>.
+				</p>
+				<EmailCta label="Partner with us for 2027" variant="primary" />
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.case-hero {
+		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
+	}
+
+	.page-eyebrow {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0 0 0.75rem;
+	}
+
+	.lead {
+		font-size: 1.125rem;
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+	}
+
+	.poster {
+		border-radius: 0.25rem;
+		box-shadow: 4px 3px 0 0 var(--color-yellow-light);
+	}
+
+	.facts {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.badge {
+		background: var(--color-white);
+		color: var(--color-dark);
+		padding: 1rem 1.25rem;
+		border-radius: 0.25rem;
+	}
+
+	.badge__label {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		font-size: 0.8rem;
+		margin: 0 0 0.25rem;
+		color: var(--color-primary);
+	}
+
+	.badge__value {
+		font-family: var(--font-display);
+		font-size: 1.75rem;
+		line-height: 1.1;
+		margin: 0;
+		color: var(--color-primary);
+	}
+
+	.badge__sub {
+		margin: 0.25rem 0 0;
+		font-size: 0.95rem;
+	}
+
+	.timeline {
+		list-style: none;
+		max-width: 44rem;
+		margin: 2rem auto 0;
+		padding: 0;
+	}
+
+	.timeline__item {
+		display: grid;
+		grid-template-columns: 8rem 1fr;
+		gap: 1rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid rgba(95, 125, 215, 0.2);
+	}
+
+	.timeline__when {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+	}
+
+	.timeline__item h3 {
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		margin-bottom: 0.25rem;
+	}
+
+	.timeline__item p {
+		margin: 0;
+	}
+
+	.cta-lead {
+		max-width: 36rem;
+		margin: 0 auto 1.5rem;
+	}
+
+	@media (max-width: 600px) {
+		.timeline__item {
+			grid-template-columns: 1fr;
+			gap: 0.25rem;
+		}
+	}
+</style>

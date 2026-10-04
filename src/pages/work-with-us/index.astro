@@ -7,6 +7,9 @@ import VideoGallery from '../../components/VideoGallery.astro';
 import { urls } from '../../data/urls';
 import { programsNav } from '../../data/nav';
 import { workWithUsVideos } from '../../data/videos';
+import LogoWall from '../../components/LogoWall.astro';
+import { Image } from 'astro:assets';
+import { lib, photo } from '../../data/library';
 
 const formats = [
 	{
@@ -24,7 +27,7 @@ const formats = [
 	},
 	{
 		name: 'Week program',
-		detail: 'Work Experience — sold to corporates and schools as a week-long product.',
+		detail: 'Work experience — real projects and industry mentors for high school girls, run with a school or in your workplace.',
 	},
 	{
 		name: 'Multi-month series',
@@ -43,23 +46,27 @@ const formats = [
 const audiences = [
 	{
 		id: 'schools',
+		image: photo('photos/26989912067_6dace1e837_k.jpg', 'High school girls laughing at a laptop'),
 		title: 'Schools',
-		cta: 'Bring this to your school/workplace' as const,
+		cta: 'Bring us to your school' as const,
 		lead: 'We help schools keep girls in digital tech — and show that building is not scrolling.',
 		body: [
 			'From subject choice to the jump into further study, girls get pushed out of tech pathways early. We partner with teachers, careers advisers and school leaders on programs that keep girl geeks in.',
-			'Ask us about MissMakesCode workshops, SheHacks, SheMakesGames, and the formats we can run with your school community.',
+						'Ask us about MissMakesCode workshops, AI High, SheHacksSwift work experience, and the formats we can run with your school community.',
+			'Under the Australian Curriculum, tech is compulsory until the end of Year 8, but some schools let students skip it. Check your timetable against the curriculum.',
 		],
 		links: [
+			{ label: 'Tech is compulsory', href: urls.techInSchools },
 			{ label: 'MissMakesCode', href: urls.missMakesCode },
-			{ label: 'SheHacks', href: urls.sheHacks },
+			{ label: 'AI High', href: urls.aiHigh },
 			{ label: 'SheHacksSwift', href: urls.sheHacksSwift },
 		],
 	},
 	{
 		id: 'libraries',
+		image: photo('photos/49433817031_e54ed0fd90_k.jpg', 'A facilitator and girls reading a tablet in front of library shelves'),
 		title: 'Libraries',
-		cta: 'Available for your school/workplace' as const,
+		cta: 'Bring us to your library' as const,
 		lead: 'Libraries are where curious girl geeks already gather.',
 		body: [
 			'We partner with libraries on workshops, book programs and community events that build tech power — coding clubs, maker sessions, and the Girl Geeks book series.',
@@ -73,23 +80,25 @@ const audiences = [
 	},
 	{
 		id: 'corporates',
+		image: photo('partner-logos/GGA-Thumb-AGL-Edit.jpg', 'A facilitator helping girls at an AGL workshop'),
 		title: 'Corporates',
 		cta: 'Partner with us for 2027' as const,
-		lead: 'Fund programs. Shape safer workplaces. Open pathways for alumni.',
+		lead: 'Keep your women in tech. They’ll help keep the next generation in.',
 		body: [
-			'We partner with organisations to create safer, gender-equal tech workplaces — and to fund the programs that keep girl geeks in from school to industry.',
-			'That can mean sponsoring SheHacks, commissioning Work Experience (like AGL Girls in Energy), Girl Geek in Residence (NAB), workshops, mentoring, or a campaign like Microsoft Mondays or Sunsilk.',
+			'The push-out doesn’t stop at school. Women leave tech at every career stage, and the women who stay usually want to stop it happening to the girls coming after them. We build programs that retain and grow your women, from early career through to executive leadership, and give your people a way to bring girls through.',
+			'That can mean sponsoring SheHacks or AI High, commissioning work experience (like AGL Girls in Energy), a Girl Geek in Residence (NAB), workshops, mentoring, or a campaign like Microsoft Mondays or Sunsilk.',
 		],
 		links: [
 			{ label: 'Case studies', href: urls.caseStudies },
 			{ label: 'SheHacks', href: urls.sheHacks },
-			{ label: 'Welcome pack', href: urls.welcomePack },
+			{ label: 'AI High', href: urls.aiHigh },
 		],
 	},
 	{
 		id: 'women-in-tech',
+		image: photo('photos/48862711718_9ce76dcfb0_k.jpg', 'Women in tech at a Girl Geek Academy event'),
 		title: 'Women in tech',
-		cta: 'Partner with us for 2027' as const,
+		cta: 'Get involved' as const,
 		lead: 'So no one is the only girl geek in the room.',
 		body: [
 			'We keep girl geeks in tech and connect women through programs, community and industry pathways — from early career to leadership.',
@@ -103,37 +112,41 @@ const audiences = [
 	},
 	{
 		id: 'conferences',
+		image: photo('photos/29477966254_1f7d069a48_w.jpg', 'An audience listening at a conference session'),
 		title: 'Conferences',
-		cta: 'Partner with us for 2027' as const,
+		cta: 'Book a speaker' as const,
 		lead: 'Keynotes, panels and conference collaborations.',
 		body: [
 			'We make the case that building is not scrolling — and that women and girls should shape the technology that shapes their lives.',
-			'Book us for keynotes, panels, MC roles, or a conference program strand. Public speaking lives here, not in the programs catalogue.',
+			'Book us for keynotes, panels, MC roles, or a conference program strand.',
 		],
 		links: [{ label: 'Diversity in STEM review', href: urls.report }],
 	},
 	{
 		id: 'government',
+		image: photo('photos/49480858726_93b855fec7_k.jpg', 'Four women at a table with laptops'),
 		title: 'Government',
 		cta: 'Partner with us for 2027' as const,
 		lead: 'Local, state and federal partners on programs, research and policy.',
 		body: [
-			'We deliver funded education programs, share research (including on Ada Lovelace Day), and bring evidence to the debate on who controls the technology women and girls use.',
-			'From budget bids to school and skills initiatives — we bring delivery and a clear theory of change.',
+			'We deliver funded education programs and bring evidence to the debate on who controls the technology women and girls use.',
+			'Right now we’re asking governments to act on the Diversity in STEM Review, back it with investment in what already works, and make sure every student is taught tech until the end of Year 8, as the curriculum requires.',
 		],
 		links: [
 			{ label: 'Diversity in STEM review', href: urls.report },
+			{ label: 'Tech is compulsory', href: urls.techInSchools },
 			{ label: 'Case studies', href: urls.caseStudies },
 		],
 	},
 	{
 		id: 'media',
+		image: photo('photos/GGA-Thumb-ABCNews-TopCnr.jpg', 'Girl Geek Academy on ABC News'),
 		title: 'Media',
-		cta: 'Partner with us for 2027' as const,
+		cta: 'Media enquiries' as const,
 		lead: 'Expert voices on keeping girl geeks in — and who controls tech.',
 		body: [
-			'For interviews, op-eds and commentary on women and girls in STEM, AI, education and gender equity in technology — including regular spots on ABC’s Download This Show.',
-			'Copy our email from the button (we won’t force open your mail app). We’ll connect you with the right spokesperson.',
+			'For interviews, op-eds and commentary on women and girls in STEM, AI, education and gender equity in technology — as seen on ABC’s Download This Show, The Project and The Today Show.',
+			'Email hello@girlgeekacademy.com and we’ll connect you with the right spokesperson.',
 		],
 		links: [
 			{ label: 'As seen on… (About)', href: `${urls.about}#as-seen` },
@@ -150,12 +163,13 @@ const audiences = [
 	<Header />
 	<main>
 		<section class="wwu-hero section">
-			<div class="container">
+			<div class="container grid-2">
+				<div>
 				<p class="page-eyebrow">Work with Us</p>
 				<h1>Let's build tech power together</h1>
 				<p class="lead">
-					Women and girls shape the technology that shapes their lives. We work with the people and
-					institutions who can keep girl geeks in — from school to industry.
+					Girls and women don’t simply leave tech. They get pushed out. We work with the people and
+					institutions who can keep girl geeks in, from school to industry.
 				</p>
 				<nav class="wwu-jump" aria-label="Jump to section">
 					<a href="#formats">Formats</a>
@@ -166,10 +180,11 @@ const audiences = [
 					}
 				</nav>
 				<div class="hero-ctas">
-					<EmailCta label="Partner with us for 2027" variant="primary" />
-					<a href={urls.welcomePack} class="btn btn-coral" target="_blank" rel="noopener noreferrer">
-						Download welcome pack
-					</a>
+										<EmailCta label="Partner with us for 2027" variant="primary" />
+				</div>
+				</div>
+				<div class="hero-media">
+					<Image src={lib('graphics/Artboard-56woman.png')} alt="Illustration of a woman sketching a plan on a whiteboard" width={360} />
 				</div>
 			</div>
 		</section>
@@ -195,8 +210,8 @@ const audiences = [
 				<div id="programs-flavour" class="wwu-formats__programs">
 					<p class="wwu-formats__programs-label">Our programs</p>
 					<p class="wwu-formats__programs-hint">
-						Same formats, different flavours — explore the catalogue, then email us to commission
-						one.
+						Same formats, different flavours. Explore the programs, then email
+						hello@girlgeekacademy.com to commission one.
 					</p>
 					<ul class="wwu-formats__program-links">
 						{
@@ -221,6 +236,19 @@ const audiences = [
 			dark
 		/>
 
+		<LogoWall
+			heading="Who we’ve worked with"
+			logos={[
+				{ src: lib('partner-logos/microsoft-logo.png'), alt: 'Microsoft' },
+				{ src: lib('partner-logos/nab-logo.jpg'), alt: 'NAB' },
+				{ src: lib('partner-logos/agl-logo.jpg'), alt: 'AGL' },
+				{ src: lib('graphics/GGA-Sunsilk-partnership.png'), alt: 'Sunsilk × Girl Geek Academy' },
+				{ src: lib('partner-logos/RMIT_LOGO_RGB_SCREEN_Full_colour_positive-1-1.png'), alt: 'RMIT University' },
+				{ src: lib('partner-logos/LaunchVicLogo_Horizontal_RGB.png'), alt: 'LaunchVic' },
+				{ src: lib('partner-logos/Film_Victoria_State_Gov_logo.jpeg'), alt: 'Victoria State Government and Film Victoria' },
+			]}
+		/>
+
 		{
 			audiences.map((a, i) => (
 				<section
@@ -239,6 +267,7 @@ const audiences = [
 							</div>
 						</div>
 						<aside class:list={['wwu-aside', { 'wwu-aside--on-dark': i % 2 === 1 }]}>
+							<Image src={a.image.src} alt={a.image.alt} width={560} class="wwu-aside__img" />
 							<p class="wwu-aside__label">Explore</p>
 							<ul>
 								{a.links.map((l) => (
@@ -259,6 +288,15 @@ const audiences = [
 </Layout>
 
 <style>
+	.wwu-aside__img {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+		border-radius: 0.25rem;
+		margin-bottom: 1.25rem;
+	}
+
 	.wwu-hero {
 		background: linear-gradient(180deg, var(--color-yellow-light) 0%, var(--color-white) 100%);
 		padding-bottom: 2.5rem;

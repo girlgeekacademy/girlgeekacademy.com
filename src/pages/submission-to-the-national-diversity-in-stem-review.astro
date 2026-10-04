@@ -41,6 +41,89 @@ const stats = [
 	{ value: '23%', label: 'of senior management in STEM-qualified industries are women' },
 	{ value: '8%', label: 'of STEM CEOs are women' },
 ];
+
+const timeline = [
+	{
+		when: 'September 2022',
+		what: 'Minister Ed Husic commissions a national Diversity in STEM Review, pitching a more diverse STEM workforce as a $60 billion boost to the economy over 20 years.',
+	},
+	{
+		when: 'Early 2023',
+		what: 'The government holds back new women-in-STEM funding until the review reports. We say so publicly: “We need action, not just another review or consultation.”',
+	},
+	{
+		when: 'May–June 2023',
+		what: 'We survey 302 women, men and non-binary people in tech and lodge Enough Talk, with 16 recommendations.',
+	},
+	{
+		when: '13 February 2024',
+		what: 'The review’s final report is published with 11 recommendations. The government says it will consider them.',
+	},
+	{
+		when: '5 March 2025',
+		what: 'Days before International Women’s Day and ahead of the federal election, Minister Husic tells the SouthStart conference: “The government is going to accept all the recommendations of that report and make them a reality.”',
+	},
+	{
+		when: 'May 2025',
+		what: 'After the election, Senator Tim Ayres replaces Ed Husic as Minister for Industry and Science.',
+	},
+	{
+		when: 'About six months later',
+		what: 'A spokesperson for Minister Ayres says: “The recommendations of the 2023 review are still under formal consideration by the government.”',
+	},
+	{
+		when: 'November 2025',
+		what: 'The government releases a Statement on the Pathway to Diversity in STEM Review. It doesn’t respond to the recommendations one by one, and it contains no national strategy and no advisory council. The review’s chair, Sally-Ann Williams, calls it comprehensive, but says it lacks “an overarching, whole-of-government long-term strategy.”',
+	},
+	{
+		when: 'August 2026',
+		what: 'The Department of Industry removes the target of 1.2 million tech jobs by 2030 from its performance measures, projecting Australia will fall about 71,000 jobs short.',
+	},
+];
+
+const compare = [
+	{
+		topic: 'A plan',
+		asked: 'A National Action Plan to lift diversity in technology, with goals and targets.',
+		review: 'A whole-of-government, long-term strategy, with a dedicated advisory council and resources.',
+		delivered: 'No strategy and no advisory council. The words “council”, “advisory” and “whole-of-government” do not appear in the statement.',
+		status: 'Not delivered',
+	},
+	{
+		topic: 'Funding',
+		asked: 'Multiple annual funding streams, and annual, stable funding for women-led programs.',
+		review: 'A suite of diversity programs, including updated Women in STEM initiatives and new programs for under-represented groups.',
+		delivered: 'A list of programs, most already running or funded in the 2024–25 Budget or earlier.',
+		status: 'Partly',
+	},
+	{
+		topic: 'Grants and procurement',
+		asked: 'Diversity employment targets as a condition of tech subsidies, grants and government contracts.',
+		review: 'Change grant and procurement processes to make STEM workplaces safer and more inclusive.',
+		delivered: 'Grant applicants must commit to safety, diversity and inclusion actions. From 2026–27 the government will report how many contracts go to women-owned businesses.',
+		status: 'Partly',
+	},
+	{
+		topic: 'Schools and teachers',
+		asked: 'Regular digital technology professional development for teachers.',
+		review: 'Work with states and territories on school STEM participation, and prepare educators to teach diverse students.',
+		delivered: 'Teacher Resource Hubs ($34.6 million over four years) and a $2 million expansion of the Girls in STEM Toolkit.',
+		status: 'Partly',
+	},
+];
+
+const sources = [
+	{ label: 'Minister Husic: Paving a pathway for a diverse science and tech workforce', href: 'https://www.minister.industry.gov.au/ministers/husic/media-releases/paving-pathway-diverse-science-and-tech-workforce' },
+	{ label: 'SmartCompany (21 March 2023): Husic backs decision to pause new STEM grants as diversity review takes place', href: 'https://www.smartcompany.com.au/technology/ed-husic-diversity-in-stem-revie-grant-funding-pause/' },
+	{ label: 'Department of Industry: Pathway to Diversity in STEM Review final recommendations report (13 February 2024)', href: 'https://www.industry.gov.au/publications/pathway-diversity-stem-review-final-recommendations-report' },
+	{ label: 'Minister Husic: Pathway to Diversity in STEM report released', href: 'https://www.minister.industry.gov.au/ministers/husic/media-releases/pathway-diversity-stem-report-released' },
+	{ label: 'Startup Daily (5 March 2025): Ed Husic says the government will back all 11 recommendations', href: 'https://www.startupdaily.net/topic/ed-husic-says-the-government-will-back-all-11-recommendations-in-the-diversity-in-stem-review/' },
+	{ label: 'Research Professional News: Tim Ayres replaces Ed Husic as Australian science minister', href: 'https://www.researchprofessionalnews.com/rr-news-australia-politics-2025-5-tim-ayres-replaces-ed-husic-as-australian-science-minister/' },
+	{ label: 'InnovationAus: The tortured path of the STEM Diversity review', href: 'https://www.innovationaus.com/the-tortured-path-of-the-stem-diversity-review/' },
+	{ label: 'Department of Industry: Statement on the Pathway to Diversity in STEM Review (November 2025)', href: 'https://www.industry.gov.au/sites/default/files/2025-11/statement-on-the-pathway-to-diversity-in-stem-review.pdf' },
+	{ label: 'Startup Daily: The federal government finally responds to Pathway to Diversity in STEM review', href: 'https://www.startupdaily.net/advice/diversity/the-federal-government-finally-responds-to-pathway-to-diversity-in-stem-review/' },
+	{ label: 'Information Age (1 September 2026): 1.2m tech job target pulled from government KPIs', href: 'https://ia.acs.org.au/article/2026/1-2m-tech-job-target-pulled-from-government-kpis.html' },
+];
 ---
 
 <Layout
@@ -52,11 +135,12 @@ const stats = [
 		<section class="report-hero section section--dark">
 			<div class="container grid-2">
 				<div>
-					<p class="page-eyebrow">Research & Impact</p>
+					<p class="page-eyebrow">Policy &amp; Impact</p>
 					<h1>Enough Talk</h1>
 					<p class="lead">
-						<strong>Fix the system, not the girls.</strong> Our submission to Minister Husic’s
-						Diversity in STEM review — and a call for action backed by investment.
+						<strong>Fix the system, not the girls.</strong> Our 2023 submission to the national
+						Diversity in STEM Review, and a call for action backed by investment. Three years on,{' '}
+						<a href="#what-happened-next">here’s what happened next</a>.
 					</p>
 					<p>
 						Girl Geek Academy surveyed over 300 women, men and non-binary folk in tech. Girl Geeks
@@ -95,7 +179,7 @@ const stats = [
 							<li class="finding">
 								<span class="finding__n">{f.n}</span>
 								<div>
-									<h3>{f.title}</h3>
+									<h3>{f.fix}</h3>
 									<p>{f.body}</p>
 								</div>
 							</li>
@@ -122,6 +206,116 @@ const stats = [
 						))
 					}
 				</div>
+			</div>
+		</section>
+
+		<section class="section whn" id="what-happened-next">
+			<div class="container">
+				<p class="whn__kicker text-center">Three years on</p>
+				<h2 class="text-center">What happened next</h2>
+				<p class="text-center whn__intro">
+					In June 2023 we said another review would mean more waiting. Here’s what happened after
+					we lodged our submission.
+				</p>
+				<ol class="timeline">
+					{
+						timeline.map((t) => (
+							<li class="timeline__item">
+								<p class="timeline__when">{t.when}</p>
+								<p class="timeline__what">{t.what}</p>
+							</li>
+						))
+					}
+				</ol>
+			</div>
+		</section>
+
+		<section class="section section--dark">
+			<div class="container">
+				<h2 class="text-center">Promised vs delivered</h2>
+				<p class="text-center whn__intro">
+					The review made 11 recommendations. These are the ones closest to what Girl Geeks asked for.
+				</p>
+				<div class="compare">
+					{
+						compare.map((c) => (
+							<article class="compare__row">
+								<h3 class="compare__topic">{c.topic}</h3>
+								<p class:list={['compare__status', { 'compare__status--no': c.status === 'Not delivered' }]}>
+									{c.status}
+								</p>
+								<dl class="compare__cols">
+									<div>
+										<dt>We asked for (2023)</dt>
+										<dd>{c.asked}</dd>
+									</div>
+									<div>
+										<dt>The review recommended (2024)</dt>
+										<dd>{c.review}</dd>
+									</div>
+									<div>
+										<dt>The government’s statement (2025)</dt>
+										<dd>{c.delivered}</dd>
+									</div>
+								</dl>
+							</article>
+						))
+					}
+				</div>
+				<p class="text-center whn__note">
+					The full list of recommendations and the government’s statement are linked in the sources
+					below.
+				</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container whn__narrow">
+				<h2>Where that leaves us</h2>
+				<p>
+					It took more than three years to go from commissioning a review to a government statement,
+					and the statement leaves out the two structural recommendations: a national strategy and an
+					advisory council to drive it. Those are the parts closest to the National Action Plan we
+					asked for in 2023.
+				</p>
+				<p>
+					Meanwhile the problems haven’t waited. The 1.2 million tech jobs target has been dropped
+					from the department’s performance measures. And in classrooms,{' '}
+					<a href={urls.techInSchools}>technology is compulsory under the Australian Curriculum</a> but
+					treated as optional in many Queensland schools.
+				</p>
+				<h3 class="whn__asks-title">Enough talk. Still.</h3>
+				<ol class="whn__asks">
+					<li>
+						<strong>Publish the strategy.</strong> A whole-of-government, long-term plan with targets,
+						as the review recommended, and an advisory council to hold it to account.
+					</li>
+					<li>
+						<strong>Fund what already works.</strong> Multi-year funding for women-led programs,
+						instead of one-off grants and pilots.
+					</li>
+					<li>
+						<strong>Make tech compulsory in practice.</strong> Every student studies Digital
+						Technologies and Design and Technologies in Years 7 and 8, as the curriculum requires.
+					</li>
+					<li>
+						<strong>Report every year.</strong> Show publicly what has been done, what it cost and
+						what changed.
+					</li>
+				</ol>
+
+				<h3 class="whn__sources-title">Sources</h3>
+				<ul class="whn__sources">
+					{
+						sources.map((s) => (
+							<li>
+								<a href={s.href} target="_blank" rel="noopener noreferrer">
+									{s.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
 			</div>
 		</section>
 
@@ -235,5 +429,145 @@ const stats = [
 	.cta-lead {
 		max-width: 36rem;
 		margin: 0 auto 1.5rem;
+	}
+
+	/* What happened next */
+	.whn__kicker {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-coral);
+		margin: 0 0 0.75rem;
+	}
+
+	.whn__intro {
+		max-width: 40rem;
+		margin: 0 auto 2.5rem;
+	}
+
+	.whn__note {
+		max-width: 40rem;
+		margin: 2rem auto 0;
+		font-size: 0.95rem;
+	}
+
+	.whn__narrow {
+		max-width: 46rem;
+	}
+
+	.timeline {
+		list-style: none;
+		margin: 0 auto;
+		padding: 0;
+		max-width: 48rem;
+		border-left: 4px solid var(--color-pink);
+	}
+
+	.timeline__item {
+		position: relative;
+		padding: 0 0 1.75rem 1.75rem;
+	}
+
+	.timeline__item::before {
+		content: '';
+		position: absolute;
+		left: -12px;
+		top: 0.35rem;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background: var(--color-coral);
+		box-shadow: 2px 2px 0 0 var(--color-yellow-light);
+	}
+
+	.timeline__when {
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		margin: 0 0 0.25rem;
+	}
+
+	.timeline__what {
+		margin: 0;
+	}
+
+	.compare {
+		display: grid;
+		gap: 1.5rem;
+		max-width: 64rem;
+		margin: 0 auto;
+	}
+
+	.compare__row {
+		background: var(--color-white);
+		color: var(--color-text);
+		border-radius: 0.25rem;
+		padding: 1.5rem;
+		box-shadow: 4px 3px 0 0 var(--color-yellow-light);
+	}
+
+	.compare__topic {
+		font-family: var(--font-display);
+		font-size: clamp(1.6rem, 3vw, 2.25rem);
+		color: var(--color-primary);
+		margin: 0 0 0.5rem;
+	}
+
+	.compare__status {
+		display: inline-block;
+		font-weight: 700;
+		margin: 0 0 1rem;
+		padding: 0.15rem 0.75rem;
+		border-radius: 999px;
+		background: var(--color-yellow);
+		color: var(--color-dark);
+	}
+
+	.compare__status--no {
+		background: var(--color-coral);
+		color: var(--color-white);
+	}
+
+	.compare__cols {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.25rem;
+		margin: 0;
+	}
+
+	.compare__cols dt {
+		font-weight: 700;
+		margin-bottom: 0.35rem;
+	}
+
+	.compare__cols dd {
+		margin: 0;
+	}
+
+	.whn__asks-title,
+	.whn__sources-title {
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 4vw, 3rem);
+		margin: 2.5rem 0 1rem;
+	}
+
+	.whn__asks li {
+		margin-bottom: 0.75rem;
+	}
+
+	.whn__sources {
+		font-size: 0.95rem;
+		padding-left: 1.25rem;
+	}
+
+	.whn__sources li {
+		margin-bottom: 0.5rem;
+		overflow-wrap: anywhere;
+	}
+
+	@media (max-width: 991px) {
+		.compare__cols {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

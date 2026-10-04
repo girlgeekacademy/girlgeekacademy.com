@@ -9,6 +9,8 @@ import booksSet from '../assets/shop/books-boxed-set.jpg';
 import booksPhoto from '../assets/home/books.png';
 import { urls } from '../data/urls';
 import { booksVideos } from '../data/videos';
+import PhotoGallery from '../components/PhotoGallery.astro';
+import { photo } from '../data/library';
 
 const books = [
 	{
@@ -156,6 +158,17 @@ const books = [
 				</ol>
 			</div>
 		</section>
+
+		<PhotoGallery
+			heading="Girl Geeks in the wild"
+			photos={[
+				photo('photos/book_4.jpeg', 'Cover of Girl Geeks: Making Magic'),
+				photo('photos/IMG_6596.jpg', 'A reader in a Girl Geek Academy beanie pointing to a Girl Geeks book'),
+				photo('photos/48906343648_cd1a47837b_k.jpg', 'A Girl Geeks book on a bed of leaves'),
+				photo('photos/48906864981_6da85fe6e4_k.jpg', 'Another Girl Geeks book on a bed of leaves'),
+				photo('photos/IMG_6586.jpg', 'A reader holding up a Girl Geeks book'),
+			]}
+		/>
 
 		<section class="section books-cta">
 			<div class="container grid-2">
