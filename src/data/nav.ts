@@ -5,6 +5,7 @@ export type NavGroup = { label: string; children: NavLink[] };
 
 export const programsNav: NavLink[] = [
 	{ label: 'MissMakesCode', href: urls.missMakesCode },
+	{ label: 'AI High', href: urls.aiHigh },
 	{ label: 'SheHacks', href: urls.sheHacks },
 	{ label: 'SheHacksSwift', href: urls.sheHacksSwift },
 	{ label: 'SheMakesGames', href: urls.sheMakesGames },
@@ -25,11 +26,15 @@ export const workWithUsNav: NavLink[] = [
 ];
 
 export const researchNav: NavLink[] = [
+	{ label: 'Tech is compulsory', href: urls.techInSchools },
 	{ label: 'Diversity in STEM review', href: urls.report },
 	{ label: 'Case studies', href: urls.caseStudies },
 	{ label: 'Sunsilk', href: urls.caseSunsilk },
 	{ label: 'Microsoft Mondays', href: urls.caseMicrosoft },
 	{ label: 'AI High', href: urls.caseAiHigh },
+	{ label: 'Games Career Incubator', href: urls.caseGamesIncubator },
+	{ label: 'Gender Equality Game Jam', href: urls.caseGameJam },
+	{ label: '#SheMakesChange', href: urls.caseSheMakesChange },
 	{ label: 'MissMakesCode', href: urls.caseMissMakesCode },
 ];
 
@@ -38,7 +43,8 @@ export const mainNav: Array<NavLink | NavGroup> = [
 	{ label: 'About', href: urls.about },
 	{ label: 'Programs', children: programsNav },
 	{ label: 'Work with Us', children: workWithUsNav },
-	{ label: 'Research & Impact', children: researchNav },
+	{ label: 'Policy & Impact', children: researchNav },
+	{ label: 'News', href: urls.news },
 	{ label: 'Books', href: urls.books },
 ];
 

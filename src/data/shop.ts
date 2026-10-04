@@ -36,7 +36,7 @@ export const products: ShopProduct[] = [
 		name: 'Girl Geeks: Book Series (4 Books)',
 		price: 49.95,
 		description:
-			'Get ya geek on with this girl gang as they design, make, game, hack, code & more! Written for girls aged 7–10 to encourage coding, gaming, and STEM.',
+			'Get ya geek on with this girl gang as they design, make, game, hack, code & more! Written for girls aged 7-12 to encourage coding, gaming, and STEM.',
 		paymentLink: 'https://buy.stripe.com/aFabJ1d3Pcu1bSbdQAcfK01',
 	},
 ];

@@ -10,6 +10,7 @@ export const urls = {
 	shop: '/shop/',
 	shopThankYou: '/shop/thank-you/',
 	refundReturns: '/refund-returns/',
+	news: '/news/',
 
 	// Programs catalogue
 	missMakesCode: '/missmakescode/',
@@ -30,12 +31,16 @@ export const urls = {
 	government: '/work-with-us/#government',
 	media: '/work-with-us/#media',
 
-	// Research & Impact
+	// Policy & Impact
+	techInSchools: '/tech-in-schools/',
 	report: '/submission-to-the-national-diversity-in-stem-review/',
 	caseStudies: '/case-studies/',
 	caseSunsilk: '/case-studies/sunsilk/',
 	caseMicrosoft: '/case-studies/microsoft-mondays/',
 	caseAiHigh: '/case-studies/ai-high/',
+	caseGamesIncubator: '/case-studies/games-career-incubator/',
+	caseGameJam: '/case-studies/gender-equality-game-jam/',
+	caseSheMakesChange: '/case-studies/shemakeschange/',
 	/** Prefer program page impact section; old case URL redirects there */
 	caseMissMakesCode: '/missmakescode/#impact',
 	caseMissMakesCodeTeachers: '/missmakescode/#impact',
