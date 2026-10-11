@@ -5,7 +5,6 @@ import Footer from '../components/Footer.astro';
 import EmailCta from '../components/EmailCta.astro';
 import VideoGallery from '../components/VideoGallery.astro';
 import { workExperienceVideos } from '../data/videos';
-import LogoWall from '../components/LogoWall.astro';
 import { Image } from 'astro:assets';
 import { lib } from '../data/library';
 
@@ -13,12 +12,12 @@ const days = [
 	{
 		day: 'Day 1',
 		title: 'Introductions & Kickoff',
-		description: 'Meet your team, Swift refresher, and project kickoff.',
+		description: 'Meet the group, Swift refresher, and start planning your own app.',
 	},
 	{
 		day: 'Day 2',
 		title: 'Build & Collaborate',
-		description: 'Collaborative coding, skill-building workshops and mentorship.',
+		description: 'Build your app, with skill-building workshops and mentors alongside you.',
 	},
 	{
 		day: 'Day 3',
@@ -36,7 +35,7 @@ const faqs = [
 	},
 	{
 		q: 'What do I need to bring?',
-		a: 'One device per participant (Mac, iPad or iPhone), your lunch, and a willingness to learn!',
+		a: 'One device per participant (Mac or iPad), your lunch, and a willingness to learn! Apps are built in Swift Playground or Xcode, which run on Mac and iPad.',
 	},
 	{
 		q: 'What are the hours?',
@@ -44,14 +43,18 @@ const faqs = [
 	},
 	{
 		q: 'Who can apply?',
-		a: 'High school aged girls and non-binary students in Australia.',
+		a: 'High school aged girls and gender-diverse students in Australia.',
+	},
+	{
+		q: "What's the Swift Student Challenge?",
+		a: "Apple's annual coding challenge for students. Each entrant builds their own app playground in Swift. SheHacksSwift gets you ready to enter in early 2027.",
 	},
 ];
 ---
 
 <Layout
 	title="SheHacksSwift — Girl Geek Academy"
-	description="Free 3-day work experience program where high school girls and non-binary students learn Swift and build apps for Apple devices. Sydney, 12–14 January 2027."
+	description="Free 3-day work experience program where high school girls and gender-diverse students learn Swift and build apps for Apple devices. Sydney, 12–14 January 2027."
 >
 	<Header />
 	<main>
@@ -62,10 +65,25 @@ const faqs = [
 				<div>
 				<p class="page-eyebrow">Free Work Experience</p>
 				<h1>SheHacksSwift</h1>
-				<p class="lead">
-					A free 3-day program where high school girls and non-binary students learn Swift and build
-					their own apps for Apple devices. Next up: Sydney, 12–14 January 2027.
-				</p>
+				<div class="lead-row">
+					<p class="lead">
+						A free 3-day program where high school girls and gender-diverse students learn Swift and each
+						build their own app, ready to enter the{' '}
+						<a
+							href="https://developer.apple.com/swift-student-challenge/"
+							target="_blank"
+							rel="noopener noreferrer">Swift Student Challenge</a
+						>{' '}
+						in early 2027. Next up: Sydney, 12–14 January 2027.
+					</p>
+					<Image
+						src={lib('graphics/Untitled-design2.png')}
+						alt="Swift"
+						width={191}
+						height={59}
+						class="swift-mark"
+					/>
+				</div>
 				<div class="swift-hero__locations">
 					{
 						cities.map((c) => (
@@ -118,9 +136,9 @@ const faqs = [
 					<h2>What you need to know</h2>
 					<ul class="details-list">
 						<li><strong>Cost:</strong> Free</li>
-						<li><strong>Who:</strong> High school girls and non-binary students</li>
+						<li><strong>Who:</strong> High school girls and gender-diverse students</li>
 						<li><strong>Hours:</strong> 9:30am–4:00pm each day</li>
-						<li><strong>Bring:</strong> One device (Mac, iPad or iPhone) and your lunch</li>
+						<li><strong>Bring:</strong> One device (Mac or iPad) and your lunch</li>
 						<li>
 							<strong>Pre-work:</strong> Online workshops before the event to get you ready
 						</li>
@@ -143,14 +161,6 @@ const faqs = [
 				</div>
 			</div>
 		</section>
-
-		<LogoWall
-			heading="Past supporters"
-			logos={[
-				{ src: lib('graphics/Untitled-design2.png'), alt: 'Swift' },
-				{ src: lib('partner-logos/RMIT_LOGO_RGB_SCREEN_Full_colour_positive-1-1.png'), alt: 'RMIT University' },
-			]}
-		/>
 
 		<!-- FAQ -->
 		<section class="section faq-section">
@@ -181,6 +191,7 @@ const faqs = [
 					<EmailCta label="Register interest" variant="yellow" />
 					<EmailCta label="Bring SheHacksSwift to your city" variant="coral" />
 				</div>
+				<p class="swift-trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
 			</div>
 		</section>
 
@@ -214,10 +225,35 @@ const faqs = [
 		margin: 0 0 0.5rem;
 	}
 
+	.lead-row {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
 	.lead {
 		font-size: 1.125rem;
 		max-width: 60ch;
-		margin-bottom: 1.5rem;
+		margin-bottom: 0;
+		flex: 1 1 16rem;
+	}
+
+	.lead a {
+		text-decoration: underline;
+	}
+
+	.swift-mark {
+		width: 6.5rem;
+		height: auto;
+		flex: 0 0 auto;
+	}
+
+	@media (max-width: 640px) {
+		.lead-row {
+			flex-direction: column;
+			align-items: flex-start;
+		}
 	}
 
 		.hero-note {
@@ -367,5 +403,12 @@ const faqs = [
 		background-color: var(--color-primary-hover);
 		border-color: var(--color-primary-hover);
 		color: var(--color-white);
+	}
+
+	.swift-trademark {
+		font-size: 0.75rem;
+		line-height: 1.4;
+		margin: 2.5rem 0 0;
+		opacity: 0.85;
 	}
 </style>

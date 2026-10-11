@@ -96,7 +96,7 @@ export const videos = {
 	},
 	highSchoolHolidays: {
 		id: 'eQilfhPwyDA',
-		title: 'High school holiday programs',
+		title: 'Girls at a past Girl Geek Academy school holiday program',
 	},
 
 	abcBreakfast: {
