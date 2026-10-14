@@ -8,7 +8,6 @@ import { Image } from 'astro:assets';
 import vennDiagram from '../assets/home/venn-diagram.png';
 import { sheHacksVideos } from '../data/videos';
 import PhotoGallery from '../components/PhotoGallery.astro';
-import LogoWall from '../components/LogoWall.astro';
 import { lib, photo } from '../data/library';
 
 const roles = [
@@ -47,7 +46,7 @@ const accessibility = [
 
 <Layout
 	title="#SheHacks — Girl Geek Academy"
-	description="The world's longest-running hackathon series for women and non-binary folk. SheHacks 2026 is the AI-Ally Hackathon, with Google and eSafety, in November 2026."
+	description="The world's longest-running hackathon series for women and non-binary folk."
 >
 	<Header />
 	<main>
@@ -59,20 +58,15 @@ const accessibility = [
 				<p class="page-eyebrow">The World's Longest-Running Women's Hackathon</p>
 				<h1>#SheHacks</h1>
 				<p class="lead">
-					Find your team, build your idea and pitch a working prototype in a weekend, alongside
+					Find your team, build your idea and pitch a working prototype, alongside
 					brilliant women and non-binary folk. The longest-running hackathon series of its kind in
 					the world.
 				</p>
-				<div class="next-event">
-					<p class="next-event__label">Next up</p>
-					<p class="next-event__title">SheHacks 2026: the AI-Ally Hackathon</p>
-					<p class="next-event__detail">With Google and eSafety. November 2026, date and venue to be announced.</p>
-				</div>
 				<div class="hero-ctas">
 					<EmailCta label="Register interest" variant="primary" />
 					<EmailCta label="Bring SheHacks to your organisation" variant="coral" />
 				</div>
-				<p class="hero-note">Email hello@girlgeekacademy.com with “SheHacks 2026” in the subject line.</p>
+				<p class="hero-note">Email hello@girlgeekacademy.com with “SheHacks” in the subject line.</p>
 				</div>
 				<div class="hero-media">
 					<Image src={lib('logos/SheHacksVIC-Icons-blue.png')} alt="Pixel-art girl geeks coding around a giant keyboard" width={420} />
@@ -161,17 +155,6 @@ const accessibility = [
 				photo('graphics/Artboard-2.png', 'SMARTsistas present #SheHacks Vanuatu, 7–9 December'),
 			]}
 			dark
-		/>
-
-		<LogoWall
-			heading="Past partners"
-			logos={[
-				{ src: lib('partner-logos/LaunchVicLogo_Horizontal_RGB.png'), alt: 'LaunchVic' },
-				{ src: lib('partner-logos/Logo-Runway-Colour.png'), alt: 'Runway' },
-				{ src: lib('partner-logos/Logo-StartUpGippsland-Colour.png'), alt: 'Startup Gippsland' },
-				{ src: lib('partner-logos/Logo-StartUpOnRamp-Colour.png'), alt: 'Startup OnRamp' },
-				{ src: lib('partner-logos/Logo-DesignJunkies-Colour.png'), alt: 'Design Junkies' },
-			]}
 		/>
 
 		<!-- Accessibility -->
