@@ -34,6 +34,32 @@ const roles = [
 	},
 ];
 
+const quotes: { text: string; attribution: string; source: string; href?: string }[] = [
+	{
+		text: 'What the hackathon did was give me a place to see [Bron] for who she was, in her element.',
+		attribution: 'Jen Fein, who met her YouLi co-founder Bron Thulke at #SheHacks 2016',
+		source: 'SmartCompany, 2019',
+		href: 'https://www.smartcompany.com.au/startupsmart/travel-startup-youli/',
+	},
+	{
+		text: 'No sign or remnants of beer and pizza but fresh fruit, popcorn, cupcakes and a range of teas and beautiful tea cups.',
+		attribution: 'Charlotte Petris, #SheHacks 2016 judge',
+		source: 'SmartCompany, 2016',
+		href: 'https://www.smartcompany.com.au/startupsmart/what-this-entrepreneur-learnt-from-going-to-her-first-ever-hackathon/',
+	},
+	{
+		text: "My first hackathon… I'm in a very talented team… and we're building something really fantastic that I would actually use!",
+		attribution: 'Fox Woods, #SheHacks 2014',
+		source: 'StartupSmart, 2014',
+		href: 'https://www.smartcompany.com.au/startupsmart/australias-first-female-hackathon-proves-a-hit/',
+	},
+	{
+		text: "I'm very excited to be out here in an environment that wants and values not just tech, but also women entrepreneurs.",
+		attribution: 'Holly Liu, co-founder of Kabam and #SheHacks Entrepreneur in Residence, 2017',
+		source: 'Australian Financial Review',
+	},
+];
+
 const accessibility = [
 	'CART captioning',
 	'Childcare services',
@@ -102,12 +128,35 @@ const accessibility = [
 			</div>
 		</section>
 
+		<section class="section quotes-section">
+			<div class="container">
+				<h2 class="text-center">What people say about #SheHacks</h2>
+				<div class="quotes-grid">
+					{
+						quotes.map((q) => (
+							<blockquote class="quote-card">
+								<p>“{q.text}”</p>
+								<footer>
+									<p class="quote-card__by">{q.attribution}</p>
+									{q.href ? (
+										<a href={q.href}>{q.source}</a>
+									) : (
+										<p class="quote-card__source">{q.source}</p>
+									)}
+								</footer>
+							</blockquote>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
 		<!-- Roles -->
 		<section class="section section--dark roles-section">
 			<div class="container">
 				<h2 class="text-center">Find your role</h2>
 				<p class="text-center roles-intro">
-					Every team needs three skill sets. Which one is you?
+					Every team needs three skill sets. Which one are you?
 				</p>
 				<div class="grid-3 roles-grid">
 					{
@@ -254,6 +303,57 @@ const accessibility = [
 	/* Origin */
 	.origin-section {
 		background: var(--color-yellow-light);
+	}
+
+	.quotes-section {
+		background: var(--color-white);
+	}
+
+	.quotes-section h2 {
+		margin-bottom: 2rem;
+	}
+
+	.quotes-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.5rem;
+		align-items: stretch;
+	}
+
+	.quote-card {
+		margin: 0;
+		background: var(--color-yellow-light);
+		border-radius: 0.5rem;
+		padding: 1.75rem 1.5rem;
+	}
+
+	.quote-card p {
+		margin: 0 0 1rem;
+	}
+
+	.quote-card footer {
+		margin: 0;
+	}
+
+	.quote-card .quote-card__by,
+	.quote-card .quote-card__source {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.quote-card .quote-card__by {
+		margin-bottom: 0.35rem;
+	}
+
+	.quote-card a {
+		font-size: 0.95rem;
+		text-decoration: underline;
+	}
+
+	@media (max-width: 991px) {
+		.quotes-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	/* Roles */
