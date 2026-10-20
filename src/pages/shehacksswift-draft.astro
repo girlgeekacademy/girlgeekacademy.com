@@ -60,8 +60,28 @@ import '../styles/shehacksswift.css';
 		overflow: visible;
 	}
 	.shs-draft.shs-root .shs-darkhero .shs-hero-art { opacity: 0.9; }
+	.shs-draft .shs-logo {
+		display: block;
+		width: clamp(170px, 19vw, 270px);
+		height: auto;
+	}
+	.shs-draft .shs-bird-mobile { display: none; }
 	@media (max-width: 800px) {
 		.shs-draft .shs-swift-art { width: 500px; left: auto; right: 50%; top: 11px; transform: translateX(14%); }
+		.shs-draft .shs-mark {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 2px;
+			width: 100%;
+		}
+		.shs-draft .shs-logo { width: 148px; }
+		.shs-draft .shs-bird-mobile {
+			display: block;
+			width: 112px;
+			height: auto;
+			flex: 0 0 auto;
+		}
 	}
 	.shs-draft .shs-sw { stroke-dasharray: 1000 1300; }
 	@keyframes shs-sw-draw { from { stroke-dashoffset: 1150; } to { stroke-dashoffset: 0; } }
@@ -70,6 +90,9 @@ import '../styles/shehacksswift.css';
 	.shs-draft.shs-motion .shs-sw-otop { animation-duration: 480ms; animation-delay: 520ms; }
 	@keyframes shs-sw-bird { from { opacity: 0; transform: translate(-184.8px, -185.5px); } to { opacity: 1; transform: none; } }
 	.shs-draft.shs-motion .shs-sw-bird { animation: shs-sw-bird 200ms cubic-bezier(.2, .8, .4, 1) 750ms both; }
+	@media (max-width: 800px) {
+		.shs-draft.shs-motion .shs-sw-bird { animation: none; opacity: 0; }
+	}
 	@keyframes shs-swoop-in { from { opacity: 0; } to { opacity: 1; } }
 	@keyframes shs-swart-drift { from { transform: translateX(-3%); } to { transform: translateX(3%); } }
 	@media (min-width: 1440px) { .shs-draft .shs-swift-art { width: 820px; min-width: 0; top: -130px; } }
@@ -88,7 +111,7 @@ import '../styles/shehacksswift.css';
 <svg class="shs-hero-art shs-swift-art" viewBox="0 0 1248 1116" preserveAspectRatio="xMinYMin meet" aria-hidden="true" focusable="false"><defs><pattern id="shs-sw-purple" patternUnits="userSpaceOnUse" x="-600" y="-600" width="2316" height="2161"><image href="/images/shehacksswift/swift-org/purple-swoop.png" x="600" y="600" width="1116" height="961"></image></pattern><pattern id="shs-sw-white1" patternUnits="userSpaceOnUse" x="-600" y="-600" width="2419" height="2152"><image href="/images/shehacksswift/swift-org/white-swoop-1.png" x="600" y="600" width="1219" height="952"></image></pattern><pattern id="shs-sw-otop" patternUnits="userSpaceOnUse" x="-600" y="-600" width="2420" height="2111"><image href="/images/shehacksswift/swift-org/orange-swoop-top.png" x="600" y="600" width="1220" height="911"></image></pattern><pattern id="shs-sw-obottom" patternUnits="userSpaceOnUse" x="-600" y="-600" width="2420" height="2111"><image href="/images/shehacksswift/swift-org/orange-swoop-bottom.png" x="600" y="600" width="1220" height="911"></image></pattern><pattern id="shs-sw-white2" patternUnits="userSpaceOnUse" x="-600" y="-600" width="2390" height="2034"><image href="/images/shehacksswift/swift-org/white-swoop-2.png" x="600" y="600" width="1190" height="834"></image></pattern></defs><g transform="translate(0 160)"><path class="shs-sw shs-sw-purple" pathLength="1000" d="M-34 860C-34 860 42 912 102 854C162 796 98 658 50 556C2 454 18 48 142 88C272 130 290 678 432 682C574 686 434 102 794 90C1009 83 1028 280 1028 280" fill="none" stroke="url(#shs-sw-purple)" stroke-width="210" stroke-linecap="round" stroke-linejoin="round"></path></g><g transform="translate(-9.5 176)"><path class="shs-sw shs-sw-white1" pathLength="1000" d="M-26 910C-26 910 209 817 90 542C38 422 -87 99 102 62C294 24 226 454 397 650C540 812 530 398 567 228C600 84 764 -94 1182 320" fill="none" stroke="url(#shs-sw-white1)" stroke-width="140" stroke-linecap="round" stroke-linejoin="round"></path></g><g transform="translate(0 24)"><path class="shs-sw shs-sw-otop" pathLength="1000" d="M468 168C468 168 674 46 858 78C1018 106 1116 142 1160 414" fill="none" stroke="url(#shs-sw-otop)" stroke-width="163.4" stroke-linecap="round" stroke-linejoin="round"></path></g><g transform="translate(0 24)"><path class="shs-sw shs-sw-obottom" pathLength="1000" d="M-74 816C-74 816 216 887 326 598C408 382 458 170 634 180C809 190 851 305 904 368C972 448 1124 476 1124 476" fill="none" stroke="url(#shs-sw-obottom)" stroke-width="202.2" stroke-linecap="round" stroke-linejoin="round"></path></g><g transform="translate(-1 91.5)"><path class="shs-sw shs-sw-white2" pathLength="1000" d="M-59 796.5C-59 796.5 258.52 885.51 361 430.5C461 -13.5 757 18.5 903 44.5C1049 70.5 1123 166.5 1167 228.5" fill="none" stroke="url(#shs-sw-white2)" stroke-width="73.6" stroke-linecap="round" stroke-linejoin="round"></path></g><image class="shs-sw-bird" href="/images/shehacksswift/swift-org/bird.png" x="902.5" y="212.5" width="339" height="299"></image></svg>
 <div style="position: relative; z-index: 3; max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: clamp(28px, 3vw, 40px); text-align: center">
 <h1 id="shs-title" class="shs-land" style="margin: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 20px 48px; font-family: 'Piñata LimesSans-Black', sans-serif; font-weight: 400; font-size: clamp(50px, 7.4vw, 108px); line-height: 0.96; letter-spacing: 0.02em; color: #ffffff; text-align: left; text-transform: uppercase">
-<img src="/images/shehacksswift/shehacksswift-logo.webp" alt="SheHacksSwift" width="520" height="481" style="display: block; width: clamp(170px, 19vw, 270px); height: auto">
+<span class="shs-mark"><img class="shs-logo" src="/images/shehacksswift/shehacksswift-logo.webp" alt="SheHacksSwift" width="520" height="481"><img class="shs-bird-mobile" src="/images/shehacksswift/swift-org/bird.png" alt="" width="339" height="299" aria-hidden="true"></span>
 <span style="display: block">Make friends.<br><span style="color: #C9C3F0">Build apps.</span></span>
 </h1>
 <div style="display: flex; flex-direction: column; align-items: center; gap: 18px; max-width: 780px">
