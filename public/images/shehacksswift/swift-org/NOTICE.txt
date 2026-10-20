@@ -1,0 +1,17 @@
+Swift.org artwork used on the SheHacksSwift page
+
+These images come from the Swift.org website source code:
+https://github.com/swiftlang/swift-org-website
+
+- purple-swoop.png, white-swoop-1.png, white-swoop-2.png, orange-swoop-top.png,
+  orange-swoop-bottom.png, bird.png: assets/images/landing-page/hero (unmodified)
+- section-swoop-0/1/2.png: assets/images/landing-page/swoops/swoop-0/1/2.png (unmodified, renamed)
+- wave-swoop.png: assets/images/shared-swoops/swoop-0.png (unmodified, renamed)
+- community-swoop.webp: assets/images/community/community-bg-hero@2x.png
+  (resized to 1920px wide and converted to WebP)
+
+Copyright Apple Inc. and the Swift.org website contributors.
+Licensed under the Apache License, Version 2.0 (see LICENSE.txt in this folder).
+
+bird.png is the Swift bird. The Swift logo is a trademark of Apple Inc. and is
+used here with Apple's permission.
