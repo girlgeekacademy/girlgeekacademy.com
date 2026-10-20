@@ -16,6 +16,10 @@ export const urls = {
 	missMakesCode: '/missmakescode/',
 	sheHacks: '/shehacks/',
 	sheHacksSwift: '/shehacksswift/',
+	sheHacksSwiftRegister:
+		'https://docs.google.com/forms/d/e/1FAIpQLSehHOXW57aP2iGCnF9kdaRfns7n_YLrjPUNcPasCAgITJd-Vg/viewform',
+	sheHacksSwiftMentor:
+		'https://docs.google.com/forms/d/e/1FAIpQLScZFT-PQLmSPcfiwfQ867uKnrVC-BNuZDoBtR_Ilnhol_bIYw/viewform',
 	sheMakesGames: '/shemakesgames/',
 	sheMakes: '/shemakes/',
 	sheFlies: '/sheflies/',

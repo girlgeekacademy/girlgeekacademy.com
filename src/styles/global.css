@@ -201,13 +201,13 @@ h6 {
 }
 
 .btn-coral {
-	color: var(--color-white);
+	color: var(--color-dark);
 	background-color: var(--color-coral);
 	border-color: var(--color-coral);
 }
 
 .btn-coral:hover {
-	color: var(--color-white);
+	color: var(--color-dark);
 	filter: brightness(0.95);
 }
 

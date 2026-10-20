@@ -5,11 +5,14 @@ import '../styles/sections.css';
 interface Props {
 	title?: string;
 	description?: string;
+	/** Optional class on `<body>`, for page-scoped style overrides. */
+	bodyClass?: string;
 }
 
 const {
 	title = 'Girl Geek Academy',
 	description = 'Girl Geek Academy is a social enterprise dedicated to achieving gender equality in the technology industry.',
+	bodyClass,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://girlgeekacademy.com');
@@ -46,7 +49,7 @@ const ogImage = new URL('/og-preview.png', Astro.site ?? 'https://girlgeekacadem
 			rel="stylesheet"
 		/>
 	</head>
-	<body>
+	<body class={bodyClass}>
 		<slot />
 	</body>
 </html>

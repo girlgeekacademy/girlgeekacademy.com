@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import EmailCta from '../components/EmailCta.astro';
 import VideoGallery from '../components/VideoGallery.astro';
 import { workExperienceVideos } from '../data/videos';
+import { urls } from '../data/urls';
 import { Image } from 'astro:assets';
 import { lib } from '../data/library';
 
@@ -16,13 +17,15 @@ const days = [
 	},
 	{
 		day: 'Day 2',
-		title: 'Build & Collaborate',
-		description: 'Build your app, with skill-building workshops and mentors alongside you.',
+		title: 'Build & Test',
+		description:
+			'Build your app with mentors on hand. Your crew tests it and gives feedback, but every app is your own work.',
 	},
 	{
 		day: 'Day 3',
 		title: 'App Prep & Celebration',
-		description: 'Polish your app, present to the group and celebrate your work.',
+		description:
+			"Polish your app, demo it to the room and celebrate. You'll leave with your own app playground to keep working on for the Challenge.",
 	},
 ];
 
@@ -43,7 +46,15 @@ const faqs = [
 	},
 	{
 		q: 'Who can apply?',
-		a: 'High school aged girls and gender-diverse students in Australia.',
+		a: 'Girls and gender-diverse students, including non-binary students, at high school in Australia who will be 13 or older by February 2027 and can get to Sydney for all three days.',
+	},
+	{
+		q: 'Can I work with my friends?',
+		a: "Yes. You'll be in a crew of 4 to 6 for ideas, testing and demos. Swift Student Challenge entries are individual, though, so everyone builds and submits their own app playground. Mentors coach and explain but never type in your project.",
+	},
+	{
+		q: 'Do my parents need to do anything?',
+		a: "Not to sign up. You can do that yourself. If you're offered a place, a parent or guardian fills in a short form and the consent forms within 7 days to confirm it.",
 	},
 	{
 		q: "What's the Swift Student Challenge?",
@@ -55,6 +66,7 @@ const faqs = [
 <Layout
 	title="SheHacksSwift — Girl Geek Academy"
 	description="Free 3-day work experience program where high school girls and gender-diverse students learn Swift and build apps for Apple devices. Sydney, 12–14 January 2027."
+	bodyClass="page-shehacksswift"
 >
 	<Header />
 	<main>
@@ -63,41 +75,46 @@ const faqs = [
 		<section class="swift-hero section">
 			<div class="container grid-2">
 				<div>
-				<p class="page-eyebrow">Free Work Experience</p>
-				<h1>SheHacksSwift</h1>
-				<div class="lead-row">
-					<p class="lead">
-						A free 3-day program where high school girls and gender-diverse students learn Swift and each
-						build their own app, ready to enter the{' '}
-						<a
-							href="https://developer.apple.com/swift-student-challenge/"
-							target="_blank"
-							rel="noopener noreferrer">Swift Student Challenge</a
-						>{' '}
-						in early 2027. Next up: Sydney, 12–14 January 2027.
-					</p>
-					<Image
-						src={lib('graphics/Untitled-design2.png')}
-						alt="Swift"
-						width={191}
-						height={59}
-						class="swift-mark"
-					/>
-				</div>
-				<div class="swift-hero__locations">
-					{
-						cities.map((c) => (
-							<div class="location-chip">
-								<strong>{c.city}</strong> — {c.dates}
-							</div>
-						))
-					}
+					<p class="page-eyebrow">Free Work Experience</p>
+					<h1>SheHacksSwift</h1>
+					<div class="lead-row">
+						<p class="lead">
+							A free 3-day program where high school girls and gender-diverse students learn Swift and each
+							build their own app, ready to enter the{' '}
+							<a
+								href="https://developer.apple.com/swift-student-challenge/"
+								target="_blank"
+								rel="noopener noreferrer">Swift Student Challenge</a
+							>{' '}
+							in early 2027. Next up: Sydney, 12–14 January 2027.
+						</p>
+						<Image
+							src={lib('graphics/Untitled-design2.png')}
+							alt="Swift"
+							width={191}
+							height={59}
+							class="swift-mark"
+						/>
+					</div>
+					<div class="swift-hero__locations">
+						{
+							cities.map((c) => (
+								<div class="location-chip">
+									<strong>{c.city}</strong> — {c.dates}
 								</div>
-				<EmailCta label="Register interest" variant="primary" />
-				<p class="hero-note">
-					Email hello@girlgeekacademy.com with “SheHacksSwift 2027” in the subject line, plus your
-					name, school and year level.
-				</p>
+							))
+						}
+					</div>
+					<a
+						class="btn btn-primary"
+						href={urls.sheHacksSwiftRegister}
+						target="_blank"
+						rel="noopener noreferrer">Sign up</a
+					>
+					<p class="hero-note">
+						Takes about five minutes. Sign up yourself: a parent or guardian only fills in a form if
+						you're offered a place.
+					</p>
 				</div>
 				<div class="hero-media hero-media--wide">
 					<Image src={lib('photos/High-school.jpeg')} alt="High school girls laughing together at their computers during a Girl Geek Academy program" width={900} />
@@ -106,7 +123,7 @@ const faqs = [
 		</section>
 
 		<!-- Program structure -->
-		<section class="section section--dark">
+		<section class="section section--dark swift-deep">
 			<div class="container">
 				<h2 class="text-center">How it works</h2>
 				<div class="grid-3 days-grid">
@@ -124,19 +141,23 @@ const faqs = [
 		</section>
 
 		<VideoGallery
+			class="swift-videos"
 			heading="Holiday programs"
 			intro="School-holiday delivery for high school girl geeks."
 			videos={workExperienceVideos}
 		/>
 
 		<!-- Details -->
-		<section class="section details-section section--dark">
+		<section class="section details-section">
 			<div class="container grid-2">
 				<div>
 					<h2>What you need to know</h2>
 					<ul class="details-list">
 						<li><strong>Cost:</strong> Free</li>
-						<li><strong>Who:</strong> High school girls and gender-diverse students</li>
+						<li>
+							<strong>Who:</strong> Girls and gender-diverse students at high school in Australia,
+							including non-binary students, who can come to Sydney all three days
+						</li>
 						<li><strong>Hours:</strong> 9:30am–4:00pm each day</li>
 						<li><strong>Bring:</strong> One device (Mac or iPad) and your lunch</li>
 						<li>
@@ -154,7 +175,12 @@ const faqs = [
 							<div class="city-card">
 								<h4>{c.city}</h4>
 								<p>{c.dates}</p>
-								<EmailCta label="Register interest" variant="primary" />
+								<a
+									class="btn btn-primary"
+									href={urls.sheHacksSwiftRegister}
+									target="_blank"
+									rel="noopener noreferrer">Sign up</a
+								>
 							</div>
 						))
 					}
@@ -179,8 +205,35 @@ const faqs = [
 			</div>
 		</section>
 
+		<!-- Mentors -->
+		<section class="section mentor-section">
+			<div class="container">
+				<h2 class="text-center">Swift developer? Mentor with us</h2>
+				<div class="mentor-copy">
+					<p>We need Swift and iOS developers to:</p>
+					<ul class="mentor-list">
+						<li>Mentor in the room in Sydney, 12–14 January (full or half days)</li>
+						<li>Give a 15-minute “how I got into iOS” talk on Day 1</li>
+						<li>Sit on the Day 3 showcase feedback panel</li>
+						<li>Mentor online from any city, about an hour a week through January and February</li>
+					</ul>
+					<p>
+						Mentors need a Working With Children Check (free for NSW volunteers) and join a one-hour
+						online onboarding in December. Mentors coach and explain but never type in a student's
+						project.
+					</p>
+					<a
+						class="btn btn-primary"
+						href={urls.sheHacksSwiftMentor}
+						target="_blank"
+						rel="noopener noreferrer">Become a mentor</a
+					>
+				</div>
+			</div>
+		</section>
+
 		<!-- Educators CTA -->
-		<section class="section section--dark text-center">
+		<section class="section section--dark swift-deep text-center">
 			<div class="container">
 				<h2>Are you a teacher or parent?</h2>
 				<p>
@@ -188,7 +241,12 @@ const faqs = [
 					your school or city, email hello@girlgeekacademy.com.
 				</p>
 				<div class="edu-ctas">
-					<EmailCta label="Register interest" variant="yellow" />
+					<a
+						class="btn btn-yellow"
+						href={urls.sheHacksSwiftRegister}
+						target="_blank"
+						rel="noopener noreferrer">Sign up</a
+					>
 					<EmailCta label="Bring SheHacksSwift to your city" variant="coral" />
 				</div>
 				<p class="swift-trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
@@ -213,7 +271,16 @@ const faqs = [
 
 	.swift-hero {
 		background-color: var(--color-mint);
+		color: var(--color-dark);
 		padding-bottom: 4rem;
+	}
+
+	.swift-hero h1,
+	.page-eyebrow,
+	.location-chip,
+	.lead a,
+	.lead a:hover {
+		color: var(--color-primary-hover);
 	}
 
 	.page-eyebrow {
@@ -221,7 +288,6 @@ const faqs = [
 		font-size: 1rem;
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
-		color: var(--color-primary);
 		margin: 0 0 0.5rem;
 	}
 
@@ -256,7 +322,7 @@ const faqs = [
 		}
 	}
 
-		.hero-note {
+	.hero-note {
 		font-size: 0.9rem;
 		margin: 0.75rem 0 0;
 		max-width: 36rem;
@@ -271,13 +337,38 @@ const faqs = [
 
 	.location-chip {
 		background: var(--color-white);
-		color: var(--color-primary);
 		border-radius: 2rem;
 		padding: 0.4rem 1rem;
 		font-size: 0.95rem;
 	}
 
+	/* White on the default primary blue is 3.89:1. Button type is 20px at the
+	   small end of the clamp, so it needs 4.5:1. */
+	a.btn-primary {
+		color: var(--color-white);
+		background-color: var(--color-primary-hover);
+		border-color: var(--color-primary-hover);
+	}
+
+	a.btn-primary:hover,
+	a.btn-primary:focus-visible {
+		color: var(--color-white);
+		background-color: color-mix(in srgb, var(--color-primary-hover) 78%, black);
+		border-color: color-mix(in srgb, var(--color-primary-hover) 78%, black);
+	}
+
+	/* section--dark forces anchor color to white, which fails on yellow. */
+	.swift-deep a.btn-yellow,
+	.swift-deep a.btn-yellow:hover,
+	.swift-deep a.btn-yellow:focus-visible {
+		color: var(--color-dark);
+	}
+
 	/* Days */
+	.swift-deep {
+		background-color: var(--color-primary-hover);
+	}
+
 	.days-grid {
 		margin-top: 2rem;
 	}
@@ -305,13 +396,23 @@ const faqs = [
 
 	.day-card p {
 		color: var(--color-white);
-		opacity: 0.9;
 		margin: 0;
+	}
+
+	/* .day-card p is more specific than .day-label, so set the label color again. */
+	.day-card .day-label {
+		color: var(--color-yellow);
 	}
 
 	/* Details */
 	.details-section {
 		background: var(--color-yellow-light);
+		color: var(--color-dark);
+	}
+
+	.details-section h2,
+	.city-card h4 {
+		color: var(--color-primary-hover);
 	}
 
 	.details-list {
@@ -342,6 +443,7 @@ const faqs = [
 	}
 
 	.city-card p {
+		color: var(--color-dark);
 		margin-bottom: 1rem;
 	}
 
@@ -366,13 +468,41 @@ const faqs = [
 
 	.faq-q {
 		font-weight: 600;
-		color: var(--color-primary);
+		color: var(--color-primary-hover);
 		margin: 0 0 0.5rem;
 	}
 
 	.faq-a {
 		margin: 0;
 		color: var(--color-dark);
+	}
+
+	/* Mentors */
+	.mentor-section {
+		background: var(--color-yellow-light);
+		color: var(--color-dark);
+	}
+
+	.mentor-section h2 {
+		color: var(--color-primary-hover);
+	}
+
+	.mentor-copy {
+		max-width: 40rem;
+		margin: 1.5rem auto 0;
+	}
+
+	.mentor-list {
+		padding-left: 1.25rem;
+		margin: 0 0 1.5rem;
+	}
+
+	.mentor-list li {
+		margin-bottom: 0.6rem;
+	}
+
+	.mentor-copy .btn {
+		margin-top: 0.5rem;
 	}
 
 	/* Educator CTA */
@@ -384,31 +514,60 @@ const faqs = [
 		margin-top: 1.5rem;
 	}
 
-	.btn-yellow {
-		background-color: var(--color-yellow);
-		border-color: var(--color-yellow);
-		color: var(--color-primary);
-	}
-	.btn-yellow:hover {
-		background-color: var(--color-white);
-		border-color: var(--color-white);
-		color: var(--color-primary);
-	}
-	.btn-coral {
-		background-color: var(--color-coral);
-		border-color: var(--color-coral);
-		color: var(--color-white);
-	}
-	.btn-coral:hover {
-		background-color: var(--color-primary-hover);
-		border-color: var(--color-primary-hover);
-		color: var(--color-white);
-	}
-
 	.swift-trademark {
 		font-size: 0.75rem;
 		line-height: 1.4;
 		margin: 2.5rem 0 0;
-		opacity: 0.85;
+	}
+
+	/* Holiday-programs intro and captions inherit the site blue (#5f7dd7 on white is 3.89:1). */
+	:global(.swift-videos) {
+		color: var(--color-dark);
+	}
+
+	/* Shared chrome on this page: nav blue and footer white-on-primary are under 4.5:1. */
+	:global(.page-shehacksswift .header__link),
+	:global(.page-shehacksswift .header__dropdown-link) {
+		color: var(--color-primary-hover);
+	}
+
+	:global(.page-shehacksswift .header__link:hover),
+	:global(.page-shehacksswift .header__link:focus-visible),
+	:global(.page-shehacksswift .header__dropdown-link:hover),
+	:global(.page-shehacksswift .header__dropdown-link:focus-visible) {
+		color: var(--color-primary-hover);
+		text-decoration: underline;
+	}
+
+	:global(.page-shehacksswift .header .btn-primary) {
+		color: var(--color-white);
+		background-color: var(--color-primary-hover);
+		border-color: var(--color-primary-hover);
+	}
+
+	:global(.page-shehacksswift .header .btn-primary:hover),
+	:global(.page-shehacksswift .header .btn-primary:focus-visible) {
+		color: var(--color-white);
+		background-color: color-mix(in srgb, var(--color-primary-hover) 78%, black);
+		border-color: color-mix(in srgb, var(--color-primary-hover) 78%, black);
+	}
+
+	:global(.page-shehacksswift .footer.section--dark) {
+		background: var(--color-primary-hover);
+	}
+
+	:global(.page-shehacksswift .footer__wave path) {
+		fill: var(--color-primary-hover);
+	}
+
+	/* Kit embed uses black checkbox text and a pale blue Subscribe button. */
+	:global(.page-shehacksswift .footer .formkit-checkboxes),
+	:global(.page-shehacksswift .footer .formkit-form label) {
+		color: var(--color-white) !important;
+	}
+
+	:global(.page-shehacksswift .footer .formkit-submit) {
+		color: var(--color-primary-hover) !important;
+		background-color: var(--color-white) !important;
 	}
 </style>
