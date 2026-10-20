@@ -8,6 +8,7 @@
 .shs-root p,.shs-root li{text-wrap:pretty}
 .shs-root a:focus-visible,.shs-root button:focus-visible{outline:2px solid dodgerblue;outline-offset:3px}
 .shs-glass{-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%)}
+.shs-faq > .shs-glass{margin:0}
 .shs-nav{-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%)}
 .shs-btn{transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}
 .shs-btn:hover{transform:translateY(-1px);filter:brightness(1.06);box-shadow:0 14px 28px -14px rgba(196,46,39,.7)}
