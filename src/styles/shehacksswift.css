@@ -1,0 +1,78 @@
+/* SheHacksSwift 2027 page. Everything is scoped under .shs-root. */
+.shs-root a{text-decoration:none}
+.shs-root p a,.shs-root dd a{text-decoration:underline;text-underline-offset:.15em}
+.shs-root :is(h1,h2,h3){font-family:'Bricolage Grotesque', 'Figtree', system-ui, sans-serif;font-weight:700;color:inherit;line-height:1.15;letter-spacing:normal;text-transform:none;margin:0}
+.shs-root .btn.shs-city{font-family:'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:19px;font-weight:700;line-height:1.2;padding:13px 28px;border:2px solid #1B1530;border-radius:999px;background:rgba(255,255,255,.35);color:#1B1530;box-shadow:none;transition:background-color .2s}
+.shs-root .btn.shs-city:hover{background:rgba(255,255,255,.65);border-color:#1B1530;color:#1B1530}
+.shs-root{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.shs-root p,.shs-root li{text-wrap:pretty}
+.shs-root a:focus-visible,.shs-root button:focus-visible{outline:2px solid dodgerblue;outline-offset:3px}
+.shs-glass{-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%)}
+.shs-nav{-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%)}
+.shs-btn{transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}
+.shs-btn:hover{transform:translateY(-1px);filter:brightness(1.06);box-shadow:0 14px 28px -14px rgba(196,46,39,.7)}
+.shs-root a.shs-btn:hover{color:#ffffff}
+.shs-root a.shs-btn-line:hover{color:#1B1530;box-shadow:none;background:rgba(255,255,255,.5)}
+.shs-root a.shs-btn-linedark:hover{color:#ffffff;box-shadow:none;background:rgba(255,255,255,.12)}
+.shs-darkhero .shs-hero-art{opacity:.5}
+.shs-root a.shs-btn-light:hover{color:#1B1530}
+.shs-video:hover .shs-play{transform:scale(1.05)}
+.shs-play{transition:transform .25s ease}
+.shs-strip{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.shs-track{display:flex;width:max-content}
+@keyframes shs-marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes shs-marq-r{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.shs-motion .shs-track{animation:shs-marq 80s linear infinite}
+.shs-motion .shs-track.shs-rev{animation-name:shs-marq-r;animation-duration:90s}
+.shs-strip:hover .shs-track{animation-play-state:paused}
+.shs-root:not(.shs-motion) .shs-strip{overflow-x:auto}
+@media (prefers-reduced-motion: reduce){.shs-strip{overflow-x:auto}}
+.shs-hero-art{-webkit-mask-image:linear-gradient(to bottom,#000 68%,transparent 98%);mask-image:linear-gradient(to bottom,#000 68%,transparent 98%)}
+.shs-glow{background-image:linear-gradient(90deg,#FFC37A 0%,#FF9E7A 45%,#FF8FC0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.shs-grainon .shs-g::before{content:"";position:absolute;inset:0;background-image:url("/images/shehacksswift/grain.png");background-size:300px 300px;mix-blend-mode:soft-light;opacity:.42;pointer-events:none;z-index:2}
+.shs-dotson .shs-d::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(27,21,48,.11) 1.3px,transparent 1.5px);background-size:22px 22px;pointer-events:none;z-index:1;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent)}
+.shs-dotson .shs-dd::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1.3px,transparent 1.5px);background-size:22px 22px;pointer-events:none;z-index:1}
+@media (max-width:820px){.shs-navlinks{display:none !important}}
+.shs-hero-lilac{stroke-dasharray:1713 2114}
+@keyframes shs-hero-lilac{from{stroke-dashoffset:1883}to{stroke-dashoffset:0}}
+.shs-motion .shs-hero-lilac{animation:shs-hero-lilac 1100ms cubic-bezier(.55,.05,.68,.6) 0ms both}
+.shs-hero-white1{stroke-dasharray:2150 2463}
+@keyframes shs-hero-white1{from{stroke-dashoffset:2277}to{stroke-dashoffset:0}}
+.shs-motion .shs-hero-white1{animation:shs-hero-white1 1100ms cubic-bezier(.55,.05,.68,.6) 0ms both}
+.shs-hero-orange_low{stroke-dasharray:1072 1537}
+@keyframes shs-hero-orange_low{from{stroke-dashoffset:1274}to{stroke-dashoffset:0}}
+.shs-motion .shs-hero-orange_low{animation:shs-hero-orange_low 1150ms cubic-bezier(.55,.05,.68,.6) 0ms both}
+.shs-hero-orange_top{stroke-dasharray:867 1258}
+@keyframes shs-hero-orange_top{from{stroke-dashoffset:1033}to{stroke-dashoffset:0}}
+.shs-motion .shs-hero-orange_top{animation:shs-hero-orange_top 630ms cubic-bezier(.55,.05,.68,.6) 520ms both}
+.shs-hero-white2{stroke-dasharray:1131 1357}
+@keyframes shs-hero-white2{from{stroke-dashoffset:1214}to{stroke-dashoffset:0}}
+.shs-motion .shs-hero-white2{animation:shs-hero-white2 1150ms cubic-bezier(.55,.05,.68,.6) 0ms both}
+.shs-rib-r1{stroke-dasharray:1720 2052}
+@keyframes shs-rib-r1{from{stroke-dashoffset:1856}to{stroke-dashoffset:0}}
+.shs-rib-r2{stroke-dasharray:1723 2036}
+@keyframes shs-rib-r2{from{stroke-dashoffset:1850}to{stroke-dashoffset:0}}
+.shs-rib-r3{stroke-dasharray:1732 2027}
+@keyframes shs-rib-r3{from{stroke-dashoffset:1849}to{stroke-dashoffset:0}}
+.shs-rib-r4{stroke-dasharray:1722 2063}
+@keyframes shs-rib-r4{from{stroke-dashoffset:1862}to{stroke-dashoffset:0}}
+@keyframes shs-land{from{opacity:0;transform:translate(-28px,20px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes shs-drift{from{transform:translate3d(-4%,50%,0)}to{transform:translate3d(4%,50%,0)}}
+.shs-motion .shs-land{animation:shs-land 560ms cubic-bezier(.2,.8,.2,1) 780ms both}
+@supports (animation-timeline: view()) {
+.shs-rib1{view-timeline-name:--shs-r1}
+.shs-motion .shs-rib1{animation:shs-drift linear both;animation-timeline:--shs-r1;animation-range:cover 0% cover 100%}
+.shs-motion .shs-rib1 path{animation-name:shs-rib-r1;animation-timing-function:linear;animation-fill-mode:both;animation-timeline:--shs-r1;animation-range:entry 0% cover 42%}
+.shs-rib2{view-timeline-name:--shs-r2}
+.shs-motion .shs-rib2{animation:shs-drift linear both;animation-timeline:--shs-r2;animation-range:cover 0% cover 100%}
+.shs-motion .shs-rib2 path{animation-name:shs-rib-r2;animation-timing-function:linear;animation-fill-mode:both;animation-timeline:--shs-r2;animation-range:entry 0% cover 42%}
+.shs-rib3{view-timeline-name:--shs-r3}
+.shs-motion .shs-rib3{animation:shs-drift linear both;animation-timeline:--shs-r3;animation-range:cover 0% cover 100%}
+.shs-motion .shs-rib3 path{animation-name:shs-rib-r3;animation-timing-function:linear;animation-fill-mode:both;animation-timeline:--shs-r3;animation-range:entry 0% cover 42%}
+.shs-rib4{view-timeline-name:--shs-r4}
+.shs-motion .shs-rib4{animation:shs-drift linear both;animation-timeline:--shs-r4;animation-range:cover 0% cover 100%}
+.shs-motion .shs-rib4 path{animation-name:shs-rib-r4;animation-timing-function:linear;animation-fill-mode:both;animation-timeline:--shs-r4;animation-range:entry 0% cover 42%}
+}
+@media (prefers-reduced-motion: reduce) {
+.shs-root *{animation:none !important}
+}
