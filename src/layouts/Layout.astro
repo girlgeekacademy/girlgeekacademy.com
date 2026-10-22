@@ -5,6 +5,8 @@ import '../styles/sections.css';
 interface Props {
 	title?: string;
 	description?: string;
+	/** Path or absolute URL for og:image and twitter:image. */
+	socialImage?: string;
 	/** Optional class on `<body>`, for page-scoped style overrides. */
 	bodyClass?: string;
 }
@@ -12,12 +14,13 @@ interface Props {
 const {
 	title = 'Girl Geek Academy',
 	description = 'Girl Geek Academy is a social enterprise dedicated to achieving gender equality in the technology industry.',
+	socialImage = '/og-preview.png',
 	bodyClass,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://girlgeekacademy.com');
 // Social sites need an absolute image URL.
-const ogImage = new URL('/og-preview.png', Astro.site ?? 'https://girlgeekacademy.com').href;
+const ogImage = new URL(socialImage, Astro.site ?? 'https://girlgeekacademy.com').href;
 ---
 
 <!doctype html>

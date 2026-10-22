@@ -1,0 +1,139 @@
+---
+/**
+ * YouTube film that stays a thumbnail until someone presses play.
+ * The player is the privacy-enhanced domain, with captions on.
+ */
+interface Props {
+	id: string;
+	title: string;
+	eager?: boolean;
+}
+
+const { id, title, eager = false } = Astro.props;
+const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+---
+
+<figure class="lite-yt">
+	<div class="lite-yt__frame">
+		<button
+			type="button"
+			class="lite-yt__btn"
+			data-id={id}
+			data-title={title}
+			aria-label={`Play video: ${title}`}
+		>
+			<img
+				src={thumb}
+				alt=""
+				width="480"
+				height="360"
+				loading={eager ? 'eager' : 'lazy'}
+				decoding="async"
+			/>
+			<span class="lite-yt__play" aria-hidden="true"></span>
+		</button>
+	</div>
+	<figcaption class="lite-yt__caption">{title}</figcaption>
+</figure>
+
+<script>
+	function initLiteYouTube() {
+		document.querySelectorAll<HTMLButtonElement>('.lite-yt__btn').forEach((btn) => {
+			if (btn.dataset.ready) return;
+			btn.dataset.ready = '1';
+
+			btn.addEventListener('click', () => {
+				const id = btn.dataset.id;
+				const title = btn.dataset.title ?? 'Video';
+				if (!id) return;
+
+				const frame = document.createElement('iframe');
+				frame.className = 'lite-yt__player';
+				frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&cc_load_policy=1`;
+				frame.title = title;
+				frame.allow =
+					'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+				frame.allowFullscreen = true;
+				frame.referrerPolicy = 'strict-origin-when-cross-origin';
+				btn.replaceWith(frame);
+			});
+		});
+	}
+
+	initLiteYouTube();
+	document.addEventListener('astro:page-load', initLiteYouTube);
+</script>
+
+<style>
+	.lite-yt {
+		margin: 0;
+	}
+
+	.lite-yt__frame {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		border-radius: 0.25rem;
+		overflow: hidden;
+		background: #0a0a0a;
+	}
+
+	.lite-yt__btn {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		border: 0;
+		background: #0a0a0a;
+		cursor: pointer;
+	}
+
+	.lite-yt__btn img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.lite-yt__btn:focus-visible {
+		outline: 3px solid var(--color-yellow);
+		outline-offset: -6px;
+	}
+
+	.lite-yt__play {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 3.5rem;
+		height: 3.5rem;
+		transform: translate(-50%, -50%);
+		border-radius: 50%;
+		background: var(--color-primary);
+		box-shadow: 4px 3px 0 0 var(--color-yellow-light);
+	}
+
+	.lite-yt__play::after {
+		content: '';
+		position: absolute;
+		left: 56%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		border-style: solid;
+		border-width: 0.55rem 0 0.55rem 0.95rem;
+		border-color: transparent transparent transparent var(--color-white);
+	}
+
+	.lite-yt__frame :global(.lite-yt__player) {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+
+	.lite-yt__caption {
+		margin-top: 0.5rem;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: inherit;
+	}
+</style>

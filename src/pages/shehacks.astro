@@ -1,22 +1,210 @@
 ---
+import type { ImageMetadata } from 'astro';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import EmailCta from '../components/EmailCta.astro';
-import VideoGallery from '../components/VideoGallery.astro';
+import LiteYouTube from '../components/LiteYouTube.astro';
 import { Image } from 'astro:assets';
 import vennDiagram from '../assets/home/venn-diagram.png';
-import { sheHacksVideos } from '../data/videos';
-import PhotoGallery from '../components/PhotoGallery.astro';
-import { lib, photo } from '../data/library';
+import vanuatuPhoto from '../assets/library/photos/SheHacks-Vanuatu.jpeg';
+import { videos } from '../data/videos';
+import { lib } from '../data/library';
+
+// false after 1 Dec: page goes back to evergreen
+const SHOW_EVENT = true;
+const TICKETS: {
+	hat: string;
+	places: number;
+	link: string;
+	waitlist: string;
+	soldOut: boolean;
+}[] = [
+	{
+		hat: 'Hacker',
+		places: 20,
+		link: 'https://book.stripe.com/fZu5kD2pb79H7BVaEocfK02',
+		waitlist:
+			'https://docs.google.com/forms/d/e/1FAIpQLSco12E5kDWsfEeJ_OnpxJ0GttDqvZtGzs46huTYZbOOc0LHRA/viewform?usp=pp_url&entry.1129005140=Hacker&entry.1873863139=Waitlist',
+		soldOut: false,
+	},
+	{
+		hat: 'Hipster',
+		places: 10,
+		link: 'https://book.stripe.com/9B6eVd9RD0Lj5tN13OcfK03',
+		waitlist:
+			'https://docs.google.com/forms/d/e/1FAIpQLSco12E5kDWsfEeJ_OnpxJ0GttDqvZtGzs46huTYZbOOc0LHRA/viewform?usp=pp_url&entry.1129005140=Hipster&entry.1873863139=Waitlist',
+		soldOut: false,
+	},
+	{
+		hat: 'Hustler',
+		places: 10,
+		link: 'https://book.stripe.com/fZu8wPgg13Xv5tN8wgcfK04',
+		waitlist:
+			'https://docs.google.com/forms/d/e/1FAIpQLSco12E5kDWsfEeJ_OnpxJ0GttDqvZtGzs46huTYZbOOc0LHRA/viewform?usp=pp_url&entry.1129005140=Hustler&entry.1873863139=Waitlist',
+		soldOut: false,
+	},
+];
+const MENTOR_LINK = '';
+const HOURS = '';
+
+const description = SHOW_EVENT
+	? "Australia's first all-women hackathon, since 2014. SheHacks Melbourne: 30 November – 1 December 2026, Telstra Customer Insight Centre."
+	: "One of the world's longest-running hackathon series for women and gender-diverse people, since 2014.";
+
+const mentorHref = MENTOR_LINK || 'mailto:hello@girlgeekacademy.com?subject=SheHacks%20mentor';
+
+const ticketLine: Record<string, string> = {
+	Hacker: 'You build the working prototype.',
+	Hipster: 'You design it.',
+	Hustler: 'You shape the idea and pitch it.',
+};
+
+const facts: { label: string; value: string }[] = [
+	{ label: 'When', value: 'Monday 30 November and Tuesday 1 December 2026' },
+	...(HOURS ? [{ label: 'Hours', value: HOURS }] : []),
+	{
+		label: 'Where',
+		value:
+			'Telstra Customer Insight Centre, Melbourne. Building entry details come with your confirmation email.',
+	},
+	{ label: 'Tickets', value: '$20: 20 hacker, 10 hipster and 10 hustler tickets' },
+	{
+		label: 'Who',
+		value: 'Women and gender-diverse people, including non-binary people, aged 18+',
+	},
+	{ label: 'Teams', value: "We'll match you into a team on the day" },
+	{ label: 'Bring', value: "Your laptop and charger. You'll need them both days." },
+	{ label: 'Access', value: 'Tell us what you need when you register' },
+];
+
+type StripShot = {
+	src: string | ImageMetadata;
+	alt: string;
+	label: string;
+	width: number;
+	height: number;
+};
+
+const stripRows: { reverse: boolean; shots: StripShot[] }[] = [
+	{
+		reverse: false,
+		shots: [
+			{
+				src: '/images/shehacks/strip/shehacks-2016-hands-up.webp',
+				alt: 'A room of participants with their hands in the air at #SheHacks 2016',
+				label: '2016',
+				width: 799,
+				height: 533,
+			},
+			{
+				src: '/images/shehacks/strip/shehacks-2014-laptop-laughing.webp',
+				alt: 'Four women laughing together over a laptop at #SheHacks 2014',
+				label: '2014',
+				width: 800,
+				height: 534,
+			},
+			{
+				src: '/images/shehacks/strip/shehacks-2017-trophies.webp',
+				alt: '3D-printed #SheHacks 2017 trophies shaped like laptops',
+				label: '2017',
+				width: 799,
+				height: 533,
+			},
+			{
+				src: '/images/shehacks/strip/shehacks-2016-pitch.webp',
+				alt: 'A team pitching their idea at #SheHacks 2016',
+				label: '2016',
+				width: 799,
+				height: 533,
+			},
+			{
+				src: '/images/shehacks/strip/shehacks-2014-tea-trolley.webp',
+				alt: 'Two women by the tea trolley at #SheHacks 2014',
+				label: '2014',
+				width: 533,
+				height: 799,
+			},
+			{
+				src: '/images/shehacks/strip/shehacks-2017-team-table.webp',
+				alt: 'Four women at a table with laptops at #SheHacks 2017',
+				label: '2017',
+				width: 799,
+				height: 533,
+			},
+			{
+				src: '/images/shehacks/strip/shehacks-2016-cupcakes.webp',
+				alt: 'A tray of purple and mint cupcakes at #SheHacks 2016',
+				label: '2016',
+				width: 799,
+				height: 533,
+			},
+		],
+	},
+	{
+		reverse: true,
+		shots: [
+			{
+				src: '/images/shehacks/strip/shehacks-2016-hand-raised.webp',
+				alt: 'A smiling participant with her hand up at #SheHacks 2016',
+				label: '2016',
+				width: 799,
+				height: 533,
+			},
+			{
+				src: '/images/shehacks/strip/shehacks-2017-pair-laptop.webp',
+				alt: 'Two women working through a problem on a laptop at #SheHacks 2017',
+				label: '2017',
+				width: 799,
+				height: 533,
+			},
+			{
+				src: '/images/shehacks/strip/shehacks-2014-audience.webp',
+				alt: 'A room full of women listening at #SheHacks Melbourne 2014',
+				label: '2014',
+				width: 800,
+				height: 534,
+			},
+			{
+				src: '/images/shehacks/strip/shehacks-2016-winners.webp',
+				alt: 'Five women holding their #SheHacks 2016 trophies',
+				label: '2016',
+				width: 799,
+				height: 533,
+			},
+			{
+				src: '/images/shehacks/strip/shehacks-2017-sticky-notes.webp',
+				alt: 'A team at their laptops beside a wall of sticky notes at #SheHacks 2017',
+				label: '2017',
+				width: 799,
+				height: 533,
+			},
+			{
+				src: vanuatuPhoto,
+				alt: 'Young women in purple t-shirts at #SheHacks Vanuatu',
+				label: 'Vanuatu 2021, with SMARTsistas',
+				width: vanuatuPhoto.width,
+				height: vanuatuPhoto.height,
+			},
+			{
+				src: '/images/shehacks/strip/shehacks-2017-team-laptop.webp',
+				alt: 'A team of four gathered around one laptop at #SheHacks 2017',
+				label: '2017',
+				width: 799,
+				height: 533,
+			},
+		],
+	},
+];
 
 const roles = [
 	{
 		name: 'Hackers',
 		badge: lib('logos/GGA-Hacker-1.png'),
 		description:
-			'Provide coding and technical skills to build the minimum viable product. Developers, engineers, and makers.',
+			'Build the working prototype with code, APIs and AI tools. Developers, engineers, and makers.',
 		colour: 'role--blue',
+		video: videos.sheHacksHacker,
 	},
 	{
 		name: 'Hipsters',
@@ -24,6 +212,7 @@ const roles = [
 		description:
 			'Handle design, visual experience, and user research. Designers, UX specialists, and creative thinkers.',
 		colour: 'role--coral',
+		video: videos.sheHacksHipster,
 	},
 	{
 		name: 'Hustlers',
@@ -31,6 +220,7 @@ const roles = [
 		description:
 			'Manage project coordination, business model, and pitch. Organisers, marketers, and strategists.',
 		colour: 'role--mint',
+		video: videos.sheHacksHustler,
 	},
 ];
 
@@ -72,58 +262,256 @@ const accessibility = [
 
 <Layout
 	title="#SheHacks — Girl Geek Academy"
-	description="One of the world's longest-running hackathon series for women and non-binary folk, since 2014."
+	description={description}
+	socialImage="/images/shehacks/og-shehacks.jpg"
 >
 	<Header />
-	<main>
+	<main class="shehacks-main">
 
-		<!-- Hero -->
 		<section class="shehacks-hero section">
 			<div class="container grid-2">
 				<div>
-				<p class="page-eyebrow">Australia's First All-Women Hackathon, Since 2014</p>
-				<h1>#SheHacks</h1>
-				<p class="lead">
-					Find your team, build your idea and pitch a working prototype, alongside
-					brilliant women and non-binary folk. One of the longest-running women's hackathon series in
-					the world.
-				</p>
-				<div class="hero-ctas">
-					<EmailCta label="Register interest" variant="primary" />
-					<EmailCta label="Bring SheHacks to your organisation" variant="coral" />
-				</div>
-				<p class="hero-note">Email hello@girlgeekacademy.com with “SheHacks” in the subject line.</p>
+					<p class="page-eyebrow">Australia's First All-Women Hackathon, Since 2014</p>
+					<h1>#SheHacks</h1>
+					<p class="lead">
+						Find your team, build your idea and pitch a working prototype, alongside brilliant women
+						and gender-diverse people. One of the longest-running women's hackathon series in the world.
+					</p>
+					{
+						SHOW_EVENT && (
+							<p class="event-line">
+								SheHacks Melbourne · Monday 30 November and Tuesday 1 December 2026
+							</p>
+						)
+					}
+					<div class="hero-ctas">
+						{
+							SHOW_EVENT ? (
+								<a class="btn btn-primary" href="#tickets">
+									Get your ticket
+								</a>
+							) : (
+								<EmailCta label="Register interest" variant="primary" />
+							)
+						}
+						<EmailCta label="Bring SheHacks to your organisation" variant="coral" />
+					</div>
+					{
+						!SHOW_EVENT && (
+							<p class="hero-note">
+								Email hello@girlgeekacademy.com with “SheHacks” in the subject line.
+							</p>
+						)
+					}
 				</div>
 				<div class="hero-media">
-					<Image src={lib('logos/SheHacksVIC-Icons-blue.png')} alt="Pixel-art girl geeks coding around a giant keyboard" width={420} />
+					<LiteYouTube id={videos.sheHacks2016.id} title={videos.sheHacks2016.title} eager />
 				</div>
 			</div>
 		</section>
 
-		<!-- Origin story -->
-		<section class="section origin-section">
-			<div class="container grid-2">
-				<div>
-					<h2>How it started</h2>
-					<p>
-						In 2014, five women set out to make International Women's Day different. They organised a
-						hackathon with tea, cupcakes, yoga and sunlight instead of the usual dark basement and
-						energy drinks. It was Australia's first all-women hackathon — and Girl Geek
-						Academy was born from it.
-					</p>
-					<p>
-						SheHacks has been running ever since, in Melbourne, regional Victoria and Vanuatu,
-						helping hundreds of women and non-binary people find their team, build their idea and
-						launch their startup.
-					</p>
+		<section class="photo-strips" aria-label="Photos from past #SheHacks events">
+			{
+				stripRows.map((row) => (
+					<div class="strip">
+						<div class:list={['strip-track', row.reverse && 'strip-track--rev']}>
+							{[false, true].map((hidden) =>
+								row.shots.map((shot) => (
+									<figure class="strip-photo" aria-hidden={hidden ? 'true' : undefined}>
+										{typeof shot.src === 'string' ? (
+											<img
+												src={shot.src}
+												alt={hidden ? '' : shot.alt}
+												width={shot.width}
+												height={shot.height}
+												loading="lazy"
+												decoding="async"
+											/>
+										) : (
+											<Image
+												src={shot.src}
+												alt={hidden ? '' : shot.alt}
+												width={shot.width}
+												height={shot.height}
+												loading="lazy"
+											/>
+										)}
+										<figcaption class="strip-label">{shot.label}</figcaption>
+									</figure>
+								)),
+							)}
+						</div>
+					</div>
+				))
+			}
+		</section>
+
+		{
+			SHOW_EVENT && (
+				<section id="melbourne-2026" class="section melbourne-section">
+					<div class="container event-copy">
+						<h2>SheHacks Melbourne</h2>
+						<p class="event-when">Monday 30 November and Tuesday 1 December 2026</p>
+						<p>Telstra Customer Insight Centre, Melbourne</p>
+						<p>This SheHacks we're centring tech-facilitated gender-based abuse.</p>
+						<h3>Day 1: Make friends, build prototypes</h3>
+						<p>
+							You'll be matched into a team of hackers, hustlers and hipsters. Within an hour you've
+							found the thing you all care about. Then your team decides what you can build together
+							in a short time frame to prototype a solution. AI Ally, a University of Melbourne
+							research project funded by the eSafety Commissioner, will lead the way by sharing what's
+							possible.
+						</p>
+						<h3>Day 2: Pitch your prototype</h3>
+						<p>
+							Join us for a cuppa and hear what the teams have built. The AI Ally team showcase what
+							they've built, and SheHacks teams pitch to guests from industry, research and the
+							prevention sector.
+						</p>
+						<p class="event-close">Places are limited so get in quick!</p>
+					</div>
+				</section>
+			)
+		}
+
+		{
+			SHOW_EVENT && (
+				<section id="tickets" class="section tickets-section">
+					<div class="container">
+						<h2 class="text-center">Get your ticket</h2>
+						<p class="text-center tickets-intro">
+							Every team needs a hacker, a hipster and a hustler, so tickets are sold by hat. Pick the
+							one you'd most like to do.
+						</p>
+						<div class="ticket-grid">
+							{TICKETS.map((ticket) => (
+								<article class="ticket-card">
+									<h3>{ticket.hat}</h3>
+									<p class="ticket-price">$20</p>
+									<p class="ticket-status">{ticket.soldOut ? 'Sold out' : `${ticket.places} places`}</p>
+									<p class="ticket-line">{ticketLine[ticket.hat]}</p>
+									<a
+										class="btn btn-primary"
+										href={ticket.soldOut ? ticket.waitlist : ticket.link}
+									>
+										{ticket.soldOut
+											? `Join the ${ticket.hat.toLowerCase()} waitlist`
+											: `Buy a ${ticket.hat.toLowerCase()} ticket`}
+									</a>
+								</article>
+							))}
+						</div>
+						<p class="tickets-note">
+							Not sure which hat is yours? See <a href="#roles">Find your role</a> below. Tickets are
+							$20 including GST and cover both days. We charge $20 so we can plan seats and food for
+							the people who come. After you pay, you'll go straight to a short form about you.
+						</p>
+					</div>
+				</section>
+			)
+		}
+
+		{
+			SHOW_EVENT && (
+				<section class="section know-section">
+					<div class="container">
+						<h2>What you need to know</h2>
+						<dl class="know-list">
+							{facts.map((fact) => (
+								<div class="know-row">
+									<dt>{fact.label}</dt>
+									<dd>{fact.value}</dd>
+								</div>
+							))}
+						</dl>
+					</div>
+				</section>
+			)
+		}
+
+		<section id="roles" class="section section--dark roles-section">
+			<div class="container">
+				<h2 class="text-center">Find your role</h2>
+				<p class="text-center roles-intro">Every team needs three skill sets. Which one are you?</p>
+				<div class="grid-3 roles-grid">
+					{
+						roles.map((r) => (
+							<div class:list={['role-card', r.colour]}>
+								<LiteYouTube id={r.video.id} title={r.video.title} />
+								<Image src={r.badge} alt="" width={220} class="role-badge" />
+								<h4>{r.name}</h4>
+								<p>{r.description}</p>
+							</div>
+						))
+					}
 				</div>
-				<div class="text-center">
+				<figure class="roles-venn">
 					<Image
 						src={vennDiagram}
 						alt="Hacker, Hustler, Hipster Venn diagram"
 						width={460}
 						height={430}
 					/>
+				</figure>
+				<p class="text-center roles-note">
+					Not sure which one you are? Most people are a mix — and that's exactly what makes great
+					teams.
+				</p>
+				<p class="text-center roles-more">
+					<a href="https://www.youtube.com/girlgeekacademy">More SheHacks films on YouTube</a>
+				</p>
+			</div>
+		</section>
+
+		<section class="section origin-section">
+			<div class="container origin-copy">
+				<h2>How it started</h2>
+				<p>
+					In 2014, five women set out to make International Women's Day different. They organised a
+					hackathon with tea, cupcakes, yoga and sunlight instead of the usual dark basement and
+					energy drinks. It was Australia's first all-women hackathon — and Girl Geek Academy was born
+					from it.
+				</p>
+				<p>
+					SheHacks has been running ever since, in Melbourne, regional Victoria and Vanuatu, helping
+					hundreds of women and non-binary people find their team, build their idea and launch their
+					startup.
+				</p>
+			</div>
+		</section>
+
+		<section class="section who-section">
+			<div class="container who-layout">
+				<div class="eligibility-card">
+					<h3>Who is it for?</h3>
+					<ul>
+						<li>Women and gender-diverse people, including non-binary people</li>
+						<li>Aged 18+</li>
+						<li>Any skill level welcome</li>
+					</ul>
+					{
+						SHOW_EVENT ? (
+							<a class="btn btn-primary" href="#tickets">
+								Get your ticket
+							</a>
+						) : (
+							<EmailCta label="Register interest" variant="primary" />
+						)
+					}
+				</div>
+				<div>
+					<h2>An event built for everyone</h2>
+					<p>
+						We're committed to making SheHacks accessible and welcoming for all. We've offered these
+						at past events. Tell us what you need when you register and we'll do our best.
+					</p>
+					<ul class="access-list">
+						{accessibility.map((a) => <li>{a}</li>)}
+					</ul>
+					<p>
+						Need something else? Email hello@girlgeekacademy.com and we'll do our best to accommodate
+						you.
+					</p>
 				</div>
 			</div>
 		</section>
@@ -151,99 +539,107 @@ const accessibility = [
 			</div>
 		</section>
 
-		<!-- Roles -->
-		<section class="section section--dark roles-section">
-			<div class="container">
-				<h2 class="text-center">Find your role</h2>
-				<p class="text-center roles-intro">
-					Every team needs three skill sets. Which one are you?
-				</p>
-				<div class="grid-3 roles-grid">
-					{
-						roles.map((r) => (
-							<div class:list={['role-card', r.colour]}>
-								<Image src={r.badge} alt="" width={220} class="role-badge" />
-								<h4>{r.name}</h4>
-								<p>{r.description}</p>
-							</div>
-						))
-					}
-				</div>
-				<p class="text-center roles-note">
-					Not sure which one you are? Most people are a mix — and that's exactly what makes great
-					teams.
-				</p>
-			</div>
-		</section>
+		{
+			SHOW_EVENT && (
+				<section class="section faq-section">
+					<div class="container">
+						<h2 class="text-center">FAQ</h2>
+						<div class="faq-list">
+							<details class="faq-item">
+								<summary>What does the ticket cover?</summary>
+								<p>Both days of SheHacks Melbourne: Monday 30 November and Tuesday 1 December 2026.</p>
+							</details>
+							<details class="faq-item">
+								<summary>Which ticket should I buy?</summary>
+								<p>
+									The hat you'd most like to wear for the two days. Most people are a mix, and the form
+									asks for your second hat too. See <a href="#roles">Find your role</a> for what each one
+									does.
+								</p>
+							</details>
+							<details class="faq-item">
+								<summary>Why charge $20?</summary>
+								<p>So we can plan seats and food for the people who come.</p>
+							</details>
+							<details class="faq-item">
+								<summary>What if I can't come?</summary>
+								<p>
+									Tell us by Monday 23 November and we'll refund your ticket. After that, you can pass
+									your place to someone else: email <a href="mailto:hello@girlgeekacademy.com">hello@girlgeekacademy.com</a> with their name.
+								</p>
+							</details>
+							<details class="faq-item">
+								<summary>Can I come with friends or colleagues?</summary>
+								<p>
+									Yes, each with your own ticket. Teams are matched on the day, so you'll work with
+									people you've just met.
+								</p>
+							</details>
+							<details class="faq-item">
+								<summary>Do I need to come both days?</summary>
+								<p>Yes. Teams form and build on Monday and pitch on Tuesday.</p>
+							</details>
+							<details class="faq-item">
+								<summary>What should I bring?</summary>
+								<p>Your laptop and charger. You'll need them both days.</p>
+							</details>
+							<details class="faq-item">
+								<summary>Can I come to the Day 2 pitches as a guest?</summary>
+								<p>
+									Day 2 guests come by invitation. To ask about a place, email <a href="mailto:hello@girlgeekacademy.com">hello@girlgeekacademy.com</a>.
+								</p>
+							</details>
+						</div>
+					</div>
+				</section>
+			)
+		}
 
-		<VideoGallery
-			heading="Watch #SheHacks"
-			intro="Event films and the hacker / hipster / hustler roles — from weekends that launched startups."
-			videos={sheHacksVideos}
-		/>
+		{
+			SHOW_EVENT && (
+				<section class="section mentor-section">
+					<div class="container mentor-copy">
+						<h2>Mentor at SheHacks</h2>
+						<p>
+							We're looking for mentors for SheHacks Melbourne: developers, designers, product and
+							business people, and people from research and the prevention sector. You'll move between
+							teams, answer questions and help them get to a working prototype. Mentoring is unpaid.
+						</p>
+						<a class="btn btn-primary" href={mentorHref}>
+							Become a mentor
+						</a>
+					</div>
+				</section>
+			)
+		}
 
-		<PhotoGallery
-			heading="#SheHacks in pictures"
-			photos={[
-				photo('photos/49481682582_a6b673326c_k.jpg', 'A team of five taking part in #SheHacks, in front of a patterned wall'),
-				photo('photos/brihammond-girl-geek-academy-she-hacks-sunday-0122-2000px.jpeg', 'Participants hard at work on the Sunday of #SheHacks'),
-				photo('photos/28977304673_f8bb9cafaa_b.jpeg', 'A big group of #SheHacks participants with their hands in the air', '#SheHacks 2014'),
-				photo('photos/28977327113_cec9d4d568_w.jpg', 'Four women laughing together at a laptop', '#SheHacks 2014'),
-				photo('photos/29477966254_1f7d069a48_w.jpg', 'Participants listening to a talk', '#SheHacks 2016'),
-				photo('photos/49480858726_93b855fec7_k.jpg', 'Four women at a table with laptops', '#SheHacks 2017'),
-				photo('photos/GGA-Thumb-SheHacks-Edit.jpg', 'Participants listening to a speaker'),
-				photo('photos/29811519540_0433a0f5f7_k.jpg', 'A #SheHacks group photo', '#SheHacks 2016'),
-			]}
-		/>
-
-		<PhotoGallery
-			heading="#SheHacks Vanuatu"
-			intro="Presented with SMARTsistas."
-			photos={[
-				photo('photos/SheHacks-Vanuatu.jpeg', 'Young women in purple t-shirts at #SheHacks Vanuatu'),
-				photo('graphics/Artboard-2.png', 'SMARTsistas present #SheHacks Vanuatu, 7–9 December'),
-			]}
-			dark
-		/>
-
-		<!-- Accessibility -->
-		<section class="section access-section">
-			<div class="container grid-2">
-				<div>
-					<h2>An event built for everyone</h2>
-					<p>
-						We're committed to making SheHacks accessible and welcoming for all. We've offered these
-						at past events. Tell us what you need when you register and we'll do our best.
-					</p>
-					<ul class="access-list">
-						{accessibility.map((a) => <li>{a}</li>)}
-					</ul>
-					<p>
-						Need something else? Email hello@girlgeekacademy.com and we'll do our best to
-						accommodate you.
-					</p>
-				</div>
-				<div class="eligibility-card">
-					<h3>Who is it for?</h3>
-					<ul>
-						<li>Women and non-binary people</li>
-						
-						<li>Aged 18+</li>
-						<li>Any skill level welcome</li>
-					</ul>
-					<EmailCta label="Register interest" variant="primary" />
-				</div>
-			</div>
-		</section>
+		{
+			SHOW_EVENT && (
+				<section class="section closing-section">
+					<div class="container text-center">
+						<div class="hero-ctas closing-ctas">
+							<a class="btn btn-primary" href="#tickets">
+								Get your ticket
+							</a>
+							<EmailCta label="Bring SheHacks to your organisation" variant="coral" />
+						</div>
+					</div>
+				</section>
+			)
+		}
 
 	</main>
 	<Footer />
 </Layout>
 
 <style>
+	.shehacks-main {
+		overflow-x: clip;
+	}
+
 	.shehacks-hero {
 		background-color: var(--color-pink);
-		padding-bottom: 4rem;
+		padding-bottom: 1.75rem;
 	}
 
 	.page-eyebrow {
@@ -262,30 +658,10 @@ const accessibility = [
 		color: var(--color-primary);
 	}
 
-		.next-event {
-		background: var(--color-white, #fff);
-		border-radius: 2px;
-		box-shadow: 5px 5px 0 0 var(--color-primary);
-		padding: 1rem 1.25rem;
-		margin: 0 0 1.5rem;
-		max-width: 32rem;
-	}
-
-	.next-event p {
-		margin: 0;
-		color: var(--color-primary-hover);
-	}
-
-	.next-event__label {
-		font-family: var(--font-pinata);
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		font-size: 0.85rem;
-	}
-
-	.next-event__title {
+	.event-line {
 		font-weight: 700;
-		font-size: 1.15rem;
+		margin: -0.5rem 0 1.5rem;
+		color: var(--color-primary-hover);
 	}
 
 	.hero-note {
@@ -298,11 +674,363 @@ const accessibility = [
 		display: flex;
 		gap: 1rem;
 		flex-wrap: wrap;
+		align-items: center;
 	}
 
-	/* Origin */
+	.hero-ctas .btn,
+	.closing-ctas .btn,
+	.eligibility-card .btn,
+	.mentor-copy .btn,
+	.shehacks-main :global(.btn.email-cta) {
+		font-family: var(--font-display);
+		font-size: clamp(1.2rem, 2.2vw, 1.75rem);
+		font-weight: 400;
+		line-height: 1.05;
+	}
+
+	/* Photo strips: same loop as SheHacksSwift, in this page's colours. */
+	.photo-strips {
+		background: var(--color-pink);
+		display: grid;
+		gap: 0.75rem;
+		padding: 0 0 2.5rem;
+		overflow: hidden;
+	}
+
+	.strip {
+		overflow: hidden;
+		-webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+		mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+	}
+
+	.strip-track {
+		display: flex;
+		align-items: center;
+		width: max-content;
+		animation: strip-marq 80s linear infinite;
+	}
+
+	.strip-track--rev {
+		animation-name: strip-marq-rev;
+		animation-duration: 90s;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.strip:hover .strip-track {
+			animation-play-state: paused;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.strip {
+			overflow-x: auto;
+			overflow-y: hidden;
+			-webkit-overflow-scrolling: touch;
+			mask-image: none;
+			-webkit-mask-image: none;
+		}
+
+		.strip-track,
+		.strip-track--rev {
+			animation: none;
+		}
+	}
+
+	@keyframes strip-marq {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@keyframes strip-marq-rev {
+		from {
+			transform: translateX(-50%);
+		}
+		to {
+			transform: translateX(0);
+		}
+	}
+
+	.strip-photo {
+		position: relative;
+		flex: 0 0 auto;
+		margin: 0 0.75rem 0 0;
+	}
+
+	.strip-photo :global(img) {
+		display: block;
+		height: clamp(150px, 18vw, 230px);
+		width: auto;
+		max-width: none;
+	}
+
+	.strip-label {
+		position: absolute;
+		left: 0.4rem;
+		bottom: 0.4rem;
+		max-width: calc(100% - 0.8rem);
+		margin: 0;
+		padding: 0.15rem 0.4rem;
+		background: rgba(255, 255, 255, 0.92);
+		color: var(--color-primary-hover);
+		font-family: var(--font-pinata);
+		font-size: 0.7rem;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		line-height: 1.2;
+	}
+
+	.melbourne-section {
+		background: var(--color-white);
+	}
+
+	.event-copy {
+		max-width: 46rem;
+	}
+
+	.event-copy h3 {
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		line-height: 1.15;
+		margin: 1.75rem 0 0.75rem;
+	}
+
+	.event-when {
+		font-weight: 700;
+	}
+
+	.event-close {
+		font-weight: 700;
+	}
+
+	.tickets-section {
+		background: var(--color-yellow-light);
+	}
+
+	.tickets-intro,
+	.tickets-note {
+		max-width: 62ch;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.tickets-intro {
+		margin-bottom: 2rem;
+	}
+
+	.ticket-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.25rem;
+		align-items: stretch;
+	}
+
+	.ticket-card {
+		background: var(--color-white);
+		border-radius: 0.5rem;
+		box-shadow: 5px 5px 0 0 var(--color-primary);
+		padding: 1.5rem 1.25rem 1.35rem;
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+	}
+
+	.ticket-card h3 {
+		font-size: clamp(2rem, 3vw, 2.75rem);
+		line-height: 1;
+		margin-bottom: 0.35rem;
+	}
+
+	.ticket-price {
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		line-height: 0.9;
+		margin: 0 0 0.35rem;
+		color: var(--color-primary);
+	}
+
+	.ticket-status {
+		margin: 0 0 0.75rem;
+		font-weight: 700;
+	}
+
+	.ticket-line {
+		margin: 0 0 1.25rem;
+		flex: 1;
+	}
+
+	.ticket-card .btn {
+		margin-top: auto;
+		width: 100%;
+		white-space: normal;
+		font-size: clamp(1.15rem, 2vw, 1.65rem);
+	}
+
+	.tickets-note {
+		margin-top: 2rem;
+	}
+
+	.tickets-note a,
+	.faq-item a {
+		text-decoration: underline;
+	}
+
+	.know-section {
+		background: var(--color-white);
+	}
+
+	.know-list {
+		margin: 0.5rem 0 0;
+	}
+
+	.know-row {
+		display: grid;
+		grid-template-columns: minmax(7rem, 11rem) 1fr;
+		gap: 0.35rem 1.5rem;
+		padding: 1rem 0;
+		border-top: 1px solid rgba(95, 125, 215, 0.28);
+	}
+
+	.know-row:last-child {
+		border-bottom: 1px solid rgba(95, 125, 215, 0.28);
+	}
+
+	.know-row dt {
+		margin: 0;
+		font-family: var(--font-pinata);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-primary);
+	}
+
+	.know-row dd {
+		margin: 0;
+	}
+
+	.roles-section {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	.roles-intro {
+		max-width: 48ch;
+		margin: 0 auto 2.5rem;
+		color: var(--color-white);
+		opacity: 0.9;
+	}
+
+	.role-card {
+		border-radius: 0.5rem;
+		padding: 1.75rem 1.5rem;
+		text-align: center;
+	}
+
+	.role-card :global(.lite-yt) {
+		margin-bottom: 1rem;
+		text-align: left;
+	}
+
+	.role-badge {
+		width: 150px;
+		height: auto;
+		margin: 0 auto 0.75rem;
+		padding: 0.75rem;
+		background: var(--color-white);
+		border-radius: 1rem;
+	}
+
+	.role--blue {
+		background: rgba(255, 255, 255, 0.15);
+		color: var(--color-white);
+	}
+
+	.role--coral {
+		background: var(--color-coral);
+		color: var(--color-white);
+	}
+
+	.role--mint {
+		background: var(--color-mint);
+		color: var(--color-primary);
+	}
+
+	.roles-venn {
+		margin: 2.5rem auto 0;
+		max-width: 460px;
+		background: var(--color-white);
+		border-radius: 0.5rem;
+		padding: 1rem;
+	}
+
+	.roles-note {
+		color: var(--color-white);
+		opacity: 0.85;
+		margin-top: 2rem;
+		max-width: 52ch;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.roles-more {
+		margin: 1rem 0 0;
+	}
+
+	.roles-more a {
+		color: var(--color-white);
+		text-decoration: underline;
+	}
+
 	.origin-section {
 		background: var(--color-yellow-light);
+	}
+
+	.origin-copy {
+		max-width: 46rem;
+	}
+
+	.who-section {
+		background: var(--color-white);
+	}
+
+	.who-layout {
+		display: grid;
+		grid-template-columns: minmax(16rem, 22rem) 1fr;
+		gap: 2rem;
+		align-items: start;
+	}
+
+	.access-list {
+		padding-left: 1.25rem;
+		margin-bottom: 1.5rem;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.4rem 1rem;
+	}
+
+	.access-list li {
+		margin: 0;
+	}
+
+	.eligibility-card {
+		background: var(--color-yellow-light);
+		border-radius: 0.5rem;
+		padding: 2rem;
+	}
+
+	.eligibility-card h3 {
+		font-size: clamp(1.5rem, 3vw, 2.25rem);
+		margin-bottom: 1rem;
+	}
+
+	.eligibility-card ul {
+		padding-left: 1.25rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.eligibility-card li {
+		margin-bottom: 0.5rem;
 	}
 
 	.quotes-section {
@@ -350,115 +1078,77 @@ const accessibility = [
 		text-decoration: underline;
 	}
 
+	.faq-section {
+		background: var(--color-yellow-light);
+	}
+
+	.faq-list {
+		max-width: 46rem;
+		margin: 0 auto;
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.faq-item {
+		background: var(--color-white);
+		border-radius: 0.5rem;
+		padding: 0.15rem 1.25rem;
+	}
+
+	.faq-item summary {
+		cursor: pointer;
+		font-weight: 700;
+		padding: 0.9rem 0;
+		color: var(--color-primary-hover);
+	}
+
+	.faq-item summary:focus-visible {
+		outline: 2px solid var(--color-primary);
+		outline-offset: 3px;
+	}
+
+	.faq-item p {
+		margin: 0 0 1rem;
+	}
+
+	.mentor-section {
+		background: var(--color-pink);
+	}
+
+	.mentor-copy {
+		max-width: 46rem;
+	}
+
+	.mentor-copy .btn {
+		margin-top: 0.5rem;
+	}
+
+	.closing-section {
+		background: var(--color-white);
+	}
+
+	.closing-ctas {
+		justify-content: center;
+	}
+
+	#tickets,
+	#roles,
+	#melbourne-2026 {
+		scroll-margin-top: 5rem;
+	}
+
 	@media (max-width: 991px) {
-		.quotes-grid {
+		.quotes-grid,
+		.who-layout {
 			grid-template-columns: 1fr;
 		}
 	}
 
-	/* Roles */
-	.roles-section {
-		padding-top: 4rem;
-		padding-bottom: 4rem;
-	}
-
-	.roles-intro {
-		max-width: 48ch;
-		margin: 0 auto 2.5rem;
-		color: var(--color-white);
-		opacity: 0.9;
-	}
-
-	.role-card {
-		border-radius: 0.5rem;
-		padding: 1.75rem 1.5rem;
-		text-align: center;
-	}
-
-	.role-badge {
-		width: 150px;
-		height: auto;
-		margin: 0 auto 0.75rem;
-		padding: 0.75rem;
-		background: var(--color-white);
-		border-radius: 1rem;
-	}
-
-	.funder-logo {
-		margin-top: 1rem;
-		height: auto;
-	}
-
-	.role--blue {
-		background: rgba(255, 255, 255, 0.15);
-	}
-	.role--blue h4, .role--blue p { color: var(--color-white); }
-
-	.role--coral {
-		background: var(--color-coral);
-	}
-	.role--coral h4, .role--coral p { color: var(--color-white); }
-
-	.role--mint {
-		background: var(--color-mint);
-	}
-	.role--mint h4, .role--mint p { color: var(--color-primary); }
-
-	.roles-note {
-		color: var(--color-white);
-		opacity: 0.85;
-		margin-top: 2rem;
-		max-width: 52ch;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	/* Accessibility */
-	.access-section {
-		background: var(--color-white);
-	}
-
-	.access-list {
-		padding-left: 1.25rem;
-		margin-bottom: 1.5rem;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 0.4rem 1rem;
-	}
-
-	.access-list li {
-		margin: 0;
-	}
-
-	.eligibility-card {
-		background: var(--color-yellow-light);
-		border-radius: 0.5rem;
-		padding: 2rem;
-		align-self: start;
-	}
-
-	.eligibility-card h3 {
-		font-size: clamp(1.5rem, 3vw, 2.25rem);
-		margin-bottom: 1rem;
-	}
-
-	.eligibility-card ul {
-		padding-left: 1.25rem;
-		margin-bottom: 1.5rem;
-	}
-
-	.eligibility-card li {
-		margin-bottom: 0.5rem;
-	}
-
-	.btn-coral {
-		background-color: var(--color-coral);
-		border-color: var(--color-coral);
-		color: var(--color-white);
-	}
-	.btn-coral:hover {
-		background-color: var(--color-primary-hover);
-		border-color: var(--color-primary-hover);
-		color: var(--color-white);
+	@media (max-width: 720px) {
+		.ticket-grid,
+		.access-list,
+		.know-row {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>
