@@ -1,15 +1,27 @@
 ---
+/*
+ * #SheHacks. Deliberate 2017 look, signed off October 2026.
+ * Franklin Gothic Extra Condensed, navy and lavender. Do not restyle to the site palette.
+ * SHOW_EVENT false hides Melbourne, tickets, and "what you need to know".
+ */
 import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import EmailCta from '../components/EmailCta.astro';
 import LiteYouTube from '../components/LiteYouTube.astro';
-import { Image } from 'astro:assets';
-import vennDiagram from '../assets/home/venn-diagram.png';
-import vanuatuPhoto from '../assets/library/photos/SheHacks-Vanuatu.jpeg';
+import ZigZag from '../components/shehacks/ZigZag.astro';
 import { videos } from '../data/videos';
-import { lib } from '../data/library';
+import '../styles/shehacks.css';
+
+import dots from '../assets/shehacks/overlay-dots-painted-soft.png';
+import hackerBadge from '../assets/shehacks/shehacks-hacker-badge.svg';
+import hipsterBadge from '../assets/shehacks/shehacks-hipster-badge.svg';
+import hustlerBadge from '../assets/shehacks/shehacks-hustler-badge.svg';
+import nabLogo from '../assets/shehacks/nab-logo.png';
+import aglLogo from '../assets/shehacks/agl-logo.png';
+import genazzanoLogo from '../assets/shehacks/genazzano-logo.png';
 
 // false after 1 Dec: page goes back to evergreen
 const SHOW_EVENT = true;
@@ -53,6 +65,9 @@ const description = SHOW_EVENT
 	: "One of the world's longest-running hackathon series for women and gender-diverse people, since 2014.";
 
 const mentorHref = MENTOR_LINK || 'mailto:hello@girlgeekacademy.com?subject=SheHacks%20mentor';
+const orgHref = 'mailto:hello@girlgeekacademy.com?subject=SheHacks%20for%20my%20organisation';
+const ticketNote =
+	"Includes GST and covers both days. After you pay, you'll fill in a short form about you.";
 
 const ticketLine: Record<string, string> = {
 	Hacker: 'You build the working prototype.',
@@ -68,7 +83,6 @@ const facts: { label: string; value: string }[] = [
 		value:
 			'Telstra Customer Insight Centre, Melbourne. Building entry details come with your confirmation email.',
 	},
-	{ label: 'Tickets', value: '$20: 20 hacker, 10 hipster and 10 hustler tickets' },
 	{
 		label: 'Who',
 		value: 'Women and gender-diverse people, including non-binary people, aged 18+',
@@ -78,13 +92,7 @@ const facts: { label: string; value: string }[] = [
 	{ label: 'Access', value: 'Tell us what you need when you register' },
 ];
 
-type StripShot = {
-	src: string | ImageMetadata;
-	alt: string;
-	label: string;
-	width: number;
-	height: number;
-};
+type StripShot = { src: string; alt: string; width: number; height: number };
 
 const stripRows: { reverse: boolean; shots: StripShot[] }[] = [
 	{
@@ -93,49 +101,42 @@ const stripRows: { reverse: boolean; shots: StripShot[] }[] = [
 			{
 				src: '/images/shehacks/strip/shehacks-2016-hands-up.webp',
 				alt: 'A room of participants with their hands in the air at #SheHacks 2016',
-				label: '2016',
 				width: 799,
 				height: 533,
 			},
 			{
 				src: '/images/shehacks/strip/shehacks-2014-laptop-laughing.webp',
 				alt: 'Four women laughing together over a laptop at #SheHacks 2014',
-				label: '2014',
 				width: 800,
 				height: 534,
 			},
 			{
 				src: '/images/shehacks/strip/shehacks-2017-trophies.webp',
 				alt: '3D-printed #SheHacks 2017 trophies shaped like laptops',
-				label: '2017',
 				width: 799,
 				height: 533,
 			},
 			{
 				src: '/images/shehacks/strip/shehacks-2016-pitch.webp',
 				alt: 'A team pitching their idea at #SheHacks 2016',
-				label: '2016',
 				width: 799,
 				height: 533,
 			},
 			{
 				src: '/images/shehacks/strip/shehacks-2014-tea-trolley.webp',
 				alt: 'Two women by the tea trolley at #SheHacks 2014',
-				label: '2014',
 				width: 533,
 				height: 799,
 			},
 			{
 				src: '/images/shehacks/strip/shehacks-2017-team-table.webp',
 				alt: 'Four women at a table with laptops at #SheHacks 2017',
-				label: '2017',
 				width: 799,
 				height: 533,
 			},
 			{
 				src: '/images/shehacks/strip/shehacks-2016-cupcakes.webp',
 				alt: 'A tray of purple and mint cupcakes at #SheHacks 2016',
-				label: '2016',
 				width: 799,
 				height: 533,
 			},
@@ -147,49 +148,36 @@ const stripRows: { reverse: boolean; shots: StripShot[] }[] = [
 			{
 				src: '/images/shehacks/strip/shehacks-2016-hand-raised.webp',
 				alt: 'A smiling participant with her hand up at #SheHacks 2016',
-				label: '2016',
 				width: 799,
 				height: 533,
 			},
 			{
 				src: '/images/shehacks/strip/shehacks-2017-pair-laptop.webp',
 				alt: 'Two women working through a problem on a laptop at #SheHacks 2017',
-				label: '2017',
 				width: 799,
 				height: 533,
 			},
 			{
 				src: '/images/shehacks/strip/shehacks-2014-audience.webp',
 				alt: 'A room full of women listening at #SheHacks Melbourne 2014',
-				label: '2014',
 				width: 800,
 				height: 534,
 			},
 			{
 				src: '/images/shehacks/strip/shehacks-2016-winners.webp',
 				alt: 'Five women holding their #SheHacks 2016 trophies',
-				label: '2016',
 				width: 799,
 				height: 533,
 			},
 			{
 				src: '/images/shehacks/strip/shehacks-2017-sticky-notes.webp',
 				alt: 'A team at their laptops beside a wall of sticky notes at #SheHacks 2017',
-				label: '2017',
 				width: 799,
 				height: 533,
 			},
 			{
-				src: vanuatuPhoto,
-				alt: 'Young women in purple t-shirts at #SheHacks Vanuatu',
-				label: 'Vanuatu 2021, with SMARTsistas',
-				width: vanuatuPhoto.width,
-				height: vanuatuPhoto.height,
-			},
-			{
 				src: '/images/shehacks/strip/shehacks-2017-team-laptop.webp',
 				alt: 'A team of four gathered around one laptop at #SheHacks 2017',
-				label: '2017',
 				width: 799,
 				height: 533,
 			},
@@ -197,32 +185,72 @@ const stripRows: { reverse: boolean; shots: StripShot[] }[] = [
 	},
 ];
 
-const roles = [
+const ticketByHat = Object.fromEntries(TICKETS.map((ticket) => [ticket.hat, ticket]));
+
+const roles: {
+	id: string;
+	name: string;
+	badge: ImageMetadata;
+	badgeAlt: string;
+	badgeClass: string;
+	panelClass: string;
+	description: string;
+	line: string;
+	video: { id: string; title: string };
+	watch: string;
+	buy: string;
+	mirror?: boolean;
+}[] = [
 	{
-		name: 'Hackers',
-		badge: lib('logos/GGA-Hacker-1.png'),
+		id: 'hacker',
+		name: 'Hacker',
+		badge: hackerBadge,
+		badgeAlt: 'Hacker badge: a hand-drawn laptop',
+		badgeClass: 'sh-role-badge sh-role-badge--hacker',
+		panelClass: 'sh-ticket-badge sh-ticket-badge--hacker',
 		description:
 			'Build the working prototype with code, APIs and AI tools. Developers, engineers, and makers.',
-		colour: 'role--blue',
+		line: ticketLine.Hacker,
 		video: videos.sheHacksHacker,
+		watch: 'Watch Hacker — #SheHacks',
+		buy: 'Buy a hacker ticket',
 	},
 	{
-		name: 'Hipsters',
-		badge: lib('logos/GGA-Hipster.png'),
+		id: 'hipster',
+		name: 'Hipster',
+		badge: hipsterBadge,
+		badgeAlt: 'Hipster badge: a hand-drawn pen nib',
+		badgeClass: 'sh-role-badge sh-role-badge--hipster',
+		panelClass: 'sh-ticket-badge sh-ticket-badge--hipster',
 		description:
 			'Handle design, visual experience, and user research. Designers, UX specialists, and creative thinkers.',
-		colour: 'role--coral',
+		line: ticketLine.Hipster,
 		video: videos.sheHacksHipster,
+		watch: 'Watch Hipster — #SheHacks',
+		buy: 'Buy a hipster ticket',
+		mirror: true,
 	},
 	{
-		name: 'Hustlers',
-		badge: lib('logos/GGA-Hustler.png'),
+		id: 'hustler',
+		name: 'Hustler',
+		badge: hustlerBadge,
+		badgeAlt: 'Hustler badge: a hand-drawn lightbulb',
+		badgeClass: 'sh-role-badge sh-role-badge--hustler',
+		panelClass: 'sh-ticket-badge sh-ticket-badge--hustler',
 		description:
 			'Manage project coordination, business model, and pitch. Organisers, marketers, and strategists.',
-		colour: 'role--mint',
+		line: ticketLine.Hustler,
 		video: videos.sheHacksHustler,
+		watch: 'Watch Hustler — #SheHacks',
+		buy: 'Buy a hustler ticket',
 	},
 ];
+
+const roleBg: Record<string, string> = {
+	hacker: 'sh-bg-hacker',
+	hipster: 'sh-bg-hipster',
+	hustler: 'sh-bg-hustler',
+};
 
 const quotes: { text: string; attribution: string; source: string; href?: string }[] = [
 	{
@@ -251,12 +279,18 @@ const quotes: { text: string; attribution: string; source: string; href?: string
 ];
 
 const accessibility = [
-	'CART captioning',
-	'Childcare services',
-	'Dietary accommodations',
-	'Gender-neutral bathrooms',
-	'Lactation rooms',
-	'Travel bursaries',
+	{ label: 'CART captioning', tint: 'sh-tint-blush' },
+	{ label: 'Childcare services', tint: 'sh-tint-hacker' },
+	{ label: 'Dietary accommodations', tint: 'sh-tint-hustler' },
+	{ label: 'Gender-neutral bathrooms', tint: 'sh-tint-blush' },
+	{ label: 'Lactation rooms', tint: 'sh-tint-hacker' },
+	{ label: 'Travel bursaries', tint: 'sh-tint-hustler' },
+];
+
+const logos = [
+	{ src: nabLogo, alt: 'NAB', class: 'sh-logo sh-logo--nab' },
+	{ src: aglLogo, alt: 'AGL', class: 'sh-logo sh-logo--agl' },
+	{ src: genazzanoLogo, alt: 'Genazzano FCJ College', class: 'sh-logo sh-logo--genazzano' },
 ];
 ---
 
@@ -266,159 +300,200 @@ const accessibility = [
 	socialImage="/images/shehacks/og-shehacks.jpg"
 >
 	<Header />
-	<main class="shehacks-main">
-
-		<section class="shehacks-hero section">
-			<div class="container grid-2">
-				<div>
-					<p class="page-eyebrow">Australia's First All-Women Hackathon, Since 2014</p>
-					<h1>#SheHacks</h1>
-					<p class="lead">
+	<main class="sh-page" style={`--sh-dots: url("${dots.src}")`}>
+		<section class="sh-bg-hero">
+			<div class="sh-wrap sh-hero-grid">
+				<div class="sh-hero-copy">
+					<p class="sh-eyebrow">
+						The longest-running all-women hackathon series in the world
+					</p>
+					<h1>
+						#SheHacks<span class="sh-tm">™</span>
+					</h1>
+					<p class="sh-lead">
 						Find your team, build your idea and pitch a working prototype, alongside brilliant women
 						and gender-diverse people. One of the longest-running women's hackathon series in the world.
 					</p>
 					{
 						SHOW_EVENT && (
-							<p class="event-line">
-								SheHacks Melbourne · Monday 30 November and Tuesday 1 December 2026
+							<p class="sh-event">
+								<span>SheHacks Melbourne</span>
+								<span aria-hidden="true">·</span>
+								<span>Monday 30 November and Tuesday 1 December 2026</span>
 							</p>
 						)
 					}
-					<div class="hero-ctas">
+					<div>
 						{
 							SHOW_EVENT ? (
-								<a class="btn btn-primary" href="#tickets">
+								<a class="sh-btn sh-btn--navy" href="#tickets">
 									Get your ticket
 								</a>
 							) : (
-								<EmailCta label="Register interest" variant="primary" />
+								<EmailCta label="Register interest" class="sh-btn sh-btn--navy" />
 							)
 						}
-						<EmailCta label="Bring SheHacks to your organisation" variant="coral" />
 					</div>
 					{
 						!SHOW_EVENT && (
-							<p class="hero-note">
+							<p class="sh-hero-note">
 								Email hello@girlgeekacademy.com with “SheHacks” in the subject line.
 							</p>
 						)
 					}
 				</div>
-				<div class="hero-media">
-					<LiteYouTube id={videos.sheHacks2016.id} title={videos.sheHacks2016.title} eager />
+				<div class="sh-hero-media">
+					<div class="sh-hero-stage">
+						<div class="sh-hero-frame">
+							<LiteYouTube
+								id={videos.sheHacks2016.id}
+								title={videos.sheHacks2016.title}
+								label="Watch the #SheHacks 2016 film"
+								eager
+							/>
+						</div>
+						<Image src={hackerBadge} alt="" class="sh-float sh-float--hacker" />
+						<Image src={hipsterBadge} alt="" class="sh-float sh-float--hipster" />
+						<Image src={hustlerBadge} alt="" class="sh-float sh-float--hustler" />
+					</div>
+					<p class="sh-hero-caption">Watch: what happens at #SheHacks</p>
 				</div>
 			</div>
 		</section>
 
-		<section class="photo-strips" aria-label="Photos from past #SheHacks events">
-			{
-				stripRows.map((row) => (
-					<div class="strip">
-						<div class:list={['strip-track', row.reverse && 'strip-track--rev']}>
-							{[false, true].map((hidden) =>
-								row.shots.map((shot) => (
-									<figure class="strip-photo" aria-hidden={hidden ? 'true' : undefined}>
-										{typeof shot.src === 'string' ? (
-											<img
-												src={shot.src}
-												alt={hidden ? '' : shot.alt}
-												width={shot.width}
-												height={shot.height}
-												loading="lazy"
-												decoding="async"
-											/>
-										) : (
-											<Image
-												src={shot.src}
-												alt={hidden ? '' : shot.alt}
-												width={shot.width}
-												height={shot.height}
-												loading="lazy"
-											/>
-										)}
-										<figcaption class="strip-label">{shot.label}</figcaption>
-									</figure>
-								)),
-							)}
+		{
+			SHOW_EVENT && (
+				<section id="melbourne-2026" class="sh-bg-navy">
+					<ZigZag position="top" />
+					<div class="sh-wrap sh-melbourne">
+						<div class="sh-melbourne-head">
+							<h2 class="sh-title">SheHacks Melbourne</h2>
+							<p class="sh-when">Monday 30 November and Tuesday 1 December 2026</p>
+							<p class="sh-place">Telstra Customer Insight Centre, Melbourne</p>
 						</div>
+						<p class="sh-emph">This SheHacks we're centring tech-facilitated gender-based abuse.</p>
+						<div class="sh-days">
+							<article class="sh-day">
+								<h3>Day 1: Make friends, build prototypes</h3>
+								<p>
+									You'll be matched into a team of hackers, hustlers and hipsters. Within an hour you've
+									found the thing you all care about. Then your team decides what you can build together
+									in a short time frame to prototype a solution. AI Ally, a University of Melbourne
+									research project funded by the eSafety Commissioner, will lead the way by sharing what's
+									possible.
+								</p>
+							</article>
+							<article class="sh-day">
+								<h3>Day 2: Pitch your prototype</h3>
+								<p>
+									Join us for a cuppa and hear what the teams have built. The AI Ally team showcase what
+									they've built, and SheHacks teams pitch to guests from industry, research and the
+									prevention sector.
+								</p>
+							</article>
+						</div>
+						<p class="sh-close">Places are limited so get in quick!</p>
 					</div>
-				))
-			}
+					<ZigZag position="bottom" />
+				</section>
+			)
+		}
+
+		<section id="roles" class="sh-bg-pink">
+			<div class="sh-strips" aria-label="Photos from past #SheHacks events">
+				{
+					stripRows.map((row) => (
+						<div class="sh-strip">
+							<div class:list={['sh-track', row.reverse && 'sh-track--rev']}>
+								{[0, 1].map((copy) =>
+									row.shots.map((shot) => (
+										<img
+											class="sh-shot"
+											src={shot.src}
+											alt={copy === 0 ? shot.alt : ''}
+											width={shot.width}
+											height={shot.height}
+											aria-hidden={copy === 1 ? 'true' : undefined}
+											loading="lazy"
+											decoding="async"
+										/>
+									)),
+								)}
+							</div>
+						</div>
+					))
+				}
+			</div>
+			<div class="sh-wrap sh-roles-intro">
+				<h2 class="sh-title sh-title--roles">Find your role</h2>
+				<p>Every team needs three skill sets. Which one are you?</p>
+				<nav class="sh-jumps" aria-label="Jump to a role">
+					<a class="sh-jump sh-jump--hacker" href="#hacker">
+						<Image src={hackerBadge} alt="" width={40} />
+						Hacker
+					</a>
+					<a class="sh-jump sh-jump--hipster" href="#hipster">
+						<Image src={hipsterBadge} alt="" width={34} />
+						Hipster
+					</a>
+					<a class="sh-jump sh-jump--hustler" href="#hustler">
+						<Image src={hustlerBadge} alt="" width={28} />
+						Hustler
+					</a>
+				</nav>
+				{
+					SHOW_EVENT && (
+						<p>Tickets are sold by role, so pick the one you'd most like to do.</p>
+					)
+				}
+				<p>
+					Not sure which one you are? Most people are a mix — and that's exactly what makes great
+					teams.
+				</p>
+			</div>
 		</section>
 
 		{
-			SHOW_EVENT && (
-				<section id="melbourne-2026" class="section melbourne-section">
-					<div class="container event-copy">
-						<h2>SheHacks Melbourne</h2>
-						<p class="event-when">Monday 30 November and Tuesday 1 December 2026</p>
-						<p>Telstra Customer Insight Centre, Melbourne</p>
-						<p>This SheHacks we're centring tech-facilitated gender-based abuse.</p>
-						<h3>Day 1: Make friends, build prototypes</h3>
-						<p>
-							You'll be matched into a team of hackers, hustlers and hipsters. Within an hour you've
-							found the thing you all care about. Then your team decides what you can build together
-							in a short time frame to prototype a solution. AI Ally, a University of Melbourne
-							research project funded by the eSafety Commissioner, will lead the way by sharing what's
-							possible.
-						</p>
-						<h3>Day 2: Pitch your prototype</h3>
-						<p>
-							Join us for a cuppa and hear what the teams have built. The AI Ally team showcase what
-							they've built, and SheHacks teams pitch to guests from industry, research and the
-							prevention sector.
-						</p>
-						<p class="event-close">Places are limited so get in quick!</p>
-					</div>
-				</section>
-			)
-		}
-
-		{
-			SHOW_EVENT && (
-				<section id="tickets" class="section tickets-section">
-					<div class="container">
-						<h2 class="text-center">Get your ticket</h2>
-						<p class="text-center tickets-intro">
-							Every team needs a hacker, a hipster and a hustler, so tickets are sold by hat. Pick the
-							one you'd most like to do.
-						</p>
-						<div class="ticket-grid">
-							{TICKETS.map((ticket) => (
-								<article class="ticket-card">
-									<h3>{ticket.hat}</h3>
-									<p class="ticket-price">$20</p>
-									<p class="ticket-status">{ticket.soldOut ? 'Sold out' : `${ticket.places} places`}</p>
-									<p class="ticket-line">{ticketLine[ticket.hat]}</p>
-									<a
-										class="btn btn-primary"
-										href={ticket.soldOut ? ticket.waitlist : ticket.link}
-									>
-										{ticket.soldOut
-											? `Join the ${ticket.hat.toLowerCase()} waitlist`
-											: `Buy a ${ticket.hat.toLowerCase()} ticket`}
-									</a>
-								</article>
-							))}
+			roles.map((role) => {
+				const ticket = ticketByHat[role.name];
+				return (
+					<section id={role.id} class={roleBg[role.id]}>
+						<div class:list={['sh-wrap', 'sh-role', role.mirror && 'sh-role--mirror']}>
+							<div class="sh-role-film">
+								<LiteYouTube id={role.video.id} title={role.video.title} label={role.watch} />
+							</div>
+							<div class="sh-role-copy">
+								<Image src={role.badge} alt={role.badgeAlt} class={role.badgeClass} />
+								<h2 class="sh-title sh-title--role">{role.name}</h2>
+								<p>{role.description}</p>
+								<p class="sh-role-line">{role.line}</p>
+								{
+									SHOW_EVENT && (
+										<a
+											class="sh-btn sh-btn--navy"
+											href={ticket.soldOut ? ticket.waitlist : ticket.link}
+										>
+											{ticket.soldOut
+												? `Join the ${role.name.toLowerCase()} waitlist`
+												: role.buy}
+										</a>
+									)
+								}
+							</div>
 						</div>
-						<p class="tickets-note">
-							Not sure which hat is yours? See <a href="#roles">Find your role</a> below. Tickets are
-							$20 including GST and cover both days. We charge $20 so we can plan seats and food for
-							the people who come. After you pay, you'll go straight to a short form about you.
-						</p>
-					</div>
-				</section>
-			)
+					</section>
+				);
+			})
 		}
 
 		{
 			SHOW_EVENT && (
-				<section class="section know-section">
-					<div class="container">
-						<h2>What you need to know</h2>
-						<dl class="know-list">
+				<section class="sh-bg-pink">
+					<div class="sh-wrap sh-know-wrap">
+						<h2 class="sh-title sh-title--know">What you need to know</h2>
+						<dl class="sh-know">
 							{facts.map((fact) => (
-								<div class="know-row">
+								<div class="sh-know-row">
 									<dt>{fact.label}</dt>
 									<dd>{fact.value}</dd>
 								</div>
@@ -429,726 +504,262 @@ const accessibility = [
 			)
 		}
 
-		<section id="roles" class="section section--dark roles-section">
-			<div class="container">
-				<h2 class="text-center">Find your role</h2>
-				<p class="text-center roles-intro">Every team needs three skill sets. Which one are you?</p>
-				<div class="grid-3 roles-grid">
-					{
-						roles.map((r) => (
-							<div class:list={['role-card', r.colour]}>
-								<LiteYouTube id={r.video.id} title={r.video.title} />
-								<Image src={r.badge} alt="" width={220} class="role-badge" />
-								<h4>{r.name}</h4>
-								<p>{r.description}</p>
-							</div>
-						))
-					}
-				</div>
-				<figure class="roles-venn">
-					<Image
-						src={vennDiagram}
-						alt="Hacker, Hustler, Hipster Venn diagram"
-						width={460}
-						height={430}
-					/>
-				</figure>
-				<p class="text-center roles-note">
-					Not sure which one you are? Most people are a mix — and that's exactly what makes great
-					teams.
-				</p>
-				<p class="text-center roles-more">
-					<a href="https://www.youtube.com/girlgeekacademy">More SheHacks films on YouTube</a>
-				</p>
-			</div>
-		</section>
-
-		<section class="section origin-section">
-			<div class="container origin-copy">
-				<h2>How it started</h2>
-				<p>
-					In 2014, five women set out to make International Women's Day different. They organised a
-					hackathon with tea, cupcakes, yoga and sunlight instead of the usual dark basement and
-					energy drinks. It was Australia's first all-women hackathon — and Girl Geek Academy was born
-					from it.
-				</p>
-				<p>
-					SheHacks has been running ever since, in Melbourne, regional Victoria and Vanuatu, helping
-					hundreds of women and non-binary people find their team, build their idea and launch their
-					startup.
-				</p>
-			</div>
-		</section>
-
-		<section class="section who-section">
-			<div class="container who-layout">
-				<div class="eligibility-card">
-					<h3>Who is it for?</h3>
-					<ul>
+		<section class="sh-bg-navy">
+			<ZigZag position="top" />
+			<div class="sh-wrap sh-who">
+				<div class="sh-who-side">
+					<h2 class="sh-title sh-title--who">Who is it for?</h2>
+					<ul class="sh-who-list">
 						<li>Women and gender-diverse people, including non-binary people</li>
 						<li>Aged 18+</li>
 						<li>Any skill level welcome</li>
 					</ul>
 					{
 						SHOW_EVENT ? (
-							<a class="btn btn-primary" href="#tickets">
+							<a class="sh-btn sh-btn--blush" href="#tickets">
 								Get your ticket
 							</a>
 						) : (
-							<EmailCta label="Register interest" variant="primary" />
+							<EmailCta label="Register interest" class="sh-btn sh-btn--blush" />
 						)
 					}
 				</div>
-				<div>
-					<h2>An event built for everyone</h2>
+				<div class="sh-who-main">
+					<h2 class="sh-title sh-title--who">An event built for everyone</h2>
 					<p>
 						We're committed to making SheHacks accessible and welcoming for all. We've offered these
 						at past events. Tell us what you need when you register and we'll do our best.
 					</p>
-					<ul class="access-list">
-						{accessibility.map((a) => <li>{a}</li>)}
+					<ul class="sh-pills">
+						{accessibility.map((item) => (
+							<li class={item.tint}>{item.label}</li>
+						))}
 					</ul>
+					<p class="sh-fine">
+						Need something else? Email <a href="mailto:hello@girlgeekacademy.com">hello@girlgeekacademy.com</a> and we'll do our best to accommodate you.
+					</p>
+				</div>
+			</div>
+			<ZigZag position="bottom" />
+		</section>
+
+		{
+			SHOW_EVENT && (
+				<section id="tickets" class="sh-bg-lav">
+					<div class="sh-wrap sh-tickets">
+						<div class="sh-tickets-head">
+							<h2 class="sh-title">Get your ticket</h2>
+							<p>
+								Every team needs a hacker, a hipster and a hustler, so tickets are sold by hat. Pick the
+								one you'd most like to do.
+							</p>
+						</div>
+						<div class="sh-ticket-grid">
+							{roles.map((role) => {
+								const ticket = ticketByHat[role.name];
+								return (
+									<article class="sh-ticket">
+										<div class={role.panelClass}>
+											<Image src={role.badge} alt={role.badgeAlt} />
+										</div>
+										<div class="sh-ticket-body">
+											<div class="sh-ticket-top">
+												<h3>{role.name}</h3>
+												<p class="sh-price">$20</p>
+											</div>
+											<p>{role.line}</p>
+											<a
+												class="sh-btn sh-btn--navy sh-btn--ticket"
+												href={ticket.soldOut ? ticket.waitlist : ticket.link}
+											>
+												{ticket.soldOut
+													? `Join the ${role.name.toLowerCase()} waitlist`
+													: role.buy}
+											</a>
+											{!ticket.soldOut && <p class="sh-ticket-note">{ticketNote}</p>}
+										</div>
+									</article>
+								);
+							})}
+						</div>
+					</div>
+				</section>
+			)
+		}
+
+		<section class="sh-bg-started">
+			<div class="sh-wrap sh-origin">
+				<figure class="sh-origin-photo">
+					<img
+						src="/images/shehacks/strip/shehacks-2014-audience.webp"
+						alt="A room full of women listening at #SheHacks Melbourne 2014"
+						width="800"
+						height="534"
+					/>
+					<figcaption>#SheHacks 2014</figcaption>
+				</figure>
+				<div class="sh-origin-copy">
+					<h2 class="sh-title">How it started</h2>
 					<p>
-						Need something else? Email hello@girlgeekacademy.com and we'll do our best to accommodate
-						you.
+						In 2014 we were going to hackathons, but they were usually held in dark basements where they
+						fed us beer, pizza and energy drinks. Our mates were always happy we came, but they'd ask
+						“why don't more women come?”
+					</p>
+					<p>
+						So we designed a hackathon we actually wanted to go to. We had tea and cupcakes. And yoga.
+						And sunlight! We ran the first #SheHacks for International Women's Day 2014. It was
+						Australia's first all-women hackathon, and Girl Geek Academy grew out of it.
+					</p>
+					<p>
+						SheHacks has been running ever since, in Melbourne, regional Victoria and Vanuatu, helping
+						hundreds of women and non-binary people find their team, build their idea and launch their
+						startup.
 					</p>
 				</div>
 			</div>
 		</section>
 
-		<section class="section quotes-section">
-			<div class="container">
-				<h2 class="text-center">What people say about #SheHacks</h2>
-				<div class="quotes-grid">
+		<section class="sh-bg-lav">
+			<div class="sh-wrap sh-quotes">
+				<h2 class="sh-title">What people say about #SheHacks</h2>
+				<div class="sh-quote-grid">
 					{
-						quotes.map((q) => (
-							<blockquote class="quote-card">
-								<p>“{q.text}”</p>
-								<footer>
-									<p class="quote-card__by">{q.attribution}</p>
-									{q.href ? (
-										<a href={q.href}>{q.source}</a>
-									) : (
-										<p class="quote-card__source">{q.source}</p>
-									)}
-								</footer>
-							</blockquote>
+						quotes.map((quote) => (
+							<figure class="sh-quote">
+								<span class="sh-quote-mark" aria-hidden="true">
+									“
+								</span>
+								<blockquote>
+									<p>{quote.text}</p>
+								</blockquote>
+								<figcaption>
+									{quote.attribution}
+									{' · '}
+									{quote.href ? <a href={quote.href}>{quote.source}</a> : quote.source}
+								</figcaption>
+							</figure>
 						))
 					}
 				</div>
 			</div>
 		</section>
 
-		{
-			SHOW_EVENT && (
-				<section class="section faq-section">
-					<div class="container">
-						<h2 class="text-center">FAQ</h2>
-						<div class="faq-list">
-							<details class="faq-item">
-								<summary>What does the ticket cover?</summary>
-								<p>Both days of SheHacks Melbourne: Monday 30 November and Tuesday 1 December 2026.</p>
-							</details>
-							<details class="faq-item">
-								<summary>Which ticket should I buy?</summary>
-								<p>
-									The hat you'd most like to wear for the two days. Most people are a mix, and the form
-									asks for your second hat too. See <a href="#roles">Find your role</a> for what each one
-									does.
-								</p>
-							</details>
-							<details class="faq-item">
-								<summary>Why charge $20?</summary>
-								<p>So we can plan seats and food for the people who come.</p>
-							</details>
-							<details class="faq-item">
-								<summary>What if I can't come?</summary>
-								<p>
-									Tell us by Monday 23 November and we'll refund your ticket. After that, you can pass
-									your place to someone else: email <a href="mailto:hello@girlgeekacademy.com">hello@girlgeekacademy.com</a> with their name.
-								</p>
-							</details>
-							<details class="faq-item">
-								<summary>Can I come with friends or colleagues?</summary>
-								<p>
-									Yes, each with your own ticket. Teams are matched on the day, so you'll work with
-									people you've just met.
-								</p>
-							</details>
-							<details class="faq-item">
-								<summary>Do I need to come both days?</summary>
-								<p>Yes. Teams form and build on Monday and pitch on Tuesday.</p>
-							</details>
-							<details class="faq-item">
-								<summary>What should I bring?</summary>
-								<p>Your laptop and charger. You'll need them both days.</p>
-							</details>
-							<details class="faq-item">
-								<summary>Can I come to the Day 2 pitches as a guest?</summary>
-								<p>
-									Day 2 guests come by invitation. To ask about a place, email <a href="mailto:hello@girlgeekacademy.com">hello@girlgeekacademy.com</a>.
-								</p>
-							</details>
-						</div>
-					</div>
-				</section>
-			)
-		}
+		<section id="organisations" class="sh-bg-navy">
+			<ZigZag position="top" />
+			<div class="sh-wrap sh-org">
+				<div class="sh-org-lead">
+					<h2 class="sh-title sh-title--org">Bring SheHacks to your organisation</h2>
+					<p>
+						We bring a format refined since 2014 that takes teams from idea to working prototype and
+						pitch in two days. Hackers, hipsters and hustlers work side by side, so your developers,
+						designers and ideas people learn how the others think.
+					</p>
+				</div>
+				<ul class="sh-org-cards">
+					<li class="sh-org-card">
+						<p class="sh-card-title sh-card-title--blush">Your challenges</p>
+						<p>
+							Point the teams at the problems you care about. We turn them into briefs that can be built
+							and pitched in two days.
+						</p>
+					</li>
+					<li class="sh-org-card sh-org-card--hacker">
+						<p class="sh-card-title sh-card-title--hacker">Skills that stay</p>
+						<p>
+							Staff and students leave having built, designed and pitched something real, and knowing how
+							to do it again.
+						</p>
+					</li>
+					<li class="sh-org-card sh-org-card--hustler">
+						<p class="sh-card-title sh-card-title--hustler">We run it</p>
+						<p>
+							Girl Geek Academy has run SheHacks since 2014. We design the event, form the teams and run
+							the days with you.
+						</p>
+					</li>
+				</ul>
+				<div class="sh-org-logos">
+					<p class="sh-company">You'd be in good company</p>
+					<p>A few of the workplaces and schools that have brought SheHacks in-house:</p>
+					<ul class="sh-logos" aria-label="Past host organisations">
+						{
+							logos.map((logo) => (
+								<li>
+									<Image src={logo.src} alt={logo.alt} class={logo.class} />
+								</li>
+							))
+						}
+					</ul>
+				</div>
+				<a class="sh-btn sh-btn--blush" href={orgHref}>Talk to us about your organisation</a>
+			</div>
+			<ZigZag position="bottom" />
+		</section>
 
-		{
-			SHOW_EVENT && (
-				<section class="section mentor-section">
-					<div class="container mentor-copy">
-						<h2>Mentor at SheHacks</h2>
+		<section class="sh-bg-pink">
+			<div class="sh-wrap sh-after">
+				<div class="sh-faq">
+					<h2 class="sh-title sh-title--faq">FAQ</h2>
+					<div class="sh-faq-card">
+						<details class="sh-faq-item">
+							<summary>What does the ticket cover?</summary>
+							<p>Both days of SheHacks Melbourne: Monday 30 November and Tuesday 1 December 2026.</p>
+						</details>
+						<details class="sh-faq-item">
+							<summary>Which ticket should I buy?</summary>
+							<p>
+								The hat you'd most like to wear for the two days. Most people are a mix, and the form
+								asks for your second hat too. See <a href="#roles">Find your role</a> for what each one
+								does.
+							</p>
+						</details>
+						<details class="sh-faq-item">
+							<summary>Why charge $20?</summary>
+							<p>So we can plan seats and food for the people who come.</p>
+						</details>
+						<details class="sh-faq-item">
+							<summary>What if I can't come?</summary>
+							<p>
+								Tell us by Monday 23 November and we'll refund your ticket. After that, you can pass
+								your place to someone else: email <a href="mailto:hello@girlgeekacademy.com">hello@girlgeekacademy.com</a> with their name.
+							</p>
+						</details>
+						<details class="sh-faq-item">
+							<summary>Can I come with friends or colleagues?</summary>
+							<p>
+								Yes, each with your own ticket. Teams are matched on the day, so you'll work with
+								people you've just met.
+							</p>
+						</details>
+						<details class="sh-faq-item">
+							<summary>Do I need to come both days?</summary>
+							<p>Yes. Teams form and build on Monday and pitch on Tuesday.</p>
+						</details>
+						<details class="sh-faq-item">
+							<summary>What should I bring?</summary>
+							<p>Your laptop and charger. You'll need them both days.</p>
+						</details>
+						<details class="sh-faq-item">
+							<summary>Can I come to the Day 2 pitches as a guest?</summary>
+							<p>
+								Day 2 guests come by invitation. To ask about a place, email <a href="mailto:hello@girlgeekacademy.com">hello@girlgeekacademy.com</a>.
+							</p>
+						</details>
+					</div>
+				</div>
+				<div class="sh-mentor">
+					<h2 class="sh-title sh-title--faq">Mentor at SheHacks</h2>
+					<div class="sh-mentor-card">
 						<p>
 							We're looking for mentors for SheHacks Melbourne: developers, designers, product and
 							business people, and people from research and the prevention sector. You'll move between
 							teams, answer questions and help them get to a working prototype. Mentoring is unpaid.
 						</p>
-						<a class="btn btn-primary" href={mentorHref}>
-							Become a mentor
-						</a>
+						<a class="sh-btn sh-btn--navy" href={mentorHref}>Become a mentor</a>
 					</div>
-				</section>
-			)
-		}
-
-		{
-			SHOW_EVENT && (
-				<section class="section closing-section">
-					<div class="container text-center">
-						<div class="hero-ctas closing-ctas">
-							<a class="btn btn-primary" href="#tickets">
-								Get your ticket
-							</a>
-							<EmailCta label="Bring SheHacks to your organisation" variant="coral" />
-						</div>
-					</div>
-				</section>
-			)
-		}
-
+				</div>
+			</div>
+		</section>
 	</main>
 	<Footer />
 </Layout>
-
-<style>
-	.shehacks-main {
-		overflow-x: clip;
-	}
-
-	.shehacks-hero {
-		background-color: var(--color-pink);
-		padding-bottom: 1.75rem;
-	}
-
-	.page-eyebrow {
-		font-family: var(--font-pinata);
-		font-size: 1rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		color: var(--color-primary);
-		margin: 0 0 0.5rem;
-	}
-
-	.lead {
-		font-size: 1.125rem;
-		max-width: 60ch;
-		margin-bottom: 1.5rem;
-		color: var(--color-primary);
-	}
-
-	.event-line {
-		font-weight: 700;
-		margin: -0.5rem 0 1.5rem;
-		color: var(--color-primary-hover);
-	}
-
-	.hero-note {
-		font-size: 0.9rem;
-		margin: 0.75rem 0 0;
-		color: var(--color-primary-hover);
-	}
-
-	.hero-ctas {
-		display: flex;
-		gap: 1rem;
-		flex-wrap: wrap;
-		align-items: center;
-	}
-
-	.hero-ctas .btn,
-	.closing-ctas .btn,
-	.eligibility-card .btn,
-	.mentor-copy .btn,
-	.shehacks-main :global(.btn.email-cta) {
-		font-family: var(--font-display);
-		font-size: clamp(1.2rem, 2.2vw, 1.75rem);
-		font-weight: 400;
-		line-height: 1.05;
-	}
-
-	/* Photo strips: same loop as SheHacksSwift, in this page's colours. */
-	.photo-strips {
-		background: var(--color-pink);
-		display: grid;
-		gap: 0.75rem;
-		padding: 0 0 2.5rem;
-		overflow: hidden;
-	}
-
-	.strip {
-		overflow: hidden;
-		-webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
-		mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
-	}
-
-	.strip-track {
-		display: flex;
-		align-items: center;
-		width: max-content;
-		animation: strip-marq 80s linear infinite;
-	}
-
-	.strip-track--rev {
-		animation-name: strip-marq-rev;
-		animation-duration: 90s;
-	}
-
-	@media (prefers-reduced-motion: no-preference) {
-		.strip:hover .strip-track {
-			animation-play-state: paused;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.strip {
-			overflow-x: auto;
-			overflow-y: hidden;
-			-webkit-overflow-scrolling: touch;
-			mask-image: none;
-			-webkit-mask-image: none;
-		}
-
-		.strip-track,
-		.strip-track--rev {
-			animation: none;
-		}
-	}
-
-	@keyframes strip-marq {
-		from {
-			transform: translateX(0);
-		}
-		to {
-			transform: translateX(-50%);
-		}
-	}
-
-	@keyframes strip-marq-rev {
-		from {
-			transform: translateX(-50%);
-		}
-		to {
-			transform: translateX(0);
-		}
-	}
-
-	.strip-photo {
-		position: relative;
-		flex: 0 0 auto;
-		margin: 0 0.75rem 0 0;
-	}
-
-	.strip-photo :global(img) {
-		display: block;
-		height: clamp(150px, 18vw, 230px);
-		width: auto;
-		max-width: none;
-	}
-
-	.strip-label {
-		position: absolute;
-		left: 0.4rem;
-		bottom: 0.4rem;
-		max-width: calc(100% - 0.8rem);
-		margin: 0;
-		padding: 0.15rem 0.4rem;
-		background: rgba(255, 255, 255, 0.92);
-		color: var(--color-primary-hover);
-		font-family: var(--font-pinata);
-		font-size: 0.7rem;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-		line-height: 1.2;
-	}
-
-	.melbourne-section {
-		background: var(--color-white);
-	}
-
-	.event-copy {
-		max-width: 46rem;
-	}
-
-	.event-copy h3 {
-		font-size: clamp(1.75rem, 3vw, 2.5rem);
-		line-height: 1.15;
-		margin: 1.75rem 0 0.75rem;
-	}
-
-	.event-when {
-		font-weight: 700;
-	}
-
-	.event-close {
-		font-weight: 700;
-	}
-
-	.tickets-section {
-		background: var(--color-yellow-light);
-	}
-
-	.tickets-intro,
-	.tickets-note {
-		max-width: 62ch;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	.tickets-intro {
-		margin-bottom: 2rem;
-	}
-
-	.ticket-grid {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 1.25rem;
-		align-items: stretch;
-	}
-
-	.ticket-card {
-		background: var(--color-white);
-		border-radius: 0.5rem;
-		box-shadow: 5px 5px 0 0 var(--color-primary);
-		padding: 1.5rem 1.25rem 1.35rem;
-		display: flex;
-		flex-direction: column;
-		min-width: 0;
-	}
-
-	.ticket-card h3 {
-		font-size: clamp(2rem, 3vw, 2.75rem);
-		line-height: 1;
-		margin-bottom: 0.35rem;
-	}
-
-	.ticket-price {
-		font-family: var(--font-display);
-		font-size: clamp(1.75rem, 3vw, 2.5rem);
-		line-height: 0.9;
-		margin: 0 0 0.35rem;
-		color: var(--color-primary);
-	}
-
-	.ticket-status {
-		margin: 0 0 0.75rem;
-		font-weight: 700;
-	}
-
-	.ticket-line {
-		margin: 0 0 1.25rem;
-		flex: 1;
-	}
-
-	.ticket-card .btn {
-		margin-top: auto;
-		width: 100%;
-		white-space: normal;
-		font-size: clamp(1.15rem, 2vw, 1.65rem);
-	}
-
-	.tickets-note {
-		margin-top: 2rem;
-	}
-
-	.tickets-note a,
-	.faq-item a {
-		text-decoration: underline;
-	}
-
-	.know-section {
-		background: var(--color-white);
-	}
-
-	.know-list {
-		margin: 0.5rem 0 0;
-	}
-
-	.know-row {
-		display: grid;
-		grid-template-columns: minmax(7rem, 11rem) 1fr;
-		gap: 0.35rem 1.5rem;
-		padding: 1rem 0;
-		border-top: 1px solid rgba(95, 125, 215, 0.28);
-	}
-
-	.know-row:last-child {
-		border-bottom: 1px solid rgba(95, 125, 215, 0.28);
-	}
-
-	.know-row dt {
-		margin: 0;
-		font-family: var(--font-pinata);
-		text-transform: uppercase;
-		letter-spacing: 0.06em;
-		color: var(--color-primary);
-	}
-
-	.know-row dd {
-		margin: 0;
-	}
-
-	.roles-section {
-		padding-top: 4rem;
-		padding-bottom: 4rem;
-	}
-
-	.roles-intro {
-		max-width: 48ch;
-		margin: 0 auto 2.5rem;
-		color: var(--color-white);
-		opacity: 0.9;
-	}
-
-	.role-card {
-		border-radius: 0.5rem;
-		padding: 1.75rem 1.5rem;
-		text-align: center;
-	}
-
-	.role-card :global(.lite-yt) {
-		margin-bottom: 1rem;
-		text-align: left;
-	}
-
-	.role-badge {
-		width: 150px;
-		height: auto;
-		margin: 0 auto 0.75rem;
-		padding: 0.75rem;
-		background: var(--color-white);
-		border-radius: 1rem;
-	}
-
-	.role--blue {
-		background: rgba(255, 255, 255, 0.15);
-		color: var(--color-white);
-	}
-
-	.role--coral {
-		background: var(--color-coral);
-		color: var(--color-white);
-	}
-
-	.role--mint {
-		background: var(--color-mint);
-		color: var(--color-primary);
-	}
-
-	.roles-venn {
-		margin: 2.5rem auto 0;
-		max-width: 460px;
-		background: var(--color-white);
-		border-radius: 0.5rem;
-		padding: 1rem;
-	}
-
-	.roles-note {
-		color: var(--color-white);
-		opacity: 0.85;
-		margin-top: 2rem;
-		max-width: 52ch;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	.roles-more {
-		margin: 1rem 0 0;
-	}
-
-	.roles-more a {
-		color: var(--color-white);
-		text-decoration: underline;
-	}
-
-	.origin-section {
-		background: var(--color-yellow-light);
-	}
-
-	.origin-copy {
-		max-width: 46rem;
-	}
-
-	.who-section {
-		background: var(--color-white);
-	}
-
-	.who-layout {
-		display: grid;
-		grid-template-columns: minmax(16rem, 22rem) 1fr;
-		gap: 2rem;
-		align-items: start;
-	}
-
-	.access-list {
-		padding-left: 1.25rem;
-		margin-bottom: 1.5rem;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 0.4rem 1rem;
-	}
-
-	.access-list li {
-		margin: 0;
-	}
-
-	.eligibility-card {
-		background: var(--color-yellow-light);
-		border-radius: 0.5rem;
-		padding: 2rem;
-	}
-
-	.eligibility-card h3 {
-		font-size: clamp(1.5rem, 3vw, 2.25rem);
-		margin-bottom: 1rem;
-	}
-
-	.eligibility-card ul {
-		padding-left: 1.25rem;
-		margin-bottom: 1.5rem;
-	}
-
-	.eligibility-card li {
-		margin-bottom: 0.5rem;
-	}
-
-	.quotes-section {
-		background: var(--color-white);
-	}
-
-	.quotes-section h2 {
-		margin-bottom: 2rem;
-	}
-
-	.quotes-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1.5rem;
-		align-items: stretch;
-	}
-
-	.quote-card {
-		margin: 0;
-		background: var(--color-yellow-light);
-		border-radius: 0.5rem;
-		padding: 1.75rem 1.5rem;
-	}
-
-	.quote-card p {
-		margin: 0 0 1rem;
-	}
-
-	.quote-card footer {
-		margin: 0;
-	}
-
-	.quote-card .quote-card__by,
-	.quote-card .quote-card__source {
-		margin: 0;
-		font-size: 0.95rem;
-	}
-
-	.quote-card .quote-card__by {
-		margin-bottom: 0.35rem;
-	}
-
-	.quote-card a {
-		font-size: 0.95rem;
-		text-decoration: underline;
-	}
-
-	.faq-section {
-		background: var(--color-yellow-light);
-	}
-
-	.faq-list {
-		max-width: 46rem;
-		margin: 0 auto;
-		display: grid;
-		gap: 0.75rem;
-	}
-
-	.faq-item {
-		background: var(--color-white);
-		border-radius: 0.5rem;
-		padding: 0.15rem 1.25rem;
-	}
-
-	.faq-item summary {
-		cursor: pointer;
-		font-weight: 700;
-		padding: 0.9rem 0;
-		color: var(--color-primary-hover);
-	}
-
-	.faq-item summary:focus-visible {
-		outline: 2px solid var(--color-primary);
-		outline-offset: 3px;
-	}
-
-	.faq-item p {
-		margin: 0 0 1rem;
-	}
-
-	.mentor-section {
-		background: var(--color-pink);
-	}
-
-	.mentor-copy {
-		max-width: 46rem;
-	}
-
-	.mentor-copy .btn {
-		margin-top: 0.5rem;
-	}
-
-	.closing-section {
-		background: var(--color-white);
-	}
-
-	.closing-ctas {
-		justify-content: center;
-	}
-
-	#tickets,
-	#roles,
-	#melbourne-2026 {
-		scroll-margin-top: 5rem;
-	}
-
-	@media (max-width: 991px) {
-		.quotes-grid,
-		.who-layout {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	@media (max-width: 720px) {
-		.ticket-grid,
-		.access-list,
-		.know-row {
-			grid-template-columns: 1fr;
-		}
-	}
-</style>

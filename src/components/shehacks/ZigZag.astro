@@ -1,0 +1,35 @@
+---
+interface Props {
+	position?: 'top' | 'bottom';
+}
+
+const { position = 'bottom' } = Astro.props;
+const id = `sh-zig-${crypto.randomUUID()}`;
+---
+
+<svg class:list={['sh-zig', position === 'top' && 'sh-zig--top']} aria-hidden="true">
+	<defs>
+		<pattern id={id} width="86" height="30" patternUnits="userSpaceOnUse">
+			<path d="M0 0 L43 30 L86 0 Z" fill="#37417C"></path>
+		</pattern>
+	</defs>
+	<rect width="100%" height="30" fill={`url(#${id})`}></rect>
+</svg>
+
+<style>
+	.sh-zig {
+		display: block;
+		position: absolute;
+		left: 0;
+		bottom: -29px;
+		width: 100%;
+		height: 30px;
+		pointer-events: none;
+	}
+
+	.sh-zig--top {
+		top: -29px;
+		bottom: auto;
+		transform: scaleY(-1);
+	}
+</style>

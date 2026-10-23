@@ -6,10 +6,12 @@
 interface Props {
 	id: string;
 	title: string;
+	/** Accessible name for the play button. Defaults to "Play video: {title}". */
+	label?: string;
 	eager?: boolean;
 }
 
-const { id, title, eager = false } = Astro.props;
+const { id, title, label, eager = false } = Astro.props;
 const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 ---
 
@@ -20,7 +22,7 @@ const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 			class="lite-yt__btn"
 			data-id={id}
 			data-title={title}
-			aria-label={`Play video: ${title}`}
+			aria-label={label ?? `Play video: ${title}`}
 		>
 			<img
 				src={thumb}
