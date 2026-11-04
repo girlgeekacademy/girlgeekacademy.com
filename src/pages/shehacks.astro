@@ -297,8 +297,15 @@ const logos = [
 <Layout
 	title="#SheHacks — Girl Geek Academy"
 	description={description}
-	socialImage="/images/shehacks/og-shehacks.jpg"
+	socialImage="/images/shehacks/shehacks-og-1200x630.png"
 >
+	<meta slot="head" property="og:image:width" content="1200" />
+	<meta slot="head" property="og:image:height" content="630" />
+	<meta
+		slot="head"
+		property="og:image:alt"
+		content="#SheHacks Melbourne, 30 November to 1 December 2026"
+	/>
 	<Header />
 	<main class="sh-page" style={`--sh-dots: url("${dots.src}")`}>
 		<section class="sh-bg-hero">
