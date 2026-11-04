@@ -242,7 +242,8 @@
 	text-transform: uppercase;
 }
 
-.sh-page h1 {
+.sh-page h1,
+.sh-page .sh-hero-title {
 	/* 184px is the mockup cap. The column is narrower than that word, so size to the column and keep the badge off the title. */
 	font-size: clamp(72px, 23cqi, 184px);
 	line-height: 0.84;

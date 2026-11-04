@@ -1,0 +1,66 @@
+---
+/*
+ * Homepage promo for SheHacks Melbourne 2026. Same 2017 look as the SheHacks page.
+ * Take this off after 1 December, with SHOW_EVENT in src/pages/shehacks.astro.
+ */
+import { Image } from 'astro:assets';
+import LiteYouTube from '../LiteYouTube.astro';
+import Zigzag from '../Zigzag.astro';
+import { videos } from '../../data/videos';
+import { urls } from '../../data/urls';
+import '../../styles/shehacks.css';
+
+import dots from '../../assets/shehacks/overlay-dots-painted-soft.png';
+import hackerBadge from '../../assets/shehacks/shehacks-hacker-badge.svg';
+import hipsterBadge from '../../assets/shehacks/shehacks-hipster-badge.svg';
+import hustlerBadge from '../../assets/shehacks/shehacks-hustler-badge.svg';
+---
+
+<section
+	class="sh-page sh-bg-hero sh-home"
+	style={`--sh-dots: url("${dots.src}")`}
+	aria-labelledby="home-shehacks"
+>
+	<div class="sh-wrap sh-hero-grid">
+		<div class="sh-hero-copy">
+			<p class="sh-eyebrow">The longest-running all-women hackathon series in the world</p>
+			<h2 id="home-shehacks" class="sh-hero-title">
+				#SheHacks<span class="sh-tm">™</span>
+			</h2>
+			<p class="sh-lead">
+				Find your team, build your idea and pitch a working prototype, alongside brilliant women and
+				gender-diverse people. One of the longest-running women's hackathon series in the world.
+			</p>
+			<p class="sh-event">
+				<span>SheHacks Melbourne</span>
+				<span aria-hidden="true">·</span>
+				<span>Monday 30 November and Tuesday 1 December 2026</span>
+			</p>
+			<div>
+				<a class="sh-btn sh-btn--navy" href={urls.sheHacks}>Get your ticket</a>
+			</div>
+		</div>
+		<div class="sh-hero-media">
+			<div class="sh-hero-stage">
+				<div class="sh-hero-frame">
+					<LiteYouTube
+						id={videos.sheHacks2016.id}
+						title={videos.sheHacks2016.title}
+						label="Watch the #SheHacks 2016 film"
+					/>
+				</div>
+				<Image src={hackerBadge} alt="" class="sh-float sh-float--hacker" />
+				<Image src={hipsterBadge} alt="" class="sh-float sh-float--hipster" />
+				<Image src={hustlerBadge} alt="" class="sh-float sh-float--hustler" />
+			</div>
+			<p class="sh-hero-caption">Watch: what happens at #SheHacks</p>
+		</div>
+	</div>
+	<Zigzag fill="#ffffff" position="bottom" />
+</section>
+
+<style>
+	.sh-home {
+		position: relative;
+	}
+</style>
