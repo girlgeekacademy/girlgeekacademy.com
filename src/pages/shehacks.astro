@@ -68,6 +68,10 @@ const mentorHref = MENTOR_LINK || 'mailto:hello@girlgeekacademy.com?subject=SheH
 const orgHref = 'mailto:hello@girlgeekacademy.com?subject=SheHacks%20for%20my%20organisation';
 const ticketNote =
 	"Includes GST and covers both days. After you pay, you'll fill in a short form about you.";
+const afternoonTeaForm =
+	'https://docs.google.com/forms/d/e/1FAIpQLSeRkHY2fQiToKURI6QLhaz8MqO1yvXpOVkxuesGRbuo4YHNDw/viewform';
+const afternoonTeaNote =
+	'Free. Registering takes 2 minutes, and we need your name and organisation for your Telstra visitor badge.';
 
 const ticketLine: Record<string, string> = {
 	Hacker: 'You build the working prototype.',
@@ -588,6 +592,39 @@ const logos = [
 									</article>
 								);
 							})}
+							<article class="sh-ticket sh-ticket--tea">
+								<div class="sh-ticket-photo">
+									<img
+										src="/images/shehacks/strip/shehacks-2016-cupcakes.webp"
+										alt="A tray of purple and mint cupcakes at #SheHacks 2016"
+										width="799"
+										height="533"
+										loading="lazy"
+										decoding="async"
+									/>
+								</div>
+								<div class="sh-ticket-body">
+									<div class="sh-ticket-top">
+										<h3>Afternoon tea ticket</h3>
+										<p class="sh-price">FREE</p>
+									</div>
+									<p>
+										You're invited to join us on Day 2 (Tuesday 1 December) for afternoon tea,
+										networking and to hear what the teams have built. From 1–3pm the AI Ally team
+										will showcase their results, and we will hear the SheHacks teams pitch the
+										solutions they have hacked together in just over 24 hours.
+									</p>
+									<a
+										class="sh-btn sh-btn--navy sh-btn--ticket"
+										href={afternoonTeaForm}
+										target="_blank"
+										rel="noopener"
+									>
+										Grab your afternoon tea ticket
+									</a>
+									<p class="sh-ticket-note">{afternoonTeaNote}</p>
+								</div>
+							</article>
 						</div>
 					</div>
 				</section>

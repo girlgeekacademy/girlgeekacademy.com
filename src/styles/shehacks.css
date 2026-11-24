@@ -890,6 +890,36 @@
 	text-align: center;
 }
 
+.sh-ticket--tea {
+	flex-basis: 100%;
+}
+
+.sh-ticket-photo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--sh-pink);
+	padding: 36px 24px;
+}
+
+.sh-ticket-photo img {
+	width: min(100%, 480px);
+	height: auto;
+	box-shadow: 0 10px 22px rgba(55, 65, 124, 0.18);
+}
+
+.sh-ticket--tea .sh-ticket-top h3 {
+	min-width: 0;
+}
+
+.sh-ticket--tea .sh-price {
+	flex-shrink: 0;
+}
+
+.sh-ticket--tea .sh-btn--ticket {
+	width: 100%;
+}
+
 /* How it started */
 .sh-origin {
 	display: flex;
