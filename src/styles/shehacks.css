@@ -892,18 +892,27 @@
 
 .sh-ticket--tea {
 	flex-basis: 100%;
+	flex-direction: row;
+	align-items: stretch;
 }
 
 .sh-ticket-photo {
 	display: flex;
+	flex: 0 0 33.333%;
 	align-items: center;
 	justify-content: center;
+	box-sizing: border-box;
 	background: var(--sh-pink);
-	padding: 36px 24px;
+	padding: 28px 20px;
+}
+
+.sh-ticket--tea .sh-ticket-body {
+	flex: 1 1 66.666%;
+	min-width: 0;
 }
 
 .sh-ticket-photo img {
-	width: min(100%, 480px);
+	width: 100%;
 	height: auto;
 	box-shadow: 0 10px 22px rgba(55, 65, 124, 0.18);
 }
@@ -918,6 +927,25 @@
 
 .sh-ticket--tea .sh-btn--ticket {
 	width: 100%;
+}
+
+@media (max-width: 720px) {
+	.sh-ticket--tea {
+		flex-direction: column;
+	}
+
+	.sh-ticket-photo {
+		flex: none;
+		padding: 28px 20px;
+	}
+
+	.sh-ticket--tea .sh-ticket-body {
+		flex: none;
+	}
+
+	.sh-ticket-photo img {
+		width: min(100%, 480px);
+	}
 }
 
 /* How it started */
