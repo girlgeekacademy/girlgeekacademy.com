@@ -1,0 +1,254 @@
+---
+/*
+ * Homepage promo for SheHacksSwift 2027.
+ * Borrows the SheHacksSwift page's own look (violet gradient, swift.org
+ * watercolour swoops and bird, Piñata + Jen Wagner Print) so it reads as the
+ * same thing people land on. Copy is lifted from /shehacksswift/.
+ * Do not restyle to the GGA design system.
+ */
+import { urls } from '../../data/urls';
+---
+
+<section class="shs-promo" aria-labelledby="shs-promo-title">
+	<div class="shs-promo__art" aria-hidden="true">
+		<img class="shs-promo__swoop shs-promo__swoop--purple" src="/images/shehacksswift/swift-org/purple-swoop.png" alt="" width="1116" height="961" loading="lazy" />
+		<img class="shs-promo__swoop shs-promo__swoop--orange" src="/images/shehacksswift/swift-org/orange-swoop-top.png" alt="" width="1220" height="911" loading="lazy" />
+		<img class="shs-promo__swoop shs-promo__swoop--white" src="/images/shehacksswift/swift-org/white-swoop-2.png" alt="" width="1190" height="834" loading="lazy" />
+	</div>
+
+	<div class="container shs-promo__inner">
+		<div class="shs-promo__mark">
+			<img class="shs-promo__logo" src="/images/shehacksswift/shehacksswift-logo.webp" alt="SheHacksSwift" width="520" height="481" loading="lazy" />
+			<img class="shs-promo__bird" src="/images/shehacksswift/swift-org/bird.png" alt="" aria-hidden="true" width="339" height="299" loading="lazy" />
+		</div>
+
+		<div class="shs-promo__copy">
+			<h2 id="shs-promo-title" class="shs-promo__title">
+				Make friends.<br /><span>Build apps.</span>
+			</h2>
+			<p class="shs-promo__sub">Build your own app in three days.</p>
+			<p class="shs-promo__body">
+				A free three-day program in Sydney for high school girls and gender-diverse students, including
+				non-binary students.
+			</p>
+			<div class="shs-promo__actions">
+				<span class="shs-promo__date">Sydney · 12–14 January 2027</span>
+				<a class="shs-promo__btn" href={urls.sheHacksSwift}>Find out more</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.shs-promo {
+		position: relative;
+		overflow: hidden;
+		color: #ffffff;
+		background-image: linear-gradient(160deg, #a268c1 0%, #6c4a98 35%, #4b3773 70%, #3b2b62 100%);
+		padding: clamp(3rem, 6vw, 5rem) 0;
+	}
+
+	.shs-promo::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image: url('/images/shehacksswift/grain.png');
+		background-size: 300px 300px;
+		mix-blend-mode: soft-light;
+		opacity: 0.42;
+		pointer-events: none;
+		z-index: 2;
+	}
+
+	.shs-promo__art {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	.shs-promo__swoop {
+		position: absolute;
+		height: auto;
+		opacity: 0.85;
+	}
+
+	/* Swoops sit behind the logo side and the far right, never under the text */
+	.shs-promo__swoop--purple {
+		width: 34%;
+		left: -4%;
+		top: -18%;
+		opacity: 0.55;
+	}
+
+	.shs-promo__swoop--orange {
+		width: 26%;
+		right: -9%;
+		top: -38%;
+		opacity: 0.7;
+	}
+
+	.shs-promo__swoop--white {
+		width: 30%;
+		left: 4%;
+		bottom: -55%;
+		opacity: 0.35;
+	}
+
+	.shs-promo__inner {
+		position: relative;
+		z-index: 3;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 2rem clamp(2rem, 5vw, 4.5rem);
+	}
+
+	.shs-promo__mark {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		flex: 0 0 auto;
+	}
+
+	.shs-promo__logo {
+		display: block;
+		width: clamp(150px, 16vw, 230px);
+		height: auto;
+	}
+
+	.shs-promo__bird {
+		display: block;
+		width: clamp(110px, 11vw, 160px);
+		height: auto;
+	}
+
+	.shs-promo__copy {
+		flex: 1 1 26rem;
+		max-width: 38rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.9rem;
+	}
+
+	.shs-promo__title {
+		margin: 0;
+		font-family: var(--font-pinata);
+		font-weight: 400;
+		font-size: clamp(2.6rem, 5.4vw, 4.6rem);
+		line-height: 0.96;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		color: #ffffff;
+	}
+
+	.shs-promo__title span {
+		color: #c9c3f0;
+	}
+
+	.shs-promo__sub {
+		margin: 0;
+		font-family: var(--font-pinata);
+		font-size: clamp(1.25rem, 2vw, 1.6rem);
+		line-height: 1.15;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		color: #ffffff;
+	}
+
+	.shs-promo__body {
+		margin: 0;
+		font-size: 1.1rem;
+		line-height: 1.55;
+		color: #d9d4ea;
+	}
+
+	.shs-promo__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.9rem 1rem;
+		padding-top: 0.4rem;
+	}
+
+	.shs-promo__date,
+	.shs-promo__btn {
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: 1.9rem;
+		line-height: 0.55;
+		text-transform: uppercase;
+		border-radius: 999px;
+		white-space: nowrap;
+	}
+
+	.shs-promo__date {
+		color: #ffffff;
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.25);
+		padding: 14px 20px;
+		-webkit-backdrop-filter: blur(14px) saturate(150%);
+		backdrop-filter: blur(14px) saturate(150%);
+	}
+
+	.shs-promo__btn {
+		display: inline-block;
+		text-decoration: none;
+		padding: 14px 26px;
+		color: #ffffff;
+		background-image: linear-gradient(135deg, #f05138 0%, #d2342a 100%);
+		transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.shs-promo__btn:hover,
+	.shs-promo__btn:focus-visible {
+		color: #ffffff;
+		transform: translateY(-1px);
+		filter: brightness(1.06);
+		box-shadow: 0 14px 28px -14px rgba(196, 46, 39, 0.7);
+	}
+
+	.shs-promo__btn:focus-visible {
+		outline: 2px solid #ffffff;
+		outline-offset: 3px;
+	}
+
+	@media (max-width: 800px) {
+		.shs-promo__inner {
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.shs-promo__copy {
+			flex-basis: auto;
+			align-items: center;
+		}
+
+		.shs-promo__actions {
+			justify-content: center;
+		}
+
+		.shs-promo__swoop--purple {
+			width: 80%;
+			left: -20%;
+			top: -6%;
+		}
+
+		.shs-promo__swoop--orange {
+			width: 50%;
+			right: -22%;
+			top: -12%;
+		}
+
+		.shs-promo__swoop--white {
+			display: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.shs-promo__btn {
+			transition: none;
+		}
+	}
+</style>
